@@ -1,0 +1,125 @@
+{
+  "generated_at": "2026-10-20T00:00:00.000Z",
+  "task": "KB-QUALITY-001",
+  "audiences": {
+    "seller": "商家经营：策略、广告、转化、利润、商品运营。可进入卖家侧 AI 军师。",
+    "buyer": "消费者咨询：商品使用、配送、退换货、支付等面向终端买家的问题。",
+    "platform_support": "商家使用网站/软件平台时的操作问题（如 Wix 帮助中心内容）。",
+    "internal_eval": "仅用于内部检索与回答质量评测，禁止进入任何线上知识库。"
+  },
+  "datasets": [
+    {
+      "dataset": "WixQA wix_kb_corpus",
+      "primary_audience": "platform_support",
+      "secondary_audience": "internal_eval",
+      "knowledge_type": "how_to | troubleshooting | feature_explainer | known_issue",
+      "industry": "website_builder_platform",
+      "locale": "en",
+      "rationale": "Wix 帮助中心教商家如何操作 Wix 平台，属于平台支持，不是通用电商买家客服。",
+      "publishable": true,
+      "notes": "可进入 platform_support 检索池；不得标注为 buyer。"
+    },
+    {
+      "dataset": "WixQA wixqa_expertwritten",
+      "primary_audience": "internal_eval",
+      "secondary_audience": null,
+      "industry": "website_builder_platform",
+      "locale": "en",
+      "rationale": "专家撰写的多文档问答，作为独立验证基准。",
+      "publishable": false,
+      "notes": "仅评测用；不得用于生成训练卡，否则评测独立性失效。"
+    },
+    {
+      "dataset": "WixQA wixqa_simulated",
+      "primary_audience": "internal_eval",
+      "secondary_audience": null,
+      "industry": "website_builder_platform",
+      "locale": "en",
+      "rationale": "由专家对话蒸馏的简答，作为第二组独立验证基准。",
+      "publishable": false,
+      "notes": "仅评测用，与 expertwritten 交叉验证。"
+    },
+    {
+      "dataset": "WixQA wixqa_synthetic",
+      "primary_audience": "internal_eval",
+      "secondary_audience": null,
+      "industry": "website_builder_platform",
+      "locale": "en",
+      "rationale": "LLM 抽取的合成问答，质量参差，只能做弱监督。",
+      "publishable": false,
+      "notes": "不得作为验证基准（与生成同源），只能用于召回/排序实验。"
+    },
+    {
+      "dataset": "Bitext Customer Support",
+      "primary_audience": "buyer",
+      "secondary_audience": "internal_eval",
+      "knowledge_type": "intent_pattern",
+      "industry": "ecommerce_customer_service",
+      "locale": "en",
+      "rationale": "通用客服意图与话术模式，适合做意图识别与表达多样性。",
+      "publishable": false,
+      "notes": "response 是合成话术，不是政策事实；不得当作配送/退款政策事实入库。CDLA 许可待法务确认。"
+    },
+    {
+      "dataset": "MASSIVE / MTOP / CLINC150",
+      "primary_audience": "internal_eval",
+      "secondary_audience": null,
+      "rationale": "语言与意图评测数据池，只做分类/语言覆盖评测。",
+      "publishable": false,
+      "notes": "不得标注为已验证事实知识。"
+    },
+    {
+      "dataset": "ecommerce-ai-skills",
+      "primary_audience": "seller",
+      "secondary_audience": null,
+      "knowledge_type": "how_to | policy",
+      "industry": "cross_border_ecommerce",
+      "locale": "zh",
+      "rationale": "卖家运营方法论，含量化阈值。",
+      "publishable": true,
+      "notes": "进入 seller 检索池；is_insight 控制是否公开为内容营销素材。"
+    },
+    {
+      "dataset": "ShipBob blog",
+      "primary_audience": "seller",
+      "secondary_audience": null,
+      "knowledge_type": "how_to",
+      "industry": "ecommerce_fulfillment",
+      "locale": "en",
+      "rationale": "履约/物流运营知识。",
+      "publishable": true,
+      "notes": "需保留出处链接。"
+    },
+    {
+      "dataset": "WebFAQ2 (Traveling)",
+      "primary_audience": "buyer",
+      "secondary_audience": null,
+      "knowledge_type": "faq",
+      "industry": "hospitality",
+      "locale": "en",
+      "rationale": "酒店/旅游问答，仅作为买家侧 FAQ 的表达参考。",
+      "publishable": false,
+      "notes": "域不匹配跨境电商，暂不进入正式买家库。"
+    }
+  ],
+  "rules": [
+    "audience=internal_eval 的任何数据不得写入线上 knowledge 表。",
+    "WixQA 不得整体标注为 buyer；只有明确面向终端消费者的内容才可转 buyer。",
+    "Bitext 的 response 字段不得作为政策事实引用。",
+    "MASSIVE/MTOP/CLINC150 只作为意图与语言评测集。",
+    "任何候选卡必须有 source_id 与 evidence；无证据一律 review_status=needs_review。"
+  ],
+  "sample_states": {
+    "PASS_LOCAL": "本地检查通过，可进入待验收数据池（不等于最终正确性保证）。",
+    "PASS_CLOUD": "本地两次失败后由云端复核对齐，并通过程序校验。",
+    "CORRECTED": "已修正，保留原始结果与修正记录。",
+    "REJECTED": "存在不可修复错误、污染或不适用内容。",
+    "HUMAN_REVIEW": "证据不足、存在争议或需要专业判断。",
+    "LICENSE_HOLD": "许可未确认，禁止进入训练与云端审核流程。"
+  },
+  "dataset_states": {
+    "WixQA": "PASS_LOCAL（MIT，需保留署名）",
+    "Bitext": "LICENSE_HOLD（CDLA-Sharing-1.0 商业使用待法务确认，禁止发送云端审核）",
+    "MASSIVE/MTOP/CLINC150": "internal_eval 专用，不产生事实卡"
+  }
+}

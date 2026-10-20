@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-10-20T14:30:46.192Z",
+  "files": [
+    {
+      "key": "wixqa_expertwritten",
+      "path": "D:/Documents/AI_Projects/NudgeSo/language_prompt/GPT/02_WixQA/dataset_snapshot/wixqa_expertwritten/test.jsonl",
+      "bytes": 255510,
+      "sha256": "a1bb6888a8394f980bc88f0d09b873fcd283ff4c9782600bc203f8103c2f1bad",
+      "hf_etag": null,
+      "hash_matches_hf_etag": "no_metadata",
+      "verified": true,
+      "source_url": "https://huggingface.co/datasets/Wix/WixQA",
+      "license": "MIT",
+      "license_status": "approved_with_attribution"
+    },
+    {
+      "key": "wixqa_simulated",
+      "path": "D:/Documents/AI_Projects/NudgeSo/language_prompt/GPT/02_WixQA/dataset_snapshot/wixqa_simulated/test.jsonl",
+      "bytes": 88188,
+      "sha256": "9a2b9f42c081467b3de5bd92511e770bca3cc7977f169526fd78dd3c985ac4a8",
+      "hf_etag": null,
+      "hash_matches_hf_etag": "no_metadata",
+      "verified": true,
+      "source_url": "https://huggingface.co/datasets/Wix/WixQA",
+      "license": "MIT",
+      "license_status": "approved_with_attribution"
+    },
+    {
+      "key": "wixqa_synthetic",
+      "path": "D:/Documents/AI_Projects/NudgeSo/language_prompt/GPT/02_WixQA/dataset_snapshot/wixqa_synthetic/test.jsonl",
+      "bytes": 6216364,
+      "sha256": "1d7e79f328db46537934081b3d9814b02dd0098d67a072cac5dadac636432054",
+      "hf_etag": null,
+      "hash_matches_hf_etag": "no_metadata",
+      "verified": true,
+      "source_url": "https://huggingface.co/datasets/Wix/WixQA",
+      "license": "MIT",
+      "license_status": "approved_with_attribution"
+    },
+    {
+      "key": "wix_kb_corpus",
+      "path": "D:/Documents/AI_Projects/NudgeSo/language_prompt/GPT/02_WixQA/dataset_snapshot/wix_kb_corpus/wix_kb_corpus.jsonl",
+      "bytes": 53743863,
+      "sha256": "46b852c60b85fb1828e7c6118bb56ba796eba99120a6b69c6b984c06e1c5e1fe",
+      "hf_etag": null,
+      "hash_matches_hf_etag": "no_metadata",
+      "verified": true,
+      "source_url": "https://huggingface.co/datasets/Wix/WixQA",
+      "license": "MIT",
+      "license_status": "approved_with_attribution"
+    },
+    {
+      "key": "bitext_csv",
+      "path": "D:/Documents/AI_Projects/NudgeSo/language_prompt/GPT/03_Bitext/dataset_snapshot/Bitext_Sample_Customer_Support_Training_Dataset_27K_responses-v11.csv",
+      "bytes": 19202474,
+      "sha256": "6f81102b0100b97b8468eb04368033a23206bf1fde9d53500d5806ec1001a434",
+      "hf_etag": null,
+      "hash_matches_hf_etag": "no_metadata",
+      "verified": true,
+      "source_url": "https://huggingface.co/datasets/bitext/Bitext-customer-support-llm-chatbot-training-dataset",
+      "license": "CDLA-Sharing-1.0",
+      "license_status": "review_required"
+    }
+  ]
+}

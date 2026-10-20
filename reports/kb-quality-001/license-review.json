@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-10-20T14:30:47.275Z",
+  "datasets": [
+    {
+      "dataset": "WixQA",
+      "files": [
+        "wixqa_expertwritten/test.jsonl",
+        "wixqa_simulated/test.jsonl",
+        "wixqa_synthetic/test.jsonl",
+        "wix_kb_corpus/wix_kb_corpus.jsonl"
+      ],
+      "declared_license": "MIT",
+      "source": "https://huggingface.co/datasets/Wix/WixQA",
+      "commercial_use": "allowed",
+      "derivative_works": "allowed",
+      "redistribution": "allowed with MIT license text + copyright notice",
+      "attribution": "cite Wix.com AI Research / arXiv:2505.08643",
+      "status": "approved_with_attribution",
+      "notes": "Dataset card states license: mit. Content is Wix Help Center help articles, likely also under Wix terms; keep attribution and avoid presenting as official Wix policy."
+    },
+    {
+      "dataset": "Bitext Customer Support",
+      "files": [
+        "Bitext_Sample_Customer_Support_Training_Dataset_27K_responses-v11.csv"
+      ],
+      "declared_license": "CDLA-Sharing-1.0",
+      "source": "https://huggingface.co/datasets/bitext/Bitext-customer-support-llm-chatbot-training-dataset",
+      "commercial_use": "review_required",
+      "derivative_works": "allowed with sharing obligations (CDLA-Sharing-1.0)",
+      "redistribution": "must carry CDLA-Sharing-1.0 terms and notices",
+      "attribution": "Bitext Innovations, 2024",
+      "status": "review_required",
+      "notes": "CDLA-Sharing-1.0 permits sharing/derivatives subject to license propagation; commercial ingestion into a paid KB should be cleared by legal before launch."
+    }
+  ],
+  "pending_review": [
+    "Bitext (CDLA-Sharing-1.0) — commercial redistribution not cleared"
+  ]
+}

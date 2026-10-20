@@ -1,0 +1,87 @@
+{
+  "task": "KB-QUALITY-001",
+  "generated_at": "2026-10-20T14:30:47.276Z",
+  "command": "D:\\Program Files\\nodejs\\node.exe D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\scripts\\kb-quality\\audit.mjs",
+  "cwd": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2",
+  "inputs": {
+    "wixqa": "D:/Documents/AI_Projects/NudgeSo/language_prompt/GPT/02_WixQA/dataset_snapshot",
+    "bitext": "D:/Documents/AI_Projects/NudgeSo/language_prompt/GPT/03_Bitext/dataset_snapshot"
+  },
+  "outputs": "D:/Documents/AI_Projects/NudgeSo/nudgev2/reports/kb-quality-001",
+  "files": [
+    {
+      "key": "wixqa_expertwritten",
+      "bytes": 255510,
+      "sha256": "a1bb6888a8394f980bc88f0d09b873fcd283ff4c9782600bc203f8103c2f1bad",
+      "exists": true
+    },
+    {
+      "key": "wixqa_simulated",
+      "bytes": 88188,
+      "sha256": "9a2b9f42c081467b3de5bd92511e770bca3cc7977f169526fd78dd3c985ac4a8",
+      "exists": true
+    },
+    {
+      "key": "wixqa_synthetic",
+      "bytes": 6216364,
+      "sha256": "1d7e79f328db46537934081b3d9814b02dd0098d67a072cac5dadac636432054",
+      "exists": true
+    },
+    {
+      "key": "wix_kb_corpus",
+      "bytes": 53743863,
+      "sha256": "46b852c60b85fb1828e7c6118bb56ba796eba99120a6b69c6b984c06e1c5e1fe",
+      "exists": true
+    },
+    {
+      "key": "bitext_csv",
+      "bytes": 19202474,
+      "sha256": "6f81102b0100b97b8468eb04368033a23206bf1fde9d53500d5806ec1001a434",
+      "exists": true
+    }
+  ],
+  "wixqa": {
+    "articles": 6221,
+    "empty_contents": 0,
+    "duplicate_contents": 0,
+    "qa": [
+      {
+        "config": "wixqa_expertwritten",
+        "rows": 200,
+        "missing": 0,
+        "unresolved": 0
+      },
+      {
+        "config": "wixqa_simulated",
+        "rows": 200,
+        "missing": 0,
+        "unresolved": 0
+      },
+      {
+        "config": "wixqa_synthetic",
+        "rows": 6221,
+        "missing": 0,
+        "unresolved": 0
+      }
+    ]
+  },
+  "bitext": {
+    "rows": 26872,
+    "duplicate_pairs": 0,
+    "categories": 11,
+    "intents": 27
+  },
+  "license": [
+    {
+      "dataset": "WixQA",
+      "license": "MIT",
+      "status": "approved_with_attribution"
+    },
+    {
+      "dataset": "Bitext Customer Support",
+      "license": "CDLA-Sharing-1.0",
+      "status": "review_required"
+    }
+  ],
+  "duration_ms": 1188
+}

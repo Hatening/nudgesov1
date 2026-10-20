@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-10-20T14:30:46.504Z",
+  "source_dir": "D:/Documents/AI_Projects/NudgeSo/language_prompt/GPT/02_WixQA/dataset_snapshot",
+  "articles": {
+    "rows": 6221,
+    "invalid_json": 0,
+    "unique_ids": 6221,
+    "duplicate_ids": 0,
+    "duplicate_urls": 0,
+    "duplicate_titles": 2,
+    "duplicate_contents": 0,
+    "empty_contents": 0,
+    "empty_titles": 0,
+    "empty_html_content": 0,
+    "control_chars": 0,
+    "html_in_contents": 36,
+    "non_ascii_contents": 5164,
+    "article_type": {
+      "article": 4109,
+      "feature_request": 2049,
+      "known_issue": 63
+    },
+    "language": {
+      "en": 6178,
+      "other": 37,
+      "zh": 2,
+      "ko": 2,
+      "ar": 1,
+      "ru": 1
+    },
+    "length_min": 26,
+    "length_median": 1205,
+    "length_p95": 7417,
+    "length_max": 51119
+  },
+  "qa": [
+    {
+      "config": "wixqa_expertwritten",
+      "rows": 200,
+      "invalid_json": 0,
+      "missing_article_ids": 0,
+      "unresolved_article_refs": 0,
+      "duplicate_questions": 0,
+      "question_language": {
+        "en": 200
+      },
+      "avg_answer_chars": 1020
+    },
+    {
+      "config": "wixqa_simulated",
+      "rows": 200,
+      "invalid_json": 0,
+      "missing_article_ids": 0,
+      "unresolved_article_refs": 0,
+      "duplicate_questions": 0,
+      "question_language": {
+        "en": 200
+      },
+      "avg_answer_chars": 258
+    },
+    {
+      "config": "wixqa_synthetic",
+      "rows": 6221,
+      "invalid_json": 0,
+      "missing_article_ids": 0,
+      "unresolved_article_refs": 0,
+      "duplicate_questions": 2,
+      "question_language": {
+        "en": 6219,
+        "other": 2
+      },
+      "avg_answer_chars": 796
+    }
+  ]
+}

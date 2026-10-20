@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-10-20T16:07:19.332Z",
+  "prompt_version": "kbq001-pilot-v1",
+  "articles_sampled": 100,
+  "articles_with_cards": 81,
+  "failed_articles": 19,
+  "cards": 195,
+  "approved_cards": 181,
+  "needs_review_cards": 14,
+  "states": {
+    "PASS_LOCAL": 69,
+    "HUMAN_REVIEW": 29,
+    "PASS_CLOUD": 2
+  },
+  "providers": {
+    "local": 80,
+    "cloud": 20
+  },
+  "budget": {
+    "local_calls": 126,
+    "local_tokens_in": 112975,
+    "local_tokens_out": 267653,
+    "cloud_calls": 20,
+    "cloud_tokens_in": 22863,
+    "cloud_tokens_out": 57451,
+    "cloud_budget_exhausted": true
+  },
+  "budget_limits": {
+    "max_cloud_calls": 20,
+    "max_cloud_tokens": 200000
+  },
+  "local_model": "qwen3.8-35b-a3b@q5_k_m",
+  "cloud_model": "deepseek-flash",
+  "cloud_available": true,
+  "cost_note": "DeepSeek 单价未在仓库配置，需按账户实际计费核对；本报告只记录 token。"
+}

@@ -1,0 +1,36 @@
+{
+  "task": "KB-QUALITY-001",
+  "generated_at": "2026-10-20T23:00:00.000Z",
+  "runs": [
+    {
+      "step": "语法检查（3 个脚本）",
+      "command": "node --check scripts/kb-quality/{audit,pilot-distill,evaluate}.mjs",
+      "exit": 0
+    },
+    {
+      "step": "阶段一：数据审计",
+      "command": "node scripts/kb-quality/audit.mjs",
+      "exit": 0
+    },
+    {
+      "step": "阶段三：抽样 dry-run",
+      "command": "node scripts/kb-quality/pilot-distill.mjs --dry-run --limit 100",
+      "exit": 0
+    },
+    {
+      "step": "阶段三：100 篇小批量蒸馏",
+      "command": "node scripts/kb-quality/pilot-distill.mjs --limit 100 --concurrency 3 --max-cloud-calls 20 --max-cloud-tokens 200000",
+      "exit": 0
+    },
+    {
+      "step": "阶段四：质量评估",
+      "command": "node scripts/kb-quality/evaluate.mjs",
+      "exit": 0
+    },
+    {
+      "step": "交付汇总",
+      "command": "node scripts/kb-quality/report.mjs",
+      "exit": 0
+    }
+  ]
+}

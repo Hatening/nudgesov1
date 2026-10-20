@@ -1,0 +1,13 @@
+metric,key,count,extra
+"article_type","article","4109",""
+"article_type","feature_request","2049",""
+"article_type","known_issue","63",""
+"language","en","6178",""
+"language","other","37",""
+"language","zh","2",""
+"language","ko","2",""
+"language","ar","1",""
+"language","ru","1",""
+"qa_config","wixqa_expertwritten","200","missing_ids=0; unresolved=0; dup_q=0"
+"qa_config","wixqa_simulated","200","missing_ids=0; unresolved=0; dup_q=0"
+"qa_config","wixqa_synthetic","6221","missing_ids=0; unresolved=0; dup_q=2"
