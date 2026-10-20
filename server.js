@@ -321,9 +321,12 @@ function requireV1(req, res) {
   }
   return auth;
 }
-function corpusForSite(site) {
-  const confirmed = dao.listConfirmedKnowledgeForSite(site.id);
-  return confirmed.length ? confirmed : dao.listGlobalKnowledge();
+function corpusForSite(site, audience = 'buyer') {
+  const confirmed = dao.listConfirmedKnowledgeForSite(site.id, audience);
+  if (confirmed.length) return confirmed;
+  // 站点没有自建语料时退回全局语料，但同样按受众过滤：
+  // 买家窗口永远拿不到 seller 知识。
+  return dao.listGlobalKnowledge(audience);
 }
 function stats() {
   return dao.stats();
@@ -779,13 +782,6 @@ async function handleApi(req, res, url) {
   const method = req.method;
   if (p.startsWith('/api/v1/')) return await handleV1(req, res, p, method);
 
-  // Legacy dashboard endpoints must not leak tenant data. Only widget-facing
-  // endpoints and ops hooks (which carry their own secret) stay public.
-  const PUBLIC_LEGACY_API = new Set(['/api/health', '/api/chat', '/api/chat/stream', '/api/feedback']);
-  if (!PUBLIC_LEGACY_API.has(p) && !p.startsWith('/api/ops/') && !v1Auth(req)) {
-    return json(res, 401, { error: 'Authentication required. Use Authorization: Bearer <token>.' });
-  }
-
   if (p === '/api/ops/repair' && method === 'POST') {
     const repairSecret = process.env.REPAIR_WEBHOOK_SECRET || '';
     if (!repairSecret) return json(res, 503, { error: 'repair webhook is not configured.' });
@@ -822,7 +818,16 @@ async function handleApi(req, res, url) {
     });
   }
   if (!enforceRate(res, `legacy:${clientIp(req)}`, RATE_LIMIT_LEGACY_MAX)) return;
-  if (!authorized(req)) return json(res, 401, { error: 'Unauthorized. Configure APP_API_KEY and send x-api-key.' });
+  // 仪表盘接口需要会话（或 APP_API_KEY）；买家窗口用的 /api/chat* 与反馈接口保持公开，
+  // 但它们的检索池会被限制为 audience=buyer。
+  const PUBLIC_LEGACY = new Set(['/api/chat', '/api/chat/stream', '/api/feedback']);
+  // APP_API_KEY 只在显式配置时才作为「机器凭证」放行；未配置时一律要求会话，
+  // 否则开放实例会把 /api/bootstrap 等租户接口直接暴露出去。
+  const legacyKeyOk = Boolean(process.env.APP_API_KEY) && authorized(req);
+  // /api/ops/* 走自己的凭证模型（APP_API_KEY 或 op secret），不参与会话校验。
+  if (!PUBLIC_LEGACY.has(p) && !p.startsWith('/api/ops/') && !v1Auth(req) && !legacyKeyOk) {
+    return json(res, 401, { error: 'Authentication required. Use Authorization: Bearer <token>.' });
+  }
 
   const settings = dao.getSettings();
   if (p === '/api/ops/metrics' && method === 'GET') {
@@ -853,7 +858,9 @@ async function handleApi(req, res, url) {
       type: String(b.type || 'article').slice(0, 40),
       language: String(b.language || 'en').slice(0, 12),
       tags: Array.isArray(b.tags) ? b.tags.slice(0, 30).map((x) => String(x).slice(0, 60)) : [],
-      content: String(b.content).trim()
+      content: String(b.content).trim(),
+      // 双引擎：seller 知识只对后台可见，买家窗口永远检索不到
+      audience: b.audience === 'seller' ? 'seller' : 'buyer'
     });
     dao.logEvent('knowledge_created', { knowledgeId: item.id });
     return json(res, 201, { item });
@@ -898,7 +905,9 @@ async function handleApi(req, res, url) {
     if (!question) return json(res, 400, { error: 'message is required' });
     if (question.length > 12000) return json(res, 413, { error: 'message too long' });
     const lang = String(b.language || detectLanguage(question)).slice(0, 12);
-    const hits = rankKnowledge(question, dao.listGlobalKnowledge());
+    // 未鉴权的 /api/chat 只允许买家语料；带会话的后台调用才看得到 seller 知识。
+    const audience = v1Auth(req) ? 'all' : 'buyer';
+    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience));
     res.writeHead(200, {
       'content-type': 'text/event-stream; charset=utf-8',
       'cache-control': 'no-cache',
@@ -932,7 +941,8 @@ async function handleApi(req, res, url) {
     if (!question) return json(res, 400, { error: 'message is required' });
     if (question.length > 12000) return json(res, 413, { error: 'message too long' });
     const lang = String(b.language || detectLanguage(question)).slice(0, 12);
-    const hits = rankKnowledge(question, dao.listGlobalKnowledge());
+    const audience = v1Auth(req) ? 'all' : 'buyer';
+    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience));
     let result = await llm.answer(question, hits, lang, settings);
     const model = result?.provider && result?.answer ? result.model : 'extractive-fallback';
     if (!result || result.error) result = fallbackAnswer(question, hits, lang);

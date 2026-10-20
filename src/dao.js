@@ -42,6 +42,7 @@ function mapKnowledge(row) {
     tags: parseJson(row.tags_json, []),
     content: row.content,
     status: row.status,
+    audience: row.audience || 'buyer',
     created_at: row.created_at,
     updated_at: row.updated_at,
     updatedAt: row.updated_at || row.created_at
@@ -331,14 +332,17 @@ export function createDao(db) {
   dao.countKnowledgeForSiteByEmbed = (embedKey) => Number(db.prepare(`SELECT COUNT(*) AS count FROM knowledge k JOIN sites s ON s.id = k.site_id WHERE s.embed_key = ? AND k.status = 'confirmed'`).get(embedKey).count || 0);
 
   // Knowledge
-  dao.listGlobalKnowledge = () => db.prepare("SELECT * FROM knowledge WHERE scope = 'global' ORDER BY rowid DESC").all().map(mapKnowledge);
-  dao.countGlobalKnowledge = () => Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE scope = 'global'").get().count || 0);
+  // audience: 'buyer' | 'seller' | 'all'（不传 = all）
+  const audienceClause = (audience) => (audience && audience !== 'all' ? ` AND audience = '${audience === 'seller' ? 'seller' : 'buyer'}'` : '');
+
+  dao.listGlobalKnowledge = (audience = 'all') => db.prepare(`SELECT * FROM knowledge WHERE scope = 'global'${audienceClause(audience)} ORDER BY rowid DESC`).all().map(mapKnowledge);
+  dao.countGlobalKnowledge = (audience = 'all') => Number(db.prepare(`SELECT COUNT(*) AS count FROM knowledge WHERE scope = 'global'${audienceClause(audience)}`).get().count || 0);
   dao.findGlobalKnowledge = (knowledgeId) => mapKnowledge(db.prepare("SELECT * FROM knowledge WHERE id = ? AND scope = 'global'").get(knowledgeId));
   dao.createGlobalKnowledge = (item) => {
     db.prepare(`INSERT INTO knowledge
-      (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, created_at, updated_at)
-      VALUES (?, NULL, NULL, 'global', NULL, ?, ?, ?, ?, ?, 'confirmed', ?, ?)`)
-      .run(item.id, item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content, item.created_at || now(), item.updated_at || now());
+      (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, created_at, updated_at)
+      VALUES (?, NULL, NULL, 'global', NULL, ?, ?, ?, ?, ?, 'confirmed', ?, ?, ?)`)
+      .run(item.id, item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content, item.audience === 'seller' ? 'seller' : 'buyer', item.created_at || now(), item.updated_at || now());
     return dao.findGlobalKnowledge(item.id);
   };
   dao.deleteGlobalKnowledge = (knowledgeId) => {
@@ -346,12 +350,12 @@ export function createDao(db) {
     return Number(result.changes || 0) > 0;
   };
   dao.listSiteKnowledge = (siteId) => db.prepare('SELECT * FROM knowledge WHERE site_id = ? ORDER BY rowid').all(siteId).map(mapKnowledge);
-  dao.listConfirmedKnowledgeForSite = (siteId) => db.prepare("SELECT * FROM knowledge WHERE site_id = ? AND status = 'confirmed' ORDER BY rowid").all(siteId).map(mapKnowledge);
+  dao.listConfirmedKnowledgeForSite = (siteId, audience = 'all') => db.prepare(`SELECT * FROM knowledge WHERE site_id = ? AND status = 'confirmed'${audienceClause(audience)} ORDER BY rowid`).all(siteId).map(mapKnowledge);
   dao.createSiteKnowledge = (siteId, tenantId, doc) => {
     db.prepare(`INSERT INTO knowledge
-      (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, created_at, updated_at)
-      VALUES (?, ?, ?, 'site', ?, ?, 'article', 'zh', '[]', ?, ?, ?, ?)`)
-      .run(doc.id, tenantId, siteId, doc.filename || null, doc.title, doc.content, doc.status || 'draft', doc.created_at || now(), doc.updated_at || now());
+      (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, created_at, updated_at)
+      VALUES (?, ?, ?, 'site', ?, ?, 'article', 'zh', '[]', ?, ?, ?, ?, ?)`)
+      .run(doc.id, tenantId, siteId, doc.filename || null, doc.title, doc.content, doc.status || 'draft', doc.audience === 'seller' ? 'seller' : 'buyer', doc.created_at || now(), doc.updated_at || now());
     return mapKnowledge(db.prepare('SELECT * FROM knowledge WHERE id = ?').get(doc.id));
   };
   dao.findSiteKnowledge = (siteId, documentId) => mapKnowledge(db.prepare('SELECT * FROM knowledge WHERE id = ? AND site_id = ?').get(documentId, siteId));

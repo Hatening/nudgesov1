@@ -24,7 +24,8 @@ export function migrateSchema(db) {
   db.exec('CREATE TABLE IF NOT EXISTS schema_migrations (version TEXT PRIMARY KEY, applied_at TEXT NOT NULL)');
   const migrations = [
     { version: '001_init', file: '001_init.sql' },
-    { version: '002_auth_refresh_tokens', file: '002_auth_refresh_tokens.sql' }
+    { version: '002_auth_refresh_tokens', file: '002_auth_refresh_tokens.sql' },
+    { version: '003_audience_isolation', file: '003_audience_isolation.sql' }
   ];
   let changed = false;
   for (const migration of migrations) {
