@@ -58,7 +58,7 @@ test('P3-06 observability: request IDs, metrics endpoint and SQLite backup', asy
   assert.ok(metrics.requests_total >= 2);
   assert.ok(metrics.latency_ms.p95 >= 0);
   assert.equal(metrics.sqlite.journal_mode, 'wal');
-  assert.equal(metrics.database.tenants, 0);
+  assert.equal(metrics.database.tenants, 1);
   assert.equal(metrics.llm.configured, false);
   assert.ok(metrics.status_counts['200'] >= 1);
 

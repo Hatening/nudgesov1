@@ -60,7 +60,8 @@ const db = openDatabase(dbPath);
 migrateSchema(db);
 
 const alreadyImported = db.prepare('SELECT version FROM schema_migrations WHERE version = ?').get(migrationKey);
-const existingRows = tableCount(db, 'tenants') + tableCount(db, 'users') + tableCount(db, 'knowledge') + tableCount(db, 'conversations');
+const globalTenantRows = Number(db.prepare("SELECT COUNT(*) AS count FROM tenants WHERE id = 'global'").get().count || 0);
+const existingRows = (tableCount(db, 'tenants') - globalTenantRows) + tableCount(db, 'users') + tableCount(db, 'knowledge') + tableCount(db, 'conversations');
 if (existingRows > 0 && !alreadyImported && !force) {
   console.error('Database already contains data and this JSON source has not been imported. Re-run with --force only if you are sure.');
   db.close();
@@ -163,7 +164,7 @@ try {
   }
 
   const actualCounts = {
-    tenants: tableCount(db, 'tenants'),
+    tenants: tableCount(db, 'tenants') - globalTenantRows,
     users: tableCount(db, 'users'),
     sessions: tableCount(db, 'sessions'),
     sites: tableCount(db, 'sites'),

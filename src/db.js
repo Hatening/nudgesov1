@@ -27,7 +27,9 @@ export function migrateSchema(db) {
     { version: '002_auth_refresh_tokens', file: '002_auth_refresh_tokens.sql' },
     { version: '003_audience_isolation', file: '003_audience_isolation.sql' },
     { version: '004_knowledge_category', file: '004_knowledge_category.sql' },
-    { version: '005_is_insight', file: '005_is_insight.sql' }
+    { version: '005_is_insight', file: '005_is_insight.sql' },
+    { version: '006_gpc_taxonomy', file: '006_gpc_taxonomy.sql' },
+    { version: '007_knowledge_tenant_meta', file: '007_knowledge_tenant_meta.sql' }
   ];
   let changed = false;
   for (const migration of migrations) {
@@ -56,7 +58,8 @@ export function tableCount(db, table) {
 }
 
 export function isDatabaseEmpty(db) {
-  return tableCount(db, 'tenants') === 0
+  const nonGlobalTenants = Number(db.prepare("SELECT COUNT(*) AS count FROM tenants WHERE id <> 'global'").get().count || 0);
+  return nonGlobalTenants === 0
     && tableCount(db, 'users') === 0
     && tableCount(db, 'knowledge') === 0
     && tableCount(db, 'conversations') === 0;

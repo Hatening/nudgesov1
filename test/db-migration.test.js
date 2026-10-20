@@ -95,7 +95,7 @@ test('JSON to SQLite migration preserves all collections, hashes sessions and is
 
   let db = openDatabase(dbPath);
   let dao = createDao(db);
-  assert.equal(dao.listTenants().length, 1);
+  assert.equal(dao.listTenants().length, 2);
   assert.equal(dao.listUsers().length, 1);
   assert.equal(dao.findSiteByEmbedKey('fixture-embed').knowledge_count, 1);
   assert.equal(dao.listGlobalKnowledge().length, 1);

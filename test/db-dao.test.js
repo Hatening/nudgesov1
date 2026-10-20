@@ -112,7 +112,7 @@ test('SQLite DAO: schema, WAL, CRUD, transactions and session hashing', async (t
   assert.equal(dao.countGlobalKnowledge(), before);
 
   const exported = dao.exportStore();
-  assert.equal(exported.tenants.length, 1);
+  assert.equal(exported.tenants.length, 2);
   assert.equal(exported.sites.length, 1);
   assert.equal(exported.sites[0].knowledge.length, 1);
   assert.equal(exported.publicMessages.length, 1);
