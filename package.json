@@ -10,9 +10,13 @@
     "repair:worker": "node scripts/repair-worker.mjs",
     "dev": "node --watch server.js",
     "test": "node --test",
+    "test:gpc": "node --test test/gpc.test.js",
+    "test:kb": "node --test test/kb-seed.test.js",
     "check": "node --check server.js && node --check public/app.js && node --test",
     "inject:knowledge": "node scripts/inject-p2-knowledge.mjs",
     "migrate:sqlite": "node scripts/migrate-json-to-sqlite.mjs",
+    "ingest:gpc": "node scripts/ingest-gpc.mjs",
+    "seed:kb": "node scripts/seed-kb.mjs",
     "verify:sqlite": "node scripts/verify-sqlite.mjs",
     "prune:data": "node scripts/prune-data.mjs",
     "backup:sqlite": "node scripts/backup-sqlite.mjs"

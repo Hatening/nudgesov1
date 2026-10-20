@@ -32,6 +32,9 @@ ART = ROOT / "artifacts" / "kb-ingest-001" / "final"
 OUT.mkdir(parents=True, exist_ok=True)
 ART.mkdir(parents=True, exist_ok=True)
 
+ALLOWED_SOURCE_TYPES = {"wixqa", "ecommerce_ai_skills"}
+BANNED_SOURCE_RE = re.compile(r"bitext|webfaq|traveling", re.I)
+
 URL_RE = re.compile(r"https?://[^\s\)\]\"'<>]+", re.I)
 NUMBER_RE = re.compile(r"(?<![\w])\d[\d,]*(?:\.\d+)?%?")
 QUOTED_RE = re.compile(r"`([^`]{3,80})`|\"([^\"]{3,80})\"|“([^”]{3,80})”")
@@ -249,29 +252,51 @@ def export_gpc() -> int:
 def main() -> int:
     wixqa, wixqa_rejected, wixqa_stats = build_wixqa()
     skills, skills_rejected, skills_stats = build_existing_candidates(RAW / "candidates.skills.jsonl", "ecommerce_ai_skills")
-    web, web_rejected, web_stats = build_existing_candidates(RAW / "candidates.seller_extra.jsonl", "public_web")
 
-    all_cards = wixqa + skills + web
-    # de-duplicate by id; a source question repeated across configs is still distinct.
-    seen = set()
-    unique = []
+    all_cards = wixqa + skills
+    # De-duplicate by id first, then by normalized question. WixQA's three
+    # configs can repeat the same question; the first (expertwritten) wins.
+    seen_ids = set()
+    unique_by_id = []
     for card in all_cards:
-        if card["id"] in seen:
+        if card["id"] in seen_ids:
             continue
-        seen.add(card["id"])
+        seen_ids.add(card["id"])
+        unique_by_id.append(card)
+
+    seen_titles = set()
+    unique = []
+    for card in unique_by_id:
+        key = norm(card["title"])
+        if key in seen_titles:
+            continue
+        seen_titles.add(key)
         unique.append(card)
+
+    for card in unique:
+        if card["source_type"] not in ALLOWED_SOURCE_TYPES:
+            raise SystemExit(f"unapproved source_type in seed: {card['source_type']} ({card['id']})")
+        provenance = f"{card['source_type']} {card.get('source_id') or ''} {card.get('source_url') or ''}"
+        if BANNED_SOURCE_RE.search(provenance):
+            raise SystemExit(f"quarantined source leaked into seed: {provenance}")
+    if len(unique) < 1000:
+        raise SystemExit(f"refusing to write a suspiciously small knowledge seed: {len(unique)} cards")
 
     seed_path = OUT / "knowledge.jsonl"
     seed_path.write_text("".join(json.dumps(c, ensure_ascii=False) + "\n" for c in unique), encoding="utf-8")
     (OUT / "knowledge.rejected.jsonl").write_text(
-        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in (wixqa_rejected + skills_rejected + web_rejected)),
+        "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in (wixqa_rejected + skills_rejected)),
         encoding="utf-8",
     )
     gpc_count = export_gpc()
     stats = {
         "wixqa": {**wixqa_stats, "rejected": len(wixqa_rejected)},
         "skills": {**skills_stats, "rejected": len(skills_rejected)},
-        "public_web": {**web_stats, "rejected": len(web_rejected)},
+        "quarantined_sources": {
+            "bitext": "excluded (CDLA-Sharing-1.0, legal review)",
+            "webfaq_traveling": "excluded (unknown license)",
+            "seller_extra": "excluded (public web, outside approved scope)",
+        },
         "seed_cards": len(unique),
         "gpc_rows": gpc_count,
         "by_source_type": dict(Counter(c["source_type"] for c in unique)),
