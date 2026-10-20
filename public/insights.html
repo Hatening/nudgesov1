@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RelayDesk Insights · 跨境电商行业洞察</title>
+<meta name="description" content="跨境电商行业洞察与商业策略：广告成本、平台合规、供应链与内容电商的实战拆解。">
+<style>
+  :root{
+    --bg:#f6f8fc; --panel:#fff; --ink:#1e293b; --muted:#7b8798; --line:#e8edf4;
+    --primary:#5b5bd6; --primary-soft:#f0efff; --teal:#0f9b8e; --teal-soft:#eaf8f5;
+    --shadow:0 4px 18px rgba(22,34,56,.045);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:14px;line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .top-in{max-width:1180px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:26px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.4px}
+  .brand-mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#6d6be5,#4544ba);color:#fff;display:grid;place-items:center;font-size:17px;box-shadow:0 5px 12px #5b5bd63d}
+  .brand small{display:block;font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.2px}
+  .nav{display:flex;gap:6px;margin-left:8px}
+  .nav a{padding:8px 12px;border-radius:8px;font-size:13px;color:#5f6b7e;font-weight:600}
+  .nav a:hover{background:#f4f6fb;color:var(--ink)}
+  .nav a.on{background:var(--primary-soft);color:#4e4bc5}
+  .top-cta{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .btn{border:1px solid #e0e5ee;background:#fff;color:#46556b;border-radius:9px;padding:9px 14px;font:inherit;font-size:13px;font-weight:650;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 4px 12px #5b5bd633}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 64px}
+  .ad-leaderboard{margin:26px auto 0;max-width:728px}
+  .ad-slot{border:1px dashed #c9d1e0;border-radius:12px;background:
+      repeating-linear-gradient(45deg,#fbfcff,#fbfcff 10px,#f5f7fc 10px,#f5f7fc 20px);
+      display:grid;place-items:center;color:#9aa5b8;font-size:12px;letter-spacing:.4px;text-align:center;padding:10px}
+  .ad-728{width:100%;height:90px}
+  .ad-300{width:100%;max-width:300px;height:250px;margin:0 auto}
+  .ad-note{text-align:center;color:#a9b2c1;font-size:10px;margin-top:6px}
+  .hero{padding:46px 0 30px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .eyebrow{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#8b93a8;font-weight:800;margin-bottom:10px}
+  .hero h1{margin:0;font-size:40px;line-height:1.15;letter-spacing:-1.4px}
+  .hero p{margin:14px 0 0;max-width:560px;color:#68758a;font-size:15px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:650;color:#5f6b7e;cursor:pointer}
+  .chip.on{background:var(--primary);border-color:var(--primary);color:#fff}
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:26px;align-items:start;margin-top:30px}
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;transition:transform .15s ease,box-shadow .15s ease}
+  .card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(22,34,56,.09)}
+  .card-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .tag{display:inline-flex;align-items:center;padding:4px 9px;border-radius:7px;font-size:11px;font-weight:750;letter-spacing:.2px}
+  .tag.insight{background:var(--primary-soft);color:#5552c9}
+  .tag.strategy{background:var(--teal-soft);color:#0f8a7e}
+  .date{font-size:11px;color:#a3adbc;white-space:nowrap}
+  .card h2{margin:0;font-size:18px;line-height:1.45;letter-spacing:-.3px}
+  .card p{margin:0;color:#6f7c90;font-size:13.5px;line-height:1.62}
+  .card-foot{margin-top:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-top:6px}
+  .mini{font-size:11px;color:#8b96a7;background:#f4f6fa;border-radius:6px;padding:4px 8px}
+  .more{margin-left:auto;font-size:12px;font-weight:700;color:#5b5bd6}
+  .side{display:flex;flex-direction:column;gap:18px;position:sticky;top:86px}
+  .side-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+  .side-card h3{margin:0 0 12px;font-size:13px;letter-spacing:.2px}
+  .hot{display:flex;flex-wrap:wrap;gap:8px}
+  .hot span{font-size:12px;color:#5f6b7e;background:#f4f6fa;border-radius:7px;padding:6px 10px}
+  .subscribe p{margin:0 0 12px;color:#7c8799;font-size:12.5px}
+  .subscribe input{width:100%;border:1px solid #e2e7ef;border-radius:9px;padding:10px 12px;font:inherit;font-size:13px;margin-bottom:9px}
+  .subscribe .btn{width:100%;justify-content:center}
+  .state{padding:40px;text-align:center;color:#93a0b3;font-size:13px;background:#fff;border:1px solid var(--line);border-radius:16px}
+  .skeleton{height:210px;border-radius:16px;background:linear-gradient(100deg,#eef1f7 30%,#f7f9fc 50%,#eef1f7 70%);background-size:220% 100%;animation:sh 1.2s infinite}
+  @keyframes sh{0%{background-position:120% 0}100%{background-position:-40% 0}}
+  .foot{border-top:1px solid var(--line);background:#fff}
+  .foot-in{max-width:1180px;margin:0 auto;padding:22px 24px;display:flex;justify-content:space-between;gap:16px;color:#93a0b3;font-size:12px;flex-wrap:wrap}
+  @media(max-width:980px){
+    .layout{grid-template-columns:1fr}
+    .side{position:static;order:2}
+    .cards{grid-template-columns:1fr}
+    .hero h1{font-size:31px}
+    .nav{display:none}
+  }
+  @media(max-width:560px){
+    .top-in{padding:0 16px;gap:12px}
+    .wrap{padding:0 16px 48px}
+    .hero{padding:30px 0 18px}
+    .hero h1{font-size:26px}
+    .top-cta .btn.ghost{display:none}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="/">
+      <span class="brand-mark">◈</span>
+      <span>RelayDesk<small>Insights · 行业洞察</small></span>
+    </a>
+    <nav class="nav">
+      <a class="on" href="/insights.html">全部</a>
+      <a href="/insights.html?category=行业洞察">行业洞察</a>
+      <a href="/insights.html?category=商业策略">商业策略</a>
+    </nav>
+    <div class="top-cta">
+      <a class="btn ghost" href="/">控制台</a>
+      <a class="btn primary" href="/onboarding.html">免费试用</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 顶部横幅广告位 728×90 -->
+  <div class="ad-leaderboard">
+    <div class="ad-slot ad-728" data-ad-slot="728x90">
+      <!-- AdSense 审核通过后，把 <ins> 与 push 脚本取消注释：
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      -->
+      广告位 728×90 · Advertisement
+    </div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Insights &amp; Playbooks</div>
+      <h1>跨境电商的行业洞察</h1>
+      <p>广告成本、平台合规、供应链与内容电商——把踩过的坑拆成可直接执行的策略。</p>
+    </div>
+    <div class="chips" id="filters">
+      <button class="chip on" data-cat="all">全部</button>
+      <button class="chip" data-cat="行业洞察">行业洞察</button>
+      <button class="chip" data-cat="商业策略">商业策略</button>
+    </div>
+  </section>
+
+  <div class="layout">
+    <section>
+      <div class="cards" id="cards">
+        <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+      </div>
+      <div class="state" id="state" hidden></div>
+    </section>
+
+    <aside class="side">
+      <div class="side-card">
+        <h3>赞助</h3>
+        <!-- 侧边栏广告位 300×250 -->
+        <div class="ad-slot ad-300" data-ad-slot="300x250">
+          <!-- AdSense 审核通过后取消注释：
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="0000000000" data-ad-format="rectangle" data-full-width-responsive="false"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          -->
+          广告位 300×250
+        </div>
+        <div class="ad-note">广告由 Google AdSense 提供</div>
+      </div>
+
+      <div class="side-card">
+        <h3>热门话题</h3>
+        <div class="hot">
+          <span>ACOS</span><span>合规</span><span>选品</span><span>独立站</span>
+          <span>内容电商</span><span>供应链</span><span>广告成本</span><span>退货率</span>
+        </div>
+      </div>
+
+      <div class="side-card subscribe">
+        <h3>每周一封行业简报</h3>
+        <p>平台规则变化、成本走势与实操模板，周一早上送达。</p>
+        <input id="email" type="email" placeholder="you@example.com" autocomplete="email">
+        <button class="btn primary" id="subscribe">订阅简报</button>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span>© 2026 RelayDesk · 跨境电商 AI 客服</span>
+    <span>内容仅供行业参考，不构成平台官方政策</span>
+  </div>
+</footer>
+
+<!-- AdSense 主脚本：审核通过后取消注释，并在 server.js 的 CSP 中放行
+     https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<script>
+(function () {
+  var cards = document.getElementById('cards');
+  var state = document.getElementById('state');
+  var filters = document.getElementById('filters');
+  var all = [];
+  var active = new URLSearchParams(location.search).get('category') || 'all';
+
+  function esc(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function fmtDate(iso) {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  function render() {
+    var list = active === 'all' ? all : all.filter(function (x) { return x.category === active; });
+    if (!list.length) {
+      cards.innerHTML = '';
+      state.hidden = false;
+      state.textContent = all.length
+        ? '该分类下暂时没有文章，换个分类看看。'
+        : '内容正在准备中——蒸馏流水线跑完后，这里会自动出现行业洞察文章。';
+      return;
+    }
+    state.hidden = true;
+    cards.innerHTML = list.map(function (item) {
+      var cls = item.category === '商业策略' ? 'strategy' : 'insight';
+      var tags = (item.tags || []).slice(0, 3).map(function (t) { return '<span class="mini">' + esc(t) + '</span>'; }).join('');
+      return '<article class="card">'
+        + '<div class="card-top"><span class="tag ' + cls + '">' + esc(item.category) + '</span>'
+        + '<span class="date">' + fmtDate(item.created_at) + '</span></div>'
+        + '<h2>' + esc(item.title) + '</h2>'
+        + '<p>' + esc(item.summary) + '</p>'
+        + '<div class="card-foot">' + tags + '<span class="more">阅读全文 →</span></div>'
+        + '</article>';
+    }).join('');
+  }
+
+  function setFilter(cat) {
+    active = cat;
+    Array.prototype.forEach.call(filters.querySelectorAll('.chip'), function (chip) {
+      chip.classList.toggle('on', chip.dataset.cat === cat);
+    });
+    render();
+  }
+
+  filters.addEventListener('click', function (event) {
+    var chip = event.target.closest('.chip');
+    if (chip) setFilter(chip.dataset.cat);
+  });
+
+  var subscribe = document.getElementById('subscribe');
+  subscribe.addEventListener('click', function () {
+    var email = document.getElementById('email').value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      subscribe.textContent = '请输入有效邮箱';
+      setTimeout(function () { subscribe.textContent = '订阅简报'; }, 1600);
+      return;
+    }
+    subscribe.textContent = '已订阅 ✓';
+    subscribe.disabled = true;
+  });
+
+  fetch('/api/insights?limit=24')
+    .then(function (response) {
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    })
+    .then(function (data) {
+      all = Array.isArray(data.items) ? data.items : [];
+      setFilter(active === 'all' ? 'all' : active);
+    })
+    .catch(function (error) {
+      cards.innerHTML = '';
+      state.hidden = false;
+      state.textContent = '文章加载失败：' + error.message;
+    });
+})();
+</script>
+</body>
+</html>

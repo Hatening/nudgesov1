@@ -820,7 +820,7 @@ async function handleApi(req, res, url) {
   if (!enforceRate(res, `legacy:${clientIp(req)}`, RATE_LIMIT_LEGACY_MAX)) return;
   // 仪表盘接口需要会话（或 APP_API_KEY）；买家窗口用的 /api/chat* 与反馈接口保持公开，
   // 但它们的检索池会被限制为 audience=buyer。
-  const PUBLIC_LEGACY = new Set(['/api/chat', '/api/chat/stream', '/api/feedback']);
+  const PUBLIC_LEGACY = new Set(['/api/chat', '/api/chat/stream', '/api/feedback', '/api/insights']);
   // APP_API_KEY 只在显式配置时才作为「机器凭证」放行；未配置时一律要求会话，
   // 否则开放实例会把 /api/bootstrap 等租户接口直接暴露出去。
   const legacyKeyOk = Boolean(process.env.APP_API_KEY) && authorized(req);
@@ -848,6 +848,15 @@ async function handleApi(req, res, url) {
     });
   }
   if (p === '/api/knowledge' && method === 'GET') return json(res, 200, { items: dao.listGlobalKnowledge() });
+
+  // 公开内容页：行业洞察 / 商业策略（只返回摘要，不含客服问答数据）
+  if (p === '/api/insights' && method === 'GET') {
+    const limit = Number(url.searchParams.get('limit')) || 24;
+    return json(res, 200, {
+      categories: dao.insightCategories,
+      items: dao.listInsights(limit),
+    });
+  }
   if (p === '/api/knowledge' && method === 'POST') {
     const b = await readBody(req);
     if (!String(b.title || '').trim() || !String(b.content || '').trim()) return json(res, 400, { error: 'title and content are required' });
@@ -860,7 +869,8 @@ async function handleApi(req, res, url) {
       tags: Array.isArray(b.tags) ? b.tags.slice(0, 30).map((x) => String(x).slice(0, 60)) : [],
       content: String(b.content).trim(),
       // 双引擎：seller 知识只对后台可见，买家窗口永远检索不到
-      audience: b.audience === 'seller' ? 'seller' : 'buyer'
+      audience: b.audience === 'seller' ? 'seller' : 'buyer',
+      category: String(b.category || '其他').slice(0, 40)
     });
     dao.logEvent('knowledge_created', { knowledgeId: item.id });
     return json(res, 201, { item });
