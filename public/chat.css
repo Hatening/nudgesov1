@@ -1,0 +1,20 @@
+/* Chat page-specific polish. Layout primitives live in Tailwind + ui.css. */
+.chat-shell { width: 100%; }
+.chat-shell .messages { background-image: radial-gradient(circle at 90% 0%, rgba(224,231,255,.55), transparent 28%); }
+.chat-shell #privacyPanel { max-width: 720px; margin: 0 auto; }
+.chat-shell #chatPanel { min-height: 0; }
+#messageInput:focus { outline: none; }
+#voiceButton, #uploadVoiceButton, #sendButton { white-space: nowrap; }
+@media (max-width: 640px) {
+  .chat-shell header { padding-left: 1rem; padding-right: 1rem; }
+  .chat-shell #privacyPanel { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .chat-shell .composer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: .85rem;
+    padding-right: .85rem;
+  }
+  .chat-shell .composer .voice { width: 100%; }
+  .chat-shell .composer #messageInput { grid-column: 1 / -1; width: 100%; flex: none; }
+  .chat-shell .composer #sendButton { grid-column: 1 / -1; width: 100%; }
+}

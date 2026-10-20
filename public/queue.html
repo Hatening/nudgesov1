@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8fafc">
+  <title>RelayDesk — 升级队列 / Escalation queue</title>
+  <script src="/tailwind.vendor.js"></script>
+  <link rel="stylesheet" href="/ui.css">
+  <link rel="stylesheet" href="/queue.css">
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-900 antialiased" data-page="queue">
+  <header class="topbar mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 sm:px-8">
+    <a class="brand inline-flex items-center gap-3" href="/"><span class="brand-mark grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-base font-extrabold text-white shadow-lg shadow-indigo-500/20">R</span><span><strong class="block text-sm font-bold tracking-tight text-slate-900">RelayDesk</strong><small class="block text-[11px] text-slate-500">升级队列 / Escalation queue</small></span></a>
+    <a class="back-link rounded-lg px-2 py-1 text-xs font-medium text-slate-500 transition hover:bg-white hover:text-indigo-600" href="/">返回工作台 / Back to workspace</a>
+  </header>
+
+  <main class="queue-page mx-auto max-w-7xl px-4 pb-12 pt-4 sm:px-8 sm:pt-6">
+    <section class="page-head flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+      <div>
+        <p class="eyebrow text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600">MERCHANT ADMIN · AC-03</p>
+        <h1 class="mt-2 text-3xl font-extrabold tracking-[-0.03em] text-slate-950 sm:text-4xl">升级队列 / Escalation queue</h1>
+        <p class="muted mt-2 max-w-2xl text-sm leading-6 text-slate-500">投诉、退款、法律与低置信度留言会进入这里；风险与意图必须可见。</p>
+      </div>
+      <div class="head-actions flex items-center gap-2.5">
+        <button id="refreshButton" class="btn inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700" type="button">刷新 / Refresh</button>
+        <span id="queueCount" class="count grid h-9 min-w-9 place-items-center rounded-full bg-indigo-600 px-2 text-xs font-bold text-white shadow-md shadow-indigo-500/20">0</span>
+      </div>
+    </section>
+
+    <section id="queueError" class="notice error mt-5 rounded-xl border border-rose-100 bg-rose-50 px-4 py-3 text-xs text-rose-700" role="alert"></section>
+    <section id="emptyState" class="empty mt-5 hidden rounded-2xl border border-dashed border-slate-300 bg-white/70 px-6 py-10 text-center text-sm text-slate-500">
+      <strong class="block text-sm font-bold text-slate-800">当前没有升级项 / No escalations</strong>
+      <p class="mt-1 text-xs">当客户发送投诉或退款请求时，会出现在这里。</p>
+    </section>
+
+    <section class="table-card mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50">
+      <div class="overflow-x-auto">
+        <table class="queue-table w-full min-w-[980px] border-collapse">
+          <thead>
+            <tr class="border-b border-slate-200 bg-slate-50/80 text-left">
+              <th class="px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">客户留言 / Message</th>
+              <th class="px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">站点 / Site</th>
+              <th class="px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">语言 / Lang</th>
+              <th class="px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">意图 / Intent</th>
+              <th class="px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">风险 / Risk</th>
+              <th class="px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">状态 / Status</th>
+              <th class="px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">时间 / Time</th>
+              <th class="px-4 py-3 text-[10px] font-extrabold uppercase tracking-[0.12em] text-slate-500">操作 / Action</th>
+            </tr>
+          </thead>
+          <tbody id="escalationRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="footnote mt-4 text-[11px] text-slate-500">数据来自 <code class="rounded bg-slate-200/70 px-1.5 py-0.5 text-[10px]">GET /api/v1/escalations</code>；仅显示当前商家租户的升级项。</p>
+  </main>
+
+  <script src="/i18n.js" defer></script>
+  <script src="/queue.js" defer></script>
+</body>
+</html>

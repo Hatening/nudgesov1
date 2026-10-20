@@ -1,0 +1,91 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  required:
+    name: ci / required
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '25'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+
+      - name: Start hermetic mock LLM
+        env:
+          MOCK_LLM_PORT: 4010
+        run: |
+          node scripts/mock-llm-server.mjs > "$RUNNER_TEMP/mock-llm.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/mock-llm.pid"
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4010/health >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/mock-llm.log"
+          exit 1
+
+      - name: Start SQLite app with hermetic OpenAI-compatible LLM
+        env:
+          PORT: 3030
+          HOST: 127.0.0.1
+          DATA_DIR: ${{ runner.temp }}/relaydesk-ci
+          APP_API_KEY: ''
+          REPAIR_WEBHOOK_SECRET: ci-repair-secret
+          REPAIR_QUEUE_DIR: ${{ runner.temp }}/relaydesk-repair-queue
+          LLM_PROVIDER: openai
+          LLM_BASE_URL: http://127.0.0.1:4010/v1
+          LLM_MODEL: deepseek-flash
+          LLM_API_KEY: ci-mock
+          LLM_AUTH_HEADER: authorization
+          LLM_AUTH_SCHEME: Bearer
+          LLM_TIMEOUT_MS: 45000
+        run: |
+          mkdir -p "$DATA_DIR" "$REPAIR_QUEUE_DIR"
+          node server.js > "$RUNNER_TEMP/relaydesk-server.log" 2>&1 &
+          echo $! > "$RUNNER_TEMP/relaydesk-server.pid"
+          for i in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:3030/api/health >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat "$RUNNER_TEMP/relaydesk-server.log"
+          exit 1
+
+      - name: Playwright (all E2E, including i18n and 390px UI)
+        env:
+          RUN_ID: ci-${{ github.run_id }}
+          RUN_DIR: ${{ runner.temp }}/relaydesk-ci-artifacts
+        run: |
+          mkdir -p "$RUN_DIR"
+          npx playwright test --workers=1
+
+      - name: Verify SQLite
+        env:
+          DB_PATH: ${{ runner.temp }}/relaydesk-ci/relaydesk.sqlite
+        run: npm run verify:sqlite
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-and-server-logs
+          path: |
+            ${{ runner.temp }}/relaydesk-ci-artifacts
+            ${{ runner.temp }}/relaydesk-server.log
+            ${{ runner.temp }}/mock-llm.log
+            artifacts/playwright

@@ -7,15 +7,24 @@
 4. If enabled, the server asks Ollama for a structured JSON answer with the selected evidence in context.
 5. The fallback path quotes the best matching article or abstains when no article matches.
 6. Confidence threshold, evidence requirement and `needsHuman` decide whether human review is recommended.
-7. Events are stored for the local metrics and test UI.
+7. Events, conversations, messages, sites, knowledge, escalations and sessions are persisted in SQLite (WAL); JSON is only the migration source.
+
+## Storage / DAO
+- `src/db.js`: SQLite connection, WAL/foreign-key/busy-timeout pragmas, schema migration, bounded `SQLITE_BUSY` transaction retry.
+- `src/dao.js`: tenant/user/session/site/knowledge/message/escalation/conversation/settings/glossary/event/test-run repositories.
+- `scripts/migrate-json-to-sqlite.mjs`: transactional JSON migration with count verification and session hashing.
+- `scripts/verify-sqlite.mjs`: integrity/WAL/foreign-key/count checks.
+- `docs/SQLITE-MIGRATION.md`: cutover, backup and rollback runbook.
 
 ## Important limitations
-- JSON-file storage is not safe for concurrent multi-process production workloads and is not tenant-isolated.
+- SQLite (WAL) is the current single-node store; it is not a horizontal-scale database. PostgreSQL remains the later scale-out target.
+- JSON-file storage has been removed from the runtime; `.data/store.json` is retained only as migration source/backup.
 - Retrieval is lexical, not embedding-based vector search. Use hybrid retrieval (BM25 + multilingual embeddings + exact SKU/order/term matching) for production.
 - Language detection and query expansion are illustrative only. Never claim that the starter list equals validated support for 70+ languages.
 - The confidence value is a heuristic or model self-report and is not calibrated probability.
 - No actual WhatsApp, email, Instagram or commerce API is connected.
 - The test suite checks basic intent/retrieval paths, not comprehensive correctness or safety.
+
 
 ## Recommended production evolution
 1. Add Postgres schema for tenants, users, knowledge documents, chunks, conversations, messages, answer traces, feedback, usage ledger and audit log.

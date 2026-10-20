@@ -4,6 +4,23 @@
   "private": true,
   "description": "Self-hostable multilingual AI support workspace MVP for micro and small sellers",
   "type": "module",
-  "scripts": {"start":"node server.js", "dev":"node --watch server.js", "test":"node --test", "check":"node --check server.js && node --check public/app.js && node --test"},
-  "engines": {"node": ">=20"}
+  "scripts": {
+    "start": "node server.js",
+    "start:llm": "node scripts/start-with-dsh-llm.mjs",
+    "repair:worker": "node scripts/repair-worker.mjs",
+    "dev": "node --watch server.js",
+    "test": "node --test",
+    "check": "node --check server.js && node --check public/app.js && node --test",
+    "inject:knowledge": "node scripts/inject-p2-knowledge.mjs",
+    "migrate:sqlite": "node scripts/migrate-json-to-sqlite.mjs",
+    "verify:sqlite": "node scripts/verify-sqlite.mjs",
+    "prune:data": "node scripts/prune-data.mjs",
+    "backup:sqlite": "node scripts/backup-sqlite.mjs"
+  },
+  "engines": {
+    "node": ">=25.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
 }

@@ -1,0 +1,23 @@
+/* Merchant onboarding page-specific polish. */
+.intro { position: relative; }
+.intro::before {
+  content: "";
+  position: absolute;
+  inset: -1rem auto auto -1rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 999px;
+  background: rgba(199, 210, 254, .35);
+  filter: blur(32px);
+  pointer-events: none;
+  z-index: -1;
+}
+.card { backdrop-filter: blur(6px); }
+#templateGrid .template:focus-visible { outline: 3px solid #c7d2fe; outline-offset: 2px; }
+#kbPreview { white-space: pre-wrap; }
+@media (max-width: 640px) {
+  .intro h1 { font-size: 2.25rem; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .steps li { padding: .65rem .75rem; font-size: .72rem; }
+  .steps li span { width: 1.5rem; height: 1.5rem; }
+}

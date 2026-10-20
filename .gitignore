@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.data/
+node_modules/
+artifacts/
+test_run/
+# Keep the legacy nested GitHub clone out of the current app repo.
+nudgeso/
+.DS_Store
+
+.data/

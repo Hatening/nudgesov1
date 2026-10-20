@@ -1,0 +1,5 @@
+QA synthetic knowledge for AC-01
+Store: QA Test Store
+Hours: Monday-Saturday 09:00-21:00
+Returns: Unused items may be returned within 30 days with the order number.
+Shipping: Standard delivery normally takes 5-8 business days after dispatch.

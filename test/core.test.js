@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {rankKnowledge,inferIntent,detectLanguage,fallbackAnswer} from '../server.js';
+import {rankKnowledge,inferIntent,detectLanguage,fallbackAnswer} from '../src/core.js';
 
 test('intent classifier recognizes common support intents',()=>{
  assert.equal(inferIntent('Can I return this for a refund?'),'Returns and refunds');

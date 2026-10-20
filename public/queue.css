@@ -1,0 +1,11 @@
+/* Escalation queue page-specific polish. */
+.queue-page { min-width: 0; }
+.page-head { min-width: 0; }
+.table-card { max-width: 100%; }
+.queue-table { table-layout: auto; }
+.queue-table thead th:first-child, .queue-table tbody td:first-child { padding-left: 1.25rem; }
+.queue-table thead th:last-child, .queue-table tbody td:last-child { padding-right: 1.25rem; }
+@media (max-width: 640px) {
+  .page-head h1 { font-size: 1.9rem; line-height: 1.1; }
+  .head-actions { align-self: flex-start; }
+}

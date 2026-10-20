@@ -6,13 +6,14 @@ import os from 'node:os';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
+import {stopChildAndRemove} from '../test-support/cleanup.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 async function freePort(){return await new Promise((resolve,reject)=>{const s=net.createServer();s.listen(0,'127.0.0.1',()=>{const p=s.address().port;s.close(()=>resolve(p));});s.on('error',reject);});}
 async function waitFor(url,child){for(let i=0;i<60;i++){if(child.exitCode!==null)throw new Error('server exited before ready');try{const r=await fetch(url);if(r.ok)return;}catch{}await new Promise(r=>setTimeout(r,100));}throw new Error('server did not become ready');}
 test('HTTP API smoke: health, bootstrap, knowledge create, chat and regression run',async(t)=>{
  const port=await freePort();const dataDir=await fs.mkdtemp(path.join(os.tmpdir(),'relaydesk-test-'));
  const child=spawn(process.execPath,['server.js'],{cwd:root,env:{...process.env,PORT:String(port),HOST:'127.0.0.1',DATA_DIR:dataDir,OLLAMA_URL:'',APP_API_KEY:''},stdio:'ignore'});
- t.after(async()=>{child.kill('SIGTERM');await fs.rm(dataDir,{recursive:true,force:true});});
+ t.after(async()=>{await stopChildAndRemove(child,dataDir);});
  const base=`http://127.0.0.1:${port}`;await waitFor(`${base}/api/health`,child);
  const health=await (await fetch(`${base}/api/health`)).json();assert.equal(health.ok,true);
  const boot=await (await fetch(`${base}/api/bootstrap`)).json();assert.ok(boot.knowledge.length>=3);

@@ -1,0 +1,127 @@
+export const SUPPORTED_LOCALES = ['zh', 'en', 'ar'];
+
+const messages = {
+  en: {
+    'common.online': 'Online',
+    'common.back': 'Back to workspace',
+    'common.language': 'Language',
+    'chat.privacyTitle': 'Privacy notice',
+    'chat.privacyText': 'We process your message and basic session data to provide support. Please do not send passwords, card numbers, or government IDs.',
+    'chat.consent': 'Agree and continue',
+    'chat.privacyFoot': 'The conversation starts only after consent.',
+    'chat.placeholder': 'Type a message…',
+    'chat.send': 'Send',
+    'chat.voice': 'Voice',
+    'chat.upload': 'Upload .wav',
+    'chat.hint': 'If speech is unavailable, use text or upload a .wav recording.',
+    'chat.footer': 'RelayDesk · Text replies only',
+    'chat.welcome': 'Hello, welcome. Tell me what you need and I will use the store knowledge to help. Refunds and complaints are handed to the merchant.',
+    'onboarding.subtitle': 'Merchant onboarding',
+    'onboarding.eyebrow': 'FIRST PHASE · AC-01',
+    'onboarding.heading': 'Launch your support site, from account to embed code.',
+    'onboarding.lede': 'Create an account → add a site and industry template → upload and confirm knowledge → copy the embed code.',
+    'onboarding.authTitle': 'Merchant sign in / register',
+    'onboarding.authMuted': 'Register with email and password; an existing email switches to sign-in.',
+    'onboarding.email': 'Email',
+    'onboarding.password': 'Password',
+    'onboarding.authSubmit': 'Register / Sign in',
+    'onboarding.siteTitle': 'Create site',
+    'onboarding.siteMuted': 'A merchant can create multiple sites; each has its own knowledge and embed code.',
+    'onboarding.siteName': 'Site name',
+    'onboarding.template': 'Industry template',
+    'onboarding.createSite': 'Create site',
+    'onboarding.kbTitle': 'Knowledge upload',
+    'onboarding.kbMuted': 'Upload a text file up to 1 MB (.txt / .md). A draft is created and enters the knowledge base only after you confirm it.',
+    'onboarding.kbFile': 'Knowledge file',
+    'onboarding.kbDraft': 'Knowledge draft',
+    'onboarding.kbConfirm': 'Confirm knowledge',
+    'onboarding.embedTitle': 'Embed code',
+    'onboarding.embedMuted': 'Place this code on your store page or use the standalone link.',
+    'onboarding.copy': 'Copy code',
+    'onboarding.standalone': 'Standalone page',
+    'queue.eyebrow': 'MERCHANT ADMIN · AC-03',
+    'queue.heading': 'Escalation queue',
+    'queue.muted': 'Complaints, refunds, legal issues, and low-confidence messages arrive here; risk and intent must be visible.',
+    'queue.refresh': 'Refresh',
+    'queue.empty': 'No escalations right now',
+    'queue.emptyHint': 'Complaints and refund requests will appear here.',
+    'queue.message': 'Message',
+    'queue.site': 'Site',
+    'queue.lang': 'Lang',
+    'queue.intent': 'Intent',
+    'queue.risk': 'Risk',
+    'queue.status': 'Status',
+    'queue.time': 'Time',
+    'queue.action': 'Action',
+    'queue.footnote': 'Data from GET /api/v1/escalations; only the current merchant tenant is shown.'
+  },
+  ar: {
+    'common.online': 'متصل',
+    'common.back': 'العودة إلى مساحة العمل',
+    'common.language': 'اللغة',
+    'chat.privacyTitle': 'إشعار الخصوصية',
+    'chat.privacyText': 'نعالج رسالتك وبيانات الجلسة الأساسية لتقديم الدعم. لا ترسل كلمات المرور أو أرقام البطاقات أو أرقام الهوية.',
+    'chat.consent': 'أوافق وأتابع',
+    'chat.privacyFoot': 'لن تبدأ المحادثة إلا بعد الموافقة.',
+    'chat.placeholder': 'اكتب رسالة…',
+    'chat.send': 'إرسال',
+    'chat.voice': 'صوت',
+    'chat.upload': 'رفع تسجيل .wav',
+    'chat.hint': 'إذا تعذر التعرف على الصوت، استخدم النص أو ارفع تسجيلاً بصيغة .wav.',
+    'chat.footer': 'RelayDesk · ردود نصية فقط',
+    'chat.welcome': 'مرحباً بك. أخبرني بما تحتاجه وسأستخدم معرفة المتجر لمساعدتك. تُحوَّل طلبات الاسترداد والشكاوى إلى التاجر.',
+    'onboarding.subtitle': 'تأهيل التاجر',
+    'onboarding.eyebrow': 'المرحلة الأولى · AC-01',
+    'onboarding.heading': 'أطلق موقع الدعم، من الحساب إلى كود التضمين.',
+    'onboarding.lede': 'أنشئ حساباً ← أضف موقعاً وقالب قطاع ← ارفع المعرفة وأكدها ← انسخ كود التضمين.',
+    'onboarding.authTitle': 'تسجيل دخول / تسجيل التاجر',
+    'onboarding.authMuted': 'سجّل بالبريد وكلمة المرور؛ إذا كان البريد موجوداً فسيتم التبديل إلى تسجيل الدخول.',
+    'onboarding.email': 'البريد الإلكتروني',
+    'onboarding.password': 'كلمة المرور',
+    'onboarding.authSubmit': 'تسجيل / دخول',
+    'onboarding.siteTitle': 'إنشاء موقع',
+    'onboarding.siteMuted': 'يمكن للتاجر إنشاء عدة مواقع؛ لكل موقع معرفته وكود التضمين الخاص به.',
+    'onboarding.siteName': 'اسم الموقع',
+    'onboarding.template': 'قالب القطاع',
+    'onboarding.createSite': 'إنشاء الموقع',
+    'onboarding.kbTitle': 'رفع المعرفة',
+    'onboarding.kbMuted': 'ارفع ملفاً نصياً حتى 1 ميغابايت (.txt / .md). سيُنشأ مسودة ولن تدخل قاعدة المعرفة إلا بعد التأكيد.',
+    'onboarding.kbFile': 'ملف المعرفة',
+    'onboarding.kbDraft': 'مسودة المعرفة',
+    'onboarding.kbConfirm': 'تأكيد المعرفة',
+    'onboarding.embedTitle': 'كود التضمين',
+    'onboarding.embedMuted': 'ضع هذا الكود في صفحة متجرك أو استخدم الرابط المستقل.',
+    'onboarding.copy': 'نسخ الكود',
+    'onboarding.standalone': 'صفحة مستقلة',
+    'queue.eyebrow': 'إدارة التاجر · AC-03',
+    'queue.heading': 'قائمة التصعيد',
+    'queue.muted': 'تصل هنا الشكاوى وطلبات الاسترداد والمسائل القانونية والرسائل منخفضة الثقة؛ يجب إظهار المخاطر والنية.',
+    'queue.refresh': 'تحديث',
+    'queue.empty': 'لا توجد عناصر تصعيد حالياً',
+    'queue.emptyHint': 'ستظهر هنا الشكاوى وطلبات الاسترداد.',
+    'queue.message': 'الرسالة',
+    'queue.site': 'الموقع',
+    'queue.lang': 'اللغة',
+    'queue.intent': 'النية',
+    'queue.risk': 'المخاطر',
+    'queue.status': 'الحالة',
+    'queue.time': 'الوقت',
+    'queue.action': 'الإجراء',
+    'queue.footnote': 'البيانات من GET /api/v1/escalations؛ تُعرض فقط عناصر التصعيد الخاصة بالتاجر الحالي.'
+  }
+};
+
+export function normalizeLocale(input) {
+  const base = String(input || '').toLowerCase().split(/[-_]/)[0];
+  return SUPPORTED_LOCALES.includes(base) ? base : 'zh';
+}
+
+export function isRtl(locale) {
+  return normalizeLocale(locale) === 'ar';
+}
+
+export function t(locale, key, params = {}) {
+  const lang = normalizeLocale(locale);
+  const template = messages[lang]?.[key] ?? messages.zh?.[key] ?? key;
+  return String(template).replace(/\{(\w+)\}/g, (_, name) => String(params[name] ?? ''));
+}

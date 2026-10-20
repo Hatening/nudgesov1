@@ -1,0 +1,4 @@
+Tailwind CSS v3.4.17 (Play CDN bundle, vendored for offline use)
+Copyright (c) Tailwind Labs, Inc.
+Licensed under the MIT License.
+https://github.com/tailwindlabs/tailwindcss/blob/master/LICENSE

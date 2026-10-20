@@ -1,0 +1,229 @@
+(function () {
+  const supported = ['zh', 'en', 'ar'];
+  const params = new URLSearchParams(window.location.search);
+  const stored = window.localStorage.getItem('relaydesk_locale');
+  const requested = params.get('lang') || stored || 'zh';
+  const locale = supported.includes(String(requested).toLowerCase().split('-')[0])
+    ? String(requested).toLowerCase().split('-')[0]
+    : 'zh';
+  document.documentElement.lang = locale;
+  document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
+  document.body.dataset.locale = locale;
+
+  const copy = {
+    en: {
+      privacyTitle: 'Privacy notice',
+      chatSubtitle: 'RelayDesk · Customer support',
+      passwordHint: 'at least 6 characters',
+      queueSubtitle: 'Escalation queue',
+      privacyText: 'We process your message and basic session data to provide support. Please do not send passwords, card numbers, or government IDs.',
+      consent: 'Agree and continue',
+      privacyFoot: 'The conversation starts only after consent.',
+      placeholder: 'Type a message…',
+      send: 'Send',
+      voice: 'Voice',
+      upload: 'Upload .wav',
+      hint: 'If speech is unavailable, use text or upload a .wav recording.',
+      footer: 'RelayDesk · Text replies only',
+      welcome: 'Hello, welcome. Tell me what you need and I will use the store knowledge to help. Refunds and complaints are handed to the merchant.',
+      onboardingSubtitle: 'Merchant onboarding',
+      back: 'Back to workspace',
+      onboardingHeading: 'Launch your support site, from account to embed code.',
+      onboardingLede: 'Create an account → add a site and industry template → upload and confirm knowledge → copy the embed code.',
+      steps: ['Account', 'Site', 'Knowledge', 'Embed'],
+      authTitle: 'Merchant sign in / register',
+      authMuted: 'Register with email and password; an existing email switches to sign-in.',
+      email: 'Email',
+      password: 'Password',
+      authSubmit: 'Register / Sign in',
+      siteTitle: 'Create site',
+      siteMuted: 'A merchant can create multiple sites; each has its own knowledge and embed code.',
+      siteName: 'Site name',
+      template: 'Industry template',
+      createSite: 'Create site',
+      kbTitle: 'Knowledge upload',
+      kbMuted: 'Upload a text file up to 1 MB (.txt / .md). A draft is created and enters the knowledge base only after you confirm it.',
+      kbFile: 'Knowledge file',
+      kbDraft: 'Knowledge draft',
+      kbConfirm: 'Confirm knowledge',
+      embedTitle: 'Embed code',
+      embedMuted: 'Place this code on your store page or use the standalone link.',
+      copy: 'Copy code',
+      standalone: 'Standalone page',
+      queueHeading: 'Escalation queue',
+      queueMuted: 'Complaints, refunds, legal issues, and low-confidence messages arrive here; risk and intent must be visible.',
+      refresh: 'Refresh',
+      empty: 'No escalations right now',
+      emptyHint: 'Complaints and refund requests will appear here.',
+      queueHeaders: ['Message', 'Site', 'Lang', 'Intent', 'Risk', 'Status', 'Time', 'Action'],
+      resolve: 'Mark resolved',
+      footnote: 'Data from GET /api/v1/escalations; only the current merchant tenant is shown.'
+    },
+    ar: {
+      privacyTitle: 'إشعار الخصوصية',
+      chatSubtitle: 'RelayDesk · دعم العملاء',
+      passwordHint: '6 أحرف على الأقل',
+      queueSubtitle: 'قائمة التصعيد',
+      privacyText: 'نعالج رسالتك وبيانات الجلسة الأساسية لتقديم الدعم. لا ترسل كلمات المرور أو أرقام البطاقات أو أرقام الهوية.',
+      consent: 'أوافق وأتابع',
+      privacyFoot: 'لن تبدأ المحادثة إلا بعد الموافقة.',
+      placeholder: 'اكتب رسالة…',
+      send: 'إرسال',
+      voice: 'صوت',
+      upload: 'رفع .wav',
+      hint: 'إذا تعذر التعرف على الصوت، استخدم النص أو ارفع تسجيلاً بصيغة .wav.',
+      footer: 'RelayDesk · ردود نصية فقط',
+      welcome: 'مرحباً بك. أخبرني بما تحتاجه وسأستخدم معرفة المتجر لمساعدتك. تُحوَّل طلبات الاسترداد والشكاوى إلى التاجر.',
+      onboardingSubtitle: 'تأهيل التاجر',
+      back: 'العودة إلى مساحة العمل',
+      onboardingHeading: 'أطلق موقع الدعم، من الحساب إلى كود التضمين.',
+      onboardingLede: 'أنشئ حساباً ← أضف موقعاً وقالب قطاع ← ارفع المعرفة وأكدها ← انسخ كود التضمين.',
+      steps: ['الحساب', 'الموقع', 'المعرفة', 'التضمين'],
+      authTitle: 'تسجيل دخول / تسجيل التاجر',
+      authMuted: 'سجّل بالبريد وكلمة المرور؛ إذا كان البريد موجوداً فسيتم التبديل إلى تسجيل الدخول.',
+      email: 'البريد الإلكتروني',
+      password: 'كلمة المرور',
+      authSubmit: 'تسجيل / دخول',
+      siteTitle: 'إنشاء موقع',
+      siteMuted: 'يمكن للتاجر إنشاء عدة مواقع؛ لكل موقع معرفته وكود التضمين الخاص به.',
+      siteName: 'اسم الموقع',
+      template: 'قالب القطاع',
+      createSite: 'إنشاء الموقع',
+      kbTitle: 'رفع المعرفة',
+      kbMuted: 'ارفع ملفاً نصياً حتى 1 ميغابايت (.txt / .md). ستُنشأ مسودة ولن تدخل قاعدة المعرفة إلا بعد التأكيد.',
+      kbFile: 'ملف المعرفة',
+      kbDraft: 'مسودة المعرفة',
+      kbConfirm: 'تأكيد المعرفة',
+      embedTitle: 'كود التضمين',
+      embedMuted: 'ضع هذا الكود في صفحة متجرك أو استخدم الرابط المستقل.',
+      copy: 'نسخ الكود',
+      standalone: 'صفحة مستقلة',
+      queueHeading: 'قائمة التصعيد',
+      queueMuted: 'تصل هنا الشكاوى وطلبات الاسترداد والمسائل القانونية والرسائل منخفضة الثقة؛ يجب إظهار المخاطر والنية.',
+      refresh: 'تحديث',
+      empty: 'لا توجد عناصر تصعيد حالياً',
+      emptyHint: 'ستظهر هنا الشكاوى وطلبات الاسترداد.',
+      queueHeaders: ['الرسالة', 'الموقع', 'اللغة', 'النية', 'المخاطر', 'الحالة', 'الوقت', 'الإجراء'],
+      resolve: 'تحديد كمعالج',
+      footnote: 'البيانات من GET /api/v1/escalations؛ تُعرض فقط عناصر التصعيد الخاصة بالتاجر الحالي.'
+    }
+  };
+
+  function text(selector, value) {
+    const node = document.querySelector(selector);
+    if (node && value) node.textContent = value;
+  }
+
+  function placeholder(selector, value) {
+    const node = document.querySelector(selector);
+    if (node && value) node.setAttribute('placeholder', value);
+  }
+
+  function apply(locale) {
+    const dict = copy[locale];
+    if (!dict) return;
+    const page = document.body.dataset.page;
+    if (page === 'chat') {
+      text('.chat-brand small', dict.chatSubtitle);
+      text('#privacyTitle', dict.privacyTitle);
+      text('#privacyText', dict.privacyText);
+      text('#consentButton', dict.consent);
+      text('.privacy-foot', dict.privacyFoot);
+      placeholder('#messageInput', dict.placeholder);
+      text('#sendButton', dict.send);
+      text('#voiceButton', dict.voice);
+      text('#uploadVoiceButton', dict.upload);
+      text('.composer-hint', dict.hint);
+      text('.chat-footer', dict.footer);
+      const welcome = document.querySelector('#messages .message[data-segment="welcome"]');
+      if (welcome) {
+        const meta = welcome.querySelector('.message-meta');
+        welcome.firstChild.textContent = dict.welcome + ' ';
+        if (meta) meta.textContent = 'RelayDesk · Auto greeting';
+      }
+      document.title = 'RelayDesk Support';
+    } else if (page === 'onboarding') {
+      text('.brand small', dict.onboardingSubtitle);
+      text('.back-link', dict.back);
+      text('.intro h1', dict.onboardingHeading);
+      text('.lede', dict.onboardingLede);
+      if (dict.steps) {
+        document.querySelectorAll('.steps li').forEach((li, index) => {
+          if (!dict.steps[index]) return;
+          const span = li.querySelector('span');
+          if (span) span.textContent = String(index + 1);
+          [...li.childNodes].filter((node) => node.nodeType === 3).forEach((node) => node.remove());
+          li.appendChild(document.createTextNode(dict.steps[index]));
+        });
+      }
+      text('#authTitle', dict.authTitle);
+      text('#authPanel .muted', dict.authMuted);
+      placeholder('#password', dict.passwordHint);
+      text('label[for="email"]', dict.email);
+      text('label[for="password"]', dict.password);
+      text('#authSubmit', dict.authSubmit);
+      text('#siteTitle', dict.siteTitle);
+      text('#sitePanel .muted', dict.siteMuted);
+      text('label[for="siteName"]', dict.siteName);
+      text('#sitePanel h3', dict.template);
+      text('#createSite', dict.createSite);
+      text('#kbTitle', dict.kbTitle);
+      text('#kbPanel .muted', dict.kbMuted);
+      text('label[for="kbFile"]', dict.kbFile);
+      text('#kbDraft h3', dict.kbDraft);
+      text('#kbConfirm', dict.kbConfirm);
+      text('#embedTitle', dict.embedTitle);
+      text('#embedPanel .muted', dict.embedMuted);
+      text('#copyEmbed', dict.copy);
+      const standalone = document.querySelector('.standalone');
+      if (standalone) {
+        const link = standalone.querySelector('#standaloneUrl');
+        standalone.firstChild.textContent = dict.standalone + ': ';
+        if (link) link.setAttribute('aria-label', dict.standalone);
+      }
+      document.title = 'RelayDesk — Merchant onboarding';
+    } else if (page === 'queue') {
+      text('.brand small', dict.queueSubtitle);
+      text('.page-head h1', dict.queueHeading);
+      text('.page-head .muted', dict.queueMuted);
+      text('#refreshButton', dict.refresh);
+      text('#emptyState strong', dict.empty);
+      text('#emptyState p', dict.emptyHint);
+      text('.footnote', dict.footnote);
+      const headers = document.querySelectorAll('.queue-table thead th');
+      headers.forEach((th, index) => {
+        if (dict.queueHeaders[index]) th.textContent = dict.queueHeaders[index];
+      });
+      document.title = 'RelayDesk — Escalation queue';
+    }
+  }
+
+  function addSwitcher() {
+    const host = document.querySelector('header') || document.querySelector('.topbar');
+    if (!host || document.querySelector('.language-switch')) return;
+    const select = document.createElement('select');
+    select.className = 'language-switch';
+    select.setAttribute('aria-label', 'Language / اللغة / 语言');
+    [['zh', '中'], ['en', 'EN'], ['ar', 'ع']].forEach(([value, label]) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label;
+      if (value === locale) option.selected = true;
+      select.appendChild(option);
+    });
+    select.addEventListener('change', () => {
+      window.localStorage.setItem('relaydesk_locale', select.value);
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', select.value);
+      window.location.assign(url.toString());
+    });
+    host.appendChild(select);
+  }
+
+  apply(locale);
+  window.relaydeskI18n = {
+    locale,
+    t: (key) => copy[locale]?.[key] || key
+  };
+  addSwitcher();
+})();
