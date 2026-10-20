@@ -1,9 +1,0 @@
-{
-  "name": "relaydesk-global-support-mvp",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Self-hostable multilingual AI support workspace MVP for micro and small sellers",
-  "type": "module",
-  "scripts": {"start":"node server.js", "dev":"node --watch server.js", "test":"node --test", "check":"node --check server.js && node --check public/app.js && node --test"},
-  "engines": {"node": ">=20"}
-}
