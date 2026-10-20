@@ -161,7 +161,17 @@ async function readBody(req, limit = 2_000_000) {
   if (!raw) return {};
   try { return JSON.parse(raw); } catch { throw Object.assign(new Error('Expected valid JSON body'), { status: 400 }); }
 }
+function legacySession(req) {
+  const bearer = String(req.headers.authorization || '');
+  const bearerMatch = bearer.match(/^Bearer\s+(.+)$/i);
+  const cookie = cookieValue(req, SESSION_COOKIE);
+  const token = bearerMatch ? bearerMatch[1] : cookie;
+  if (!token) return false;
+  const auth = dao.findSessionByToken(token);
+  return Boolean(auth && roleAtLeast(auth, 'admin'));
+}
 function authorized(req) {
+  if (legacySession(req)) return true;
   if (process.env.NODE_ENV === 'production' && !APP_API_KEY) return false;
   if (!APP_API_KEY) return true;
   return safeEqual(req.headers['x-api-key'] || '', APP_API_KEY);

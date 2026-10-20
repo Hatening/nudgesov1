@@ -1,9 +1,68 @@
 const $ = s => document.querySelector(s);
+const TOKEN_KEY = 'relaydesk_token';
+const REFRESH_KEY = 'relaydesk_refresh_token';
 const state = {page:'overview',data:null,activeConversation:null,lastAnswer:null,knowledgeSearch:'',glossarySearch:''};
 const languages = [['en','English','EN'],['es','Spanish','ES'],['fr','French','FR'],['de','German','DE'],['pt','Portuguese','PT'],['it','Italian','IT'],['zh','Chinese','中文'],['ja','Japanese','日本'],['ko','Korean','한국'],['ar','Arabic','العربية'],['hi','Hindi','HI'],['nl','Dutch','NL'],['sv','Swedish','SV'],['no','Norwegian Bokmål','NO'],['tr','Turkish','TR'],['pl','Polish','PL'],['ru','Russian','RU'],['id','Indonesian','ID'],['th','Thai','TH'],['vi','Vietnamese','VI']];
 const icons={overview:'◫',inbox:'▤',assistant:'✳',knowledge:'▧',glossary:'文',channels:'⌘',languages:'◎',analytics:'▥',tests:'✓',growth:'↗',settings:'⚙'};
 const titleMap={overview:'Overview',inbox:'Inbox',assistant:'AI assistant',knowledge:'Knowledge base',glossary:'Terminology',channels:'Channels',languages:'Languages',analytics:'Analytics',tests:'Quality & tests',growth:'Seller briefings',settings:'Settings'};
-async function api(url,opts={}){const r=await fetch(url,{...opts,headers:{'content-type':'application/json',...(opts.headers||{})}});const data=await r.json().catch(()=>({}));if(!r.ok)throw new Error(data.error||`Request failed (${r.status})`);return data;}
+async function api(url,opts={}){
+  const headers={'content-type':'application/json',...(opts.headers||{})};
+  const token=localStorage.getItem(TOKEN_KEY);
+  if(token && !headers.authorization && !headers.Authorization) headers.authorization=`Bearer ${token}`;
+  const r=await fetch(url,{...opts,headers});
+  const data=await r.json().catch(()=>({}));
+  if(!r.ok){
+    const error=new Error(data.error||`Request failed (${r.status})`);
+    error.status=r.status;
+    if(r.status===401){ localStorage.removeItem(TOKEN_KEY); error.auth=true; }
+    throw error;
+  }
+  return data;
+}
+function authGate(message=''){
+  $('#pageCrumb').textContent='Sign in';
+  $('#page').innerHTML=`<div class="card card-pad auth-gate" style="max-width:520px;margin:36px auto">
+    <div class="eyebrow">RELAYDESK WORKSPACE</div>
+    <h1 style="margin:6px 0 8px">商家登录 / Merchant sign in</h1>
+    <p class="muted">登录商家工作台后访问 Inbox、Knowledge base 和 Languages；未登录时菜单会保留在此登录页。</p>
+    <p class="muted" style="font-size:11px">Sign in to access the workspace. No API key is exposed in the browser.</p>
+    <form id="dashboardLoginForm" style="margin-top:18px">
+      <label for="dashboardEmail">邮箱 / Email</label>
+      <input id="dashboardEmail" type="email" autocomplete="username" placeholder="you@example.com" required>
+      <label for="dashboardPassword" style="margin-top:12px;display:block">密码 / Password</label>
+      <input id="dashboardPassword" type="password" autocomplete="current-password" placeholder="至少 6 位 / at least 6 characters" minlength="6" required>
+      <button class="btn primary" type="submit" style="width:100%;margin-top:14px">登录 / Sign in</button>
+    </form>
+    <p id="dashboardLoginError" class="error" role="alert">${esc(message)}</p>
+    <p style="margin-top:14px;font-size:11px" class="muted">还没有账号？<a href="/onboarding.html">注册商家 / Create account</a></p>
+  </div>`;
+  const form=$('#dashboardLoginForm');
+  if(form) form.onsubmit=async (event)=>{
+    event.preventDefault();
+    const email=$('#dashboardEmail').value.trim();
+    const password=$('#dashboardPassword').value;
+    const errorEl=$('#dashboardLoginError');
+    errorEl.textContent='';
+    try{
+      const response=await fetch('/api/v1/auth/login',{
+        method:'POST',
+        headers:{'content-type':'application/json'},
+        body:JSON.stringify({email,password})
+      });
+      const data=await response.json().catch(()=>({}));
+      if(!response.ok) throw new Error(data.error||`Login failed (${response.status})`);
+      if(!data.access_token && !data.token) throw new Error('Login response did not include a token.');
+      localStorage.setItem(TOKEN_KEY,data.access_token||data.token);
+      if(data.refresh_token) localStorage.setItem(REFRESH_KEY,data.refresh_token);
+      await reload();
+      toast('已登录 / Signed in.');
+    }catch(error){
+      errorEl.textContent=error.message||'Login failed.';
+    }
+  };
+  wirePage();
+}
+
 function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function toast(message){const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),3200);}
 function fmtPct(n){return `${Math.round((Number(n)||0)*100)}%`;}
@@ -14,7 +73,7 @@ function badge(text,cls=''){return `<span class="badge ${cls}">${text}</span>`;}
 function btn(text,action,primary=false,extra=''){return `<button class="btn ${primary?'primary':''} ${extra}" data-action="${action}">${text}</button>`;}
 function bars(vals,labels){return `<div class="mini-bars">${vals.map((v,i)=>`<div class="mini-bar-col"><div class="mini-bar ${i===vals.length-1?'hot':''}" style="height:${Math.max(6,v)}%"></div><small>${labels[i]}</small></div>`).join('')}</div>`;}
 function getActiveConv(){return state.data?.conversations?.find(c=>c.id===state.activeConversation)||state.data?.conversations?.[0];}
-function render(){if(!state.data)return;$('#storeNameSide').textContent=state.data.settings.storeName||'My store';$('#openCount').textContent=state.data.conversations.filter(c=>c.status==='open').length;$('#pageCrumb').textContent=titleMap[state.page]||'Overview';document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.page===state.page));$('#page').innerHTML=pages[state.page]();wirePage();}
+function render(){if(!state.data){authGate();return;}$('#storeNameSide').textContent=state.data.settings.storeName||'My store';$('#openCount').textContent=state.data.conversations.filter(c=>c.status==='open').length;$('#pageCrumb').textContent=titleMap[state.page]||'Overview';document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.page===state.page));$('#page').innerHTML=pages[state.page]();wirePage();}
 const pages={
 overview(){const s=state.data.stats;return `${heading('Good morning 👋','Here’s how your customer support is performing today.',`${btn('Run quality check','run-tests')} ${btn('+ Add knowledge','goto-knowledge',true)}`)}<div class="stats-grid">${stat('AI replies generated',s.answers,'Across your workspace','✳')}${stat('Evidence-backed answers',fmtPct(s.groundedRate),'Answers with knowledge matches','▧','')}${stat('Human handoff rate',fmtPct(s.handoffRate),'Low confidence or unsupported','↗')}${stat('Knowledge articles',s.knowledgeCount,'Store-approved source content','▤')}</div><div class="grid-2"><div class="card card-pad">${cardHead('Support activity','Illustrative daily trend · live events appear after use',`<span class="badge green">Live workspace</span>`)}${bars([38,52,45,66,57,78,62],['Mon','Tue','Wed','Thu','Fri','Sat','Sun'])}<div class="stat-foot">Use the quality page to run repeatable retrieval and intent checks.</div></div><div class="card card-pad">${cardHead('AI answer quality','Grounded answers and safe handoff')}<div class="score-row"><span>Knowledge coverage</span><strong>${fmtPct(s.groundedRate)}</strong></div><div class="progress"><span style="width:${Math.round(s.groundedRate*100)}%"></span></div><div class="score-row"><span>Handoff rate</span><strong>${fmtPct(s.handoffRate)}</strong></div><div class="progress"><span style="width:${Math.round(s.handoffRate*100)}%;background:#e3a14b"></span></div><div class="score-row"><span>Configured languages</span><strong>${s.languageCount}</strong></div><div class="progress"><span style="width:${Math.min(100,s.languageCount/70*100)}%;background:#1da68b"></span></div><p class="muted" style="font-size:10px;line-height:1.5;margin:14px 0 0">Metrics are based on local app events; they are not a claim of real-world accuracy.</p></div></div><div class="grid-2"><div class="card">${cardHead('Recent conversations','Latest customer messages',btn('Open inbox →','goto-inbox'))}<div class="table-wrap"><table class="table"><thead><tr><th>Customer</th><th>Intent</th><th>Language</th><th>Status</th></tr></thead><tbody>${state.data.conversations.slice(0,4).map(c=>`<tr><td><strong>${esc(c.customer)}</strong><br><span class="muted">${esc(c.channel)}</span></td><td>${esc(c.intent)}</td><td>${esc(c.language.toUpperCase())}</td><td>${badge(c.status,c.status==='open'?'green':'orange')}</td></tr>`).join('')}</tbody></table></div></div><div class="card card-pad">${cardHead('Quick start','Set up a useful first version')}<div class="test-row"><div class="test-status">1</div><div><strong>Add your own policies</strong><small>Upload or paste product, shipping and refund knowledge.</small></div>${btn('Add','goto-knowledge',false,'small')}</div><div class="test-row"><div class="test-status">2</div><div><strong>Try a customer question</strong><small>Check the evidence and handoff recommendation before sending.</small></div>${btn('Try it','goto-assistant',false,'small')}</div><div class="test-row"><div class="test-status">3</div><div><strong>Run the regression suite</strong><small>Catch intent and retrieval regressions as content changes.</small></div>${btn('Run','run-tests',false,'small')}</div></div></div>`;},
 inbox(){const cs=state.data.conversations;const c=getActiveConv();return `${heading('Inbox','Review customer conversations, draft a reply, and hand off when the evidence is weak.',btn('+ New conversation','new-conversation',true))}<div class="inbox-layout"><div class="card conversation-list">${cardHead('Conversations',`${cs.length} total`)}<div style="padding:0 10px 10px"><input class="search" id="conversationSearch" placeholder="Search conversations…"></div><div id="conversationRows">${cs.map(x=>`<div class="conversation-row ${c?.id===x.id?'active':''}" data-conversation="${x.id}"><div class="row-top"><strong>${esc(x.customer)}</strong><small>${esc(x.language.toUpperCase())}</small></div><p>${esc(x.lastMessage)}</p><div style="margin-top:7px">${badge(x.status,x.status==='open'?'green':'orange')} <span class="muted" style="font-size:9px">${esc(x.channel)}</span></div></div>`).join('')}</div></div><div class="card chat-panel"><div class="chat-header"><div><strong>${esc(c?.customer||'Select a conversation')}</strong><small>${esc(c?.channel||'')} · ${esc(c?.intent||'')} · ${esc(c?.language||'').toUpperCase()}</small></div><div>${badge(c?.status||'open',c?.status==='open'?'green':'orange')}</div></div><div class="messages">${(c?.messages||[]).map(m=>`<div class="message ${m.role==='customer'?'customer':'agent'}">${esc(m.text)}<small>${m.role==='customer'?'Customer':'Agent'} · ${new Date(m.at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</small></div>`).join('')||'<div class="empty">Select a conversation to view messages.</div>'}</div><div class="reply-box"><textarea id="replyText" placeholder="Write a reply… Keep it clear and helpful."></textarea><div class="reply-actions"><button class="btn" data-action="draft-reply">✳ Draft from knowledge</button><button class="btn primary" data-action="send-reply">Send reply ↗</button></div></div></div><aside class="card right-panel"><h4>AI assist</h4><p>Draft from store-approved knowledge and review source evidence before sending.</p><button class="btn primary" style="width:100%" data-action="draft-reply">✳ Generate reply</button><div id="inboxEvidence" style="margin-top:16px">${state.lastAnswer?renderEvidence(state.lastAnswer):'<div class="notice"><div class="notice-icon">ⓘ</div><div>Choose <strong>Draft from knowledge</strong> to see evidence and confidence.</div></div>'}</div><div class="toggle-row"><div><strong>Human handoff</strong><small>Escalate uncertain answers.</small></div><input type="checkbox" class="toggle" checked disabled></div></aside></div>`;},
@@ -51,4 +110,12 @@ function wirePage(){
 }
 async function action(name,id,nameArg){try{switch(name){case'goto-knowledge':go('knowledge');$('#kbForm').style.display='block';break;case'goto-inbox':go('inbox');break;case'goto-assistant':go('assistant');break;case'goto-settings':go('settings');break;case'run-tests':{const r=await api('/api/test/run',{method:'POST',body:'{}'});await reload();go('tests');toast(`Regression run: ${r.run.passed}/${r.run.total} passed.`);break;}case'show-kb-form':$('#kbForm').style.display='block';$('#kbForm').scrollIntoView({behavior:'smooth'});break;case'hide-kb-form':$('#kbForm').style.display='none';break;case'show-term-form':$('#termForm').style.display='block';break;case'hide-term-form':$('#termForm').style.display='none';break;case'delete-kb':if(!confirm('Delete this knowledge article?'))break;await api('/api/knowledge/'+encodeURIComponent(id),{method:'DELETE'});await reload();toast('Article deleted.');break;case'copy-kb':{const item=state.data.knowledge.find(x=>x.id===id);await navigator.clipboard.writeText(`${item.title}\n\n${item.content}`);toast('Article copied.');break;}case'draft-reply':{const c=getActiveConv();if(!c)return toast('Choose a conversation.');const r=await api('/api/chat',{method:'POST',body:JSON.stringify({message:c.lastMessage,language:c.language})});state.lastAnswer=r.result;render();const target=$('#replyText');if(target)target.value=r.result.answer;const ev=$('#inboxEvidence');if(ev)ev.innerHTML=renderEvidence(r.result);toast(r.result.needsHuman?'Draft created; human review recommended.':'Draft created; verify before sending.');break;}case'send-reply':{const c=getActiveConv();const text=$('#replyText')?.value.trim();if(!c||!text)return toast('Choose a conversation and write a reply.');await api(`/api/conversations/${c.id}/reply`,{method:'POST',body:JSON.stringify({message:text,status:'pending'})});state.activeConversation=c.id;await reload();toast('Reply saved to local conversation history. No external channel message was sent.');break;}case'new-conversation':{const message=prompt('Enter the first customer message:');if(!message?.trim())break;const customer=prompt('Customer display name (optional):')||'New customer';const r=await api('/api/conversations',{method:'POST',body:JSON.stringify({message,customer,channel:'Website'})});state.activeConversation=r.item.id;await reload();go('inbox');break;}case'export-data':{const d=await api('/api/export');const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='relaydesk-workspace-export.json';a.click();URL.revokeObjectURL(a.href);toast('Workspace export downloaded.');break;}case'copy-answer':if(state.lastAnswer){await navigator.clipboard.writeText(state.lastAnswer.answer);toast('Answer copied.');}break;case'feedback-good':case'feedback-bad':if(state.lastAnswer){await api('/api/feedback',{method:'POST',body:JSON.stringify({answerId:state.lastAnswer.id,rating:name==='feedback-good'?'helpful':'not_helpful'})});await reload();toast('Feedback recorded.');}break;case'api-health':window.open('/api/health','_blank','noopener');break;case'channel-info':toast(`${nameArg}: provider credentials and webhook integration are not included in this MVP.`);break;case'save-languages':{const selected=[...document.querySelectorAll('.language-toggle:checked')].map(x=>x.value);if(!selected.length)return toast('Select at least one language.');await api('/api/settings',{method:'PATCH',body:JSON.stringify({supportedLanguages:selected})});await reload();toast(`${selected.length} languages saved.`);break;}case'import-file':{const f=$('#knowledgeFile')?.files?.[0];if(!f)return toast('Choose a text file first.');if(f.size>500000)return toast('File exceeds 500 KB.');const content=await f.text();const title=f.name.replace(/\.[^.]+$/,'');$('#kbForm').style.display='block';$('#knowledgeForm').elements.title.value=title;$('#knowledgeForm').elements.content.value=content;$('#kbForm').scrollIntoView({behavior:'smooth'});toast('Text loaded into the article form. Review it, then save.');break;}case'reset-demo':if(!confirm('This deletes local changes and restores the demo seed data. Continue?'))break;toast('For safety, delete the .data/store.json file while the server is stopped to reset demo data, then restart.');break;}}
  catch(e){toast(e.message||'Action failed.');}}
-(async()=>{try{await reload();}catch(e){$('#page').innerHTML=`<div class="card card-pad"><h2>Unable to connect to RelayDesk API</h2><p>${esc(e.message)}</p><p>Start the app with <code>npm start</code> and reload this page.</p></div>`;}})();
+wirePage();
+(async()=>{
+  if(!localStorage.getItem(TOKEN_KEY)){authGate();return;}
+  try{await reload();}
+  catch(e){
+    if(e.auth){authGate('登录已过期，请重新登录 / Session expired; sign in again.');return;}
+    $('#page').innerHTML=`<div class="card card-pad"><h2>Unable to connect to RelayDesk API</h2><p>${esc(e.message)}</p><p>Start the app with <code>npm start</code> and reload this page.</p></div>`;
+  }
+})();

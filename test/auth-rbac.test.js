@@ -176,6 +176,16 @@ test('P3-02 auth/RBAC: tenant isolation, roles, refresh/revoke, cookie CSRF, pro
   try {
     assert.equal((await fetch(`${prod.base}/api/health`)).status, 200);
     assert.equal((await fetch(`${prod.base}/api/bootstrap`)).status, 401);
+    const prodAuth = await postJson(`${prod.base}/api/v1/auth/register`, {
+      email: `prod-dashboard-${Date.now()}@example.test`,
+      password: 'TestPass123!'
+    });
+    assert.equal(prodAuth.status, 201);
+    const prodSession = await prodAuth.json();
+    const bearerBootstrap = await fetch(`${prod.base}/api/bootstrap`, {
+      headers: { authorization: `Bearer ${prodSession.token}` }
+    });
+    assert.equal(bearerBootstrap.status, 200);
   } finally {
     await stopChildAndRemove(prod.child, prodDir);
   }
