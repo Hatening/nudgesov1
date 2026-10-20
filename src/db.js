@@ -30,7 +30,8 @@ export function migrateSchema(db) {
     { version: '005_is_insight', file: '005_is_insight.sql' },
     { version: '006_gpc_taxonomy', file: '006_gpc_taxonomy.sql' },
     { version: '007_knowledge_tenant_meta', file: '007_knowledge_tenant_meta.sql' },
-    { version: '008_financial_escalation_priority', file: '008_financial_escalation_priority.sql' }
+    { version: '008_financial_escalation_priority', file: '008_financial_escalation_priority.sql' },
+    { version: '009_cloud_rescued_status', file: '009_cloud_rescued_status.sql' }
   ];
   let changed = false;
   for (const migration of migrations) {
