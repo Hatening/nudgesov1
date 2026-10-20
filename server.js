@@ -779,6 +779,13 @@ async function handleApi(req, res, url) {
   const method = req.method;
   if (p.startsWith('/api/v1/')) return await handleV1(req, res, p, method);
 
+  // Legacy dashboard endpoints must not leak tenant data. Only widget-facing
+  // endpoints and ops hooks (which carry their own secret) stay public.
+  const PUBLIC_LEGACY_API = new Set(['/api/health', '/api/chat', '/api/chat/stream', '/api/feedback']);
+  if (!PUBLIC_LEGACY_API.has(p) && !p.startsWith('/api/ops/') && !v1Auth(req)) {
+    return json(res, 401, { error: 'Authentication required. Use Authorization: Bearer <token>.' });
+  }
+
   if (p === '/api/ops/repair' && method === 'POST') {
     const repairSecret = process.env.REPAIR_WEBHOOK_SECRET || '';
     if (!repairSecret) return json(res, 503, { error: 'repair webhook is not configured.' });
