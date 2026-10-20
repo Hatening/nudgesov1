@@ -897,8 +897,8 @@ async function handleApi(req, res, url) {
     });
   }
   if (!enforceRate(res, `legacy:${clientIp(req)}`, RATE_LIMIT_LEGACY_MAX)) return;
-  // 仪表盘接口需要会话（或 APP_API_KEY）；买家窗口用的 /api/chat* 与反馈接口保持公开，
-  // 但它们的检索池会被限制为 audience=buyer。
+  // 仪表盘接口需要会话（或 APP_API_KEY）；买家窗口用的 /api/chat* 与反馈接口保持公开。
+  // /api/chat* 未鉴权时强制 buyer；带会话/机器凭证时强制 seller，绝不允许 all。
   const PUBLIC_LEGACY = new Set(['/api/chat', '/api/chat/stream', '/api/feedback', '/api/insights']);
   // APP_API_KEY 只在显式配置时才作为「机器凭证」放行；未配置时一律要求会话，
   // 否则开放实例会把 /api/bootstrap 等租户接口直接暴露出去。
@@ -1000,7 +1000,11 @@ async function handleApi(req, res, url) {
     if (!question) return json(res, 400, { error: 'message is required' });
     if (question.length > 12000) return json(res, 413, { error: 'message too long' });
     const lang = String(b.language || detectLanguage(question)).slice(0, 12);
-    const streamFinancial = financialGuard(question);
+    // 买家用 buyer 语料，后台会话/机器凭证用 seller 语料；两边的 SQL 都必须带 audience 硬过滤。
+    const sellerRequest = Boolean(v1Auth(req)) || legacyKeyOk;
+    const audience = sellerRequest ? 'seller' : 'buyer';
+    // FinancialGuard 面向买家退款/赔付诉求；卖家后台问的是运营流程，不能被退款模板拦截。
+    const streamFinancial = sellerRequest ? null : financialGuard(question);
     if (streamFinancial) {
       res.writeHead(200, { 'content-type': 'text/event-stream; charset=utf-8', 'cache-control': 'no-cache', connection: 'keep-alive' });
       res.write(`data: ${JSON.stringify({
@@ -1018,8 +1022,7 @@ async function handleApi(req, res, url) {
       res.end();
       return;
     }
-    // 未鉴权的 /api/chat 只允许买家语料；带会话的后台调用才看得到 seller 知识。
-    const audience = v1Auth(req) ? 'all' : 'buyer';
+    // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
     const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience));
     res.writeHead(200, {
       'content-type': 'text/event-stream; charset=utf-8',
@@ -1054,7 +1057,11 @@ async function handleApi(req, res, url) {
     if (!question) return json(res, 400, { error: 'message is required' });
     if (question.length > 12000) return json(res, 413, { error: 'message too long' });
     const lang = String(b.language || detectLanguage(question)).slice(0, 12);
-    const chatFinancial = financialGuard(question);
+    // 买家用 buyer 语料，后台会话/机器凭证用 seller 语料；两边的 SQL 都必须带 audience 硬过滤。
+    const sellerRequest = Boolean(v1Auth(req)) || legacyKeyOk;
+    const audience = sellerRequest ? 'seller' : 'buyer';
+    // FinancialGuard 面向买家退款/赔付诉求；卖家后台问的是运营流程，不能被退款模板拦截。
+    const chatFinancial = sellerRequest ? null : financialGuard(question);
     if (chatFinancial) {
       return json(res, 200, {
         status: 'transferred_to_human',
@@ -1072,7 +1079,7 @@ async function handleApi(req, res, url) {
         evidence: []
       });
     }
-    const audience = v1Auth(req) ? 'all' : 'buyer';
+    // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
     const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience));
     let result = await llm.answer(question, hits, lang, settings);
     const model = result?.provider && result?.answer ? result.model : 'extractive-fallback';
