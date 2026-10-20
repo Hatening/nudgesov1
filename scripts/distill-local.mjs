@@ -312,7 +312,12 @@ async function main() {
     limited.forEach((j) => jobs.push({ sourcePath: rel, text: j.text, index: j.index, progressKey: `${rel}#chunk${j.index}` }));
     console.log(`[input] ${rel} → ${limited.length} 块（每块 ≤${PAIRS_PER_CHUNK} 对问答）`);
   } else {
-    const scanRoot = SUB_DIR ? path.join(SKILLS_DIR, SUB_DIR) : SKILLS_DIR;
+    // --dir 既可以是 ecommerce-ai-skills 下的子目录，也可以是 raw_data/xxx 或绝对路径
+    const scanRoot = path.isAbsolute(SUB_DIR)
+      ? SUB_DIR
+      : SUB_DIR.startsWith('raw_data')
+        ? path.resolve(ROOT, SUB_DIR)
+        : path.join(SKILLS_DIR, SUB_DIR);
     const files = (await listMarkdown(scanRoot)).slice(0, FILE_LIMIT);
     if (!files.length) throw new Error(`no markdown under ${scanRoot}`);
     console.log(`[files] 扫描 ${path.relative(ROOT, scanRoot)}，命中 ${files.length} 个待处理文件（上限 ${FILE_LIMIT}）`);
