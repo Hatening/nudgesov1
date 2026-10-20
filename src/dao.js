@@ -345,8 +345,12 @@ export function createDao(db) {
   // Knowledge
   // audience: 'buyer' | 'seller' | 'all'（不传 = all）
   const audienceClause = (audience) => (audience && audience !== 'all' ? ` AND audience = '${audience === 'seller' ? 'seller' : 'buyer'}'` : '');
+  // Chat/RAG must never see legally held or manually-audit-pending knowledge.
+  const quarantineClause = (includeQuarantined) => (includeQuarantined === false
+    ? " AND status = 'confirmed' AND review_status NOT IN ('license_hold', 'needs_manual_audit')"
+    : '');
 
-  dao.listGlobalKnowledge = (audience = 'all') => db.prepare(`SELECT * FROM knowledge WHERE scope = 'global'${audienceClause(audience)} ORDER BY rowid DESC`).all().map(mapKnowledge);
+  dao.listGlobalKnowledge = (audience = 'all', options = {}) => db.prepare(`SELECT * FROM knowledge WHERE scope = 'global'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)} ORDER BY rowid DESC`).all().map(mapKnowledge);
   dao.countGlobalKnowledge = (audience = 'all') => Number(db.prepare(`SELECT COUNT(*) AS count FROM knowledge WHERE scope = 'global'${audienceClause(audience)}`).get().count || 0);
   dao.findGlobalKnowledge = (knowledgeId) => mapKnowledge(db.prepare("SELECT * FROM knowledge WHERE id = ? AND scope = 'global'").get(knowledgeId));
   dao.createGlobalKnowledge = (item) => {
@@ -412,7 +416,7 @@ export function createDao(db) {
     return Number(result.changes || 0) > 0;
   };
   dao.listSiteKnowledge = (siteId) => db.prepare('SELECT * FROM knowledge WHERE site_id = ? ORDER BY rowid').all(siteId).map(mapKnowledge);
-  dao.listConfirmedKnowledgeForSite = (siteId, audience = 'all') => db.prepare(`SELECT * FROM knowledge WHERE site_id = ? AND status = 'confirmed'${audienceClause(audience)} ORDER BY rowid`).all(siteId).map(mapKnowledge);
+  dao.listConfirmedKnowledgeForSite = (siteId, audience = 'all', options = {}) => db.prepare(`SELECT * FROM knowledge WHERE site_id = ? AND status = 'confirmed'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)} ORDER BY rowid`).all(siteId).map(mapKnowledge);
   dao.createSiteKnowledge = (siteId, tenantId, doc) => {
     db.prepare(`INSERT INTO knowledge
       (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, created_at, updated_at)

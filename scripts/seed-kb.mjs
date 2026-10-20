@@ -25,7 +25,7 @@ const DATA_DIR = path.resolve(process.env.DATA_DIR || path.join(ROOT, '.data'));
 const DB_PATH = path.resolve(process.env.DB_PATH || path.join(DATA_DIR, 'relaydesk.sqlite'));
 const SEED_DIR = path.join(ROOT, 'db', 'seed');
 
-const ALLOWED_SOURCE_TYPES = new Set(['wixqa', 'ecommerce_ai_skills']);
+const ALLOWED_SOURCE_TYPES = new Set(['wixqa', 'ecommerce_ai_skills', 'public_web']);
 const BANNED_SOURCE = /bitext|webfaq|traveling/i;
 // Keep in sync with db/migrations/005_is_insight.sql.
 const INSIGHT_CATEGORIES = new Set([
@@ -116,9 +116,35 @@ function main() {
   try {
     migrateSchema(db);
 
+    const quarantineLicense = db.prepare(`
+      UPDATE knowledge
+      SET review_status = 'license_hold', status = 'draft'
+      WHERE scope = 'global'
+        AND (
+          lower(COALESCE(source_id, '')) LIKE '%bitext%'
+          OR lower(COALESCE(source_id, '')) LIKE '%webfaq%'
+          OR lower(COALESCE(source_id, '')) LIKE '%traveling%'
+        )
+    `);
+    const quarantineWixqa = db.prepare(`
+      UPDATE knowledge
+      SET review_status = 'needs_manual_audit', status = 'draft'
+      WHERE scope = 'global'
+        AND source_type = 'wixqa'
+        AND review_status = 'cloud-rescued'
+    `);
+    const quarantineSellerExtra = db.prepare(`
+      UPDATE knowledge
+      SET review_status = 'needs_manual_audit', status = 'draft'
+      WHERE scope = 'global'
+        AND source_type = 'public_web'
+        AND source_id LIKE 'raw_data/seller_extra/%'
+    `);
+
     const cleanupKnowledge = db.prepare(`
       DELETE FROM knowledge
       WHERE scope = 'global'
+        AND review_status NOT IN ('license_hold', 'needs_manual_audit')
         AND (
           source_type IN ('wixqa', 'ecommerce_ai_skills', 'public_web')
           OR lower(COALESCE(source_id, '')) LIKE '%bitext%'
@@ -155,6 +181,10 @@ function main() {
 
     const now = new Date().toISOString();
     const result = transaction(db, () => {
+      // Mark quarantined rows before cleanup; cleanup preserves these statuses.
+      const quarantinedLicense = Number(quarantineLicense.run().changes || 0);
+      const quarantinedWixqa = Number(quarantineWixqa.run().changes || 0);
+      const quarantinedSellerExtra = Number(quarantineSellerExtra.run().changes || 0);
       const removed = Number(cleanupKnowledge.run().changes || 0);
 
       // Children first: gpc_taxonomy.parent_code uses ON DELETE RESTRICT.
@@ -197,34 +227,46 @@ function main() {
 
       const banned = Number(db.prepare(`
         SELECT COUNT(*) AS count FROM knowledge
-        WHERE lower(COALESCE(source_id, '')) LIKE '%bitext%'
-           OR lower(COALESCE(source_id, '')) LIKE '%webfaq%'
-           OR lower(COALESCE(source_id, '')) LIKE '%traveling%'
+        WHERE review_status NOT IN ('license_hold', 'needs_manual_audit')
+          AND (
+            lower(COALESCE(source_id, '')) LIKE '%bitext%'
+            OR lower(COALESCE(source_id, '')) LIKE '%webfaq%'
+            OR lower(COALESCE(source_id, '')) LIKE '%traveling%'
+          )
       `).get().count);
-      if (banned > 0) throw new Error(`quarantined rows still present after seed: ${banned}`);
+      if (banned > 0) throw new Error(`quarantined rows are still active after seed: ${banned}`);
 
       const referenceCount = Number(db.prepare(`
         SELECT COUNT(*) AS count FROM knowledge
-        WHERE scope = 'global' AND source_type IN ('wixqa', 'ecommerce_ai_skills')
+        WHERE scope = 'global'
+          AND review_status IN ('approved', 'cloud-rescued')
+          AND source_type IN ('wixqa', 'ecommerce_ai_skills', 'public_web')
       `).get().count);
       if (referenceCount !== cards.length) {
         throw new Error(`reference row count mismatch: ${referenceCount} != ${cards.length}`);
       }
 
       const cloudRescuedCount = Number(db.prepare(`
-        SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'cloud-rescued'
+        SELECT COUNT(*) AS count FROM knowledge
+        WHERE review_status = 'cloud-rescued'
       `).get().count);
       if (cloudRescuedCount !== rescuedCards.length) {
         throw new Error(`cloud-rescued row count mismatch: ${cloudRescuedCount} != ${rescuedCards.length}`);
       }
 
-      return { removed };
+      return { removed, quarantinedLicense, quarantinedWixqa, quarantinedSellerExtra };
     });
 
     const counts = {
       knowledge: Number(db.prepare('SELECT COUNT(*) AS count FROM knowledge').get().count),
-      reference: Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE source_type IN ('wixqa', 'ecommerce_ai_skills')").get().count),
+      reference: Number(db.prepare(`
+        SELECT COUNT(*) AS count FROM knowledge
+        WHERE review_status IN ('approved', 'cloud-rescued')
+          AND source_type IN ('wixqa', 'ecommerce_ai_skills', 'public_web')
+      `).get().count),
       cloudRescued: Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'cloud-rescued'").get().count),
+      licenseHold: Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'license_hold'").get().count),
+      manualAudit: Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'needs_manual_audit'").get().count),
       global: Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE tenant_id = 'global'").get().count),
       gpcTaxonomy: Number(db.prepare('SELECT COUNT(*) AS count FROM gpc_taxonomy').get().count)
     };
@@ -237,6 +279,9 @@ function main() {
       seed_cards: cards.length,
       base_seed_cards: baseCards.length,
       rescued_seed_cards: rescuedCards.length,
+      quarantined_license_hold: result.quarantinedLicense,
+      quarantined_wixqa_audit: result.quarantinedWixqa,
+      quarantined_seller_extra_audit: result.quarantinedSellerExtra,
       seeded_gpc: gpc.length,
       removed_stale_reference_rows: result.removed,
       counts

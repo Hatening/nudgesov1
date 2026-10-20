@@ -323,11 +323,10 @@ function requireV1(req, res) {
   return auth;
 }
 function corpusForSite(site, audience = 'buyer') {
-  const confirmed = dao.listConfirmedKnowledgeForSite(site.id, audience);
+  const confirmed = dao.listConfirmedKnowledgeForSite(site.id, audience, { includeQuarantined: false });
   if (confirmed.length) return confirmed;
-  // 站点没有自建语料时退回全局语料，但同样按受众过滤：
-  // 买家窗口永远拿不到 seller 知识。
-  return dao.listGlobalKnowledge(audience);
+  // 站点没有自建语料时退回全局语料，但同样按受众和 quarantine 状态过滤。
+  return dao.listGlobalKnowledge(audience, { includeQuarantined: false });
 }
 function stats() {
   return dao.stats();
@@ -1023,7 +1022,7 @@ async function handleApi(req, res, url) {
       return;
     }
     // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
-    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience));
+    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false }));
     res.writeHead(200, {
       'content-type': 'text/event-stream; charset=utf-8',
       'cache-control': 'no-cache',
@@ -1080,7 +1079,7 @@ async function handleApi(req, res, url) {
       });
     }
     // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
-    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience));
+    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false }));
     let result = await llm.answer(question, hits, lang, settings);
     const model = result?.provider && result?.answer ? result.model : 'extractive-fallback';
     if (!result || result.error) result = fallbackAnswer(question, hits, lang);

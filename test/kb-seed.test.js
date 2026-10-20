@@ -34,7 +34,7 @@ function normalizeTitle(value) {
 const knowledgeSeed = readJsonl('knowledge.jsonl');
 const rescuedSeed = readJsonl('knowledge-rescued.jsonl');
 const gpcSeed = readJsonl('gpc_taxonomy.jsonl');
-const ALLOWED_SOURCES = new Set(['wixqa', 'ecommerce_ai_skills']);
+const ALLOWED_SOURCES = new Set(['wixqa', 'ecommerce_ai_skills', 'public_web']);
 const BANNED_SOURCE = /bitext|webfaq|traveling/i;
 
 test('knowledge seed contains only approved sources with evidence-gate proof', () => {
@@ -69,10 +69,10 @@ test('knowledge seed contains only approved sources with evidence-gate proof', (
   assert.equal(BANNED_SOURCE.test(JSON.stringify(knowledgeSeed)), false, 'knowledge seed mentions a quarantined source');
 
   const sourceTypes = new Set(knowledgeSeed.map((card) => card.source_type));
-  assert.deepEqual([...sourceTypes].sort(), ['ecommerce_ai_skills', 'wixqa']);
+  assert.deepEqual([...sourceTypes].sort(), ['ecommerce_ai_skills', 'public_web', 'wixqa']);
 
   // The cloud-rescued incremental seed must stay on the same approved sources.
-  assert.equal(rescuedSeed.length, 5163);
+  assert.equal(rescuedSeed.length, 33);
   for (const [index, card] of rescuedSeed.entries()) {
     assert.ok(ALLOWED_SOURCES.has(card.source_type), `rescued card ${index} has unapproved source_type`);
     assert.equal(card.review_status, 'cloud-rescued', `rescued card ${index} has the wrong review_status`);
@@ -139,15 +139,22 @@ test('seed-kb seeds a clean database, cleans quarantined rows and is idempotent'
   db = new DatabaseSync(dbPath, { readOnly: true });
   try {
     const count = (sql) => Number(db.prepare(sql).get().count);
-    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE id = 'kb_old_bitext'"), 0);
+    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE id = 'kb_old_bitext' AND review_status = 'license_hold' AND status = 'draft'"), 1);
     assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE id = 'kb_demo_keep'"), 1);
-    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE source_type IN ('wixqa', 'ecommerce_ai_skills')"), knowledgeSeed.length + rescuedSeed.length);
-    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'cloud-rescued'"), rescuedSeed.length);
-    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE source_type = 'public_web'"), 0);
     assert.equal(count(`
       SELECT COUNT(*) AS count FROM knowledge
-      WHERE lower(COALESCE(source_id, '')) LIKE '%bitext%'
-         OR lower(COALESCE(source_id, '')) LIKE '%webfaq%'
+      WHERE review_status IN ('approved', 'cloud-rescued')
+        AND source_type IN ('wixqa', 'ecommerce_ai_skills', 'public_web')
+    `), knowledgeSeed.length + rescuedSeed.length);
+    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'cloud-rescued'"), rescuedSeed.length);
+    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE source_type = 'public_web' AND review_status NOT IN ('license_hold', 'needs_manual_audit')"), 352);
+    assert.equal(count(`
+      SELECT COUNT(*) AS count FROM knowledge
+      WHERE review_status NOT IN ('license_hold', 'needs_manual_audit')
+        AND (
+          lower(COALESCE(source_id, '')) LIKE '%bitext%'
+          OR lower(COALESCE(source_id, '')) LIKE '%webfaq%'
+        )
     `), 0);
     assert.equal(count("SELECT COUNT(*) AS count FROM gpc_taxonomy"), gpcSeed.length);
     assert.equal(count("SELECT COUNT(*) AS count FROM tenants WHERE id = 'global'"), 1);
@@ -181,7 +188,7 @@ test('seed-kb seeds a clean database, cleans quarantined rows and is idempotent'
   db = new DatabaseSync(dbPath, { readOnly: true });
   try {
     const count = (sql) => Number(db.prepare(sql).get().count);
-    assert.equal(count('SELECT COUNT(*) AS count FROM knowledge'), knowledgeSeed.length + rescuedSeed.length + 1);
+    assert.equal(count('SELECT COUNT(*) AS count FROM knowledge'), knowledgeSeed.length + rescuedSeed.length + 2);
     assert.equal(count('SELECT COUNT(*) AS count FROM gpc_taxonomy'), gpcSeed.length);
     assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE id = 'kb_demo_keep'"), 1);
   } finally {
