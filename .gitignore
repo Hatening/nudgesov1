@@ -14,3 +14,6 @@ nudgeso/
 # 原始语料（数十 GB，不入库）
 raw_data/
 
+
+__pycache__/
+

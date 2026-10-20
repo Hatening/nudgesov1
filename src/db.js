@@ -26,7 +26,8 @@ export function migrateSchema(db) {
     { version: '001_init', file: '001_init.sql' },
     { version: '002_auth_refresh_tokens', file: '002_auth_refresh_tokens.sql' },
     { version: '003_audience_isolation', file: '003_audience_isolation.sql' },
-    { version: '004_knowledge_category', file: '004_knowledge_category.sql' }
+    { version: '004_knowledge_category', file: '004_knowledge_category.sql' },
+    { version: '005_is_insight', file: '005_is_insight.sql' }
   ];
   let changed = false;
   for (const migration of migrations) {

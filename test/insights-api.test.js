@@ -77,9 +77,10 @@ test('/api/insights: public page lists only seller insight cards, never buyer or
   });
   assert.equal(strategy.status, 201);
 
-  // 不应出现：seller 但分类不属于洞察；buyer 但分类是行业洞察
-  await create({ title: 'Seller ops note', content: 'Internal seller playbook about bids.', audience: 'seller', category: '广告与营销' });
-  await create({ title: 'Buyer shipping note', content: 'Buyer facing shipping policy.', audience: 'buyer', category: '行业洞察' });
+  // 不应出现：seller 但分类不属于运营/洞察类；buyer 但分类是行业洞察
+  await create({ title: 'Seller ops note', content: 'Internal seller playbook about bids.', audience: 'seller', category: '其他' });
+  const buyerNote = await create({ title: 'Buyer shipping note', content: 'Buyer facing shipping policy.', audience: 'buyer', category: '行业洞察' });
+  const buyerId = (await buyerNote.json()).item.id;
 
   const listed = await (await fetch(`${base}/api/insights?limit=24`)).json();
   const titles = listed.items.map((item) => item.title);
@@ -88,4 +89,31 @@ test('/api/insights: public page lists only seller insight cards, never buyer or
   assert.equal(titles.includes('Seller ops note'), false, 'non-insight category leaked into /api/insights');
   assert.equal(titles.includes('Buyer shipping note'), false, 'buyer knowledge leaked into /api/insights');
   assert.ok(listed.items.every((item) => typeof item.summary === 'string' && item.summary.length > 0));
+
+  // 运营类分类（广告与营销）的 seller 卡会自动 is_insight=1
+  const operational = await create({
+    title: 'ACOS 出价调整的三种节奏',
+    content: '先否词再降价，最后调整分时竞价。',
+    audience: 'seller', category: '广告与营销'
+  });
+  assert.equal(operational.status, 201);
+  assert.equal((await operational.json()).item.is_insight, true);
+
+  const withOperational = await (await fetch(`${base}/api/insights?limit=24`)).json();
+  assert.ok(withOperational.items.some((item) => item.title === 'ACOS 出价调整的三种节奏'), 'operational seller card should be an insight');
+
+  // 详情接口
+  const detailTarget = withOperational.items[0];
+  const detail = await fetch(`${base}/api/insights/${detailTarget.id}`);
+  assert.equal(detail.status, 200);
+  const detailBody = await detail.json();
+  assert.equal(detailBody.item.id, detailTarget.id);
+  assert.ok(detailBody.item.content.length > 5);
+
+  const missing = await fetch(`${base}/api/insights/kb_does_not_exist`);
+  assert.equal(missing.status, 404);
+
+  // buyer 卡即使被猜到 id 也不能通过详情接口读取
+  const buyerDetail = await fetch(`${base}/api/insights/${buyerId}`);
+  assert.equal(buyerDetail.status, 404);
 });

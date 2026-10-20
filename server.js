@@ -825,7 +825,7 @@ async function handleApi(req, res, url) {
   // 否则开放实例会把 /api/bootstrap 等租户接口直接暴露出去。
   const legacyKeyOk = Boolean(process.env.APP_API_KEY) && authorized(req);
   // /api/ops/* 走自己的凭证模型（APP_API_KEY 或 op secret），不参与会话校验。
-  if (!PUBLIC_LEGACY.has(p) && !p.startsWith('/api/ops/') && !v1Auth(req) && !legacyKeyOk) {
+  if (!PUBLIC_LEGACY.has(p) && !p.startsWith('/api/insights/') && !p.startsWith('/api/ops/') && !v1Auth(req) && !legacyKeyOk) {
     return json(res, 401, { error: 'Authentication required. Use Authorization: Bearer <token>.' });
   }
 
@@ -856,6 +856,12 @@ async function handleApi(req, res, url) {
       categories: dao.insightCategories,
       items: dao.listInsights(limit),
     });
+  }
+  const insightMatch = p.match(/^\/api\/insights\/([^/]+)$/);
+  if (insightMatch && method === 'GET') {
+    const item = dao.findInsightById(insightMatch[1]);
+    if (!item) return json(res, 404, { error: 'Insight not found' });
+    return json(res, 200, { item });
   }
   if (p === '/api/knowledge' && method === 'POST') {
     const b = await readBody(req);

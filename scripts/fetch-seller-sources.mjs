@@ -31,20 +31,31 @@ const USER_AGENT = 'RelayDeskSellerSourceBot/1.0 (+https://nudgeso.onrender.com)
 const MAX_BYTES = 4 * 1024 * 1024;
 const FETCH_TIMEOUT_MS = 35_000;
 
-const SHOPIFY_CATEGORIES = [
-  {
-    label: 'marketing',
-    url: 'https://www.shopify.com/blog/topics/marketing',
-    description: 'Shopify Blog — Marketing',
-  },
-  {
-    label: 'ecommerce',
-    // Shopify's current public topic page for Ecommerce Business Tips.
-    // /blog/topics/ecommerce currently resolves to an individual article, so it is not a list page.
-    url: 'https://www.shopify.com/blog/topics/sell-online',
-    description: 'Shopify Blog — Ecommerce (Sell Online)',
-  },
+// 注意：Shopify 的列表页分页参数 ?page=N 被 robots.txt 的 `Disallow: *page=*` 禁止，
+// 所以每个列表页只能抓第 1 页；退换货/物流/支付类文章供给不足时需要在报告里说明。
+const LIST_PAGES = [
+  { label: 'marketing', url: 'https://www.shopify.com/blog/topics/marketing', pages: 1, description: 'Shopify Blog — Marketing' },
+  { label: 'ecommerce', url: 'https://www.shopify.com/blog/topics/sell-online', pages: 1, description: 'Shopify Blog — Ecommerce (Sell Online)' },
+  { label: 'customer-experience', url: 'https://www.shopify.com/blog/topics/customer-experience', pages: 1, description: 'Shopify Blog — Customer Experience' },
 ];
+
+// 抓取配额：按经营闭环分配（用户确认过的比例）
+const CATEGORY_PLAN = [
+  { key: 'aftersales', label: '售后与退换货', weight: 0.25, test: /return|refund|exchange|warranty|chargeback|dispute|complaint|damaged/i },
+  { key: 'logistics', label: '物流与履约', weight: 0.20, test: /shipping|delivery|fulfil|warehouse|packaging|carrier|international-shipping|inventory/i },
+  { key: 'support', label: '客户服务', weight: 0.15, test: /customer-service|customer-experience|support|live-chat|retention|loyalty|review|helpdesk|chatbot/i },
+  { key: 'payments', label: '支付与财务', weight: 0.10, test: /payment|tax|billing|invoice|finance|checkout|pricing|currency|subscription/i },
+  { key: 'marketing', label: '营销与流量', weight: 0.30, test: /.*/i },
+];
+
+/** 用 slug + 标题给文章归类；先匹配具体品类，最后兜底营销 */
+function classifyArticle(title, path) {
+  const haystack = `${title} ${path}`;
+  for (const plan of CATEGORY_PLAN) {
+    if (plan.test.test(haystack)) return plan;
+  }
+  return CATEGORY_PLAN[CATEGORY_PLAN.length - 1];
+}
 
 const GOOGLE_COURSE = {
   label: 'google-digital-garage',
@@ -60,7 +71,9 @@ const argValue = (name, fallback = '') => {
   return i > -1 && argv[i + 1] ? argv[i + 1] : fallback;
 };
 const LIMIT = hasFlag('all') ? Infinity : Math.max(1, Number(argValue('limit', '5')) || 5);
-const DRY_RUN = hasFlag('dry-run');
+const TOTAL = Math.max(1, Number(argValue('total', '100')) || 100);
+const PLAN_MODE = hasFlag('plan');
+const DRY_RUN = hasFlag('dry-run') || PLAN_MODE;
 const INCLUDE_GOOGLE = !hasFlag('no-google');
 const OUT_DIR = path.resolve(ROOT, argValue('out', DEFAULT_OUT));
 const DELAY_MS = Math.max(250, Number(argValue('delay', '1000')) || 1000);
@@ -309,22 +322,39 @@ function extractArticleLinks(html, baseUrl, category) {
     const title = stripTags(match[2]);
     if (title.length < 12) continue;
     if (/^(see all|view all|all topics|skip to|find an idea|starting up|marketing|ecommerce)$/i.test(title)) continue;
-    links.push({ url: clean.href, path: clean.pathname, title, category });
+    links.push({ url: clean.href, path: clean.pathname, title, category: classifyArticle(title, href.pathname) });
   }
   return links;
 }
 
-function pickArticles(groups, limit) {
-  if (!Number.isFinite(limit)) return groups.flatMap((g) => g.links);
-  const perCategory = Math.ceil(limit / Math.max(1, groups.length));
-  const picked = [];
-  for (const group of groups) picked.push(...group.links.slice(0, perCategory));
-  const seen = new Set();
-  return picked.filter((article) => {
-    if (seen.has(article.url)) return false;
-    seen.add(article.url);
-    return true;
-  }).slice(0, limit);
+function allocate(links, total) {
+  const byKey = {};
+  for (const link of links) {
+    const key = link.category.key;
+    (byKey[key] ||= []).push(link);
+  }
+  const plan = CATEGORY_PLAN.map((category) => ({
+    ...category,
+    quota: Math.round(category.weight * total),
+    picked: [],
+  }));
+
+  let deficit = 0;
+  for (const bucket of plan) {
+    const pool = byKey[bucket.key] || [];
+    bucket.picked = pool.slice(0, bucket.quota);
+    deficit += bucket.quota - bucket.picked.length;
+  }
+
+  // 某个品类供给不足时，把余额补到营销（供给最充足）
+  if (deficit > 0) {
+    const marketing = plan.find((bucket) => bucket.key === 'marketing');
+    const used = new Set(plan.flatMap((bucket) => bucket.picked.map((item) => item.url)));
+    const extra = (byKey.marketing || []).filter((item) => !used.has(item.url)).slice(0, deficit);
+    marketing.picked.push(...extra);
+  }
+
+  return plan;
 }
 
 // ---------------------------------------------------------------- Output
@@ -350,24 +380,64 @@ function markdownDocument({ title, sourceUrl, source, category, html }) {
 
 async function main() {
   await fs.mkdir(OUT_DIR, { recursive: true });
+  const targetTotal = hasFlag('limit') ? LIMIT : TOTAL;
   console.log(`[safety] User-Agent: ${USER_AGENT}`);
   console.log(`[output] ${path.relative(ROOT, OUT_DIR)}`);
-  console.log(`[mode] ${DRY_RUN ? 'dry-run' : `write ${LIMIT === Infinity ? 'all' : LIMIT} Shopify articles`}${INCLUDE_GOOGLE ? ' + Google course page' : ''}`);
+  console.log(`[mode] ${PLAN_MODE ? 'plan-only' : DRY_RUN ? 'dry-run' : `write ${targetTotal} Shopify articles`}${INCLUDE_GOOGLE ? ' + Google course page' : ''}`);
 
   const groups = [];
-  for (const category of SHOPIFY_CATEGORIES) {
-    console.log(`\n[robots] ${category.url}`);
-    const page = await fetchPublicHtml(category.url);
-    console.log(`  allowed=${page.rule} final=${page.finalUrl}`);
-    const links = extractArticleLinks(page.html, page.finalUrl, category.label);
-    console.log(`  ${category.description}: ${links.length} public article links`);
-    groups.push({ ...category, links });
+  const allLinks = [];
+  const seen = new Set();
+  for (const page of LIST_PAGES) {
+    const maxPages = page.pages || 1;
+    let found = 0;
+    for (let pageNo = 1; pageNo <= maxPages; pageNo += 1) {
+      const listUrl = pageNo === 1 ? page.url : `${page.url}?page=${pageNo}`;
+      console.log(`\n[robots] ${listUrl}`);
+      const fetched = await fetchPublicHtml(listUrl);
+      console.log(`  allowed=${fetched.rule} final=${fetched.finalUrl}`);
+      const links = extractArticleLinks(fetched.html, fetched.finalUrl, page.label);
+      let added = 0;
+      for (const link of links) {
+        if (seen.has(link.url)) continue;
+        seen.add(link.url);
+        allLinks.push(link);
+        added += 1;
+      }
+      found += added;
+      console.log(`  ${page.description} p${pageNo}: ${links.length} links, ${added} new`);
+      if (added === 0) break;
+    }
+    groups.push({ ...page, found });
   }
 
-  const chosen = pickArticles(groups, LIMIT);
+  const allocation = allocate(allLinks, targetTotal);
+  const chosen = allocation.flatMap((bucket) => bucket.picked);
   if (!chosen.length) throw new Error('no public Shopify article links found');
-  console.log(`\n[plan] ${chosen.length} Shopify article(s):`);
-  for (const article of chosen) console.log(`  - [${article.category}] ${article.title}\n    ${article.url}`);
+
+  console.log(`\n[plan] 目标 ${targetTotal} 篇，实际可抓 ${chosen.length} 篇`);
+  console.log('  分类                 权重   配额  供给  实取');
+  for (const bucket of allocation) {
+    const supply = allLinks.filter((link) => link.category.key === bucket.key).length;
+    console.log(`  ${bucket.label.padEnd(10, '　')} ${String(Math.round(bucket.weight * 100)).padStart(4)}%  ${String(bucket.quota).padStart(4)}  ${String(supply).padStart(4)}  ${String(bucket.picked.length).padStart(4)}`);
+  }
+
+  console.log('\n[urls]');
+  for (const bucket of allocation) {
+    console.log(`\n# ${bucket.label}（${bucket.picked.length} 篇）`);
+    for (const article of bucket.picked) {
+      const robots = await getRobots(new URL(article.url).origin);
+      const permission = robotsAllows(robots, article.url);
+      const mark = permission.allowed ? 'OK ' : 'BLOCK';
+      console.log(`  [${mark}] ${article.title}`);
+      console.log(`         ${article.url}`);
+    }
+  }
+
+  if (PLAN_MODE) {
+    console.log('\n[plan-only] 未抓取任何文章；确认清单后加 --all 执行。');
+    return;
+  }
 
   const manifest = { generated_at: new Date().toISOString(), audience: 'seller', sources: [], articles: [] };
 
@@ -376,10 +446,10 @@ async function main() {
       console.log(`\n[fetch] ${article.url}`);
       const page = await fetchPublicHtml(article.url);
       const title = article.title || titleFromHtml(page.html);
-      const doc = markdownDocument({ title, sourceUrl: page.finalUrl, source: 'shopify', category: article.category, html: page.html });
-      const filename = `shopify-${article.category}-${slugify(article.path.split('/').pop())}.md`;
+      const doc = markdownDocument({ title, sourceUrl: page.finalUrl, source: 'shopify', category: article.category.label, html: page.html });
+      const filename = `shopify-${article.category.key}-${slugify(article.path.split('/').pop())}.md`;
       await fs.writeFile(path.join(OUT_DIR, filename), doc.content, 'utf8');
-      const entry = { file: filename, title, url: page.finalUrl, category: article.category, chars: doc.content.length, fetched_at: doc.fetchedAt, robots_rule: page.rule };
+      const entry = { file: filename, title, url: page.finalUrl, category: article.category.key, category_label: article.category.label, chars: doc.content.length, fetched_at: doc.fetchedAt, robots_rule: page.rule };
       manifest.articles.push(entry);
       console.log(`  wrote ${filename} (${doc.content.length} chars)`);
     }
@@ -394,13 +464,14 @@ async function main() {
       const doc = markdownDocument({ title, sourceUrl: page.finalUrl, source: 'google-digital-garage', category: 'course', html: page.html });
       const filename = 'google-digital-garage-digital-marketing-ecommerce.md';
       await fs.writeFile(path.join(OUT_DIR, filename), doc.content, 'utf8');
-      manifest.articles.push({ file: filename, title, url: page.finalUrl, category: 'course', chars: doc.content.length, fetched_at: doc.fetchedAt, robots_rule: page.rule });
+      manifest.articles.push({ file: filename, title, url: page.finalUrl, category: 'course', category_label: '营销与流量', chars: doc.content.length, fetched_at: doc.fetchedAt, robots_rule: page.rule });
       console.log(`  wrote ${filename} (${doc.content.length} chars)`);
     }
   }
 
   if (!DRY_RUN) {
-    manifest.sources = groups.map((g) => ({ label: g.label, list_url: g.url, found: g.links.length }));
+    manifest.sources = groups.map((g) => ({ label: g.label, list_url: g.url, found: g.found }));
+    manifest.plan = allocation.map((bucket) => ({ category: bucket.label, weight: bucket.weight, quota: bucket.quota, picked: bucket.picked.length }));
     await fs.writeFile(path.join(OUT_DIR, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n', 'utf8');
     console.log(`\n[done] ${manifest.articles.length} markdown file(s) in ${path.relative(ROOT, OUT_DIR)}`);
     console.log(`       manifest: ${path.relative(ROOT, path.join(OUT_DIR, 'manifest.json'))}`);

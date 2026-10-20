@@ -8,6 +8,12 @@ const parseJson = (value, fallback) => {
   try { return JSON.parse(value); } catch { return fallback; }
 };
 
+// 运营类 seller 内容：自动标记为可公开展示的内容营销素材（is_insight = 1）
+const OPERATIONAL_CATEGORIES = [
+  '广告与营销', '物流与配送', '退货与退款', '支付与结算',
+  '商品与尺码', '平台规则', '投诉与纠纷',
+];
+
 function mapUser(row) {
   if (!row) return null;
   return {
@@ -44,6 +50,7 @@ function mapKnowledge(row) {
     status: row.status,
     audience: row.audience || 'buyer',
     category: row.category || '其他',
+    is_insight: Boolean(row.is_insight),
     created_at: row.created_at,
     updated_at: row.updated_at,
     updatedAt: row.updated_at || row.created_at
@@ -340,19 +347,27 @@ export function createDao(db) {
   dao.countGlobalKnowledge = (audience = 'all') => Number(db.prepare(`SELECT COUNT(*) AS count FROM knowledge WHERE scope = 'global'${audienceClause(audience)}`).get().count || 0);
   dao.findGlobalKnowledge = (knowledgeId) => mapKnowledge(db.prepare("SELECT * FROM knowledge WHERE id = ? AND scope = 'global'").get(knowledgeId));
   dao.createGlobalKnowledge = (item) => {
+    const audience = item.audience === 'seller' ? 'seller' : 'buyer';
+    const category = item.category || '其他';
     db.prepare(`INSERT INTO knowledge
-      (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, category, created_at, updated_at)
-      VALUES (?, NULL, NULL, 'global', NULL, ?, ?, ?, ?, ?, 'confirmed', ?, ?, ?, ?)`)
-      .run(item.id, item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content, item.audience === 'seller' ? 'seller' : 'buyer', item.category || '其他', item.created_at || now(), item.updated_at || now());
+      (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, category, is_insight, created_at, updated_at)
+      VALUES (?, NULL, NULL, 'global', NULL, ?, ?, ?, ?, ?, 'confirmed', ?, ?, ?, ?, ?)`)
+      .run(item.id, item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content, audience, category, isInsightValue(audience, category, item.is_insight), item.created_at || now(), item.updated_at || now());
     return dao.findGlobalKnowledge(item.id);
   };
 
   // 行业洞察 / 商业策略：公开内容页（内容营销），只读、只返回摘要
   const INSIGHT_CATEGORIES = ['行业洞察', '商业策略'];
+  function isInsightValue(audience, category, explicit) {
+    if (typeof explicit === 'boolean') return explicit ? 1 : 0;
+    if (audience !== 'seller') return 0;
+    return INSIGHT_CATEGORIES.includes(category) || OPERATIONAL_CATEGORIES.includes(category) ? 1 : 0;
+  }
+
   dao.listInsights = (limit = 24) => db.prepare(`
     SELECT id, title, category, language, tags_json, content, created_at
     FROM knowledge
-    WHERE audience = 'seller' AND category IN ('行业洞察', '商业策略')
+    WHERE is_insight = 1 AND audience = 'seller'
     ORDER BY datetime(created_at) DESC, rowid DESC
     LIMIT ?`).all(Math.max(1, Math.min(50, Number(limit) || 24))).map((row) => {
       const text = String(row.content || '')
@@ -370,6 +385,24 @@ export function createDao(db) {
         created_at: row.created_at,
       };
     });
+
+  // 详情：只允许 is_insight 的 seller 卡公开，其余一律 404（不泄露客服知识）
+  dao.findInsightById = (knowledgeId) => {
+    const row = db.prepare(`
+      SELECT id, title, category, language, tags_json, content, created_at
+      FROM knowledge
+      WHERE id = ? AND is_insight = 1 AND audience = 'seller'`).get(knowledgeId);
+    if (!row) return null;
+    return {
+      id: row.id,
+      title: row.title,
+      category: row.category,
+      language: row.language,
+      tags: parseJson(row.tags_json, []),
+      content: row.content,
+      created_at: row.created_at,
+    };
+  };
   dao.insightCategories = INSIGHT_CATEGORIES;
   dao.deleteGlobalKnowledge = (knowledgeId) => {
     const result = db.prepare("DELETE FROM knowledge WHERE id = ? AND scope = 'global'").run(knowledgeId);

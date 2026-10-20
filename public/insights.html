@@ -221,7 +221,7 @@
         + '<span class="date">' + fmtDate(item.created_at) + '</span></div>'
         + '<h2>' + esc(item.title) + '</h2>'
         + '<p>' + esc(item.summary) + '</p>'
-        + '<div class="card-foot">' + tags + '<span class="more">阅读全文 →</span></div>'
+        + '<div class="card-foot">' + tags + '<a class="more" href="/insight.html?id=' + encodeURIComponent(item.id) + '">阅读全文 →</a></div>'
         + '</article>';
     }).join('');
   }
