@@ -132,6 +132,9 @@ function mapEscalation(row) {
     language: row.language,
     intent: row.intent,
     risk: row.risk,
+    risk_level: row.risk_level || row.risk || 'high',
+    category: row.category || 'general',
+    priority: row.priority || 'normal',
     status: row.status,
     assigned_to: row.assigned_to,
     created_at: row.created_at,
@@ -488,10 +491,11 @@ export function createDao(db) {
     return transaction(db, () => {
       insertPublicMessage(record);
       db.prepare(`INSERT INTO escalations
-        (id, tenant_id, site_id, message_id, message, input_type, language, intent, risk, status, assigned_to, created_at, updated_at, resolved_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, NULL)`)
+        (id, tenant_id, site_id, message_id, message, input_type, language, intent, risk, risk_level, category, priority, status, assigned_to, created_at, updated_at, resolved_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, ?, ?, NULL)`)
         .run(escalation.id, escalation.tenant_id, escalation.site_id, escalation.message_id, escalation.message || null,
           escalation.input_type || null, escalation.language || null, escalation.intent || null, escalation.risk || 'high',
+          escalation.risk_level || escalation.risk || 'high', escalation.category || 'general', escalation.priority || 'normal',
           escalation.status || 'pending', escalation.created_at || now(), escalation.updated_at || now());
       if (event) dao.logEvent(event.type, event.data || {});
       return { message: dao.findPublicMessage(record.site_id, record.id), escalation: dao.findEscalation(escalation.id) };

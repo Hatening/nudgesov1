@@ -40,9 +40,10 @@ test('AC-03 refund/complaint -> safe template + escalation queue', async ({ page
   }
 
   const refund = await send('我要退款，订单号 12345');
+  expect(refund.status).toBe('transferred_to_human');
   expect(refund.reply.need_human).toBe(true);
-  expect(refund.reply.text).toMatch(/已收到/);
-  expect(refund.reply.text).toMatch(/商家会尽快联系|商家会尽快处理/);
+  expect(refund.reply.text).toMatch(/已收到|人工专员/);
+  expect(refund.reply.text).toMatch(/商家会尽快联系|商家会尽快处理|专员会尽快/);
   expect(refund.reply.text).not.toMatch(/可以退款|保证退款|今天处理|赔偿/);
   expect(refund.escalation_id).toBeTruthy();
   await captureScreenshot(page, testInfo, 'AC-03', 'step-safe-template');
@@ -68,6 +69,12 @@ test('AC-03 refund/complaint -> safe template + escalation queue', async ({ page
     await expect(rows.nth(index)).toHaveAttribute('data-risk', 'high');
     await expect(rows.nth(index)).toHaveAttribute('data-status', 'pending');
   }
+  const refundRow = rows.filter({ hasText: '我要退款' });
+  await expect(refundRow).toHaveAttribute('data-category', 'financial');
+  await expect(refundRow).toHaveAttribute('data-priority', 'urgent');
+  await expect(refundRow).toHaveClass(/urgent-row/);
+  await expect(refundRow).toContainText('financial');
+  await expect(refundRow).toContainText('urgent');
   await captureScreenshot(page, testInfo, 'AC-03', 'step-escalation-queue');
   await captureScreenshot(page, testInfo, 'AC-03', 'final');
 });

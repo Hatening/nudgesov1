@@ -85,8 +85,8 @@ test('AC-03 high-risk refund/complaint creates escalations', async (t) => {
 
   const refund = await send('我要退款，订单号 12345');
   assert.equal(refund.reply.need_human, true);
-  assert.match(refund.reply.text, /已收到/);
-  assert.match(refund.reply.text, /商家会尽快联系|商家会尽快处理/);
+  assert.match(refund.reply.text, /已收到|人工专员/);
+  assert.match(refund.reply.text, /商家会尽快联系|商家会尽快处理|专员会尽快/);
   assert.doesNotMatch(refund.reply.text, /可以退款|保证退款|今天处理|赔偿/);
   assert.ok(refund.escalation_id);
 

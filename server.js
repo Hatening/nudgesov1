@@ -16,6 +16,7 @@ import { createLlmGateway } from './src/llm.js';
 import { redactPII, privacyNotice, CONSENT_VERSION } from './src/privacy.js';
 import { createMetrics } from './src/observability.js';
 import { createRepairQueue } from './src/repair.js';
+import { financialGuard } from './src/financial-guard.js';
 import {
   rankKnowledge,
   inferIntent,
@@ -519,6 +520,46 @@ async function handleV1(req, res, p, method) {
       const messageId = id('msg');
       const at = now();
 
+      const financial = financialGuard(transcript);
+      if (financial) {
+        const reply = {
+          lang: financial.reply.lang,
+          text: financial.reply.text,
+          need_human: true,
+          grounded: false,
+          status: 'transferred_to_human',
+          input_type: 'voice',
+          segments: [{ type: 'safe', text: financial.reply.text }]
+        };
+        const record = {
+          id: messageId, tenant_id: site.tenant_id, site_id: site.id, embed_key: site.embed_key,
+          message: transcript, transcript, input_type: 'voice', audio_filename: audioFilename,
+          audio_size_bytes: audioSize, language: financial.reply.lang, intent: 'Financial / refund', risk: 'high',
+          reply, evidence: [], created_at: at
+        };
+        const escalation = {
+          id: id('esc'), tenant_id: site.tenant_id, site_id: site.id, message_id: messageId,
+          message: transcript, input_type: 'voice', language: financial.reply.lang,
+          intent: 'Financial / refund', risk: 'high', risk_level: 'high', category: 'financial',
+          priority: 'urgent', status: 'pending', created_at: at, updated_at: at
+        };
+        dao.createPublicMessageWithEscalation(record, escalation, {
+          type: 'public_financial_transferred_to_human',
+          data: { siteId: site.id, messageId, escalationId: escalation.id, language: financial.reply.lang, matched: financial.matched, input_type: 'voice' }
+        });
+        return json(res, 200, {
+          message_id: messageId,
+          status: 'transferred_to_human',
+          need_human: true,
+          reply,
+          evidence: [],
+          escalation_id: escalation.id,
+          category: 'financial',
+          priority: 'urgent',
+          input_type: 'voice'
+        });
+      }
+
       if (isHighRiskMessage(transcript)) {
         const safeText = '已收到您的反馈。商家会尽快联系您处理，请勿重复提交。 / We have received your message. The merchant will follow up shortly.';
         const reply = { lang, text: safeText, need_human: true, grounded: false, input_type: 'voice', segments: [{ type: 'safe', text: safeText }] };
@@ -587,6 +628,44 @@ async function handleV1(req, res, p, method) {
     const intent = inferIntent(message);
     const messageId = id('msg');
     const at = now();
+
+    const financial = financialGuard(message);
+    if (financial) {
+      const reply = {
+        lang: financial.reply.lang,
+        text: financial.reply.text,
+        need_human: true,
+        grounded: false,
+        status: 'transferred_to_human',
+        input_type: 'text',
+        segments: [{ type: 'safe', text: financial.reply.text }]
+      };
+      const record = {
+        id: messageId, tenant_id: site.tenant_id, site_id: site.id, embed_key: site.embed_key,
+        message, input_type: 'text', language: financial.reply.lang, intent: 'Financial / refund', risk: 'high',
+        reply, evidence: [], created_at: at
+      };
+      const escalation = {
+        id: id('esc'), tenant_id: site.tenant_id, site_id: site.id, message_id: messageId,
+        message, input_type: 'text', language: financial.reply.lang,
+        intent: 'Financial / refund', risk: 'high', risk_level: 'high', category: 'financial',
+        priority: 'urgent', status: 'pending', created_at: at, updated_at: at
+      };
+      dao.createPublicMessageWithEscalation(record, escalation, {
+        type: 'public_financial_transferred_to_human',
+        data: { siteId: site.id, messageId, escalationId: escalation.id, language: financial.reply.lang, matched: financial.matched }
+      });
+      return json(res, 200, {
+        message_id: messageId,
+        status: 'transferred_to_human',
+        need_human: true,
+        reply,
+        evidence: [],
+        escalation_id: escalation.id,
+        category: 'financial',
+        priority: 'urgent'
+      });
+    }
 
     if (isHighRiskMessage(message)) {
       const safeText = '已收到您的反馈。商家会尽快联系您处理，请勿重复提交。 / We have received your message. The merchant will follow up shortly.';
@@ -921,6 +1000,24 @@ async function handleApi(req, res, url) {
     if (!question) return json(res, 400, { error: 'message is required' });
     if (question.length > 12000) return json(res, 413, { error: 'message too long' });
     const lang = String(b.language || detectLanguage(question)).slice(0, 12);
+    const streamFinancial = financialGuard(question);
+    if (streamFinancial) {
+      res.writeHead(200, { 'content-type': 'text/event-stream; charset=utf-8', 'cache-control': 'no-cache', connection: 'keep-alive' });
+      res.write(`data: ${JSON.stringify({
+        done: true,
+        result: {
+          status: 'transferred_to_human',
+          need_human: true,
+          grounded: false,
+          answer: streamFinancial.reply.text,
+          text: streamFinancial.reply.text,
+          lang: streamFinancial.reply.lang,
+          model: 'financial-guard'
+        }
+      })}\n\n`);
+      res.end();
+      return;
+    }
     // 未鉴权的 /api/chat 只允许买家语料；带会话的后台调用才看得到 seller 知识。
     const audience = v1Auth(req) ? 'all' : 'buyer';
     const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience));
@@ -957,6 +1054,24 @@ async function handleApi(req, res, url) {
     if (!question) return json(res, 400, { error: 'message is required' });
     if (question.length > 12000) return json(res, 413, { error: 'message too long' });
     const lang = String(b.language || detectLanguage(question)).slice(0, 12);
+    const chatFinancial = financialGuard(question);
+    if (chatFinancial) {
+      return json(res, 200, {
+        status: 'transferred_to_human',
+        need_human: true,
+        reply: chatFinancial.reply,
+        result: {
+          status: 'transferred_to_human',
+          need_human: true,
+          grounded: false,
+          answer: chatFinancial.reply.text,
+          text: chatFinancial.reply.text,
+          lang: chatFinancial.reply.lang,
+          model: 'financial-guard'
+        },
+        evidence: []
+      });
+    }
     const audience = v1Auth(req) ? 'all' : 'buyer';
     const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience));
     let result = await llm.answer(question, hits, lang, settings);

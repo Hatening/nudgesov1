@@ -228,12 +228,13 @@ test('AC-04 P2: ASR network fallback -> WAV upload -> soothing/RAG hours + packa
   const riskResponse = await riskResponsePromise;
   expect(riskResponse.status()).toBe(200);
   const riskBody = await riskResponse.json();
+  expect(riskBody.status).toBe('transferred_to_human');
   expect(riskBody.reply.need_human).toBe(true);
-  expect(riskBody.reply.text).toContain('已收到');
-  expect(riskBody.reply.text).toContain('商家会尽快联系');
+  expect(riskBody.reply.text).toContain('人工专员');
+  expect(riskBody.reply.text).toContain('专员会尽快');
   expect(riskBody.reply.text).not.toMatch(/可以退款|保证退款|今天处理|赔偿/);
   expect(riskBody.escalation_id).toBeTruthy();
-  await expect(page.locator('#messages [data-role="agent"]').last()).toContainText('已收到');
+  await expect(page.locator('#messages [data-role="agent"]').last()).toContainText('人工专员');
   await expect(page.locator('audio, video')).toHaveCount(0);
   await captureScreenshot(page, testInfo, 'AC-04', 'step-high-risk');
 

@@ -18,9 +18,18 @@ function render(items) {
   $('#emptyState').classList.toggle('hidden', items.length > 0);
   for (const item of items) {
     const tr = document.createElement('tr');
+    const financial = item.category === 'financial';
+    const urgent = item.priority === 'urgent' || financial;
     tr.dataset.escalationId = item.id;
     tr.dataset.status = item.status;
     tr.dataset.risk = item.risk;
+    tr.dataset.category = item.category || 'general';
+    tr.dataset.priority = item.priority || 'normal';
+    if (urgent) {
+      tr.classList.add('urgent-row');
+      tr.style.background = '#fff1f2';
+      tr.style.boxShadow = 'inset 4px 0 0 #e11d48';
+    }
     const resolveLabel = window.relaydeskI18n && window.relaydeskI18n.locale !== 'zh'
       ? window.relaydeskI18n.t('resolve')
       : '标记已处理';
@@ -29,7 +38,7 @@ function render(items) {
       <td class="site-cell">${esc(item.site_name || '')}</td>
       <td>${esc(item.language || '')}</td>
       <td>${esc(item.intent || '')}</td>
-      <td>${badge(item.risk || 'high', item.risk === 'high' ? 'high' : 'medium')}</td>
+      <td>${badge(item.risk_level || item.risk || 'high', urgent ? 'high' : (item.risk === 'high' ? 'high' : 'medium'))} ${financial ? badge('financial', 'high') : ''} ${urgent ? badge('urgent', 'high') : badge(item.priority || 'normal', 'medium')}</td>
       <td>${badge(item.status || 'pending', item.status || 'pending')}</td>
       <td>${esc(new Date(item.created_at).toLocaleString())}</td>
       <td><div class="row-actions"><button class="btn small" type="button" data-action="resolve" data-id="${esc(item.id)}">${esc(resolveLabel)}</button></div></td>
