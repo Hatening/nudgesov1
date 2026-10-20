@@ -2,9 +2,9 @@
 /**
  * Idempotent reference-data seeder for deployment.
  *
- * The cards in db/seed/knowledge.jsonl already passed the deterministic
- * build-time evidence gate in scripts/build-kb-seed.py. This script adds a
- * second, runtime gate:
+ * The cards in db/seed/knowledge.jsonl and db/seed/knowledge-rescued.jsonl
+ * already passed the build-time evidence gate. This script adds a second,
+ * runtime gate:
  *   - only WixQA and ecommerce-ai-skills cards are allowed;
  *   - Bitext / WebFAQ / traveling sources are rejected outright;
  *   - every card must carry non-empty evidence and a clean validation result;
@@ -48,9 +48,14 @@ function readJsonl(file) {
 }
 
 function assertApprovedSeed(cards) {
+  const allowedStatuses = new Set(['approved', 'cloud-rescued']);
+  const seenIds = new Set();
   for (const [index, card] of cards.entries()) {
     const where = `knowledge seed card ${index} (${card.id || 'no-id'})`;
 
+    if (!card.id) throw new Error(`${where}: missing id`);
+    if (seenIds.has(card.id)) throw new Error(`${where}: duplicate id`);
+    seenIds.add(card.id);
     if (!ALLOWED_SOURCE_TYPES.has(card.source_type)) {
       throw new Error(`${where}: unapproved source_type "${card.source_type}"`);
     }
@@ -58,8 +63,8 @@ function assertApprovedSeed(cards) {
     if (BANNED_SOURCE.test(`${card.source_type} ${card.source_id} ${card.source_url || ''}`)) {
       throw new Error(`${where}: quarantined source (Bitext/WebFAQ) cannot be seeded`);
     }
-    if (card.review_status !== 'approved') {
-      throw new Error(`${where}: review_status is not approved`);
+    if (!allowedStatuses.has(card.review_status)) {
+      throw new Error(`${where}: review_status "${card.review_status}" is not allowed`);
     }
     if (!card.title || !card.content) {
       throw new Error(`${where}: title/content is empty`);
@@ -81,8 +86,11 @@ function assertApprovedSeed(cards) {
     } catch {
       throw new Error(`${where}: validation_json is not valid JSON`);
     }
-    if (!validation || !validation.checked || !Array.isArray(validation.missing)) {
+    if (!validation || !Array.isArray(validation.missing)) {
       throw new Error(`${where}: validation_json is incomplete`);
+    }
+    if (!validation.checked && validation.passed !== true) {
+      throw new Error(`${where}: validation_json has no proof`);
     }
     if (validation.missing.length > 0) {
       throw new Error(`${where}: evidence gate failed: ${validation.missing.slice(0, 5).join('; ')}`);
@@ -95,9 +103,12 @@ function isInsight(card) {
 }
 
 function main() {
-  const cards = readJsonl(path.join(SEED_DIR, 'knowledge.jsonl'));
+  const baseCards = readJsonl(path.join(SEED_DIR, 'knowledge.jsonl'));
+  const rescuedCards = readJsonl(path.join(SEED_DIR, 'knowledge-rescued.jsonl'));
+  const cards = [...baseCards, ...rescuedCards];
   const gpc = readJsonl(path.join(SEED_DIR, 'gpc_taxonomy.jsonl'));
-  if (cards.length === 0) throw new Error('db/seed/knowledge.jsonl is missing or empty');
+  if (baseCards.length === 0) throw new Error('db/seed/knowledge.jsonl is missing or empty');
+  if (rescuedCards.length === 0) throw new Error('db/seed/knowledge-rescued.jsonl is missing or empty');
   if (gpc.length === 0) throw new Error('db/seed/gpc_taxonomy.jsonl is missing or empty');
   assertApprovedSeed(cards);
 
@@ -117,29 +128,11 @@ function main() {
     `);
 
     const insertKnowledge = db.prepare(`
-      INSERT INTO knowledge
+      INSERT OR IGNORE INTO knowledge
         (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content,
          status, created_at, updated_at, audience, category, is_insight,
          sensitivity, freshness, source_type, source_id, source_url, review_status, evidence_json)
       VALUES (?, ?, NULL, 'global', NULL, ?, ?, ?, ?, ?, 'confirmed', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-      ON CONFLICT(id) DO UPDATE SET
-        tenant_id = excluded.tenant_id,
-        title = excluded.title,
-        type = excluded.type,
-        language = excluded.language,
-        tags_json = excluded.tags_json,
-        content = excluded.content,
-        audience = excluded.audience,
-        category = excluded.category,
-        is_insight = excluded.is_insight,
-        sensitivity = excluded.sensitivity,
-        freshness = excluded.freshness,
-        source_type = excluded.source_type,
-        source_id = excluded.source_id,
-        source_url = excluded.source_url,
-        review_status = excluded.review_status,
-        evidence_json = excluded.evidence_json,
-        updated_at = excluded.updated_at
     `);
 
     const insertGpc = db.prepare(`
@@ -182,7 +175,7 @@ function main() {
           card.updated_at || now,
           card.audience || 'seller',
           card.category || '其他',
-          isInsight(card),
+          card.is_insight ?? isInsight(card),
           card.sensitivity || 'low',
           card.freshness || 'static',
           card.source_type,
@@ -218,12 +211,20 @@ function main() {
         throw new Error(`reference row count mismatch: ${referenceCount} != ${cards.length}`);
       }
 
+      const cloudRescuedCount = Number(db.prepare(`
+        SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'cloud-rescued'
+      `).get().count);
+      if (cloudRescuedCount !== rescuedCards.length) {
+        throw new Error(`cloud-rescued row count mismatch: ${cloudRescuedCount} != ${rescuedCards.length}`);
+      }
+
       return { removed };
     });
 
     const counts = {
       knowledge: Number(db.prepare('SELECT COUNT(*) AS count FROM knowledge').get().count),
       reference: Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE source_type IN ('wixqa', 'ecommerce_ai_skills')").get().count),
+      cloudRescued: Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'cloud-rescued'").get().count),
       global: Number(db.prepare("SELECT COUNT(*) AS count FROM knowledge WHERE tenant_id = 'global'").get().count),
       gpcTaxonomy: Number(db.prepare('SELECT COUNT(*) AS count FROM gpc_taxonomy').get().count)
     };
@@ -234,6 +235,8 @@ function main() {
       ok: true,
       db: DB_PATH,
       seed_cards: cards.length,
+      base_seed_cards: baseCards.length,
+      rescued_seed_cards: rescuedCards.length,
       seeded_gpc: gpc.length,
       removed_stale_reference_rows: result.removed,
       counts

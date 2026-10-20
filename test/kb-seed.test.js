@@ -32,6 +32,7 @@ function normalizeTitle(value) {
 }
 
 const knowledgeSeed = readJsonl('knowledge.jsonl');
+const rescuedSeed = readJsonl('knowledge-rescued.jsonl');
 const gpcSeed = readJsonl('gpc_taxonomy.jsonl');
 const ALLOWED_SOURCES = new Set(['wixqa', 'ecommerce_ai_skills']);
 const BANNED_SOURCE = /bitext|webfaq|traveling/i;
@@ -69,6 +70,25 @@ test('knowledge seed contains only approved sources with evidence-gate proof', (
 
   const sourceTypes = new Set(knowledgeSeed.map((card) => card.source_type));
   assert.deepEqual([...sourceTypes].sort(), ['ecommerce_ai_skills', 'wixqa']);
+
+  // The cloud-rescued incremental seed must stay on the same approved sources.
+  assert.equal(rescuedSeed.length, 5163);
+  for (const [index, card] of rescuedSeed.entries()) {
+    assert.ok(ALLOWED_SOURCES.has(card.source_type), `rescued card ${index} has unapproved source_type`);
+    assert.equal(card.review_status, 'cloud-rescued', `rescued card ${index} has the wrong review_status`);
+    assert.ok(card.evidence_json, `rescued card ${index} has no evidence_json`);
+    const evidence = JSON.parse(card.evidence_json);
+    assert.ok(Array.isArray(evidence) && evidence.length > 0, `rescued card ${index} evidence is empty`);
+    const validation = JSON.parse(card.validation_json);
+    assert.ok(validation.checked || validation.passed === true, `rescued card ${index} has no validation proof`);
+    assert.deepEqual(validation.missing, [], `rescued card ${index} failed validation`);
+  }
+  assert.equal(BANNED_SOURCE.test(JSON.stringify(rescuedSeed)), false, 'rescued seed mentions a quarantined source');
+  const ids = new Set();
+  for (const card of [...knowledgeSeed, ...rescuedSeed]) {
+    assert.equal(ids.has(card.id), false, `duplicate seed id ${card.id}`);
+    ids.add(card.id);
+  }
 });
 
 test('GPC seed is the complete four-level taxonomy', () => {
@@ -121,7 +141,8 @@ test('seed-kb seeds a clean database, cleans quarantined rows and is idempotent'
     const count = (sql) => Number(db.prepare(sql).get().count);
     assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE id = 'kb_old_bitext'"), 0);
     assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE id = 'kb_demo_keep'"), 1);
-    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE source_type IN ('wixqa', 'ecommerce_ai_skills')"), knowledgeSeed.length);
+    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE source_type IN ('wixqa', 'ecommerce_ai_skills')"), knowledgeSeed.length + rescuedSeed.length);
+    assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE review_status = 'cloud-rescued'"), rescuedSeed.length);
     assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE source_type = 'public_web'"), 0);
     assert.equal(count(`
       SELECT COUNT(*) AS count FROM knowledge
@@ -160,7 +181,7 @@ test('seed-kb seeds a clean database, cleans quarantined rows and is idempotent'
   db = new DatabaseSync(dbPath, { readOnly: true });
   try {
     const count = (sql) => Number(db.prepare(sql).get().count);
-    assert.equal(count('SELECT COUNT(*) AS count FROM knowledge'), knowledgeSeed.length + 1);
+    assert.equal(count('SELECT COUNT(*) AS count FROM knowledge'), knowledgeSeed.length + rescuedSeed.length + 1);
     assert.equal(count('SELECT COUNT(*) AS count FROM gpc_taxonomy'), gpcSeed.length);
     assert.equal(count("SELECT COUNT(*) AS count FROM knowledge WHERE id = 'kb_demo_keep'"), 1);
   } finally {
