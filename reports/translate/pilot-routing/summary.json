@@ -1,0 +1,44 @@
+{
+  "total": 10,
+  "local_direct": 4,
+  "cloud_required": 3,
+  "cloud_forced_language": 0,
+  "manual_review": 3,
+  "admitted": 7,
+  "local_attempts": 37,
+  "naive_local_attempts": 40,
+  "local_attempt_reduction_pct": 7.5,
+  "breaker": {
+    "threshold": 3,
+    "consecutive": {
+      "pl-PL": 3,
+      "es-ES": 0
+    },
+    "forced": [
+      "pl-PL"
+    ],
+    "events": [
+      {
+        "lang": "pl-PL",
+        "action": "forced",
+        "count": 3,
+        "at": "2026-10-21T14:44:21.017Z"
+      }
+    ]
+  },
+  "skipped_local_cards": 0,
+  "waste_avoided": {
+    "skipped_local_cards": 0,
+    "avoided_local_attempts": 0,
+    "avoided_ms": 0,
+    "avoided_tokens": 0,
+    "avoided_kwh": 0,
+    "avoided_cny": 0
+  },
+  "local_tokens": 64121,
+  "cloud_calls": 53,
+  "cloud_tokens": {
+    "input": 8410,
+    "output": 30517
+  }
+}
