@@ -75,9 +75,9 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
     };
   }
 
-  async function postJson(url, body, headers = {}) {
+  async function postJson(url, body, headers = {}, timeoutOverrideMs = 0) {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    const timer = setTimeout(() => controller.abort(), timeoutOverrideMs || timeoutMs);
     try {
       const response = await fetchImpl(url, {
         method: 'POST',
@@ -296,38 +296,82 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
 
   /**
    * 原始结构化补全：用于知识蒸馏 / 经营诊断等不依赖检索证据的任务。
-   * 返回 { content, model, provider } 或 null（未配置）。
+   * 本地优先、云端兜底：主 provider 失败时自动切换到另一个已配置 provider。
+   * 返回 { content, model, provider } 或 { error }。
    */
   async function complete(prompt, settings = {}) {
-    const provider = configuredProvider(settings);
-    if (!provider) return null;
-    if (now() < openUntil) return { error: 'circuit_open', provider };
+    const primary = configuredProvider(settings);
+    const order = [];
+    if (primary) order.push(primary);
+    if (primary !== 'openai' && openaiKey) order.push('openai');
+    if (primary !== 'ollama' && ollamaUrl && settings.ollamaEnabled !== false) order.push('ollama');
+    if (!order.length) return null;
+    if (now() < openUntil) return { error: 'circuit_open', provider: primary };
     totalCalls += 1;
+
+    const lastErrors = [];
+    for (const provider of order) {
+      const body = {
+        model: provider === 'openai' ? openaiModel : ollamaModel,
+        temperature,
+        messages: [
+          { role: 'system', content: '你是一个严谨的电商知识结构化助手。只输出合法 JSON，不要解释。' },
+          { role: 'user', content: prompt }
+        ]
+      };
+      if (provider === 'openai' && responseFormat !== 'none') body.response_format = { type: responseFormat };
+      try {
+        const data = provider === 'openai'
+          ? await postJson(`${openaiBase}/chat/completions`, body, authHeaders(), Math.max(timeoutMs, 60000))
+          : await postJson(`${ollamaUrl}/api/chat`, body, {}, Math.max(timeoutMs, 60000));
+        const content = provider === 'openai' ? data.choices?.[0]?.message?.content : data.message?.content;
+        failures = 0;
+        lastError = '';
+        return { content: content || '', model: provider === 'openai' ? openaiModel : ollamaModel, provider, usage: data.usage || null };
+      } catch (error) {
+        lastErrors.push(`${provider}: ${error.message}`);
+        lastError = error.message;
+        failures += 1;
+        totalFallbacks += 1;
+        if (failures >= failureThreshold) openUntil = now() + circuitCooldownMs;
+      }
+    }
+    return { error: lastErrors.join(' | ') || 'LLM failed', provider: primary };
+  }
+
+  /**
+   * 视觉 OCR：把图片交给云端多模态模型识别文字。
+   * 仅支持 OpenAI 兼容端点（当前 DeepSeek-V4.1-Flash 支持 image_url）。
+   */
+  async function completeVision(prompt, imageDataUrls = [], settings = {}) {
+    if (!openaiKey) return { error: 'vision_unavailable', provider: null };
+    if (!Array.isArray(imageDataUrls) || imageDataUrls.length === 0) return { error: 'no_images', provider: 'openai' };
+    if (now() < openUntil) return { error: 'circuit_open', provider: 'openai' };
+    totalCalls += 1;
+    const content = [{ type: 'text', text: prompt }];
+    for (const url of imageDataUrls.slice(0, 6)) {
+      content.push({ type: 'image_url', image_url: { url } });
+    }
     const body = {
-      model: provider === 'openai' ? openaiModel : ollamaModel,
-      temperature,
-      messages: [
-        { role: 'system', content: '你是一个严谨的电商知识结构化助手。只输出合法 JSON，不要解释。' },
-        { role: 'user', content: prompt }
-      ]
+      model: openaiModel,
+      temperature: 0,
+      messages: [{ role: 'user', content }],
+      max_tokens: 4000
     };
-    if (responseFormat !== 'none') body.response_format = { type: responseFormat };
     try {
-      const data = provider === 'openai'
-        ? await postJson(`${openaiBase}/chat/completions`, body, authHeaders())
-        : await postJson(`${ollamaUrl}/api/chat`, body);
-      const content = provider === 'openai' ? data.choices?.[0]?.message?.content : data.message?.content;
+      const data = await postJson(`${openaiBase}/chat/completions`, body, authHeaders(), 120000);
+      const text = data.choices?.[0]?.message?.content || '';
       failures = 0;
       lastError = '';
-      return { content: content || '', model: provider === 'openai' ? openaiModel : ollamaModel, provider, usage: data.usage || null };
+      return { content: text, model: openaiModel, provider: 'openai', usage: data.usage || null };
     } catch (error) {
       failures += 1;
       lastError = error.message;
       totalFallbacks += 1;
       if (failures >= failureThreshold) openUntil = now() + circuitCooldownMs;
-      return { error: error.message, provider };
+      return { error: error.message, provider: 'openai' };
     }
   }
 
-  return { answer, stream, complete, status };
+  return { answer, stream, complete, completeVision, status };
 }

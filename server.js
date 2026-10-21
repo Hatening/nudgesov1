@@ -13,6 +13,7 @@ import {
 import { createDao } from './src/dao.js';
 import { createRateLimiter } from './src/rate-limit.js';
 import { extractPdfText, isPdfBuffer } from './src/pdf-text.js';
+import { distillKnowledge } from './src/knowledge-distill.js';
 import { createLlmGateway } from './src/llm.js';
 import { redactPII, privacyNotice, CONSENT_VERSION } from './src/privacy.js';
 import { createMetrics } from './src/observability.js';
@@ -377,30 +378,7 @@ const PROFILE_ACTIONS = [
   '每周检查一次「质量与测试」，确认回答仍有知识证据支撑。',
 ];
 
-async function distillUploadedText(text, filename) {
-  const settings = dao.getSettings();
-  const prompt = `你是电商知识库结构化专家。请把下面这份商家上传的资料拆成 1-5 张独立的问答知识卡。
-要求：
-1. 只能使用资料中出现的事实，不得补充资料中没有的政策、金额或承诺。
-2. 每张卡包含 title、content、tags（字符串数组）。
-3. 只输出 JSON 对象，不要解释、不要 Markdown 围栏。
-输出格式：{"cards":[{"title":"...","content":"...","tags":["..."]}]}
-
-文件名：${filename}
-资料正文：
-${String(text).slice(0, 8000)}`;
-  const result = await llm.complete(prompt, settings);
-  const cards = result?.content ? parseModelCards(result.content) : [];
-  if (cards.length) return { cards, model: result.model, provider: result.provider, distilled: true };
-  // 模型不可用或解析失败：退化为单张卡片，仍以 draft 入库，商家可确认
-  const firstLine = String(text).split('\n').map((s) => s.trim()).filter(Boolean)[0] || filename;
-  return {
-    cards: [{ title: firstLine.slice(0, 120), content: String(text).slice(0, 20000), tags: ['uploaded'] }],
-    model: null,
-    provider: null,
-    distilled: false,
-  };
-}
+const OCR_PROMPT = '请逐字提取这些图片中的全部文字，保持原有段落顺序。只输出文字内容，不要解释、不要 Markdown 围栏。多页图片请按顺序合并输出。';
 
 function fallbackProfileAnalysis(profile) {
   const parts = [];
@@ -886,6 +864,34 @@ async function handleV1(req, res, p, method) {
     if (!auth) return;
     return json(res, 200, { items: dao.listTenantKnowledge(auth.user.tenant_id) });
   }
+  // OCR：扫描件/图片先识别文字，返回给前端做“二次确认”，确认后才蒸馏入库
+  if (p === '/api/v1/seller/knowledge/ocr' && method === 'POST') {
+    const auth = requireV1(req, res);
+    if (!auth) return;
+    if (!requireRole(auth, res, 'agent')) return;
+    const b = await readBody(req, 12000000);
+    const rawImages = Array.isArray(b.images) ? b.images : (b.image ? [b.image] : []);
+    const dataUrls = rawImages
+      .map((img) => (typeof img === 'string' ? img : img?.data_url))
+      .filter(Boolean)
+      .map((url) => (String(url).startsWith('data:') ? String(url) : `data:${String(b.mime || 'image/png')};base64,${url}`))
+      .slice(0, 6);
+    if (!dataUrls.length) return json(res, 400, { error: 'images 不能为空（base64 或 data URL）。' });
+    if (dataUrls.some((url) => url.length > 6000000)) return json(res, 413, { error: '单张图片过大，请压缩到 4MB 以内。' });
+
+    const result = await llm.completeVision(OCR_PROMPT, dataUrls, dao.getSettings());
+    if (!result || result.error) {
+      return json(res, 503, {
+        error: 'OCR 服务暂不可用，请稍后重试，或直接粘贴文字上传。',
+        code: 'OCR_UNAVAILABLE',
+        detail: result?.error || 'vision_unavailable',
+      });
+    }
+    const text = String(result.content || '').trim();
+    if (!text) return json(res, 422, { error: '没有识别到文字，请换一张更清晰的文件，或手动粘贴文字。', code: 'OCR_EMPTY' });
+    dao.logEvent('tenant_knowledge_ocr', { tenantId: auth.user.tenant_id, pages: dataUrls.length, chars: text.length });
+    return json(res, 200, { text, chars: text.length, pages: dataUrls.length, model: result.model, provider: result.provider });
+  }
   if (p === '/api/v1/seller/knowledge/upload' && method === 'POST') {
     const auth = requireV1(req, res);
     if (!auth) return;
@@ -903,7 +909,12 @@ async function handleV1(req, res, p, method) {
       if (isPdfBuffer(buffer) || /\.pdf$/i.test(filename)) {
         pdfDetected = true;
         text = extractPdfText(buffer);
-        if (!text) return json(res, 422, { error: '这个 PDF 没有可提取的文本层（可能是扫描件）。请上传带文字的 PDF，或改用 TXT / Markdown。' });
+        if (!text) {
+          return json(res, 422, {
+            error: '这个 PDF 没有可提取的文本层（扫描件）。请在前端确认 OCR 识别结果后再提交。',
+            code: 'NEEDS_OCR',
+          });
+        }
       } else {
         text = buffer.toString('utf8').trim();
       }
@@ -912,7 +923,12 @@ async function handleV1(req, res, p, method) {
     if (text.length < 10) return json(res, 400, { error: '资料内容太短（至少 10 个字符）。' });
     if (text.length > 200000) text = text.slice(0, 200000);
 
-    const distillation = await distillUploadedText(text, filename);
+    let distillation;
+    try {
+      distillation = await distillKnowledge(llm, text, filename, dao.getSettings());
+    } catch (error) {
+      return json(res, error.status || 502, { error: error.message, code: error.code || 'DISTILL_FAILED' });
+    }
     const created = [];
     for (const card of distillation.cards) {
       const item = dao.createTenantKnowledge(auth.user.tenant_id, {
@@ -928,13 +944,14 @@ async function handleV1(req, res, p, method) {
       created.push(item);
     }
     dao.logEvent('tenant_knowledge_uploaded', {
-      tenantId: auth.user.tenant_id, filename, cards: created.length, diagnosed: distillation.distilled,
+      tenantId: auth.user.tenant_id, filename, cards: created.length, provider: distillation.provider,
     });
     return json(res, 201, {
       filename,
       extracted_chars: text.length,
       pdf: pdfDetected,
-      distilled: distillation.distilled,
+      distilled: true,
+      provider: distillation.provider,
       model: distillation.model,
       items: created,
     });

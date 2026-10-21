@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
+import http from 'node:http';
 import net from 'node:net';
 import os from 'node:os';
 import path from 'node:path';
@@ -22,6 +23,39 @@ async function freePort() {
     });
     server.on('error', reject);
   });
+}
+
+// 模拟云端 LLM：蒸馏返回两张卡，经营诊断返回 summary，视觉请求返回 OCR 文本
+async function startMockLlm() {
+  const server = http.createServer((req, res) => {
+    let body = '';
+    req.on('data', (chunk) => { body += chunk; });
+    req.on('end', () => {
+      let text = '';
+      try {
+        const payload = JSON.parse(body || '{}');
+        const content = JSON.stringify(payload.messages || []);
+        if (content.includes('image_url')) {
+          text = '退货政策：商品需在收货后 30 天内申请退货，且保持未使用状态。\n物流时效：标准配送 5-8 个工作日。';
+        } else if (content.includes('经营档案') || content.includes('经营顾问')) {
+          text = JSON.stringify({ summary: '你的客单价与目标市场清晰，建议先补齐退货与物流知识卡。', actions: ['上传退货政策', '补齐物流时效', '每周跑一次质量检查'] });
+        } else {
+          text = JSON.stringify({
+            cards: [
+              { title: '退货政策', content: '商品需在收货后 30 天内申请退货，且保持未使用状态。', tags: ['退货', '政策'] },
+              { title: '物流时效', content: '标准配送在发货后 5-8 个工作日送达，节假日顺延。', tags: ['物流'] },
+            ],
+          });
+        }
+      } catch {
+        text = '{}';
+      }
+      res.writeHead(200, { 'content-type': 'application/json' });
+      res.end(JSON.stringify({ choices: [{ message: { content: text } }], usage: { prompt_tokens: 10, completion_tokens: 20 } }));
+    });
+  });
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  return { server, port: server.address().port };
 }
 
 async function waitFor(url, child) {
@@ -46,12 +80,25 @@ async function register(base, email) {
   return { token: body.token, tenantId: body.user.tenant_id, auth: { authorization: `Bearer ${body.token}`, 'content-type': 'application/json' } };
 }
 
-test('seller portal: profile form, AI diagnosis fallback, tenant knowledge upload draft -> confirm', async (t) => {
+test('seller portal: profile form, AI diagnosis, cloud distillation, OCR confirm flow, tenant isolation', async (t) => {
   const port = await freePort();
   const dataDir = await fs.mkdtemp(path.join(os.tmpdir(), 'relaydesk-seller-'));
+  const mock = await startMockLlm();
+  t.after(() => mock.server.close());
   const child = spawn(process.execPath, ['server.js'], {
     cwd: root,
-    env: { ...process.env, PORT: String(port), HOST: '127.0.0.1', DATA_DIR: dataDir, OLLAMA_URL: '', APP_API_KEY: '' },
+    env: {
+      ...process.env,
+      PORT: String(port), HOST: '127.0.0.1', DATA_DIR: dataDir,
+      OLLAMA_URL: '',
+      LLM_PROVIDER: 'openai',
+      LLM_BASE_URL: `http://127.0.0.1:${mock.port}/v1`,
+      LLM_API_KEY: 'test-key',
+      LLM_MODEL: 'mock-vision',
+      LLM_RESPONSE_FORMAT: 'json_object',
+      LLM_TIMEOUT_MS: '8000',
+      APP_API_KEY: ''
+    },
     stdio: 'ignore'
   });
   t.after(async () => { await stopChildAndRemove(child, dataDir); });
@@ -85,16 +132,16 @@ test('seller portal: profile form, AI diagnosis fallback, tenant knowledge uploa
   const reread = await (await fetch(`${base}/api/v1/tenant-profile`, { headers: owner.auth })).json();
   assert.equal(reread.profile.categories, '家居、宠物用品');
 
-  // 2) AI 诊断（无 LLM 时走确定性兜底）
+  // 2) AI 诊断走云端 mock
   const analyze = await fetch(`${base}/api/v1/tenant-profile/analyze`, {
     method: 'POST', headers: owner.auth, body: '{}'
   });
   assert.equal(analyze.status, 200);
   const analysis = await analyze.json();
-  assert.ok(analysis.summary.length > 10);
-  assert.ok(Array.isArray(analysis.actions) && analysis.actions.length >= 1);
+  assert.match(analysis.summary, /客单价/);
+  assert.ok(Array.isArray(analysis.actions) && analysis.actions.length === 3);
 
-  // 3) 上传 txt 资料 → 强制 draft + 强制 tenant_id
+  // 3) 上传 txt 资料 → 云端蒸馏为 2 张卡，强制 draft + tenant_id
   const upload = await fetch(`${base}/api/v1/seller/knowledge/upload`, {
     method: 'POST', headers: owner.auth,
     body: JSON.stringify({
@@ -104,7 +151,8 @@ test('seller portal: profile form, AI diagnosis fallback, tenant knowledge uploa
   });
   assert.equal(upload.status, 201);
   const uploadBody = await upload.json();
-  assert.ok(uploadBody.items.length >= 1);
+  assert.equal(uploadBody.items.length, 2);
+  assert.equal(uploadBody.provider, 'openai');
   const created = uploadBody.items[0];
   assert.equal(created.status, 'draft');
   assert.equal(created.tenant_id, owner.tenantId);
@@ -114,24 +162,40 @@ test('seller portal: profile form, AI diagnosis fallback, tenant knowledge uploa
   const list = await (await fetch(`${base}/api/v1/seller/knowledge`, { headers: owner.auth })).json();
   assert.ok(list.items.some((item) => item.id === created.id));
 
-  // 5) 草稿不进入检索：直接读库验证 status + 检索口径
+  // 5) 草稿不进入检索
   const db = new DatabaseSync(path.join(dataDir, 'relaydesk.sqlite'));
   const row = db.prepare('SELECT status, tenant_id, audience FROM knowledge WHERE id = ?').get(created.id);
   assert.equal(row.status, 'draft');
   assert.equal(row.tenant_id, owner.tenantId);
-  const retrievable = db.prepare(`SELECT COUNT(*) c FROM knowledge WHERE id = ? AND status = 'confirmed'`).get(created.id).c;
-  assert.equal(retrievable, 0);
+  assert.equal(db.prepare(`SELECT COUNT(*) c FROM knowledge WHERE id = ? AND status = 'confirmed'`).get(created.id).c, 0);
   db.close();
 
-  // 6) 确认入库
+  // 6) OCR 接口：图片 → 云端识别文本（供前端二次确认）
+  const ocr = await fetch(`${base}/api/v1/seller/knowledge/ocr`, {
+    method: 'POST', headers: owner.auth,
+    body: JSON.stringify({ images: ['data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=='] })
+  });
+  assert.equal(ocr.status, 200);
+  const ocrBody = await ocr.json();
+  assert.match(ocrBody.text, /退货政策/);
+  assert.equal(ocrBody.pages, 1);
+
+  // 7) 确认 OCR 文本后走同一蒸馏入库接口
+  const confirmedUpload = await fetch(`${base}/api/v1/seller/knowledge/upload`, {
+    method: 'POST', headers: owner.auth,
+    body: JSON.stringify({ filename: 'scan.png', content: ocrBody.text })
+  });
+  assert.equal(confirmedUpload.status, 201);
+  assert.equal((await confirmedUpload.json()).items.length, 2);
+
+  // 8) 确认入库
   const confirm = await fetch(`${base}/api/v1/seller/knowledge/${encodeURIComponent(created.id)}/confirm`, {
     method: 'POST', headers: owner.auth, body: '{}'
   });
   assert.equal(confirm.status, 200);
-  const confirmed = await confirm.json();
-  assert.equal(confirmed.item.status, 'confirmed');
+  assert.equal((await confirm.json()).item.status, 'confirmed');
 
-  // 7) 租户隔离：另一个商家看不到、也不能确认
+  // 9) 租户隔离
   const other = await register(base, `qa-seller-other-${Date.now()}@example.test`);
   const otherList = await (await fetch(`${base}/api/v1/seller/knowledge`, { headers: other.auth })).json();
   assert.equal(otherList.items.some((item) => item.id === created.id), false);
@@ -140,17 +204,17 @@ test('seller portal: profile form, AI diagnosis fallback, tenant knowledge uploa
   });
   assert.equal(otherConfirm.status, 404);
 
-  // 8) 未登录不能访问
-  const anon = await fetch(`${base}/api/v1/seller/knowledge`);
-  assert.equal(anon.status, 401);
+  // 10) 未登录拒绝
+  assert.equal((await fetch(`${base}/api/v1/seller/knowledge`)).status, 401);
+  assert.equal((await fetch(`${base}/api/v1/seller/knowledge/ocr`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' })).status, 401);
 
-  // 9) bootstrap 带上 profile 与 sellerKnowledge
+  // 11) bootstrap 带 profile 与 sellerKnowledge
   const bootstrap = await (await fetch(`${base}/api/bootstrap`, { headers: owner.auth })).json();
   assert.equal(bootstrap.profile.business_name, 'Northstar Goods');
   assert.ok(bootstrap.sellerKnowledge.some((item) => item.id === created.id));
 });
 
-test('pdf text extraction: FlateDecode text stream', () => {
+test('pdf text extraction: FlateDecode text stream still works', () => {
   const content = 'BT /F1 12 Tf (Hello PDF text from RelayDesk) Tj ET';
   const compressed = zlib.deflateSync(Buffer.from(content, 'latin1'));
   const pdf = Buffer.concat([
@@ -158,6 +222,5 @@ test('pdf text extraction: FlateDecode text stream', () => {
     compressed,
     Buffer.from('\nendstream\nendobj\n%%EOF\n', 'latin1')
   ]);
-  const text = extractPdfText(pdf);
-  assert.match(text, /Hello PDF text from RelayDesk/);
+  assert.match(extractPdfText(pdf), /Hello PDF text from RelayDesk/);
 });

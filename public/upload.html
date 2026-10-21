@@ -26,6 +26,12 @@
   .status{margin-top:14px;font-size:13px;padding:10px 12px;border-radius:10px;display:none}
   .status.ok{display:block;background:#eefaf3;color:#17845a;border:1px solid #d8f0e3}
   .status.err{display:block;background:#fff1f2;color:#b43743;border:1px solid #f6d9dc}
+  .status.info{display:block;background:#f2f5ff;color:#4e4bc5;border:1px solid #e2e6ff}
+  .confirm{border:1.5px solid #f0c987;background:#fffdf5;border-radius:14px;padding:18px;margin-top:16px}
+  .confirm h3{margin:0 0 6px;font-size:15px;color:#8a5a12}
+  .confirm p{margin:0 0 10px;font-size:12.5px;color:#8a6a3a}
+  .confirm textarea{width:100%;min-height:160px;border:1px solid #e6d9bd;border-radius:10px;padding:12px;font:inherit;font-size:13.5px;line-height:1.6;box-sizing:border-box;background:#fff}
+  .confirm-actions{display:flex;gap:10px;margin-top:12px}
   .cards{display:grid;gap:12px}
   .kcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
   .kcard h3{margin:0 0 6px;font-size:15px}
@@ -43,20 +49,29 @@
 </div>
 <div class="wrap">
   <h1>上传专属资料</h1>
-  <p class="sub">支持 PDF / TXT / Markdown。上传后会调用本地 Qwen 自动蒸馏为知识卡，先存为 <strong>draft</strong>，你确认后才会进入入库流程。</p>
+  <p class="sub">支持 PDF / TXT / Markdown / 图片（PNG、JPG）。扫描件或图片会先走 OCR 识别，需你二次确认文字准确后再蒸馏入库。</p>
 
   <div class="card">
     <div class="drop" id="drop">
       <strong>点击选择文件，或拖拽到这里</strong>
-      支持 .pdf / .txt / .md，单文件不超过 5MB
+      支持 .pdf / .txt / .md / .png / .jpg / .jpeg，单文件不超过 5MB
     </div>
-    <input id="file" type="file" accept=".pdf,.txt,.md,application/pdf,text/plain,text/markdown" hidden>
+    <input id="file" type="file" accept=".pdf,.txt,.md,.png,.jpg,.jpeg,application/pdf,text/plain,text/markdown,image/png,image/jpeg" hidden>
     <div class="file-row" id="fileRow" hidden><span id="fileName"></span><span id="fileSize" style="margin-left:auto;color:#93a0b3"></span></div>
     <div style="display:flex;gap:10px;margin-top:16px">
-      <button class="btn primary" id="upload" disabled>开始上传并蒸馏</button>
+      <button class="btn primary" id="upload" disabled>开始上传</button>
       <button class="btn" id="refresh">刷新已上传资料</button>
     </div>
     <div class="status" id="status"></div>
+    <div class="confirm" id="confirmPanel" hidden>
+      <h3>请二次确认 OCR 识别结果</h3>
+      <p>系统已从图片中提取以下文字。请核对是否准确；可直接在下方修改，确认后再进入蒸馏与草稿入库流程。</p>
+      <textarea id="ocrText" spellcheck="false"></textarea>
+      <div class="confirm-actions">
+        <button class="btn primary" id="confirmOcr">确认无误，继续蒸馏</button>
+        <button class="btn" id="cancelOcr">取消</button>
+      </div>
+    </div>
   </div>
 
   <div class="card">
@@ -65,10 +80,13 @@
   </div>
 </div>
 
+<script src="/vendor/pdf.min.js"></script>
 <script>
 (function () {
   var TOKEN = localStorage.getItem('relaydesk_token') || '';
   if (!TOKEN) { location.href = '/'; return; }
+  if (window.pdfjsLib) window.pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.min.js';
+
   var drop = document.getElementById('drop');
   var fileInput = document.getElementById('file');
   var fileRow = document.getElementById('fileRow');
@@ -78,7 +96,12 @@
   var refreshBtn = document.getElementById('refresh');
   var statusBox = document.getElementById('status');
   var cardsBox = document.getElementById('cards');
+  var confirmPanel = document.getElementById('confirmPanel');
+  var ocrText = document.getElementById('ocrText');
+  var confirmBtn = document.getElementById('confirmOcr');
+  var cancelBtn = document.getElementById('cancelOcr');
   var picked = null;
+  var pendingFilename = '';
 
   function authHeaders(extra) {
     return Object.assign({ authorization: 'Bearer ' + TOKEN }, extra || {});
@@ -98,6 +121,7 @@
     fileSize.textContent = (file.size / 1024).toFixed(1) + ' KB';
     fileRow.hidden = false;
     uploadBtn.disabled = false;
+    confirmPanel.hidden = true;
   }
   drop.addEventListener('click', function () { fileInput.click(); });
   fileInput.addEventListener('change', function () { if (fileInput.files[0]) choose(fileInput.files[0]); });
@@ -111,7 +135,7 @@
   function readAsBase64(file) {
     return new Promise(function (resolve, reject) {
       var reader = new FileReader();
-      reader.onload = function () { resolve(String(reader.result).split(',')[1] || ''); };
+      reader.onload = function () { resolve(String(reader.result)); };
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
@@ -125,26 +149,118 @@
     });
   }
 
+  async function postJson(url, body) {
+    var res = await fetch(url, {
+      method: 'POST',
+      headers: authHeaders({ 'content-type': 'application/json' }),
+      body: JSON.stringify(body || {})
+    });
+    var data = await res.json().catch(function () { return {}; });
+    return { ok: res.ok, status: res.status, data: data };
+  }
+
+  async function uploadText(text, filename) {
+    return postJson('/api/v1/seller/knowledge/upload', { filename: filename, content: text });
+  }
+
+  // PDF 扫描件：用 pdf.js 渲染前 3 页为 PNG，再交给云端 OCR
+  async function renderPdfPages(dataUrl) {
+    var binary = atob(String(dataUrl).split(',')[1] || '');
+    var bytes = new Uint8Array(binary.length);
+    for (var k = 0; k < binary.length; k += 1) bytes[k] = binary.charCodeAt(k);
+    var pdf = await window.pdfjsLib.getDocument({ data: bytes }).promise;
+    var pages = Math.min(pdf.numPages, 3);
+    var images = [];
+    for (var i = 1; i <= pages; i += 1) {
+      var page = await pdf.getPage(i);
+      var viewport = page.getViewport({ scale: 1.6 });
+      var canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+      images.push(canvas.toDataURL('image/png'));
+    }
+    return images;
+  }
+
+  async function ocr(images) {
+    return postJson('/api/v1/seller/knowledge/ocr', { images: images });
+  }
+
+  function showConfirm(text, filename) {
+    pendingFilename = filename;
+    ocrText.value = text;
+    confirmPanel.hidden = false;
+    confirmPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setStatus('OCR 完成，请在上方核对文字后点击「确认无误，继续蒸馏」。', 'info');
+  }
+
+  confirmBtn.addEventListener('click', async function () {
+    var text = ocrText.value.trim();
+    if (text.length < 10) { setStatus('识别文字太短，请补充后再确认。', 'err'); return; }
+    confirmBtn.disabled = true;
+    setStatus('正在调用模型蒸馏为知识卡…', 'info');
+    try {
+      var result = await uploadText(text, pendingFilename || 'scan.pdf');
+      if (!result.ok) throw new Error(result.data.error || ('HTTP ' + result.status));
+      setStatus('已生成 ' + result.data.items.length + ' 张草稿卡，请在下方确认入库。', 'ok');
+      confirmPanel.hidden = true;
+      await load();
+    } catch (error) {
+      setStatus('蒸馏失败：' + error.message, 'err');
+    } finally {
+      confirmBtn.disabled = false;
+    }
+  });
+  cancelBtn.addEventListener('click', function () {
+    confirmPanel.hidden = true;
+    setStatus('已取消，未入库。你可以重新选择文件。', '');
+  });
+
   uploadBtn.addEventListener('click', async function () {
     if (!picked) return;
     uploadBtn.disabled = true;
-    setStatus('正在上传并调用本地 Qwen 蒸馏，请稍候…', '');
+    setStatus('处理中…', 'info');
     try {
-      var isPdf = /\.pdf$/i.test(picked.name) || picked.type === 'application/pdf';
-      var payload = { filename: picked.name };
-      if (isPdf) payload.file_base64 = await readAsBase64(picked);
-      else payload.content = await readAsText(picked);
-      var res = await fetch('/api/v1/seller/knowledge/upload', {
-        method: 'POST',
-        headers: authHeaders({ 'content-type': 'application/json' }),
-        body: JSON.stringify(payload)
-      });
-      var data = await res.json().catch(function () { return {}; });
-      if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
-      setStatus('上传成功：提取 ' + data.extracted_chars + ' 字符，生成 ' + data.items.length + ' 张草稿卡' + (data.distilled ? '（Qwen 蒸馏）' : '（模型不可用，保留原文单卡）'), 'ok');
+      var name = picked.name || 'upload';
+      var isPdf = /\.pdf$/i.test(name) || picked.type === 'application/pdf';
+      var isImage = /^image\//.test(picked.type) || /\.(png|jpe?g)$/i.test(name);
+
+      if (isImage) {
+        var imageUrl = await readAsBase64(picked);
+        var ocrResult = await ocr([imageUrl]);
+        if (!ocrResult.ok) throw new Error(ocrResult.data.error || ('OCR HTTP ' + ocrResult.status));
+        showConfirm(ocrResult.data.text, name);
+        return;
+      }
+
+      if (isPdf) {
+        var pdfUrl = await readAsBase64(picked);
+        var firstTry = await postJson('/api/v1/seller/knowledge/upload', { filename: name, file_base64: pdfUrl.split(',')[1] });
+        if (firstTry.ok) {
+          setStatus('PDF 文本层提取成功，已生成 ' + firstTry.data.items.length + ' 张草稿卡。', 'ok');
+          await load();
+          return;
+        }
+        if (firstTry.status === 422 && firstTry.data.code === 'NEEDS_OCR') {
+          setStatus('检测到扫描件，正在渲染页面并调用云端 OCR…', 'info');
+          var images = await renderPdfPages(pdfUrl);
+          var scanned = await ocr(images);
+          if (!scanned.ok) throw new Error(scanned.data.error || ('OCR HTTP ' + scanned.status));
+          showConfirm(scanned.data.text, name);
+          return;
+        }
+        throw new Error(firstTry.data.error || ('HTTP ' + firstTry.status));
+      }
+
+      // TXT / Markdown
+      var text = await readAsText(picked);
+      var result = await uploadText(text, name);
+      if (!result.ok) throw new Error(result.data.error || ('HTTP ' + result.status));
+      setStatus('已生成 ' + result.data.items.length + ' 张草稿卡（' + (result.data.provider || 'model') + '）。', 'ok');
       await load();
     } catch (error) {
-      setStatus('上传失败：' + error.message, 'err');
+      setStatus('处理失败：' + error.message, 'err');
     } finally {
       uploadBtn.disabled = false;
     }
@@ -189,6 +305,7 @@
     }
   }
 
+  // 后端返回 NEEDS_OCR 前，前端已通过 422 判定；占位请求仅用于兼容旧服务
   load();
 })();
 </script>
