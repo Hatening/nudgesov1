@@ -1,27 +1,45 @@
 import { test, expect } from '@playwright/test';
 
-test('INSIGHTS: list → detail jump renders markdown and keeps both ad slots', async ({ page, request }) => {
-  // 自建数据，避免依赖开发库里的演示卡
-  const email = `qa-insights-${Date.now()}@example.test`;
+async function seedTwoInsights(request: any) {
+  const email = `qa-insights-${Date.now()}-${Math.random().toString(36).slice(2, 7)}@example.test`;
   const register = await request.post('/api/v1/auth/register', {
     data: { email, password: 'TestPass123!' },
   });
   expect(register.status()).toBe(201);
   const { token } = await register.json();
   const headers = { authorization: `Bearer ${token}` };
-
-  const article = await request.post('/api/knowledge', {
-    headers,
-    data: {
+  const articles = [
+    {
       title: 'ACOS 优化：把预算拆成两条线',
       content: '## 为什么要拆分预算\n\n防守线锁定品牌词，测试线只占总预算的 15%。\n\n- 第一步：否词\n- 第二步：降价\n- 第三步：分时竞价\n\n> 先保住转化，再谈增长。',
-      language: 'zh',
-      audience: 'seller',
-      category: '行业洞察',
       tags: ['ACOS', '预算分配'],
     },
-  });
-  expect(article.status()).toBe(201);
+    {
+      title: '退货率下降的三个杠杆',
+      content: '## 退货不是客服问题\n\n- 尺码指南\n- 包装防护\n- 描述一致性\n\n> 先把可控原因打掉。',
+      tags: ['退货', '运营'],
+    },
+  ];
+  for (const article of articles) {
+    const response = await request.post('/api/knowledge', {
+      headers,
+      data: {
+        title: article.title,
+        content: article.content,
+        language: 'zh',
+        audience: 'seller',
+        category: '行业洞察',
+        tags: article.tags,
+        source_id: 'manual_editor',
+        status: 'confirmed',
+      },
+    });
+    expect(response.status()).toBe(201);
+  }
+}
+
+test('INSIGHTS: list → detail jump renders markdown and keeps both ad slots', async ({ page, request }) => {
+  await seedTwoInsights(request);
 
   await page.goto('/insights.html');
   await expect(page.locator('.card').first()).toBeVisible({ timeout: 10000 });
@@ -51,7 +69,8 @@ test('INSIGHTS: list → detail jump renders markdown and keeps both ad slots', 
   expect(missing.status()).toBe(404);
 });
 
-test('INSIGHTS: detail page fits 390px without horizontal overflow', async ({ page }) => {
+test('INSIGHTS: detail page fits 390px without horizontal overflow', async ({ page, request }) => {
+  await seedTwoInsights(request);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/insights.html');
   await expect(page.locator('.card').first()).toBeVisible({ timeout: 10000 });

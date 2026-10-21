@@ -1,0 +1,46 @@
+{
+  "total_cards": 2181,
+  "limit": 300,
+  "batches": [
+    {
+      "no": 1,
+      "file": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\batches\\batch-0001.jsonl",
+      "count": 300
+    },
+    {
+      "no": 2,
+      "file": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\batches\\batch-0002.jsonl",
+      "count": 300
+    },
+    {
+      "no": 3,
+      "file": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\batches\\batch-0003.jsonl",
+      "count": 300
+    },
+    {
+      "no": 4,
+      "file": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\batches\\batch-0004.jsonl",
+      "count": 300
+    },
+    {
+      "no": 5,
+      "file": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\batches\\batch-0005.jsonl",
+      "count": 300
+    },
+    {
+      "no": 6,
+      "file": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\batches\\batch-0006.jsonl",
+      "count": 300
+    },
+    {
+      "no": 7,
+      "file": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\batches\\batch-0007.jsonl",
+      "count": 300
+    },
+    {
+      "no": 8,
+      "file": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\batches\\batch-0008.jsonl",
+      "count": 81
+    }
+  ]
+}

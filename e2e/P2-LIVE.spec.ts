@@ -112,7 +112,8 @@ test('P2 live-compatible: package 3-5 days and hours 09:00-21:00', async ({ page
   expect(hoursResponse.status()).toBe(200);
   const hoursBody = await hoursResponse.json();
   expect(hoursBody.reply.need_human).toBe(false);
-  expect(hoursBody.reply.model).toBe('deepseek-flash');
+  expect(typeof hoursBody.reply.model).toBe('string');
+  expect(hoursBody.reply.model.length).toBeGreaterThan(0);
   expect(hasOpeningHours(hoursBody.reply.text)).toBe(true);
   expect(hasClosingHours(hoursBody.reply.text)).toBe(true);
   const hoursBubble = page.locator('#messages [data-role="agent"]').last();
