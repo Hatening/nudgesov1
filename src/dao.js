@@ -346,8 +346,9 @@ export function createDao(db) {
   // audience: 'buyer' | 'seller' | 'all'（不传 = all）
   const audienceClause = (audience) => (audience && audience !== 'all' ? ` AND audience = '${audience === 'seller' ? 'seller' : 'buyer'}'` : '');
   // Chat/RAG must never see legally held or manually-audit-pending knowledge.
+  // 语义：默认=管理/审计视角（全量）；检索链路必须显式传 { includeQuarantined: false }。
   const quarantineClause = (includeQuarantined) => (includeQuarantined === false
-    ? " AND status = 'confirmed' AND review_status NOT IN ('license_hold', 'needs_manual_audit')"
+    ? " AND status = 'confirmed' AND review_status NOT IN ('license_hold', 'needs_manual_audit', 'quarantined', 'rejected')"
     : '');
 
   dao.listGlobalKnowledge = (audience = 'all', options = {}) => db.prepare(`SELECT * FROM knowledge WHERE scope = 'global'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)} ORDER BY rowid DESC`).all().map(mapKnowledge);
@@ -374,7 +375,7 @@ export function createDao(db) {
   dao.listInsights = (limit = 24) => db.prepare(`
     SELECT id, title, category, language, tags_json, content, created_at
     FROM knowledge
-    WHERE is_insight = 1 AND audience = 'seller'
+    WHERE is_insight = 1 AND audience = 'seller'${quarantineClause(false)}
     ORDER BY datetime(created_at) DESC, rowid DESC
     LIMIT ?`).all(Math.max(1, Math.min(50, Number(limit) || 24))).map((row) => {
       const text = String(row.content || '')
@@ -398,7 +399,7 @@ export function createDao(db) {
     const row = db.prepare(`
       SELECT id, title, category, language, tags_json, content, created_at
       FROM knowledge
-      WHERE id = ? AND is_insight = 1 AND audience = 'seller'`).get(knowledgeId);
+      WHERE id = ? AND is_insight = 1 AND audience = 'seller'${quarantineClause(false)}`).get(knowledgeId);
     if (!row) return null;
     return {
       id: row.id,

@@ -1144,7 +1144,7 @@ async function handleApi(req, res, url) {
       { name: 'Chinese policy query', q: '我想申请退款，退货政策是什么？', expected: 'Returns and refunds', shouldGround: true }
     ];
     const results = cases.map((testCase) => {
-      const hits = rankKnowledge(testCase.q, dao.listGlobalKnowledge());
+      const hits = rankKnowledge(testCase.q, dao.listGlobalKnowledge('all', { includeQuarantined: false }));
       const intent = inferIntent(testCase.q);
       const grounded = hits.length > 0;
       return { ...testCase, actualIntent: intent, grounded, pass: intent === testCase.expected && grounded === testCase.shouldGround };
