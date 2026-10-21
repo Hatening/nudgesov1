@@ -33,7 +33,8 @@ export function migrateSchema(db) {
     { version: '008_financial_escalation_priority', file: '008_financial_escalation_priority.sql' },
     { version: '009_cloud_rescued_status', file: '009_cloud_rescued_status.sql' },
     { version: '010_knowledge_semantic_fields', file: '010_knowledge_semantic_fields.sql' },
-    { version: '011_source_governance', file: '011_source_governance.sql' }
+    { version: '011_source_governance', file: '011_source_governance.sql' },
+    { version: '012_manual_editor_source', file: '012_manual_editor_source.sql' }
   ];
   let changed = false;
   for (const migration of migrations) {

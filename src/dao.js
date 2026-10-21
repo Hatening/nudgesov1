@@ -2,6 +2,7 @@ import crypto from 'node:crypto';
 import { id, now, hashToken, tokenPrefix } from './core.js';
 import { seedSettings } from './seed.js';
 import { transaction } from './db.js';
+import { assertSourcePermission } from './source-permissions.js';
 
 const parseJson = (value, fallback) => {
   if (value === null || value === undefined || value === '') return fallback;
@@ -367,18 +368,32 @@ export function createDao(db) {
   dao.countGlobalKnowledge = (audience = 'all') => Number(db.prepare(`SELECT COUNT(*) AS count FROM knowledge WHERE scope = 'global'${audienceClause(audience)}`).get().count || 0);
   dao.findGlobalKnowledge = (knowledgeId) => mapKnowledge(db.prepare("SELECT * FROM knowledge WHERE id = ? AND scope = 'global'").get(knowledgeId));
   dao.createGlobalKnowledge = (item) => {
+    // 权限闸门（Phase 1）：没有登记来源 / 未授权，一律拒绝写入。
+    if (!item || !item.source_id) {
+      const error = new Error('source_id is required: register the source in source_registry before writing global knowledge.');
+      error.status = 400;
+      throw error;
+    }
+    assertSourcePermission(db, item.source_id, 'store_fulltext');
+
     const audience = item.audience === 'seller' ? 'seller' : 'buyer';
     const category = item.category || '其他';
     const locale = item.locale || (item.language ? String(item.language).slice(0, 8) : 'en');
     const surface = item.product_surface || (audience === 'seller' ? 'seller_console' : 'buyer_chat');
-    const licenseStatus = item.license_status || 'clear';
+    const licenseStatus = item.license_status || 'conditional';
+    const allowedStatuses = new Set(['draft', 'confirmed', 'baseline', 'conditional', 'blocked']);
+    const status = allowedStatuses.has(item.status) ? item.status : 'draft';
+    // 只有拿到“可对外引用”权限的来源才允许直接 confirmed
+    if (status === 'confirmed') assertSourcePermission(db, item.source_id, 'display_quote');
+
     db.prepare(`INSERT INTO knowledge
       (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, category, is_insight, created_at, updated_at,
-       product_surface, locale, license_status, valid_from, valid_until, structured_payload)
-      VALUES (?, NULL, NULL, 'global', NULL, ?, ?, ?, ?, ?, 'confirmed', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+       product_surface, locale, license_status, valid_from, valid_until, structured_payload, source_type, source_id)
+      VALUES (?, 'global', NULL, 'global', NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
       .run(item.id, item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content,
-        audience, category, isInsightValue(audience, category, item.is_insight), item.created_at || now(), item.updated_at || now(),
-        surface, locale, licenseStatus, item.valid_from || null, item.valid_until || null, JSON.stringify(item.structured_payload || {}));
+        status, audience, category, isInsightValue(audience, category, item.is_insight), item.created_at || now(), item.updated_at || now(),
+        surface, locale, licenseStatus, item.valid_from || null, item.valid_until || null, JSON.stringify(item.structured_payload || {}),
+        item.source_type || 'unknown', item.source_id);
     return dao.findGlobalKnowledge(item.id);
   };
 

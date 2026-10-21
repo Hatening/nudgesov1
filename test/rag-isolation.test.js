@@ -63,7 +63,8 @@ test('RAG isolation: buyer and seller retrieval never cross audiences', async (t
 
   const createKnowledge = async (payload) => {
     const response = await fetch(`${base}/api/knowledge`, {
-      method: 'POST', headers: auth, body: JSON.stringify(payload)
+      method: 'POST', headers: auth,
+      body: JSON.stringify({ source_id: 'manual_editor', status: 'confirmed', ...payload })
     });
     assert.equal(response.status, 201);
     return (await response.json()).item;

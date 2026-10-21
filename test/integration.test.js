@@ -20,7 +20,7 @@ test('HTTP API smoke: health, bootstrap, knowledge create, chat and regression r
  const {token}=await register.json();
  const auth={authorization:`Bearer ${token}`,'content-type':'application/json'};
  const boot=await (await fetch(`${base}/api/bootstrap`,{headers:auth})).json();assert.ok(boot.knowledge.length>=3);
- const create=await fetch(`${base}/api/knowledge`,{method:'POST',headers:auth,body:JSON.stringify({title:'Integration test article',content:'Test content for a custom product return process.',language:'en',type:'faq'})});assert.equal(create.status,201);
+ const create=await fetch(`${base}/api/knowledge`,{method:'POST',headers:auth,body:JSON.stringify({title:'Integration test article',content:'Test content for a custom product return process.',language:'en',type:'faq',source_id:'manual_editor'})});assert.equal(create.status,201);
  const chat=await fetch(`${base}/api/chat`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({message:'Where is my shipping tracking?',language:'en'})});assert.equal(chat.status,200);const answer=await chat.json();assert.ok(answer.result.answer);assert.ok(Array.isArray(answer.result.evidence));
  const run=await fetch(`${base}/api/test/run`,{method:'POST',headers:auth,body:'{}'});assert.equal(run.status,200);const testRun=await run.json();assert.equal(testRun.run.total,5);assert.equal(testRun.run.passed,5);
  const bad=await fetch(`${base}/api/knowledge`,{method:'POST',headers:auth,body:JSON.stringify({title:'',content:''})});assert.equal(bad.status,400);

@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { openDatabase, migrateSchema, closeDatabase } from '../src/db.js';
+import { createDao } from '../src/dao.js';
 import {
   evaluateSourcePermissions,
   assertSourcePermission,
@@ -124,6 +125,38 @@ test('evaluateSourcePermissions allows only explicitly granted actions and enfor
   );
   const ok = assertSourcePermission(db, 'src_allow', 'embed', { now: NOW });
   assert.equal(ok.allowed, true);
+
+  closeDatabase(db);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
+test('createGlobalKnowledge requires a registered source and defaults to draft', () => {
+  const { db, dir } = freshDb();
+  // 012 迁移内置了 manual_editor 来源
+  const manual = db.prepare("SELECT id, rights_status FROM source_registry WHERE id = 'manual_editor'").get();
+  assert.ok(manual, 'manual_editor source should be seeded by migration 012');
+
+  const dao = createDao(db);
+  const base = { id: 'kb_gate_1', title: 'Gate test', content: 'content', audience: 'seller' };
+
+  // 缺少 source_id → 拒绝
+  assert.throws(() => dao.createGlobalKnowledge({ ...base }), (e) => e.status === 400);
+
+  // 未登记来源 → 闸门拒绝
+  assert.throws(() => dao.createGlobalKnowledge({ ...base, source_id: 'src_not_registered' }), (e) => e.status === 403);
+
+  // 有来源但默认状态 → draft（不会变成 confirmed）
+  const draft = dao.createGlobalKnowledge({ ...base, id: 'kb_gate_2', source_id: 'manual_editor' });
+  assert.equal(draft.status, 'draft');
+
+  // 显式 confirmed 需要 display_quote 权限（manual_editor 已开）
+  const confirmed = dao.createGlobalKnowledge({ ...base, id: 'kb_gate_3', source_id: 'manual_editor', status: 'confirmed' });
+  assert.equal(confirmed.status, 'confirmed');
+
+  // 默认 RAG 检索看不到 draft，只能看到 confirmed
+  const visible = dao.listGlobalKnowledge('all', { includeQuarantined: false }).map((r) => r.id);
+  assert.ok(visible.includes('kb_gate_3'));
+  assert.equal(visible.includes('kb_gate_2'), false);
 
   closeDatabase(db);
   fs.rmSync(dir, { recursive: true, force: true });

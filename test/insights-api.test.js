@@ -61,7 +61,10 @@ test('/api/insights: public page lists only seller insight cards, never buyer or
   const { token } = await register.json();
   const auth = { authorization: `Bearer ${token}`, 'content-type': 'application/json' };
 
-  const create = (payload) => fetch(`${base}/api/knowledge`, { method: 'POST', headers: auth, body: JSON.stringify(payload) });
+  const create = (payload) => fetch(`${base}/api/knowledge`, {
+    method: 'POST', headers: auth,
+    body: JSON.stringify({ source_id: 'manual_editor', status: 'confirmed', ...payload })
+  });
 
   const insight = await create({
     title: 'ACOS 中位数上升后的投放策略',

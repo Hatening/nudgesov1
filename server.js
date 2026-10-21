@@ -946,19 +946,32 @@ async function handleApi(req, res, url) {
     const b = await readBody(req);
     if (!String(b.title || '').trim() || !String(b.content || '').trim()) return json(res, 400, { error: 'title and content are required' });
     if (String(b.content).length > 500000) return json(res, 413, { error: 'Knowledge entry too large (500 KB maximum)' });
-    const item = dao.createGlobalKnowledge({
-      id: id('kb'),
-      title: String(b.title).trim().slice(0, 180),
-      type: String(b.type || 'article').slice(0, 40),
-      language: String(b.language || 'en').slice(0, 12),
-      tags: Array.isArray(b.tags) ? b.tags.slice(0, 30).map((x) => String(x).slice(0, 60)) : [],
-      content: String(b.content).trim(),
-      // 双引擎：seller 知识只对后台可见，买家窗口永远检索不到
-      audience: b.audience === 'seller' ? 'seller' : 'buyer',
-      category: String(b.category || '其他').slice(0, 40)
-    });
-    dao.logEvent('knowledge_created', { knowledgeId: item.id });
-    return json(res, 201, { item });
+    const sourceId = String(b.source_id || '').trim();
+    if (!sourceId) {
+      return json(res, 400, { error: 'source_id is required. Register the source in source_registry first (built-in: manual_editor).' });
+    }
+    try {
+      const item = dao.createGlobalKnowledge({
+        id: id('kb'),
+        title: String(b.title).trim().slice(0, 180),
+        type: String(b.type || 'article').slice(0, 40),
+        language: String(b.language || 'en').slice(0, 12),
+        tags: Array.isArray(b.tags) ? b.tags.slice(0, 30).map((x) => String(x).slice(0, 60)) : [],
+        content: String(b.content).trim(),
+        // 双引擎：seller 知识只对后台可见，买家窗口永远检索不到
+        audience: b.audience === 'seller' ? 'seller' : 'buyer',
+        category: String(b.category || '其他').slice(0, 40),
+        source_id: sourceId,
+        status: b.status
+      });
+      dao.logEvent('knowledge_created', { knowledgeId: item.id, sourceId, status: item.status });
+      return json(res, 201, { item });
+    } catch (error) {
+      if (error.status === 403 || error.status === 400) {
+        return json(res, error.status, { error: error.message, decision: error.decision || null });
+      }
+      throw error;
+    }
   }
   const kbMatch = p.match(/^\/api\/knowledge\/([^/]+)$/);
   if (kbMatch && method === 'DELETE') {

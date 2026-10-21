@@ -69,7 +69,7 @@ test('audience isolation: public buyer window can never retrieve seller knowledg
     body: JSON.stringify({
       title: 'ACOS 广告优化手册',
       content: 'ACOS 是广告花费除以广告销售额。降低 ACOS 的方法是先否定高花费零订单的搜索词，再逐步下调出价，并区分新品期与成熟品期。',
-      language: 'zh', type: 'faq', audience: 'seller'
+      language: 'zh', type: 'faq', audience: 'seller', source_id: 'manual_editor', status: 'confirmed'
     })
   });
   assert.equal(sellerCard.status, 201);
@@ -81,7 +81,7 @@ test('audience isolation: public buyer window can never retrieve seller knowledg
     body: JSON.stringify({
       title: 'Shipping policy',
       content: 'Standard delivery takes 5-8 business days after dispatch. Tracking is sent by email.',
-      language: 'en', type: 'faq', audience: 'buyer'
+      language: 'en', type: 'faq', audience: 'buyer', source_id: 'manual_editor', status: 'confirmed'
     })
   });
   assert.equal(buyerCard.status, 201);
