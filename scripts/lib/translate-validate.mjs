@@ -176,8 +176,10 @@ export function checkGrammarSample(text, lang) {
   if (letters >= 12) {
     const detected = detectLanguage(sample);
     if (detected && detected !== lang) {
-      const swOk = lang === 'sw' && SWAHILI_DETECTOR_CONFUSABLE.has(detected) && languageStats(clean, 'sw').targetHits >= 2;
-      if (!swOk) {
+      const fullStats = languageStats(clean, lang);
+      const swOk = lang === 'sw' && SWAHILI_DETECTOR_CONFUSABLE.has(detected) && fullStats.targetHits >= 2;
+      const shortSampleNoise = fullStats.targetHits >= 3; // 50 字太短，检测器误判时用全文目标语信号兜底
+      if (!swOk && !shortSampleNoise) {
         return { ok: false, code: 'GRAMMAR_SUSPECT', detail: `50-char sample detected ${detected}, expected ${lang}` };
       }
     }
