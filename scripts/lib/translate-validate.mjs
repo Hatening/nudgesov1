@@ -27,7 +27,35 @@ const TARGET_STOPWORDS = {
     na ya kwa ni wa katika hii hiyo huyo kama za la kwenye kutoka hadi au lakini pia sana yake zake wake
     ni kitu hiki hicho cha vya kwa hivyo hiyo huo huo wao sisi wewe mimi yeye
     ` .split(/\s+/).filter(Boolean)),
+  es: new Set(`
+    de la el que y en un una para por con no se los las del al es son como más pero sus le ya o este
+    esta entre cuando muy sin sobre también me hasta hay donde quien desde todo nos durante todos uno
+    ` .split(/\s+/).filter(Boolean)),
   en: EN_WORDS,
+};
+
+// 非拉丁文字的目标脚本检测区间（用于波斯语/阿拉伯语/泰语等）
+const SCRIPT_RANGES = {
+  Arab: /[\u0600-\u06FF\u0750-\u077F]/g,
+  Hebr: /[\u0590-\u05FF]/g,
+  Cyrl: /[\u0400-\u04FF]/g,
+  Grek: /[\u0370-\u03FF]/g,
+  Deva: /[\u0900-\u097F]/g,
+  Beng: /[\u0980-\u09FF]/g,
+  Taml: /[\u0B80-\u0BFF]/g,
+  Telu: /[\u0C00-\u0C7F]/g,
+  Gujr: /[\u0A80-\u0AFF]/g,
+  Guru: /[\u0A00-\u0A7F]/g,
+  Khmr: /[\u1780-\u17FF]/g,
+  Laoo: /[\u0E80-\u0EFF]/g,
+  Mymr: /[\u1000-\u109F]/g,
+  Sinh: /[\u0D80-\u0DFF]/g,
+  Thai: /[\u0E00-\u0E7F]/g,
+  Jpan: /[\u3040-\u30FF\u4E00-\u9FFF]/g,
+  Kore: /[\uAC00-\uD7AF]/g,
+  Geor: /[\u10A0-\u10FF]/g,
+  Armn: /[\u0530-\u058F]/g,
+  Ethi: /[\u1200-\u137F]/g,
 };
 
 const SYMBOLS = ['%', '$', '€', '£', '¥', '#', '@', '+', '=', '×', '÷'];
@@ -83,21 +111,48 @@ export function checkKeys(source, translated) {
   return { ok: missing.length === 0 && extra.length === 0, missing, extra };
 }
 
-export function checkLanguage(text, lang) {
-  const stats = languageStats(text, lang);
+export function checkLanguage(text, lang, script = 'Latn') {
+  const raw = String(text || '');
+  if (script && script !== 'Latn') {
+    const range = SCRIPT_RANGES[script];
+    if (range) {
+      const scriptChars = (raw.match(range) || []).length;
+      const latinChars = (raw.match(/[A-Za-zÀ-ÿ]/g) || []).length;
+      const letters = scriptChars + latinChars;
+      if (letters >= 20 && scriptChars / letters < 0.3) {
+        return { ok: false, code: 'LANG_MISMATCH', detail: `target script ${script} ratio ${(scriptChars / letters * 100).toFixed(0)}% < 30%`, stats: { scriptChars, latinChars } };
+      }
+    }
+  }
+  const stats = languageStats(raw, lang);
   if (lang === 'en') return { ok: true, stats };
   // 规则 1：英文词占比 >= 80%（按英文常用词命中率近似）
   if (stats.tokens >= 8 && stats.englishRatio >= 0.8) {
     return { ok: false, code: 'LANG_MISMATCH', detail: `English ratio ${(stats.englishRatio * 100).toFixed(0)}% >= 80%`, stats };
   }
-  // 规则 2：完全检测不到目标语特征（波兰语无变音符号且目标停用词命中为 0；斯瓦希里语停用词命中为 0）
-  if (lang === 'pl' && stats.targetHits === 0 && !stats.hasDiacritics && stats.tokens >= 10) {
-    return { ok: false, code: 'LANG_MISMATCH', detail: 'no Polish diacritics/stopwords detected', stats };
-  }
-  if (lang === 'sw' && stats.targetHits === 0 && stats.tokens >= 10) {
-    return { ok: false, code: 'LANG_MISMATCH', detail: 'no Swahili stopwords detected', stats };
+  // 规则 2：完全检测不到目标语特征（仅对已有停用词表的语种生效）
+  if (TARGET_STOPWORDS[lang]) {
+    if (lang === 'pl' && stats.targetHits === 0 && !stats.hasDiacritics && stats.tokens >= 10) {
+      return { ok: false, code: 'LANG_MISMATCH', detail: 'no Polish diacritics/stopwords detected', stats };
+    }
+    if (lang === 'sw' && stats.targetHits === 0 && stats.tokens >= 10) {
+      return { ok: false, code: 'LANG_MISMATCH', detail: 'no Swahili stopwords detected', stats };
+    }
+    if (lang === 'es' && stats.targetHits === 0 && stats.tokens >= 10) {
+      return { ok: false, code: 'LANG_MISMATCH', detail: 'no Spanish stopwords detected', stats };
+    }
   }
   return { ok: true, stats };
+}
+
+export function checkContent(source, translated) {
+  const sourceContent = typeof source?.content === 'string' ? source.content : '';
+  const translatedContent = typeof translated?.content === 'string' ? translated.content : '';
+  if (!translatedContent.trim()) return { ok: false, code: 'CONTENT_EMPTY', detail: 'translated content is empty' };
+  if (sourceContent && translatedContent.trim() === sourceContent.trim()) {
+    return { ok: false, code: 'UNTRANSLATED', detail: 'translated content is identical to source (returned original)' };
+  }
+  return { ok: true };
 }
 
 export function checkEntities(sourceText, translatedText) {
@@ -118,7 +173,7 @@ function flattenText(value) {
  * 完整校验入口。
  * @returns {{ok:boolean, failures:Array<{code:string,detail:string}>}}
  */
-export function validateTranslation(source, translated, targetLang) {
+export function validateTranslation(source, translated, targetLang, options = {}) {
   const failures = [];
   if (!translated || typeof translated !== 'object') {
     return { ok: false, failures: [{ code: 'JSON_INVALID', detail: 'translated result is not an object' }] };
@@ -129,9 +184,12 @@ export function validateTranslation(source, translated, targetLang) {
     failures.push({ code: 'KEY_MISMATCH', detail: `missing=[${keys.missing.join(',')}] extra=[${keys.extra.join(',')}]` });
   }
 
+  const content = checkContent(source, translated);
+  if (!content.ok) failures.push({ code: content.code, detail: content.detail });
+
   const sourceText = flattenText(source);
   const translatedText = flattenText(translated);
-  const lang = checkLanguage(translatedText, targetLang);
+  const lang = checkLanguage(translatedText, targetLang, options.script || 'Latn');
   if (!lang.ok) failures.push({ code: lang.code, detail: lang.detail });
 
   const entities = checkEntities(sourceText, translatedText);
