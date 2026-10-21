@@ -74,3 +74,31 @@ test('language stats expose English ratio and target-language signal', () => {
   assert.ok(stats.englishHits > 0);
   assert.equal(stats.hasDiacritics, false);
 });
+
+test('content must be non-empty and must not be the untranslated original', () => {
+  const empty = { ...polish, content: '   ' };
+  const emptyResult = validateTranslation(source, empty, 'pl');
+  assert.equal(emptyResult.ok, false);
+  assert.ok(emptyResult.failures.some((f) => f.code === 'CONTENT_EMPTY'));
+
+  const untranslated = { ...polish, content: source.content };
+  const untranslatedResult = validateTranslation(source, untranslated, 'pl');
+  assert.equal(untranslatedResult.ok, false);
+  assert.ok(untranslatedResult.failures.some((f) => f.code === 'UNTRANSLATED'));
+});
+
+test('non-Latin script locales require target-script output (Persian)', () => {
+  const persian = {
+    id: 'card-acos-001',
+    title: 'بهینه‌سازی تبلیغات ACOS',
+    content: 'ACOS = هزینه تبلیغات ÷ فروش تبلیغاتی. هدف نگه داشتن ACOS زیر 25% است. برای مثال با هزینه 500 دلار و فروش 2000 دلار، ACOS برابر 25% می‌شود.',
+    tags: ['تبلیغات', 'ACOS'],
+  };
+  const pass = validateTranslation(source, persian, 'fa', { script: 'Arab' });
+  assert.equal(pass.ok, true, JSON.stringify(pass.failures));
+
+  const english = { ...polish, content: 'ACOS is ad spend divided by ad sales. Keep it under 25%.' };
+  const fail = validateTranslation(source, english, 'fa', { script: 'Arab' });
+  assert.equal(fail.ok, false);
+  assert.ok(fail.failures.some((f) => f.code === 'LANG_MISMATCH'));
+});

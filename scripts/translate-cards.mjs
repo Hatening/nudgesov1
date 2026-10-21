@@ -44,6 +44,14 @@ const REPORT = path.resolve(arg('report', `reports/translate/report.${LANG}.json
 const DB_PATH = arg('db', '');
 
 const LANG_NAME = { pl: 'Polish（波兰语）', sw: 'Swahili（斯瓦希里语）', en: 'English', de: 'German', fr: 'French', es: 'Spanish', ja: 'Japanese' };
+const MAPPING_PATH = path.resolve(arg('mapping', 'config/language_mapping.json'));
+const mapping = fs.existsSync(MAPPING_PATH) ? JSON.parse(fs.readFileSync(MAPPING_PATH, 'utf8')) : null;
+const langEntry = mapping?.languages?.find((l) => l.code.toLowerCase() === LANG || l.language.toLowerCase() === LANG.split('-')[0].toLowerCase()) || null;
+const LANG_BASE = langEntry?.language || LANG.split('-')[0];
+const LANG_TIER = langEntry?.tier || 1;
+const LANG_DISPLAY = langEntry?.name_zh || LANG_NAME[LANG] || LANG;
+const LANG_SCRIPT = langEntry?.script || 'Latn';
+const LOCALE_NEEDS_CLOUD = path.resolve('reports/translate/locale_needs_cloud.jsonl');
 const LOCAL_BASE = (process.env.LOCAL_BASE_URL || 'http://192.168.3.227:3679/v1').replace(/\/$/, '');
 const LOCAL_MODEL = process.env.LOCAL_MODEL_NAME || 'qwen3.8-35b-a3b@q5_k_m';
 const CLOUD_BASE = (process.env.CLOUD_BASE_URL || 'https://api.deepseek.com/v1').replace(/\/$/, '');
@@ -100,7 +108,7 @@ function extractJson(text) {
 }
 
 function buildPrompt(card) {
-  return `把下面 JSON 中的 title、content、tags 翻译成 ${LANG_NAME[LANG] || LANG}。
+  return `把下面 JSON 中的 title、content、tags 翻译成 ${LANG_DISPLAY}。
 硬性要求：
 1. 返回合法 JSON，Key 必须与输入完全一致（id / title / content / tags）。
 2. 数字、货币符号、百分比原样保留（例如 25%、500、$、€）。
@@ -185,16 +193,23 @@ async function main() {
     let localError = null;
     try {
       translated = await localTranslate(card);
-      validation = validateTranslation(card, translated, LANG);
+      validation = validateTranslation(card, translated, LANG_BASE, { script: LANG_SCRIPT });
     } catch (error) {
       localError = error.message;
     }
     if (localError || !validation?.ok) {
       stats.local_failed += 1;
       const failures = localError ? [{ code: 'LOCAL_ERROR', detail: localError }] : validation.failures;
-      await appendJsonl(POOL, [{ id: card.id, lang: LANG, card, local_output: translated, failures, at: new Date().toISOString() }]);
-      results.push({ id: card.id, route: 'cloud_pending', local_failures: failures });
-      console.log(`[local] ${card.id} FAILED -> cloud_retry_pool (${failures.map((f) => f.code).join(',')})`);
+      // Tier 3（小众/非洲/中东）：本地失败标记 locale_needs_cloud，等待云端复核
+      if (LANG_TIER === 3) {
+        await appendJsonl(LOCALE_NEEDS_CLOUD, [{ id: card.id, lang: LANG, tier: LANG_TIER, card, local_output: translated, failures, at: new Date().toISOString() }]);
+        results.push({ id: card.id, route: 'locale_needs_cloud', local_failures: failures });
+        console.log(`[local] ${card.id} FAILED -> locale_needs_cloud (${failures.map((f) => f.code).join(',')})`);
+      } else {
+        await appendJsonl(POOL, [{ id: card.id, lang: LANG, card, local_output: translated, failures, at: new Date().toISOString() }]);
+        results.push({ id: card.id, route: 'cloud_pending', local_failures: failures });
+        console.log(`[local] ${card.id} FAILED -> cloud_retry_pool (${failures.map((f) => f.code).join(',')})`);
+      }
     } else {
       stats.local_ok += 1;
       const localeCard = { ...translated, locale: LANG, status: 'draft' };
@@ -221,7 +236,7 @@ async function main() {
       for (let attempt = 0; attempt < 2 && !pass; attempt += 1) {
         try {
           const translated = await cloudTranslate(card);
-          const validation = validateTranslation(card, translated, LANG);
+          const validation = validateTranslation(card, translated, LANG_BASE, { script: LANG_SCRIPT });
           if (validation.ok) pass = translated;
           else lastFailures = validation.failures;
         } catch (error) {

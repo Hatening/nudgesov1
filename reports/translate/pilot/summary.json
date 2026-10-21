@@ -1,0 +1,33 @@
+{
+  "total": 12,
+  "local_ok": 4,
+  "local_needs_cloud_review": 4,
+  "locale_needs_cloud": 2,
+  "cloud_retry_pool": 2,
+  "by_locale": [
+    {
+      "locale": "es-ES",
+      "tier": 1,
+      "ok": 3,
+      "failed": 0
+    },
+    {
+      "locale": "pl-PL",
+      "tier": 2,
+      "ok": 1,
+      "failed": 2
+    },
+    {
+      "locale": "sw-KE",
+      "tier": 3,
+      "ok": 3,
+      "failed": 0
+    },
+    {
+      "locale": "fa-IR",
+      "tier": 3,
+      "ok": 1,
+      "failed": 2
+    }
+  ]
+}
