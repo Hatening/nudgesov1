@@ -1,0 +1,32 @@
+{
+  "cards": 5,
+  "a_avg": 3.6,
+  "b_avg": 4.2,
+  "a_admitted": 0,
+  "b_admitted": 0,
+  "lt_corrections": 0,
+  "local_q5": {
+    "total_ms": 177109,
+    "completion_tokens": 7842,
+    "tokens_per_sec": 44.28
+  },
+  "q6": {
+    "ok": false,
+    "error": "HTTP 400: {\n    \"error\": {\n        \"message\": \"Failed to load model \\\"qwen3.8-35b-a3b@q6_k\\\". Error: Model loading was stopped due to insufficient system resources. Under the current settings, this model requires approximately 28.89 GB of memory, and continuing to load it would likely overload your system and"
+  },
+  "q6_assumed_tokens_per_sec": 37.64,
+  "costs": {
+    "cloud_edit_cny_total_5cards": 0.062511,
+    "cloud_score_cny_total_5cards": 0.063713,
+    "q5_energy_cny_total_5cards": 0.014759
+  },
+  "price_assumptions": {
+    "inputPerMTokens": 2.0160000000000005,
+    "outputPerMTokens": 3.024,
+    "kwhPrice": 0.6,
+    "q5PowerKw": 0.5,
+    "q6PowerKw": 0.55
+  },
+  "threshold": 4.5,
+  "b_breakthrough": false
+}

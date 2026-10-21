@@ -17,3 +17,8 @@ raw_data/
 
 __pycache__/
 
+
+# Local LanguageTool runtime (downloaded, not committed)
+vendor/languagetool/
+vendor/languagetool.zip
+vendor/jre17.zip
