@@ -3,17 +3,358 @@
   "updated_at": "2026-10-21",
   "description": "电商核心术语强制映射：原文命中 source_terms 时，译文必须包含对应语言的术语（允许词形变化，按词干匹配）",
   "terms": [
-    { "id": "return", "source_terms": ["return", "退货"], "translations": { "pl": ["Zwrot", "Zwroty"], "fr": ["Retour"], "es": ["Devolución"], "de": ["Rücksendung"], "sw": ["Kurudisha"], "fa": ["مرجوعی"] } },
-    { "id": "refund", "source_terms": ["refund", "退款"], "translations": { "pl": ["Zwrot pieniędzy", "Refundacja", "Zwrot"], "fr": ["Remboursement"], "es": ["Reembolso"], "de": ["Rückerstattung"], "sw": ["Marejesho ya pesa"], "fa": ["بازپرداخت"] } },
-    { "id": "shipping", "source_terms": ["shipping", "运费", "物流"], "translations": { "pl": ["Wysyłka", "Transport", "Spedycja", "Logistyka", "Przesyłka"], "fr": ["Expédition"], "es": ["Envío"], "de": ["Versand"], "sw": ["Usafirishaji"], "fa": ["حمل و نقل"] } },
-    { "id": "delivery", "source_terms": ["delivery", "配送", "送达"], "translations": { "pl": ["Dostawa", "Dostarczenie"], "fr": ["Livraison"], "es": ["Entrega"], "de": ["Lieferung"], "sw": ["Uwasilishaji"], "fa": ["تحویل"] } },
-    { "id": "order", "source_terms": ["order", "订单"], "translations": { "pl": ["Zamówienie"], "fr": ["Commande"], "es": ["Pedido"], "de": ["Bestellung"], "sw": ["Oda"], "fa": ["سفارش"] } },
-    { "id": "customer", "source_terms": ["customer", "客户", "买家"], "translations": { "pl": ["Klient", "Klientka"], "fr": ["Client"], "es": ["Cliente"], "de": ["Kunde"], "sw": ["Mteja"], "fa": ["مشتری"] } },
-    { "id": "fraud", "source_terms": ["fraud", "欺诈", "诈骗"], "translations": { "pl": ["Oszustwo"], "fr": ["Fraude"], "es": ["Fraude"], "de": ["Betrug"], "sw": ["Udanganyifu"], "fa": ["کلاهبرداری"] } },
-    { "id": "chargeback", "source_terms": ["chargeback", "拒付"], "translations": { "pl": ["Chargeback", "Obciążenie zwrotne"], "fr": ["Rétrofacturation"], "es": ["Contracargo"], "de": ["Rückbuchung"], "sw": ["Malipo ya kurudishwa"], "fa": ["بازگشت وجه"] } },
-    { "id": "policy", "source_terms": ["policy", "政策"], "translations": { "pl": ["Zasady", "Polityka", "Regulamin"], "fr": ["Politique"], "es": ["Política"], "de": ["Richtlinie"], "sw": ["Sera"], "fa": ["سیاست"] } },
-    { "id": "inspection", "source_terms": ["inspection", "检验", "质检"], "translations": { "pl": ["Kontrola"], "fr": ["Inspection"], "es": ["Inspección"], "de": ["Prüfung"], "sw": ["Ukaguzi"], "fa": ["بازرسی"] } },
-    { "id": "warranty", "source_terms": ["warranty", "保修"], "translations": { "pl": ["Gwarancja"], "fr": ["Garantie"], "es": ["Garantía"], "de": ["Garantie"], "sw": ["Dhamana"], "fa": ["ضمانت"] } },
-    { "id": "invoice", "source_terms": ["invoice", "发票"], "translations": { "pl": ["Faktura"], "fr": ["Facture"], "es": ["Factura"], "de": ["Rechnung"], "sw": ["Ankara"], "fa": ["فاکتور"] } }
+    {
+      "id": "return",
+      "source_terms": [
+        "return",
+        "退货"
+      ],
+      "translations": {
+        "pl": [
+          "Zwrot",
+          "Zwroty"
+        ],
+        "fr": [
+          "Retour"
+        ],
+        "es": [
+          "Devolución"
+        ],
+        "de": [
+          "Rücksendung",
+          "Retoure"
+        ],
+        "sw": [
+          "Kurudisha"
+        ],
+        "fa": [
+          "مرجوعی"
+        ]
+      }
+    },
+    {
+      "id": "refund",
+      "source_terms": [
+        "refund",
+        "退款"
+      ],
+      "translations": {
+        "pl": [
+          "Zwrot pieniędzy",
+          "Refundacja",
+          "Zwrot"
+        ],
+        "fr": [
+          "Remboursement"
+        ],
+        "es": [
+          "Reembolso",
+          "Devolución de dinero"
+        ],
+        "de": [
+          "Rückerstattung",
+          "Erstattung"
+        ],
+        "sw": [
+          "Marejesho ya pesa"
+        ],
+        "fa": [
+          "بازپرداخت"
+        ]
+      }
+    },
+    {
+      "id": "shipping",
+      "source_terms": [
+        "shipping",
+        "运费",
+        "物流"
+      ],
+      "translations": {
+        "pl": [
+          "Wysyłka",
+          "Transport",
+          "Spedycja",
+          "Logistyka",
+          "Przesyłka"
+        ],
+        "fr": [
+          "Expédition",
+          "Transport",
+          "Logistique"
+        ],
+        "es": [
+          "Envío",
+          "Transporte",
+          "Logística"
+        ],
+        "de": [
+          "Versand",
+          "Transport",
+          "Logistik"
+        ],
+        "sw": [
+          "Usafirishaji"
+        ],
+        "fa": [
+          "حمل و نقل"
+        ]
+      }
+    },
+    {
+      "id": "delivery",
+      "source_terms": [
+        "delivery",
+        "配送",
+        "送达"
+      ],
+      "translations": {
+        "pl": [
+          "Dostawa",
+          "Dostarczenie"
+        ],
+        "fr": [
+          "Livraison",
+          "Remise"
+        ],
+        "es": [
+          "Entrega",
+          "Reparto"
+        ],
+        "de": [
+          "Lieferung",
+          "Zustellung"
+        ],
+        "sw": [
+          "Uwasilishaji"
+        ],
+        "fa": [
+          "تحویل"
+        ]
+      }
+    },
+    {
+      "id": "order",
+      "source_terms": [
+        "order",
+        "订单"
+      ],
+      "translations": {
+        "pl": [
+          "Zamówienie"
+        ],
+        "fr": [
+          "Commande"
+        ],
+        "es": [
+          "Pedido"
+        ],
+        "de": [
+          "Bestellung"
+        ],
+        "sw": [
+          "Oda"
+        ],
+        "fa": [
+          "سفارش"
+        ]
+      }
+    },
+    {
+      "id": "customer",
+      "source_terms": [
+        "customer",
+        "客户",
+        "买家"
+      ],
+      "translations": {
+        "pl": [
+          "Klient",
+          "Klientka"
+        ],
+        "fr": [
+          "Client"
+        ],
+        "es": [
+          "Cliente"
+        ],
+        "de": [
+          "Kunde"
+        ],
+        "sw": [
+          "Mteja"
+        ],
+        "fa": [
+          "مشتری"
+        ]
+      }
+    },
+    {
+      "id": "fraud",
+      "source_terms": [
+        "fraud",
+        "欺诈",
+        "诈骗"
+      ],
+      "translations": {
+        "pl": [
+          "Oszustwo"
+        ],
+        "fr": [
+          "Fraude"
+        ],
+        "es": [
+          "Fraude"
+        ],
+        "de": [
+          "Betrug"
+        ],
+        "sw": [
+          "Udanganyifu"
+        ],
+        "fa": [
+          "کلاهبرداری"
+        ]
+      }
+    },
+    {
+      "id": "chargeback",
+      "source_terms": [
+        "chargeback",
+        "拒付"
+      ],
+      "translations": {
+        "pl": [
+          "Chargeback",
+          "Obciążenie zwrotne"
+        ],
+        "fr": [
+          "Rétrofacturation"
+        ],
+        "es": [
+          "Contracargo"
+        ],
+        "de": [
+          "Rückbuchung"
+        ],
+        "sw": [
+          "Malipo ya kurudishwa"
+        ],
+        "fa": [
+          "بازگشت وجه"
+        ]
+      }
+    },
+    {
+      "id": "policy",
+      "source_terms": [
+        "policy",
+        "政策"
+      ],
+      "translations": {
+        "pl": [
+          "Zasady",
+          "Polityka",
+          "Regulamin"
+        ],
+        "fr": [
+          "Politique"
+        ],
+        "es": [
+          "Política"
+        ],
+        "de": [
+          "Richtlinie"
+        ],
+        "sw": [
+          "Sera"
+        ],
+        "fa": [
+          "سیاست"
+        ]
+      }
+    },
+    {
+      "id": "inspection",
+      "source_terms": [
+        "inspection",
+        "检验",
+        "质检"
+      ],
+      "translations": {
+        "pl": [
+          "Kontrola"
+        ],
+        "fr": [
+          "Inspection"
+        ],
+        "es": [
+          "Inspección"
+        ],
+        "de": [
+          "Prüfung"
+        ],
+        "sw": [
+          "Ukaguzi"
+        ],
+        "fa": [
+          "بازرسی"
+        ]
+      }
+    },
+    {
+      "id": "warranty",
+      "source_terms": [
+        "warranty",
+        "保修"
+      ],
+      "translations": {
+        "pl": [
+          "Gwarancja"
+        ],
+        "fr": [
+          "Garantie"
+        ],
+        "es": [
+          "Garantía"
+        ],
+        "de": [
+          "Garantie"
+        ],
+        "sw": [
+          "Dhamana"
+        ],
+        "fa": [
+          "ضمانت"
+        ]
+      }
+    },
+    {
+      "id": "invoice",
+      "source_terms": [
+        "invoice",
+        "发票"
+      ],
+      "translations": {
+        "pl": [
+          "Faktura"
+        ],
+        "fr": [
+          "Facture"
+        ],
+        "es": [
+          "Factura"
+        ],
+        "de": [
+          "Rechnung"
+        ],
+        "sw": [
+          "Ankara"
+        ],
+        "fa": [
+          "فاکتور"
+        ]
+      }
+    }
   ]
 }

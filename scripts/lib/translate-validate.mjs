@@ -175,7 +175,8 @@ export function checkGrammarSample(text, lang) {
   const letters = (sample.match(/[A-Za-zÀ-ÿąćęłńóśźż\u0600-\u06FF\u0400-\u04FF\u0E00-\u0E7F]/g) || []).length;
   if (letters >= 12) {
     const detected = detectLanguage(sample);
-    if (detected && detected !== lang) {
+    const fullDetected = detectLanguage(clean);
+    if (detected && detected !== lang && fullDetected !== lang) {
       const fullStats = languageStats(clean, lang);
       const swOk = lang === 'sw' && SWAHILI_DETECTOR_CONFUSABLE.has(detected) && fullStats.targetHits >= 2;
       const shortSampleNoise = fullStats.targetHits >= 3; // 50 字太短，检测器误判时用全文目标语信号兜底
