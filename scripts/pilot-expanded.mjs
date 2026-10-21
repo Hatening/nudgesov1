@@ -35,6 +35,13 @@ const CLOUD_MODEL = process.env.CLOUD_MODEL_NAME || 'deepseek-flash';
 const DB_PATH = path.resolve(arg('db', '.data/translate-expanded.sqlite'));
 const SEED = 20261022;
 const SAMPLE_PER_LANG = 1;
+const LANG_HINTS = {
+  de: '【德语重点】Reverse Logistics => Rückwärtslogistik；Disposition（处置）不要直译，用 Bearbeitung/Verwertung；failure modes => Fehlerarten；注意冠词与格。',
+  fr: '【法语重点】普通名词句中不要大写（Retours => retours）；shipping => Expédition/Envoi；élimination 不要用于“处置”，用 gestion/disposition；s’intégrer à。',
+  pl: '【波兰语重点】na etapie（不是 w etapie）；failure modes => typy błędów；inventory inaccuracies => nieścisłości w stanach magazynowych；refund => zwrot pieniędzy。',
+  es: '【西语重点】fulfillment center => centro logístico；palletización => paletización；注意 usted/ustedes 一致。',
+  en: '',
+};
 const PRICE = { inputPerMTokens: 0.28 * 7.2, outputPerMTokens: 0.42 * 7.2, kwhPrice: 0.6, powerKw: 0.5 };
 
 const LANGS = [
@@ -126,16 +133,18 @@ async function chat({ base, model, headers = {}, prompt, jsonMode = false, timeo
 
 function localPrompt(card, lang) {
   return `【顶部锚点】你是${lang.name}本地金牌客服。数字、符号、JSON Key（id/title/content/tags/category）绝不能改；条件、例外、步骤不得删减。
+${LANG_HINTS[lang.base] || ''}
 【术语表】
 ${glossaryPromptBlock(glossary, lang.base)}
 【原文 JSON】
 ${JSON.stringify(card, null, 2)}
-【底部重锚】只输出 JSON；自查 Key 一致、content 非空、数字完整、专有名词（ShipBob/Amazon/FBA）原样保留。`;
+【底部重锚】只输出 JSON；自查 Key 一致、content 非空、数字（含 40% 等）完整、专有名词（ShipBob/Amazon/FBA）原样保留。`;
 }
 
 function cloudPrompt(card, lang, issues = []) {
   return `你不是翻译机器，你是${lang.name}本地资深客服。请直接生成一份目标 ${lang.threshold} 分以上的高质量母语知识卡。
-保留全部事实、条件、例外、数字与符号；专有名词（ShipBob/Amazon/FBA）保持原样；返回 JSON，Key 与原文完全一致；只输出 JSON。
+保留全部事实、条件、例外、数字（含 40% 等）与符号；专有名词（ShipBob/Amazon/FBA）保持原样；返回 JSON，Key 与原文完全一致；只输出 JSON。
+${LANG_HINTS[lang.base] || ''}
 ${glossaryPromptBlock(glossary, lang.base)}
 ${issues.length ? `上一轮问题：\n${issues.map((s, i) => `${i + 1}. ${s}`).join('\n')}` : ''}
 原文：

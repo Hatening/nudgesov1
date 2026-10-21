@@ -81,7 +81,9 @@
         "fr": [
           "Expédition",
           "Transport",
-          "Logistique"
+          "Logistique",
+          "Envoi",
+          "Frais de port"
         ],
         "es": [
           "Envío",
