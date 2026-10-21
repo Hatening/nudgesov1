@@ -1,0 +1,39 @@
+{
+  "total": 10,
+  "admitted": 8,
+  "local_basic_pass": 7,
+  "local_sampled_pass": 0,
+  "cloud_basic_pass": 0,
+  "cloud_sampled_pass": 1,
+  "manual_review": 2,
+  "sampled_cards": [
+    "pl-PL:kb_8fef840ca0ea2958",
+    "es-ES:kb_843896f27382ff6e"
+  ],
+  "sample_rate": 0.2,
+  "judge_calls": 5,
+  "cloud_calls": 10,
+  "local_attempts": 10,
+  "local_ms": 228211,
+  "local_tokens": 10579,
+  "cloud_tokens": {
+    "input": 5298,
+    "output": 13111
+  },
+  "manual_review_rate": 20,
+  "costs": {
+    "old_cny": 0.231713,
+    "new_cny": 0.069346,
+    "reduction_pct": 70.1,
+    "old_cloud_tokens": {
+      "input": 8410,
+      "output": 30517
+    },
+    "new_cloud_tokens": {
+      "input": 5298,
+      "output": 13111
+    },
+    "local_energy_cny": 0.019018,
+    "cloud_cny": 0.050328
+  }
+}
