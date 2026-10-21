@@ -1,13 +1,13 @@
 {
   "total": 25,
-  "admitted": 16,
-  "local_basic_pass": 14,
-  "local_sampled_pass": 1,
+  "admitted": 23,
+  "local_basic_pass": 19,
+  "local_sampled_pass": 0,
   "cloud_basic_pass": 0,
-  "cloud_structural_pass": 1,
-  "cloud_sampled_pass": 0,
-  "manual_review": 9,
-  "manual_review_rate": 36,
+  "cloud_structural_pass": 0,
+  "cloud_sampled_pass": 4,
+  "manual_review": 2,
+  "manual_review_rate": 8,
   "sampled_keys": [
     "en-US:kb_3215f78a979b775b",
     "es-ES:kb_aa704f7eed2a3518",
@@ -15,18 +15,18 @@
     "fr-FR:kb_8fef840ca0ea2958",
     "pl-PL:kb_8fef840ca0ea2958"
   ],
-  "judge_calls": 9,
+  "judge_calls": 12,
   "polish_calls": 1,
-  "cloud_calls": 28,
+  "cloud_calls": 19,
   "local_attempts": 25,
-  "local_ms": 547052,
-  "local_tokens": 25024,
+  "local_ms": 542600,
+  "local_tokens": 25964,
   "cloud_tokens": {
-    "input": 13257,
-    "output": 57092
+    "input": 10127,
+    "output": 27512
   },
   "audit": {
-    "admitted": 15,
+    "admitted": 19,
     "batch_size": 100,
     "sample_size": 5,
     "next_audit_at": 100,
@@ -35,11 +35,11 @@
   },
   "costs": {
     "old_cny": 0.579282,
-    "new_cny": 0.24496,
-    "reduction_pct": 57.7,
-    "per_1000_cny": 9.8,
-    "local_energy_cny": 0.045588,
-    "cloud_cny": 0.199372
+    "new_cny": 0.148829,
+    "reduction_pct": 74.3,
+    "per_1000_cny": 5.95,
+    "local_energy_cny": 0.045217,
+    "cloud_cny": 0.103612
   },
   "by_lang": [
     {
@@ -47,28 +47,28 @@
       "threshold": 4.5,
       "admitted": 5,
       "manual": 0,
-      "avg_score": 4.6
+      "avg_score": 4.8
     },
     {
       "lang": "es-ES",
       "threshold": 4.5,
       "admitted": 4,
       "manual": 1,
-      "avg_score": null
+      "avg_score": 4.5
     },
     {
       "lang": "de-DE",
       "threshold": 4.5,
-      "admitted": 3,
-      "manual": 2,
-      "avg_score": null
+      "admitted": 5,
+      "manual": 0,
+      "avg_score": 4.5
     },
     {
       "lang": "fr-FR",
       "threshold": 4.5,
-      "admitted": 0,
-      "manual": 5,
-      "avg_score": null
+      "admitted": 5,
+      "manual": 0,
+      "avg_score": 4.5
     },
     {
       "lang": "pl-PL",
