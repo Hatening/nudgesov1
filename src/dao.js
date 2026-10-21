@@ -435,6 +435,9 @@ export function createDao(db) {
     goals: row.goals || '',
     ai_summary: row.ai_summary || '',
     ai_actions: parseJson(row.ai_actions_json, []),
+    monthly_credits: Number(row.monthly_credits ?? 100),
+    used_credits: Number(row.used_credits ?? 0),
+    remaining_credits: Math.max(0, Number(row.monthly_credits ?? 100) - Number(row.used_credits ?? 0)),
     created_at: row.created_at,
     updated_at: row.updated_at,
   } : null);
@@ -469,6 +472,92 @@ export function createDao(db) {
       .run(String(summary || '').slice(0, 8000), JSON.stringify(Array.isArray(actions) ? actions.slice(0, 10) : []), now(), tenantId);
     return dao.getTenantProfile(tenantId);
   };
+
+  // ---------------------------------------------------------------- Credit 计费
+  // 确保租户有一行档案（默认 100 Credits / 已用 0）
+  const ensureProfile = (tenantId) => dao.getTenantProfile(tenantId) || dao.upsertTenantProfile(tenantId, {});
+  dao.getTenantCredits = (tenantId) => {
+    const profile = ensureProfile(tenantId);
+    return {
+      monthly_credits: profile.monthly_credits,
+      used_credits: profile.used_credits,
+      remaining_credits: Math.max(0, profile.monthly_credits - profile.used_credits),
+    };
+  };
+  dao.checkCredits = (tenantId, estimatedCredits) => {
+    const credits = ensureProfile(tenantId);
+    const estimate = Math.max(0, Number(estimatedCredits) || 0);
+    const remaining = Math.max(0, credits.monthly_credits - credits.used_credits);
+    return {
+      allowed: estimate <= remaining,
+      estimated: estimate,
+      monthly_credits: credits.monthly_credits,
+      used_credits: credits.used_credits,
+      remaining_credits: remaining,
+    };
+  };
+  dao.chargeCredits = (tenantId, actionType, credits, metadata = {}) => {
+    const amount = Math.max(0, Math.round(Number(credits) || 0));
+    const profile = ensureProfile(tenantId);
+    const remaining = Math.max(0, profile.monthly_credits - profile.used_credits);
+    if (amount > remaining) {
+      return {
+        ok: false, charged: 0, action_type: actionType,
+        monthly_credits: profile.monthly_credits, used_credits: profile.used_credits, remaining_credits: remaining,
+      };
+    }
+    db.exec('BEGIN IMMEDIATE');
+    try {
+      db.prepare('INSERT INTO tenant_usage (id, tenant_id, action_type, credits_consumed, metadata_json, created_at) VALUES (?, ?, ?, ?, ?, ?)')
+        .run(`tu_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`, tenantId, actionType, amount, JSON.stringify(metadata || {}), now());
+      db.prepare('UPDATE tenant_profiles SET used_credits = used_credits + ?, updated_at = ? WHERE tenant_id = ?')
+        .run(amount, now(), tenantId);
+      db.exec('COMMIT');
+    } catch (error) {
+      try { db.exec('ROLLBACK'); } catch {}
+      throw error;
+    }
+    const after = ensureProfile(tenantId);
+    return {
+      ok: true, charged: amount, action_type: actionType,
+      monthly_credits: after.monthly_credits, used_credits: after.used_credits,
+      remaining_credits: Math.max(0, after.monthly_credits - after.used_credits),
+    };
+  };
+  dao.chargeCreditsBatch = (tenantId, items = []) => {
+    const entries = items
+      .map((item) => ({ action_type: item.action_type, credits: Math.max(0, Math.round(Number(item.credits) || 0)), metadata: item.metadata || {} }))
+      .filter((item) => item.credits > 0);
+    const total = entries.reduce((sum, item) => sum + item.credits, 0);
+    const profile = ensureProfile(tenantId);
+    const remaining = Math.max(0, profile.monthly_credits - profile.used_credits);
+    if (total > remaining) {
+      return { ok: false, charged: 0, total, monthly_credits: profile.monthly_credits, used_credits: profile.used_credits, remaining_credits: remaining };
+    }
+    db.exec('BEGIN IMMEDIATE');
+    try {
+      const insert = db.prepare('INSERT INTO tenant_usage (id, tenant_id, action_type, credits_consumed, metadata_json, created_at) VALUES (?, ?, ?, ?, ?, ?)');
+      for (const entry of entries) {
+        insert.run(`tu_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`, tenantId, entry.action_type, entry.credits, JSON.stringify(entry.metadata), now());
+      }
+      db.prepare('UPDATE tenant_profiles SET used_credits = used_credits + ?, updated_at = ? WHERE tenant_id = ?').run(total, now(), tenantId);
+      db.exec('COMMIT');
+    } catch (error) {
+      try { db.exec('ROLLBACK'); } catch {}
+      throw error;
+    }
+    const after = ensureProfile(tenantId);
+    return {
+      ok: true, charged: total, total, monthly_credits: after.monthly_credits, used_credits: after.used_credits,
+      remaining_credits: Math.max(0, after.monthly_credits - after.used_credits),
+    };
+  };
+  dao.listTenantUsage = (tenantId, limit = 20) => db.prepare(
+    'SELECT * FROM tenant_usage WHERE tenant_id = ? ORDER BY rowid DESC LIMIT ?'
+  ).all(tenantId, Math.max(1, Math.min(100, Number(limit) || 20))).map((row) => ({
+    id: row.id, tenant_id: row.tenant_id, action_type: row.action_type,
+    credits_consumed: row.credits_consumed, metadata: parseJson(row.metadata_json, {}), created_at: row.created_at,
+  }));
 
   // 行业洞察 / 商业策略：公开内容页（内容营销），只读、只返回摘要
   const INSIGHT_CATEGORIES = ['行业洞察', '商业策略'];

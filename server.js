@@ -379,6 +379,7 @@ const PROFILE_ACTIONS = [
 ];
 
 const OCR_PROMPT = '请逐字提取这些图片中的全部文字，保持原有段落顺序。只输出文字内容，不要解释、不要 Markdown 围栏。多页图片请按顺序合并输出。';
+const CREDIT_COSTS = Object.freeze({ text_extract: 2, cloud_distill: 5, ocr_page: 10 });
 
 function fallbackProfileAnalysis(profile) {
   const parts = [];
@@ -879,6 +880,20 @@ async function handleV1(req, res, p, method) {
     if (!dataUrls.length) return json(res, 400, { error: 'images 不能为空（base64 或 data URL）。' });
     if (dataUrls.some((url) => url.length > 6000000)) return json(res, 413, { error: '单张图片过大，请压缩到 4MB 以内。' });
 
+    // 配额门禁：OCR 按页计费，每页 10 Credits
+    const pages = dataUrls.length;
+    const ocrCost = pages * CREDIT_COSTS.ocr_page;
+    const quota = dao.checkCredits(auth.user.tenant_id, ocrCost);
+    if (!quota.allowed) {
+      return json(res, 402, {
+        error: '额度不足，请升级套餐',
+        code: 'CREDITS_EXCEEDED',
+        required_credits: ocrCost,
+        remaining_credits: quota.remaining_credits,
+        monthly_credits: quota.monthly_credits,
+      });
+    }
+
     const result = await llm.completeVision(OCR_PROMPT, dataUrls, dao.getSettings());
     if (!result || result.error) {
       return json(res, 503, {
@@ -889,8 +904,12 @@ async function handleV1(req, res, p, method) {
     }
     const text = String(result.content || '').trim();
     if (!text) return json(res, 422, { error: '没有识别到文字，请换一张更清晰的文件，或手动粘贴文字。', code: 'OCR_EMPTY' });
-    dao.logEvent('tenant_knowledge_ocr', { tenantId: auth.user.tenant_id, pages: dataUrls.length, chars: text.length });
-    return json(res, 200, { text, chars: text.length, pages: dataUrls.length, model: result.model, provider: result.provider });
+    const charged = dao.chargeCredits(auth.user.tenant_id, 'ocr_page', ocrCost, { pages, filename: String(b.filename || '').slice(0, 180) });
+    dao.logEvent('tenant_knowledge_ocr', { tenantId: auth.user.tenant_id, pages, chars: text.length, credits: ocrCost });
+    return json(res, 200, {
+      text, chars: text.length, pages, model: result.model, provider: result.provider,
+      credits: { charged: charged.charged, remaining_credits: charged.remaining_credits, monthly_credits: charged.monthly_credits },
+    });
   }
   if (p === '/api/v1/seller/knowledge/upload' && method === 'POST') {
     const auth = requireV1(req, res);
@@ -923,12 +942,44 @@ async function handleV1(req, res, p, method) {
     if (text.length < 10) return json(res, 400, { error: '资料内容太短（至少 10 个字符）。' });
     if (text.length > 200000) text = text.slice(0, 200000);
 
+    // 配额门禁：文本提取 2 Credits；若走云端蒸馏再加 5 Credits
+    const settings = dao.getSettings();
+    const cloudDistill = llm.status(settings).provider === 'openai';
+    const estimate = CREDIT_COSTS.text_extract + (cloudDistill ? CREDIT_COSTS.cloud_distill : 0);
+    const quota = dao.checkCredits(auth.user.tenant_id, estimate);
+    if (!quota.allowed) {
+      return json(res, 402, {
+        error: '额度不足，请升级套餐',
+        code: 'CREDITS_EXCEEDED',
+        required_credits: estimate,
+        remaining_credits: quota.remaining_credits,
+        monthly_credits: quota.monthly_credits,
+      });
+    }
+
     let distillation;
     try {
-      distillation = await distillKnowledge(llm, text, filename, dao.getSettings());
+      distillation = await distillKnowledge(llm, text, filename, settings);
     } catch (error) {
       return json(res, error.status || 502, { error: error.message, code: error.code || 'DISTILL_FAILED' });
     }
+
+    // 成功后才扣费：文本提取固定 2；云端蒸馏额外 5（本地模型不扣）
+    const chargeItems = [{ action_type: 'text_extract', credits: CREDIT_COSTS.text_extract, metadata: { filename, chars: text.length } }];
+    if (distillation.provider === 'openai') {
+      chargeItems.push({ action_type: 'cloud_distill', credits: CREDIT_COSTS.cloud_distill, metadata: { filename, cards: distillation.cards.length, model: distillation.model } });
+    }
+    const charged = dao.chargeCreditsBatch(auth.user.tenant_id, chargeItems);
+    if (!charged.ok) {
+      return json(res, 402, {
+        error: '额度不足，请升级套餐',
+        code: 'CREDITS_EXCEEDED',
+        required_credits: charged.total,
+        remaining_credits: charged.remaining_credits,
+        monthly_credits: charged.monthly_credits,
+      });
+    }
+
     const created = [];
     for (const card of distillation.cards) {
       const item = dao.createTenantKnowledge(auth.user.tenant_id, {
@@ -944,7 +995,7 @@ async function handleV1(req, res, p, method) {
       created.push(item);
     }
     dao.logEvent('tenant_knowledge_uploaded', {
-      tenantId: auth.user.tenant_id, filename, cards: created.length, provider: distillation.provider,
+      tenantId: auth.user.tenant_id, filename, cards: created.length, provider: distillation.provider, credits: charged.charged,
     });
     return json(res, 201, {
       filename,
@@ -954,6 +1005,12 @@ async function handleV1(req, res, p, method) {
       provider: distillation.provider,
       model: distillation.model,
       items: created,
+      credits: {
+        charged: charged.charged,
+        breakdown: chargeItems.map((item) => ({ action_type: item.action_type, credits: item.credits })),
+        remaining_credits: charged.remaining_credits,
+        monthly_credits: charged.monthly_credits,
+      },
     });
   }
   const confirmSellerKb = p.match(/^\/api\/v1\/seller\/knowledge\/([^/]+)\/confirm$/);

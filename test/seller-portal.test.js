@@ -153,6 +153,9 @@ test('seller portal: profile form, AI diagnosis, cloud distillation, OCR confirm
   const uploadBody = await upload.json();
   assert.equal(uploadBody.items.length, 2);
   assert.equal(uploadBody.provider, 'openai');
+  assert.equal(uploadBody.credits.charged, 7, 'text extraction 2 + cloud distill 5');
+  assert.equal(uploadBody.credits.remaining_credits, 93);
+  assert.deepEqual(uploadBody.credits.breakdown.map((b) => b.action_type), ['text_extract', 'cloud_distill']);
   const created = uploadBody.items[0];
   assert.equal(created.status, 'draft');
   assert.equal(created.tenant_id, owner.tenantId);
@@ -168,6 +171,11 @@ test('seller portal: profile form, AI diagnosis, cloud distillation, OCR confirm
   assert.equal(row.status, 'draft');
   assert.equal(row.tenant_id, owner.tenantId);
   assert.equal(db.prepare(`SELECT COUNT(*) c FROM knowledge WHERE id = ? AND status = 'confirmed'`).get(created.id).c, 0);
+  const usage = db.prepare('SELECT action_type, credits_consumed FROM tenant_usage WHERE tenant_id = ? ORDER BY rowid').all(owner.tenantId);
+  assert.deepEqual(usage.map((u) => [u.action_type, u.credits_consumed]), [['text_extract', 2], ['cloud_distill', 5]]);
+  const afterUpload = db.prepare('SELECT monthly_credits, used_credits FROM tenant_profiles WHERE tenant_id = ?').get(owner.tenantId);
+  assert.equal(afterUpload.monthly_credits, 100);
+  assert.equal(afterUpload.used_credits, 7);
   db.close();
 
   // 6) OCR 接口：图片 → 云端识别文本（供前端二次确认）
@@ -179,8 +187,10 @@ test('seller portal: profile form, AI diagnosis, cloud distillation, OCR confirm
   const ocrBody = await ocr.json();
   assert.match(ocrBody.text, /退货政策/);
   assert.equal(ocrBody.pages, 1);
+  assert.equal(ocrBody.credits.charged, 10);
+  assert.equal(ocrBody.credits.remaining_credits, 83);
 
-  // 7) 确认 OCR 文本后走同一蒸馏入库接口
+  // 7) 确认 OCR 文本后走同一蒸馏入库接口（再扣 2 + 5）
   const confirmedUpload = await fetch(`${base}/api/v1/seller/knowledge/upload`, {
     method: 'POST', headers: owner.auth,
     body: JSON.stringify({ filename: 'scan.png', content: ocrBody.text })
@@ -188,14 +198,46 @@ test('seller portal: profile form, AI diagnosis, cloud distillation, OCR confirm
   assert.equal(confirmedUpload.status, 201);
   assert.equal((await confirmedUpload.json()).items.length, 2);
 
-  // 8) 确认入库
+  // 8) 配额门禁：把月额度调到 20，OCR 2 页（20 Credits）与文本上传都应 402
+  const quotaDb = new DatabaseSync(path.join(dataDir, 'relaydesk.sqlite'));
+  quotaDb.prepare('UPDATE tenant_profiles SET monthly_credits = 20 WHERE tenant_id = ?').run(owner.tenantId);
+  const knowledgeBefore = quotaDb.prepare('SELECT COUNT(*) c FROM knowledge WHERE tenant_id = ?').get(owner.tenantId).c;
+  const usageBefore = quotaDb.prepare('SELECT COUNT(*) c FROM tenant_usage WHERE tenant_id = ?').get(owner.tenantId).c;
+  quotaDb.close();
+
+  const blockedOcr = await fetch(`${base}/api/v1/seller/knowledge/ocr`, {
+    method: 'POST', headers: owner.auth,
+    body: JSON.stringify({ images: [
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=='
+    ] })
+  });
+  assert.equal(blockedOcr.status, 402);
+  const blockedOcrBody = await blockedOcr.json();
+  assert.equal(blockedOcrBody.code, 'CREDITS_EXCEEDED');
+  assert.match(blockedOcrBody.error, /额度不足/);
+  assert.equal(blockedOcrBody.remaining_credits, 0);
+
+  const blockedUpload = await fetch(`${base}/api/v1/seller/knowledge/upload`, {
+    method: 'POST', headers: owner.auth,
+    body: JSON.stringify({ filename: 'blocked.txt', content: '这是一段会被额度拦截的测试文本，不应产生任何扣费或知识卡。' })
+  });
+  assert.equal(blockedUpload.status, 402);
+  assert.equal((await blockedUpload.json()).code, 'CREDITS_EXCEEDED');
+
+  const quotaDb2 = new DatabaseSync(path.join(dataDir, 'relaydesk.sqlite'));
+  assert.equal(quotaDb2.prepare('SELECT COUNT(*) c FROM knowledge WHERE tenant_id = ?').get(owner.tenantId).c, knowledgeBefore, 'blocked uploads must not create cards');
+  assert.equal(quotaDb2.prepare('SELECT COUNT(*) c FROM tenant_usage WHERE tenant_id = ?').get(owner.tenantId).c, usageBefore, 'blocked requests must not charge credits');
+  quotaDb2.close();
+
+  // 9) 确认入库
   const confirm = await fetch(`${base}/api/v1/seller/knowledge/${encodeURIComponent(created.id)}/confirm`, {
     method: 'POST', headers: owner.auth, body: '{}'
   });
   assert.equal(confirm.status, 200);
   assert.equal((await confirm.json()).item.status, 'confirmed');
 
-  // 9) 租户隔离
+  // 10) 租户隔离
   const other = await register(base, `qa-seller-other-${Date.now()}@example.test`);
   const otherList = await (await fetch(`${base}/api/v1/seller/knowledge`, { headers: other.auth })).json();
   assert.equal(otherList.items.some((item) => item.id === created.id), false);

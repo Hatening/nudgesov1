@@ -162,6 +162,22 @@ test('createGlobalKnowledge requires a registered source and defaults to draft',
   fs.rmSync(dir, { recursive: true, force: true });
 });
 
+test('migration 014 creates tenant_usage and credit columns with defaults', () => {
+  const { db, dir } = freshDb();
+  const tables = db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map((r) => r.name);
+  assert.ok(tables.includes('tenant_usage'));
+  const cols = db.prepare('PRAGMA table_info(tenant_profiles)').all();
+  const byName = Object.fromEntries(cols.map((c) => [c.name, c]));
+  assert.equal(Number(byName.monthly_credits.dflt_value), 100);
+  assert.equal(Number(byName.used_credits.dflt_value), 0);
+  const usageCols = db.prepare('PRAGMA table_info(tenant_usage)').all().map((c) => c.name);
+  for (const col of ['tenant_id', 'action_type', 'credits_consumed', 'created_at']) {
+    assert.ok(usageCols.includes(col), `tenant_usage missing ${col}`);
+  }
+  closeDatabase(db);
+  fs.rmSync(dir, { recursive: true, force: true });
+});
+
 test('claims reference source_registry via foreign key', () => {
   const { db, dir } = freshDb();
   insertSource(db, { id: 'src_fk' });

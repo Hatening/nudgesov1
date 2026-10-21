@@ -27,6 +27,8 @@
   .status.ok{display:block;background:#eefaf3;color:#17845a;border:1px solid #d8f0e3}
   .status.err{display:block;background:#fff1f2;color:#b43743;border:1px solid #f6d9dc}
   .status.info{display:block;background:#f2f5ff;color:#4e4bc5;border:1px solid #e2e6ff}
+  .credit-line{font-size:12.5px;color:#4e4bc5;background:#f2f5ff;border:1px solid #e2e6ff;border-radius:9px;padding:8px 12px;margin-bottom:16px}
+  .cost-hint{font-size:11px;color:#93a0b3;margin:10px 0 0;line-height:1.6}
   .confirm{border:1.5px solid #f0c987;background:#fffdf5;border-radius:14px;padding:18px;margin-top:16px}
   .confirm h3{margin:0 0 6px;font-size:15px;color:#8a5a12}
   .confirm p{margin:0 0 10px;font-size:12.5px;color:#8a6a3a}
@@ -50,6 +52,7 @@
 <div class="wrap">
   <h1>上传专属资料</h1>
   <p class="sub">支持 PDF / TXT / Markdown / 图片（PNG、JPG）。扫描件或图片会先走 OCR 识别，需你二次确认文字准确后再蒸馏入库。</p>
+  <div class="credit-line" id="creditLine">正在读取企业额度…</div>
 
   <div class="card">
     <div class="drop" id="drop">
@@ -62,10 +65,11 @@
       <button class="btn primary" id="upload" disabled>开始上传</button>
       <button class="btn" id="refresh">刷新已上传资料</button>
     </div>
+    <p class="cost-hint">计费：纯文本提取 2 Credits · 云端蒸馏另加 5 Credits · OCR 识别每页 10 Credits。额度不足时请求会被拦截（402）。</p>
     <div class="status" id="status"></div>
     <div class="confirm" id="confirmPanel" hidden>
       <h3>请二次确认 OCR 识别结果</h3>
-      <p>系统已从图片中提取以下文字。请核对是否准确；可直接在下方修改，确认后再进入蒸馏与草稿入库流程。</p>
+      <p>系统已从图片中提取以下文字（本次 OCR 将按页扣除 Credits）。请核对是否准确；可直接在下方修改，确认后再进入蒸馏与草稿入库流程。</p>
       <textarea id="ocrText" spellcheck="false"></textarea>
       <div class="confirm-actions">
         <button class="btn primary" id="confirmOcr">确认无误，继续蒸馏</button>
@@ -96,6 +100,7 @@
   var refreshBtn = document.getElementById('refresh');
   var statusBox = document.getElementById('status');
   var cardsBox = document.getElementById('cards');
+  var creditLine = document.getElementById('creditLine');
   var confirmPanel = document.getElementById('confirmPanel');
   var ocrText = document.getElementById('ocrText');
   var confirmBtn = document.getElementById('confirmOcr');
@@ -187,12 +192,26 @@
     return postJson('/api/v1/seller/knowledge/ocr', { images: images });
   }
 
-  function showConfirm(text, filename) {
+  function showConfirm(text, filename, note) {
     pendingFilename = filename;
     ocrText.value = text;
     confirmPanel.hidden = false;
     confirmPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setStatus('OCR 完成，请在上方核对文字后点击「确认无误，继续蒸馏」。', 'info');
+    setStatus(note || 'OCR 完成，请在上方核对文字后点击「确认无误，继续蒸馏」。', 'info');
+  }
+
+  async function loadCredits() {
+    try {
+      var res = await fetch('/api/v1/tenant-profile', { headers: authHeaders() });
+      if (!res.ok) return;
+      var data = await res.json();
+      var p = data.profile || {};
+      var monthly = p.monthly_credits == null ? 100 : p.monthly_credits;
+      var used = p.used_credits == null ? 0 : p.used_credits;
+      creditLine.textContent = '企业额度：剩余 ' + Math.max(0, monthly - used) + ' / ' + monthly + ' Credits（本月已用 ' + used + '）';
+    } catch (error) {
+      creditLine.textContent = '企业额度读取失败';
+    }
   }
 
   confirmBtn.addEventListener('click', async function () {
@@ -203,9 +222,10 @@
     try {
       var result = await uploadText(text, pendingFilename || 'scan.pdf');
       if (!result.ok) throw new Error(result.data.error || ('HTTP ' + result.status));
-      setStatus('已生成 ' + result.data.items.length + ' 张草稿卡，请在下方确认入库。', 'ok');
+      setStatus('已生成 ' + result.data.items.length + ' 张草稿卡，本次扣除 ' + (result.data.credits ? result.data.credits.charged : 0) + ' Credits，剩余 ' + (result.data.credits ? result.data.credits.remaining_credits : '—') + '。', 'ok');
       confirmPanel.hidden = true;
       await load();
+      await loadCredits();
     } catch (error) {
       setStatus('蒸馏失败：' + error.message, 'err');
     } finally {
@@ -230,7 +250,8 @@
         var imageUrl = await readAsBase64(picked);
         var ocrResult = await ocr([imageUrl]);
         if (!ocrResult.ok) throw new Error(ocrResult.data.error || ('OCR HTTP ' + ocrResult.status));
-        showConfirm(ocrResult.data.text, name);
+        showConfirm(ocrResult.data.text, name, 'OCR 完成，本次扣除 ' + ocrResult.data.credits.charged + ' Credits（' + ocrResult.data.pages + ' 页），请核对文字。');
+        await loadCredits();
         return;
       }
 
@@ -238,8 +259,9 @@
         var pdfUrl = await readAsBase64(picked);
         var firstTry = await postJson('/api/v1/seller/knowledge/upload', { filename: name, file_base64: pdfUrl.split(',')[1] });
         if (firstTry.ok) {
-          setStatus('PDF 文本层提取成功，已生成 ' + firstTry.data.items.length + ' 张草稿卡。', 'ok');
+          setStatus('PDF 文本层提取成功，已生成 ' + firstTry.data.items.length + ' 张草稿卡，本次扣除 ' + firstTry.data.credits.charged + ' Credits。', 'ok');
           await load();
+          await loadCredits();
           return;
         }
         if (firstTry.status === 422 && firstTry.data.code === 'NEEDS_OCR') {
@@ -247,7 +269,8 @@
           var images = await renderPdfPages(pdfUrl);
           var scanned = await ocr(images);
           if (!scanned.ok) throw new Error(scanned.data.error || ('OCR HTTP ' + scanned.status));
-          showConfirm(scanned.data.text, name);
+          showConfirm(scanned.data.text, name, 'OCR 完成，本次扣除 ' + scanned.data.credits.charged + ' Credits（' + scanned.data.pages + ' 页），请核对文字。');
+          await loadCredits();
           return;
         }
         throw new Error(firstTry.data.error || ('HTTP ' + firstTry.status));
@@ -257,10 +280,11 @@
       var text = await readAsText(picked);
       var result = await uploadText(text, name);
       if (!result.ok) throw new Error(result.data.error || ('HTTP ' + result.status));
-      setStatus('已生成 ' + result.data.items.length + ' 张草稿卡（' + (result.data.provider || 'model') + '）。', 'ok');
+      setStatus('已生成 ' + result.data.items.length + ' 张草稿卡，本次扣除 ' + result.data.credits.charged + ' Credits，剩余 ' + result.data.credits.remaining_credits + '。', 'ok');
       await load();
+      await loadCredits();
     } catch (error) {
-      setStatus('处理失败：' + error.message, 'err');
+      setStatus(String(error.message).indexOf('额度不足') >= 0 ? '额度不足，请升级套餐' : ('处理失败：' + error.message), 'err');
     } finally {
       uploadBtn.disabled = false;
     }
@@ -305,7 +329,7 @@
     }
   }
 
-  // 后端返回 NEEDS_OCR 前，前端已通过 422 判定；占位请求仅用于兼容旧服务
+  loadCredits();
   load();
 })();
 </script>
