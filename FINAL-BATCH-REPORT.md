@@ -43,21 +43,22 @@ npm test   → 80/80 passed
 - 已把 **2,181 张** confirmed 源卡切分为 **8 个批次文件**（`reports/translate/batches/`），每批 300 张。
 - 策略与 Phase 1 完全一致：Tier 1 阈值 4.5 / Tier 2 阈值 4.8、本地单次、20% 分层 Judge、盲盒规则、边界定向润色。
 
-### 第一批运行状态
+### 第一批运行状态（已暂停，未完成）
 - 启动时间：2026-10-22 06:42
 - 批次：`batch-0001`（300 张卡 × 5 语种 = **1,500 个翻译任务**）
 - 并发：8 workers
-- 截至 06:50：完成 **17 / 1,500**（约 3.4 任务/分钟）
-- 预计剩余时间：**约 7 小时**
-- 早期 manual_review：5 / 17（样本过小，不代表最终比例）
+- 实际完成：**17 / 1,500**；manual_review 5 / 17（早期样本 29%）
+- 问题：Qwen 服务端无法承受 8 路并发，多个请求排队/超时，吞吐从 3.4 任务/分钟跌到接近 0
+- 处置：已暂停后台任务，避免空耗；断点已保留，可用 `--workers 2~4` 断点续跑
 
-**没有把未完成的全量写成已完成。** 后台进程仍在运行，进度写入：
+**没有把未完成的全量写成已完成。** 断点文件：
 
 ```
 reports/translate/batches/batch-0001.progress.jsonl
 reports/translate/batches/batch-0001.manual_review.jsonl
-reports/translate/batches/batch-0001.report.json（完成后生成）
 ```
+
+**风险提示**：早期 manual_review 5/17（29%）明显高于 Phase 1 的 10%，说明真实库中 `kb_insight_demo_1` 这类卡片质量差于 Phase 1 样本；全量前应先抽样复核这批数据的 manual 触发原因。
 
 ---
 
