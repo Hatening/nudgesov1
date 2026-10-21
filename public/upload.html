@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>上传专属资料 · RelayDesk</title>
+<link rel="stylesheet" href="/styles.css">
+<style>
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+  .top{height:62px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:14px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+  .mark{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#6d6be5,#4544ba);color:#fff;display:grid;place-items:center}
+  .top a{margin-left:auto;font-size:13px;font-weight:650;color:#5b5bd6;text-decoration:none}
+  .wrap{max-width:900px;margin:0 auto;padding:26px 20px 60px}
+  h1{font-size:26px;letter-spacing:-.6px;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px;margin-bottom:18px}
+  .drop{border:1.5px dashed #c9d1e0;border-radius:14px;padding:34px;text-align:center;color:#7b8798;background:#fbfcff;cursor:pointer;transition:.15s}
+  .drop:hover,.drop.on{border-color:#5b5bd6;background:#f7f7ff;color:#4e4bc5}
+  .drop strong{display:block;font-size:15px;margin-bottom:6px;color:#3b475a}
+  .file-row{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:13px;color:#5f6b7e;background:#f4f6fa;border-radius:9px;padding:10px 12px}
+  .file-row[hidden]{display:none}
+  .btn{border:1px solid #e0e5ee;background:#fff;color:#46556b;border-radius:9px;padding:10px 16px;font:inherit;font-size:13px;font-weight:650;cursor:pointer}
+  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .status{margin-top:14px;font-size:13px;padding:10px 12px;border-radius:10px;display:none}
+  .status.ok{display:block;background:#eefaf3;color:#17845a;border:1px solid #d8f0e3}
+  .status.err{display:block;background:#fff1f2;color:#b43743;border:1px solid #f6d9dc}
+  .cards{display:grid;gap:12px}
+  .kcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+  .kcard h3{margin:0 0 6px;font-size:15px}
+  .kcard p{margin:0 0 10px;color:#5f6b7e;font-size:13px;line-height:1.6;white-space:pre-wrap;max-height:120px;overflow:auto}
+  .pill{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:3px 8px;background:#fff4e6;color:#b06a12;margin-right:6px}
+  .pill.ok{background:#eefaf3;color:#17845a}
+  .empty{color:#93a0b3;font-size:13px;text-align:center;padding:24px}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="mark">R</div>
+  <div class="brand">RelayDesk<small style="display:block;font-size:10px;color:#7b8798;font-weight:500">Seller knowledge upload</small></div>
+  <a href="/">← 返回后台</a>
+</div>
+<div class="wrap">
+  <h1>上传专属资料</h1>
+  <p class="sub">支持 PDF / TXT / Markdown。上传后会调用本地 Qwen 自动蒸馏为知识卡，先存为 <strong>draft</strong>，你确认后才会进入入库流程。</p>
+
+  <div class="card">
+    <div class="drop" id="drop">
+      <strong>点击选择文件，或拖拽到这里</strong>
+      支持 .pdf / .txt / .md，单文件不超过 5MB
+    </div>
+    <input id="file" type="file" accept=".pdf,.txt,.md,application/pdf,text/plain,text/markdown" hidden>
+    <div class="file-row" id="fileRow" hidden><span id="fileName"></span><span id="fileSize" style="margin-left:auto;color:#93a0b3"></span></div>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button class="btn primary" id="upload" disabled>开始上传并蒸馏</button>
+      <button class="btn" id="refresh">刷新已上传资料</button>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:16px;margin:0 0 14px">我的知识卡（草稿需确认入库）</h2>
+    <div class="cards" id="cards"><div class="empty">加载中…</div></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var TOKEN = localStorage.getItem('relaydesk_token') || '';
+  if (!TOKEN) { location.href = '/'; return; }
+  var drop = document.getElementById('drop');
+  var fileInput = document.getElementById('file');
+  var fileRow = document.getElementById('fileRow');
+  var fileName = document.getElementById('fileName');
+  var fileSize = document.getElementById('fileSize');
+  var uploadBtn = document.getElementById('upload');
+  var refreshBtn = document.getElementById('refresh');
+  var statusBox = document.getElementById('status');
+  var cardsBox = document.getElementById('cards');
+  var picked = null;
+
+  function authHeaders(extra) {
+    return Object.assign({ authorization: 'Bearer ' + TOKEN }, extra || {});
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function setStatus(text, kind) {
+    statusBox.textContent = text;
+    statusBox.className = 'status ' + (kind || '');
+  }
+  function choose(file) {
+    picked = file;
+    fileName.textContent = file.name;
+    fileSize.textContent = (file.size / 1024).toFixed(1) + ' KB';
+    fileRow.hidden = false;
+    uploadBtn.disabled = false;
+  }
+  drop.addEventListener('click', function () { fileInput.click(); });
+  fileInput.addEventListener('change', function () { if (fileInput.files[0]) choose(fileInput.files[0]); });
+  drop.addEventListener('dragover', function (e) { e.preventDefault(); drop.classList.add('on'); });
+  drop.addEventListener('dragleave', function () { drop.classList.remove('on'); });
+  drop.addEventListener('drop', function (e) {
+    e.preventDefault(); drop.classList.remove('on');
+    if (e.dataTransfer.files[0]) choose(e.dataTransfer.files[0]);
+  });
+
+  function readAsBase64(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () { resolve(String(reader.result).split(',')[1] || ''); };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+  function readAsText(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () { resolve(String(reader.result || '')); };
+      reader.onerror = reject;
+      reader.readAsText(file);
+    });
+  }
+
+  uploadBtn.addEventListener('click', async function () {
+    if (!picked) return;
+    uploadBtn.disabled = true;
+    setStatus('正在上传并调用本地 Qwen 蒸馏，请稍候…', '');
+    try {
+      var isPdf = /\.pdf$/i.test(picked.name) || picked.type === 'application/pdf';
+      var payload = { filename: picked.name };
+      if (isPdf) payload.file_base64 = await readAsBase64(picked);
+      else payload.content = await readAsText(picked);
+      var res = await fetch('/api/v1/seller/knowledge/upload', {
+        method: 'POST',
+        headers: authHeaders({ 'content-type': 'application/json' }),
+        body: JSON.stringify(payload)
+      });
+      var data = await res.json().catch(function () { return {}; });
+      if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+      setStatus('上传成功：提取 ' + data.extracted_chars + ' 字符，生成 ' + data.items.length + ' 张草稿卡' + (data.distilled ? '（Qwen 蒸馏）' : '（模型不可用，保留原文单卡）'), 'ok');
+      await load();
+    } catch (error) {
+      setStatus('上传失败：' + error.message, 'err');
+    } finally {
+      uploadBtn.disabled = false;
+    }
+  });
+
+  refreshBtn.addEventListener('click', load);
+
+  async function confirmCard(id) {
+    try {
+      var res = await fetch('/api/v1/seller/knowledge/' + encodeURIComponent(id) + '/confirm', {
+        method: 'POST', headers: authHeaders({ 'content-type': 'application/json' }), body: '{}'
+      });
+      var data = await res.json().catch(function () { return {}; });
+      if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+      setStatus('已确认入库：' + (data.item && data.item.title || id), 'ok');
+      await load();
+    } catch (error) {
+      setStatus('确认失败：' + error.message, 'err');
+    }
+  }
+
+  async function load() {
+    try {
+      var res = await fetch('/api/v1/seller/knowledge', { headers: authHeaders() });
+      if (res.status === 401) { location.href = '/'; return; }
+      var data = await res.json();
+      var items = data.items || [];
+      if (!items.length) { cardsBox.innerHTML = '<div class="empty">还没有上传资料。选择上方文件开始。</div>'; return; }
+      cardsBox.innerHTML = items.map(function (item) {
+        var draft = item.status !== 'confirmed';
+        return '<div class="kcard"><h3>' + esc(item.title) + '</h3>'
+          + '<p>' + esc(String(item.content || '').slice(0, 280)) + '</p>'
+          + '<span class="pill' + (draft ? '' : ' ok') + '">' + esc(item.status) + '</span>'
+          + (draft ? '<button class="btn" data-confirm="' + esc(item.id) + '" style="padding:6px 12px;font-size:12px">确认入库</button>' : '')
+          + '</div>';
+      }).join('');
+      Array.prototype.forEach.call(cardsBox.querySelectorAll('[data-confirm]'), function (btn) {
+        btn.addEventListener('click', function () { confirmCard(btn.getAttribute('data-confirm')); });
+      });
+    } catch (error) {
+      cardsBox.innerHTML = '<div class="empty">加载失败：' + esc(error.message) + '</div>';
+    }
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>

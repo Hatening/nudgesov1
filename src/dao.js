@@ -389,12 +389,85 @@ export function createDao(db) {
     db.prepare(`INSERT INTO knowledge
       (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, category, is_insight, created_at, updated_at,
        product_surface, locale, license_status, valid_from, valid_until, structured_payload, source_type, source_id)
-      VALUES (?, 'global', NULL, 'global', NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
-      .run(item.id, item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content,
+      VALUES (?, ?, NULL, 'global', NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+      .run(item.id, item.tenant_id || 'global', item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content,
         status, audience, category, isInsightValue(audience, category, item.is_insight), item.created_at || now(), item.updated_at || now(),
         surface, locale, licenseStatus, item.valid_from || null, item.valid_until || null, JSON.stringify(item.structured_payload || {}),
         item.source_type || 'unknown', item.source_id);
     return dao.findGlobalKnowledge(item.id);
+  };
+
+  // 商家知识库（租户专属）：强制 tenant_id，默认 draft，可预览后确认
+  dao.createTenantKnowledge = (tenantId, item) => {
+    if (!tenantId) {
+      const error = new Error('tenant_id is required'); error.status = 400; throw error;
+    }
+    return dao.createGlobalKnowledge({
+      ...item,
+      tenant_id: tenantId,
+      audience: 'seller',
+      status: 'draft',
+      source_id: item.source_id || 'manual_editor',
+      source_type: item.source_type || 'tenant',
+    });
+  };
+  dao.listTenantKnowledge = (tenantId) => db.prepare(
+    "SELECT * FROM knowledge WHERE tenant_id = ? AND audience = 'seller' ORDER BY rowid DESC"
+  ).all(tenantId).map(mapKnowledge);
+  dao.confirmTenantKnowledge = (tenantId, knowledgeId) => {
+    const row = db.prepare('SELECT id FROM knowledge WHERE id = ? AND tenant_id = ?').get(knowledgeId, tenantId);
+    if (!row) return null;
+    db.prepare("UPDATE knowledge SET status = 'confirmed', review_status = 'approved', license_status = 'clear', updated_at = ? WHERE id = ?")
+      .run(now(), knowledgeId);
+    return mapKnowledge(db.prepare('SELECT * FROM knowledge WHERE id = ?').get(knowledgeId));
+  };
+
+  // 经营档案（租户一行）
+  const mapProfile = (row) => (row ? {
+    id: row.id,
+    tenant_id: row.tenant_id,
+    business_name: row.business_name || '',
+    platforms: parseJson(row.platforms_json, []),
+    markets: parseJson(row.markets_json, []),
+    categories: row.categories || '',
+    monthly_revenue: row.monthly_revenue || '',
+    team_size: row.team_size ?? null,
+    goals: row.goals || '',
+    ai_summary: row.ai_summary || '',
+    ai_actions: parseJson(row.ai_actions_json, []),
+    created_at: row.created_at,
+    updated_at: row.updated_at,
+  } : null);
+  dao.getTenantProfile = (tenantId) => mapProfile(db.prepare('SELECT * FROM tenant_profiles WHERE tenant_id = ?').get(tenantId));
+  dao.upsertTenantProfile = (tenantId, patch = {}) => {
+    const existing = dao.getTenantProfile(tenantId);
+    const merged = {
+      business_name: String(patch.business_name ?? existing?.business_name ?? '').slice(0, 200),
+      platforms: Array.isArray(patch.platforms) ? patch.platforms.slice(0, 12).map((x) => String(x).slice(0, 40)) : (existing?.platforms || []),
+      markets: Array.isArray(patch.markets) ? patch.markets.slice(0, 20).map((x) => String(x).slice(0, 40)) : (existing?.markets || []),
+      categories: String(patch.categories ?? existing?.categories ?? '').slice(0, 300),
+      monthly_revenue: String(patch.monthly_revenue ?? existing?.monthly_revenue ?? '').slice(0, 80),
+      team_size: patch.team_size === undefined ? (existing?.team_size ?? null) : (Number.isFinite(Number(patch.team_size)) ? Number(patch.team_size) : null),
+      goals: String(patch.goals ?? existing?.goals ?? '').slice(0, 600),
+    };
+    if (existing) {
+      db.prepare(`UPDATE tenant_profiles SET business_name = ?, platforms_json = ?, markets_json = ?, categories = ?,
+        monthly_revenue = ?, team_size = ?, goals = ?, updated_at = ? WHERE tenant_id = ?`)
+        .run(merged.business_name, JSON.stringify(merged.platforms), JSON.stringify(merged.markets), merged.categories,
+          merged.monthly_revenue, merged.team_size, merged.goals, now(), tenantId);
+    } else {
+      db.prepare(`INSERT INTO tenant_profiles
+        (id, tenant_id, business_name, platforms_json, markets_json, categories, monthly_revenue, team_size, goals, created_at, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+        .run(`tp_${tenantId}`, tenantId, merged.business_name, JSON.stringify(merged.platforms), JSON.stringify(merged.markets),
+          merged.categories, merged.monthly_revenue, merged.team_size, merged.goals, now(), now());
+    }
+    return dao.getTenantProfile(tenantId);
+  };
+  dao.saveTenantProfileAi = (tenantId, summary, actions) => {
+    db.prepare('UPDATE tenant_profiles SET ai_summary = ?, ai_actions_json = ?, updated_at = ? WHERE tenant_id = ?')
+      .run(String(summary || '').slice(0, 8000), JSON.stringify(Array.isArray(actions) ? actions.slice(0, 10) : []), now(), tenantId);
+    return dao.getTenantProfile(tenantId);
   };
 
   // 行业洞察 / 商业策略：公开内容页（内容营销），只读、只返回摘要

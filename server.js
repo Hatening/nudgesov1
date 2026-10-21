@@ -12,6 +12,7 @@ import {
 } from './src/db.js';
 import { createDao } from './src/dao.js';
 import { createRateLimiter } from './src/rate-limit.js';
+import { extractPdfText, isPdfBuffer } from './src/pdf-text.js';
 import { createLlmGateway } from './src/llm.js';
 import { redactPII, privacyNotice, CONSENT_VERSION } from './src/privacy.js';
 import { createMetrics } from './src/observability.js';
@@ -331,6 +332,106 @@ function corpusForSite(site, audience = 'buyer', surface = 'buyer_chat') {
 }
 function stats() {
   return dao.stats();
+}
+
+// ---------------------------------------------------------------- 商家自助配置辅助
+function profileContext(profile) {
+  if (!profile) return '';
+  const lines = [];
+  if (profile.business_name) lines.push(`店铺/品牌：${profile.business_name}`);
+  if (profile.platforms?.length) lines.push(`经营平台：${profile.platforms.join('、')}`);
+  if (profile.markets?.length) lines.push(`目标市场：${profile.markets.join('、')}`);
+  if (profile.categories) lines.push(`核心品类：${profile.categories}`);
+  if (profile.monthly_revenue) lines.push(`客单价/月营收：${profile.monthly_revenue}`);
+  if (profile.team_size) lines.push(`团队规模：${profile.team_size} 人`);
+  if (profile.goals) lines.push(`当前目标：${profile.goals}`);
+  if (!lines.length) return '';
+  return `【商家经营档案】\n${lines.join('\n')}\n\n【商家问题】\n`;
+}
+
+function parseModelCards(content) {
+  if (!content) return [];
+  const clean = String(content).replace(/```json\s*/gi, '').replace(/```/g, '').trim();
+  const start = clean.indexOf('{');
+  if (start === -1) return [];
+  const end = clean.lastIndexOf('}');
+  if (end <= start) return [];
+  try {
+    const parsed = JSON.parse(clean.slice(start, end + 1));
+    if (!Array.isArray(parsed.cards)) return [];
+    return parsed.cards
+      .map((c) => ({
+        title: String(c.title || c.question || '').trim().slice(0, 180),
+        content: String(c.content || c.answer || '').trim().slice(0, 20000),
+        tags: Array.isArray(c.tags) ? c.tags.slice(0, 12).map((t) => String(t).slice(0, 40)) : [],
+      }))
+      .filter((c) => c.title && c.content);
+  } catch {
+    return [];
+  }
+}
+
+const PROFILE_ACTIONS = [
+  '先补齐经营档案中的客单价、核心品类与目标市场，再让 AI 做投放建议。',
+  '把历史客服问答上传到「专属知识库」，确认入库后 AI 会优先引用。',
+  '每周检查一次「质量与测试」，确认回答仍有知识证据支撑。',
+];
+
+async function distillUploadedText(text, filename) {
+  const settings = dao.getSettings();
+  const prompt = `你是电商知识库结构化专家。请把下面这份商家上传的资料拆成 1-5 张独立的问答知识卡。
+要求：
+1. 只能使用资料中出现的事实，不得补充资料中没有的政策、金额或承诺。
+2. 每张卡包含 title、content、tags（字符串数组）。
+3. 只输出 JSON 对象，不要解释、不要 Markdown 围栏。
+输出格式：{"cards":[{"title":"...","content":"...","tags":["..."]}]}
+
+文件名：${filename}
+资料正文：
+${String(text).slice(0, 8000)}`;
+  const result = await llm.complete(prompt, settings);
+  const cards = result?.content ? parseModelCards(result.content) : [];
+  if (cards.length) return { cards, model: result.model, provider: result.provider, distilled: true };
+  // 模型不可用或解析失败：退化为单张卡片，仍以 draft 入库，商家可确认
+  const firstLine = String(text).split('\n').map((s) => s.trim()).filter(Boolean)[0] || filename;
+  return {
+    cards: [{ title: firstLine.slice(0, 120), content: String(text).slice(0, 20000), tags: ['uploaded'] }],
+    model: null,
+    provider: null,
+    distilled: false,
+  };
+}
+
+function fallbackProfileAnalysis(profile) {
+  const parts = [];
+  if (profile.categories) parts.push(`核心品类「${profile.categories}」`);
+  if (profile.markets?.length) parts.push(`目标市场 ${profile.markets.join('、')}`);
+  if (profile.monthly_revenue) parts.push(`当前客单价/营收 ${profile.monthly_revenue}`);
+  const summary = parts.length
+    ? `已根据你的经营档案（${parts.join('，')}）建立上下文。建议先把该品类的历史问答上传到专属知识库，确认入库后再让 AI 生成投放与选品建议。`
+    : '经营档案还没有填写完整。补充客单价、核心品类和目标市场后，AI 回答会自动带上这些上下文。';
+  return { summary, actions: PROFILE_ACTIONS.slice(0, 3), model: null, provider: null };
+}
+
+async function analyzeProfileWithLlm(profile) {
+  const settings = dao.getSettings();
+  const prompt = `你是跨境电商经营顾问。根据下面的商家经营档案，给出 3-5 条具体、可执行的建议。
+要求：只输出 JSON 对象，不要解释。
+输出格式：{"summary":"一段 100 字以内的诊断","actions":["建议1","建议2","建议3"]}
+
+经营档案：
+${JSON.stringify(profile, null, 2)}`;
+  const result = await llm.complete(prompt, settings);
+  if (result?.content) {
+    try {
+      const clean = result.content.replace(/```json\s*/gi, '').replace(/```/g, '').trim();
+      const parsed = JSON.parse(clean.slice(clean.indexOf('{'), clean.lastIndexOf('}') + 1));
+      const summary = String(parsed.summary || '').trim();
+      const actions = Array.isArray(parsed.actions) ? parsed.actions.slice(0, 6).map((a) => String(a).slice(0, 300)) : [];
+      if (summary) return { summary, actions, model: result.model, provider: result.provider };
+    } catch { /* fall through */ }
+  }
+  return fallbackProfileAnalysis(profile);
 }
 
 async function handleV1(req, res, p, method) {
@@ -745,6 +846,109 @@ async function handleV1(req, res, p, method) {
     return json(res, 200, { tenant });
   }
 
+  // ---------------------------------------------------------------- 商家经营档案
+  if (p === '/api/v1/tenant-profile' && method === 'GET') {
+    const auth = requireV1(req, res);
+    if (!auth) return;
+    return json(res, 200, { profile: dao.getTenantProfile(auth.user.tenant_id) });
+  }
+  if (p === '/api/v1/tenant-profile' && method === 'PUT') {
+    const auth = requireV1(req, res);
+    if (!auth) return;
+    if (!requireRole(auth, res, 'agent')) return;
+    const b = await readBody(req, 100000);
+    const profile = dao.upsertTenantProfile(auth.user.tenant_id, {
+      business_name: b.business_name,
+      platforms: b.platforms,
+      markets: b.markets,
+      categories: b.categories,
+      monthly_revenue: b.monthly_revenue,
+      team_size: b.team_size,
+      goals: b.goals,
+    });
+    dao.logEvent('tenant_profile_saved', { tenantId: auth.user.tenant_id });
+    return json(res, 200, { profile });
+  }
+  if (p === '/api/v1/tenant-profile/analyze' && method === 'POST') {
+    const auth = requireV1(req, res);
+    if (!auth) return;
+    const profile = dao.getTenantProfile(auth.user.tenant_id);
+    if (!profile) return json(res, 400, { error: '请先保存经营概况，再让 AI 分析。' });
+    const analysis = await analyzeProfileWithLlm(profile);
+    const saved = dao.saveTenantProfileAi(auth.user.tenant_id, analysis.summary, analysis.actions);
+    dao.logEvent('tenant_profile_analyzed', { tenantId: auth.user.tenant_id, provider: analysis.provider || 'fallback' });
+    return json(res, 200, { profile: saved, summary: analysis.summary, actions: analysis.actions, model: analysis.model });
+  }
+
+  // ---------------------------------------------------------------- 商家专属知识库
+  if (p === '/api/v1/seller/knowledge' && method === 'GET') {
+    const auth = requireV1(req, res);
+    if (!auth) return;
+    return json(res, 200, { items: dao.listTenantKnowledge(auth.user.tenant_id) });
+  }
+  if (p === '/api/v1/seller/knowledge/upload' && method === 'POST') {
+    const auth = requireV1(req, res);
+    if (!auth) return;
+    if (!requireRole(auth, res, 'agent')) return;
+    const b = await readBody(req, 6000000);
+    const filename = String(b.filename || 'upload.txt').slice(0, 180);
+    let text = String(b.content || '').trim();
+    let pdfDetected = false;
+
+    if (!text && b.file_base64) {
+      let buffer;
+      try { buffer = Buffer.from(String(b.file_base64), 'base64'); } catch { buffer = null; }
+      if (!buffer || buffer.length === 0) return json(res, 400, { error: '文件内容为空或 base64 编码无效。' });
+      if (buffer.length > 5 * 1024 * 1024) return json(res, 413, { error: '文件超过 5MB 上限。' });
+      if (isPdfBuffer(buffer) || /\.pdf$/i.test(filename)) {
+        pdfDetected = true;
+        text = extractPdfText(buffer);
+        if (!text) return json(res, 422, { error: '这个 PDF 没有可提取的文本层（可能是扫描件）。请上传带文字的 PDF，或改用 TXT / Markdown。' });
+      } else {
+        text = buffer.toString('utf8').trim();
+      }
+    }
+    if (!text) return json(res, 400, { error: 'content 或 file_base64 至少提供一个。' });
+    if (text.length < 10) return json(res, 400, { error: '资料内容太短（至少 10 个字符）。' });
+    if (text.length > 200000) text = text.slice(0, 200000);
+
+    const distillation = await distillUploadedText(text, filename);
+    const created = [];
+    for (const card of distillation.cards) {
+      const item = dao.createTenantKnowledge(auth.user.tenant_id, {
+        id: id('kb'),
+        title: card.title,
+        content: card.content,
+        tags: card.tags,
+        language: detectLanguage(card.content) === 'en' ? 'en' : 'zh',
+        type: 'article',
+        category: '其他',
+        structured_payload: { question: card.title, answer: card.content, source_file: filename },
+      });
+      created.push(item);
+    }
+    dao.logEvent('tenant_knowledge_uploaded', {
+      tenantId: auth.user.tenant_id, filename, cards: created.length, diagnosed: distillation.distilled,
+    });
+    return json(res, 201, {
+      filename,
+      extracted_chars: text.length,
+      pdf: pdfDetected,
+      distilled: distillation.distilled,
+      model: distillation.model,
+      items: created,
+    });
+  }
+  const confirmSellerKb = p.match(/^\/api\/v1\/seller\/knowledge\/([^/]+)\/confirm$/);
+  if (confirmSellerKb && method === 'POST') {
+    const auth = requireV1(req, res);
+    if (!auth) return;
+    const item = dao.confirmTenantKnowledge(auth.user.tenant_id, confirmSellerKb[1]);
+    if (!item) return json(res, 404, { error: '知识卡不存在或不属于当前商家。' });
+    dao.logEvent('tenant_knowledge_confirmed', { tenantId: auth.user.tenant_id, knowledgeId: item.id });
+    return json(res, 200, { item });
+  }
+
   if (p === '/api/v1/sites' && method === 'GET') {
     const auth = requireV1(req, res);
     if (!auth) return;
@@ -918,8 +1122,12 @@ async function handleApi(req, res, url) {
     });
   }
   if (p === '/api/bootstrap' && method === 'GET') {
+    const bootstrapAuth = v1Auth(req);
+    const tenantId = bootstrapAuth?.user?.tenant_id;
     return json(res, 200, {
       settings,
+      profile: tenantId ? dao.getTenantProfile(tenantId) : null,
+      sellerKnowledge: tenantId ? dao.listTenantKnowledge(tenantId) : [],
       knowledge: dao.listGlobalKnowledge(),
       glossary: dao.listGlossary(),
       conversations: dao.listConversations(),
@@ -1016,6 +1224,10 @@ async function handleApi(req, res, url) {
     // 买家用 buyer 语料，后台会话/机器凭证用 seller 语料；两边的 SQL 都必须带 audience 硬过滤。
     const sellerRequest = Boolean(v1Auth(req)) || legacyKeyOk;
     const audience = sellerRequest ? 'seller' : 'buyer';
+    // 后台请求：把「经营概况」注入 Prompt，让 AI 回答带商家上下文
+    const chatAuth = v1Auth(req);
+    const chatProfile = chatAuth ? dao.getTenantProfile(chatAuth.user.tenant_id) : null;
+    const promptQuestion = profileContext(chatProfile) ? `${profileContext(chatProfile)}${question}` : question;
     // FinancialGuard 面向买家退款/赔付诉求；卖家后台问的是运营流程，不能被退款模板拦截。
     const streamFinancial = sellerRequest ? null : financialGuard(question);
     if (streamFinancial) {
@@ -1046,7 +1258,7 @@ async function handleApi(req, res, url) {
       if (!res.writableEnded) res.write(`data: ${JSON.stringify(payload)}\n\n`);
     };
     try {
-      let result = await llm.stream(question, hits, lang, settings, (token) => send({ token }));
+      let result = await llm.stream(promptQuestion, hits, lang, settings, (token) => send({ token }));
       if (!result || result.error) {
         const fallback = fallbackAnswer(question, hits, lang);
         send({ token: fallback.answer });
@@ -1073,6 +1285,9 @@ async function handleApi(req, res, url) {
     // 买家用 buyer 语料，后台会话/机器凭证用 seller 语料；两边的 SQL 都必须带 audience 硬过滤。
     const sellerRequest = Boolean(v1Auth(req)) || legacyKeyOk;
     const audience = sellerRequest ? 'seller' : 'buyer';
+    const chatAuth = v1Auth(req);
+    const chatProfile = chatAuth ? dao.getTenantProfile(chatAuth.user.tenant_id) : null;
+    const promptQuestion = profileContext(chatProfile) ? `${profileContext(chatProfile)}${question}` : question;
     // FinancialGuard 面向买家退款/赔付诉求；卖家后台问的是运营流程，不能被退款模板拦截。
     const chatFinancial = sellerRequest ? null : financialGuard(question);
     if (chatFinancial) {
@@ -1094,7 +1309,7 @@ async function handleApi(req, res, url) {
     }
     // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
     const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false, surface: 'seller_console' }));
-    let result = await llm.answer(question, hits, lang, settings);
+    let result = await llm.answer(promptQuestion, hits, lang, settings);
     const model = result?.provider && result?.answer ? result.model : 'extractive-fallback';
     if (!result || result.error) result = fallbackAnswer(question, hits, lang);
     const needsHuman = Boolean(result.needsHuman) || result.confidence < settings.confidenceThreshold || (settings.requireEvidence && !hits.length);

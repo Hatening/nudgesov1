@@ -294,5 +294,40 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
     }
   }
 
-  return { answer, stream, status };
+  /**
+   * 原始结构化补全：用于知识蒸馏 / 经营诊断等不依赖检索证据的任务。
+   * 返回 { content, model, provider } 或 null（未配置）。
+   */
+  async function complete(prompt, settings = {}) {
+    const provider = configuredProvider(settings);
+    if (!provider) return null;
+    if (now() < openUntil) return { error: 'circuit_open', provider };
+    totalCalls += 1;
+    const body = {
+      model: provider === 'openai' ? openaiModel : ollamaModel,
+      temperature,
+      messages: [
+        { role: 'system', content: '你是一个严谨的电商知识结构化助手。只输出合法 JSON，不要解释。' },
+        { role: 'user', content: prompt }
+      ]
+    };
+    if (responseFormat !== 'none') body.response_format = { type: responseFormat };
+    try {
+      const data = provider === 'openai'
+        ? await postJson(`${openaiBase}/chat/completions`, body, authHeaders())
+        : await postJson(`${ollamaUrl}/api/chat`, body);
+      const content = provider === 'openai' ? data.choices?.[0]?.message?.content : data.message?.content;
+      failures = 0;
+      lastError = '';
+      return { content: content || '', model: provider === 'openai' ? openaiModel : ollamaModel, provider, usage: data.usage || null };
+    } catch (error) {
+      failures += 1;
+      lastError = error.message;
+      totalFallbacks += 1;
+      if (failures >= failureThreshold) openUntil = now() + circuitCooldownMs;
+      return { error: error.message, provider };
+    }
+  }
+
+  return { answer, stream, complete, status };
 }
