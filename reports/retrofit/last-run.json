@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-21T05:41:19.427Z",
+  "backend": "http://192.168.3.227:3679/v1",
+  "model": "qwen3.8-35b-a3b@q5_k_m",
+  "selected": 2299,
+  "ok": 2262,
+  "skipped_short": 130,
+  "failed": 37,
+  "tokens": 1483689,
+  "seconds": 17241,
+  "concurrency": 4
+}

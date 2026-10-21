@@ -91,18 +91,28 @@ function main() {
   const db = openDatabase(DB_PATH);
   migrateSchema(db);
 
-  const findStmt = db.prepare('SELECT id FROM knowledge WHERE title = ? COLLATE NOCASE');
+  // 组合判重：title + locale + tenant_id + source_url（KB-STRUCT-001）
+  const findStmt = db.prepare(`
+    SELECT id FROM knowledge
+    WHERE title = ? COLLATE NOCASE
+      AND COALESCE(locale, 'en') = ?
+      AND COALESCE(tenant_id, 'global') = ?
+      AND COALESCE(source_url, '') = ?
+  `);
   const insertStmt = db.prepare(`
     INSERT INTO knowledge (
       id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content,
       status, audience, category, is_insight, created_at, updated_at,
-      source_type, source_id, review_status, evidence_json
-    ) VALUES (?, 'global', NULL, 'global', NULL, ?, 'article', ?, ?, ?, 'confirmed', ?, ?, ?, ?, ?, ?, ?, 'approved', ?)
+      source_type, source_id, source_url, review_status, evidence_json,
+      product_surface, locale, license_status, valid_from, valid_until, structured_payload
+    ) VALUES (?, 'global', NULL, 'global', NULL, ?, 'article', ?, ?, ?, 'confirmed', ?, ?, ?, ?, ?, ?, ?, ?, 'approved', ?,
+              ?, ?, ?, ?, ?, ?)
   `);
   const updateStmt = db.prepare(`
     UPDATE knowledge
     SET content = ?, tags_json = ?, audience = ?, category = ?, is_insight = ?,
-        source_type = ?, source_id = ?, evidence_json = ?, updated_at = ?
+        source_type = ?, source_id = ?, source_url = ?, evidence_json = ?, updated_at = ?,
+        product_surface = ?, locale = ?, license_status = ?
     WHERE id = ?
   `);
 
@@ -124,13 +134,21 @@ function main() {
       const tags = Array.isArray(card.tags) ? card.tags.map((t) => String(t).trim()).filter(Boolean) : [];
       const sourceType = sourceTypeOf(card.source);
       const sourceId = String(card.source || '');
+      const sourceUrl = card.source_url ? String(card.source_url) : '';
+      const locale = card.locale || (card.language ? String(card.language).slice(0, 8) : 'zh');
+      const surface = card.product_surface || (audience === 'seller' ? 'seller_console' : 'buyer_chat');
+      const licenseStatus = card.license_status || 'clear';
+      const validFrom = card.valid_from || null;
+      const validUntil = card.valid_until || null;
+      const structured = JSON.stringify(card.structured_payload || {});
       const isInsight = audience === 'seller' && OPERATIONAL_CATEGORIES.has(category) ? 1 : 0;
       const evidence = JSON.stringify([{ source: sourceId, chunk: card.chunk ?? null, model: card.model ?? null }]);
 
-      const existing = findStmt.get(question);
+      // 组合判重：title + locale + tenant_id + source_url
+      const existing = findStmt.get(question, locale, 'global', sourceUrl);
       if (existing) {
         if (!UPDATE) { skipped += 1; continue; }
-        updateStmt.run(answer.slice(0, 20000), JSON.stringify(tags), audience, category, isInsight, sourceType, sourceId, evidence, now, existing.id);
+        updateStmt.run(answer.slice(0, 20000), JSON.stringify(tags), audience, category, isInsight, sourceType, sourceId, sourceUrl, evidence, now, surface, locale, licenseStatus, existing.id);
         updated += 1;
         continue;
       }
@@ -138,8 +156,9 @@ function main() {
       const cacheId = `kb_${cacheKey(question, audience)}`;
       try {
         insertStmt.run(
-          cacheId, question.slice(0, 500), 'zh', JSON.stringify(tags), answer.slice(0, 20000),
-          audience, category, isInsight, now, now, sourceType, sourceId, evidence,
+          cacheId, question.slice(0, 500), card.language || 'zh', JSON.stringify(tags), answer.slice(0, 20000),
+          audience, category, isInsight, now, now, sourceType, sourceId, sourceUrl, evidence,
+          surface, locale, licenseStatus, validFrom, validUntil, structured,
         );
         inserted += 1;
       } catch (error) {

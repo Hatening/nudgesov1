@@ -51,6 +51,12 @@ function mapKnowledge(row) {
     audience: row.audience || 'buyer',
     category: row.category || '其他',
     is_insight: Boolean(row.is_insight),
+    product_surface: row.product_surface || 'general',
+    locale: row.locale || row.language || 'en',
+    license_status: row.license_status || 'clear',
+    valid_from: row.valid_from || null,
+    valid_until: row.valid_until || null,
+    structured_payload: parseJson(row.structured_payload, null),
     created_at: row.created_at,
     updated_at: row.updated_at,
     updatedAt: row.updated_at || row.created_at
@@ -345,22 +351,34 @@ export function createDao(db) {
   // Knowledge
   // audience: 'buyer' | 'seller' | 'all'（不传 = all）
   const audienceClause = (audience) => (audience && audience !== 'all' ? ` AND audience = '${audience === 'seller' ? 'seller' : 'buyer'}'` : '');
+  const VALID_SURFACES = new Set(['buyer_chat', 'seller_console', 'platform_support', 'internal', 'general']);
+  const surfaceClause = (surface) => (surface && VALID_SURFACES.has(surface)
+    ? ` AND product_surface IN ('${surface}', 'general')`
+    : '');
+  // 有效期：空表示长期有效；过期/未生效都不可检索。
+  const validityClause = () => " AND (valid_from IS NULL OR valid_from <= datetime('now')) AND (valid_until IS NULL OR valid_until >= datetime('now'))";
   // Chat/RAG must never see legally held or manually-audit-pending knowledge.
   // 语义：默认=管理/审计视角（全量）；检索链路必须显式传 { includeQuarantined: false }。
   const quarantineClause = (includeQuarantined) => (includeQuarantined === false
-    ? " AND status = 'confirmed' AND review_status NOT IN ('license_hold', 'needs_manual_audit', 'quarantined', 'rejected')"
+    ? ` AND status = 'confirmed' AND license_status <> 'hold' AND review_status NOT IN ('license_hold', 'needs_manual_audit', 'quarantined', 'rejected')${validityClause()}`
     : '');
 
-  dao.listGlobalKnowledge = (audience = 'all', options = {}) => db.prepare(`SELECT * FROM knowledge WHERE scope = 'global'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)} ORDER BY rowid DESC`).all().map(mapKnowledge);
+  dao.listGlobalKnowledge = (audience = 'all', options = {}) => db.prepare(`SELECT * FROM knowledge WHERE scope = 'global'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)}${surfaceClause(options.surface)} ORDER BY rowid DESC`).all().map(mapKnowledge);
   dao.countGlobalKnowledge = (audience = 'all') => Number(db.prepare(`SELECT COUNT(*) AS count FROM knowledge WHERE scope = 'global'${audienceClause(audience)}`).get().count || 0);
   dao.findGlobalKnowledge = (knowledgeId) => mapKnowledge(db.prepare("SELECT * FROM knowledge WHERE id = ? AND scope = 'global'").get(knowledgeId));
   dao.createGlobalKnowledge = (item) => {
     const audience = item.audience === 'seller' ? 'seller' : 'buyer';
     const category = item.category || '其他';
+    const locale = item.locale || (item.language ? String(item.language).slice(0, 8) : 'en');
+    const surface = item.product_surface || (audience === 'seller' ? 'seller_console' : 'buyer_chat');
+    const licenseStatus = item.license_status || 'clear';
     db.prepare(`INSERT INTO knowledge
-      (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, category, is_insight, created_at, updated_at)
-      VALUES (?, NULL, NULL, 'global', NULL, ?, ?, ?, ?, ?, 'confirmed', ?, ?, ?, ?, ?)`)
-      .run(item.id, item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content, audience, category, isInsightValue(audience, category, item.is_insight), item.created_at || now(), item.updated_at || now());
+      (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, category, is_insight, created_at, updated_at,
+       product_surface, locale, license_status, valid_from, valid_until, structured_payload)
+      VALUES (?, NULL, NULL, 'global', NULL, ?, ?, ?, ?, ?, 'confirmed', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+      .run(item.id, item.title, item.type || 'article', item.language || 'en', JSON.stringify(item.tags || []), item.content,
+        audience, category, isInsightValue(audience, category, item.is_insight), item.created_at || now(), item.updated_at || now(),
+        surface, locale, licenseStatus, item.valid_from || null, item.valid_until || null, JSON.stringify(item.structured_payload || {}));
     return dao.findGlobalKnowledge(item.id);
   };
 
@@ -417,7 +435,7 @@ export function createDao(db) {
     return Number(result.changes || 0) > 0;
   };
   dao.listSiteKnowledge = (siteId) => db.prepare('SELECT * FROM knowledge WHERE site_id = ? ORDER BY rowid').all(siteId).map(mapKnowledge);
-  dao.listConfirmedKnowledgeForSite = (siteId, audience = 'all', options = {}) => db.prepare(`SELECT * FROM knowledge WHERE site_id = ? AND status = 'confirmed'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)} ORDER BY rowid`).all(siteId).map(mapKnowledge);
+  dao.listConfirmedKnowledgeForSite = (siteId, audience = 'all', options = {}) => db.prepare(`SELECT * FROM knowledge WHERE site_id = ? AND status = 'confirmed'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)}${surfaceClause(options.surface)} ORDER BY rowid`).all(siteId).map(mapKnowledge);
   dao.createSiteKnowledge = (siteId, tenantId, doc) => {
     db.prepare(`INSERT INTO knowledge
       (id, tenant_id, site_id, scope, filename, title, type, language, tags_json, content, status, audience, created_at, updated_at)

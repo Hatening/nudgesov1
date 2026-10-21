@@ -322,11 +322,12 @@ function requireV1(req, res) {
   }
   return auth;
 }
-function corpusForSite(site, audience = 'buyer') {
-  const confirmed = dao.listConfirmedKnowledgeForSite(site.id, audience, { includeQuarantined: false });
+function corpusForSite(site, audience = 'buyer', surface = 'buyer_chat') {
+  const options = { includeQuarantined: false, surface };
+  const confirmed = dao.listConfirmedKnowledgeForSite(site.id, audience, options);
   if (confirmed.length) return confirmed;
-  // 站点没有自建语料时退回全局语料，但同样按受众和 quarantine 状态过滤。
-  return dao.listGlobalKnowledge(audience, { includeQuarantined: false });
+  // 站点没有自建语料时退回全局语料，但同样按受众、许可/有效期与产品面过滤。
+  return dao.listGlobalKnowledge(audience, options);
 }
 function stats() {
   return dao.stats();
@@ -506,7 +507,7 @@ async function handleV1(req, res, p, method) {
     if (!site) return json(res, 404, { error: 'Site not found.' });
     const b = await readBody(req, 2500000);
     const inputType = String(b.input_type || 'text');
-    const corpus = corpusForSite(site);
+    const corpus = corpusForSite(site, 'buyer', 'buyer_chat');
 
     if (inputType === 'voice') {
       const transcript = String(b.transcript || '').trim();
@@ -1022,7 +1023,7 @@ async function handleApi(req, res, url) {
       return;
     }
     // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
-    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false }));
+    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false, surface: 'seller_console' }));
     res.writeHead(200, {
       'content-type': 'text/event-stream; charset=utf-8',
       'cache-control': 'no-cache',
@@ -1079,7 +1080,7 @@ async function handleApi(req, res, url) {
       });
     }
     // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
-    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false }));
+    const hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false, surface: 'seller_console' }));
     let result = await llm.answer(question, hits, lang, settings);
     const model = result?.provider && result?.answer ? result.model : 'extractive-fallback';
     if (!result || result.error) result = fallbackAnswer(question, hits, lang);
@@ -1144,7 +1145,7 @@ async function handleApi(req, res, url) {
       { name: 'Chinese policy query', q: '我想申请退款，退货政策是什么？', expected: 'Returns and refunds', shouldGround: true }
     ];
     const results = cases.map((testCase) => {
-      const hits = rankKnowledge(testCase.q, dao.listGlobalKnowledge('all', { includeQuarantined: false }));
+      const hits = rankKnowledge(testCase.q, dao.listGlobalKnowledge('all', { includeQuarantined: false, surface: 'seller_console' }));
       const intent = inferIntent(testCase.q);
       const grounded = hits.length > 0;
       return { ...testCase, actualIntent: intent, grounded, pass: intent === testCase.expected && grounded === testCase.shouldGround };
