@@ -18,6 +18,7 @@ import { createDao } from '../src/dao.js';
 import { validateTranslation } from './lib/translate-validate.mjs';
 import { loadGlossary, glossaryPromptBlock } from './lib/glossary.mjs';
 import { checkBlindBox } from './lib/quality-guards.mjs';
+import { precheckCard } from './lib/precheck.mjs';
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
@@ -27,8 +28,8 @@ const arg = (name, fallback) => {
 };
 const has = (name) => args.includes(`--${name}`);
 const LIMIT = Number(arg('limit', '300'));
-const WORKERS = Math.max(1, Math.min(16, Number(arg('workers', '8'))));
-const BATCH_INDEX = Number(arg('batch', '1'));
+const WORKERS = Math.max(1, Math.min(16, Number(arg('workers', '3'))));
+let BATCH_INDEX = Number(arg('batch', '1'));
 const SPLIT_ONLY = has('split-only');
 const BATCH_DIR = path.resolve(arg('batch-dir', 'reports/translate/batches'));
 const DB_PATH = path.resolve(arg('db', '.data/full-batch.sqlite'));
@@ -198,7 +199,8 @@ async function splitBatches() {
   return files;
 }
 
-async function main() {
+async function runBatch(batchIndex) {
+  BATCH_INDEX = batchIndex;
   await fsp.mkdir(BATCH_DIR, { recursive: true });
   if (SPLIT_ONLY) { await splitBatches(); return; }
   const batchFile = path.join(BATCH_DIR, `batch-${String(BATCH_INDEX).padStart(4, '0')}.jsonl`);
@@ -232,7 +234,7 @@ async function main() {
   console.log(`[batch ${BATCH_INDEX}] cards=${cards.length} remaining_cards=${remainingCards.length} jobs=${jobs.length} workers=${WORKERS} completed_before=${completed.size}`);
 
   let cursor = 0;
-  const stats = { jobs: jobs.length, admitted: 0, local_basic: 0, local_sampled: 0, cloud: 0, manual: 0, local_attempts: 0, cloud_calls: 0, judge_calls: 0, tokens_in: 0, tokens_out: 0, local_ms: 0 };
+  const stats = { jobs: jobs.length, admitted: 0, local_basic: 0, local_sampled: 0, cloud: 0, manual: 0, precheck_reject: 0, local_attempts: 0, cloud_calls: 0, judge_calls: 0, tokens_in: 0, tokens_out: 0, local_ms: 0 };
   let writeChain = Promise.resolve();
   const append = (file, row) => {
     writeChain = writeChain.then(() => fsp.appendFile(file, JSON.stringify(row) + '\n')).catch(() => {});
@@ -253,6 +255,17 @@ async function main() {
 
   const runJob = async (job) => {
     const { card, lang, sampled } = job;
+    // 入池清洗门禁：垃圾数据直接进 manual_review，绝不调用任何模型/API
+    const pre = precheckCard(card);
+    if (!pre.ok) {
+      stats.manual += 1;
+      stats.precheck_reject += 1;
+      const rejected = { key: job.key, card_id: card.id, lang: lang.code, route: 'precheck_reject', reason: pre.reason, sampled, at: new Date().toISOString() };
+      await append(progressFile, rejected);
+      await append(manualFile, { ...rejected, title: card.title });
+      console.log(`[${job.key}] precheck_reject (${pre.reason})`);
+      return;
+    }
     let local = null;
     stats.local_attempts += 1;
     try {
@@ -364,6 +377,21 @@ async function main() {
   };
   await fsp.writeFile(path.join(BATCH_DIR, `batch-${String(BATCH_INDEX).padStart(4, '0')}.report.json`), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report, null, 2));
+}
+
+async function main() {
+  if (SPLIT_ONLY) { await splitBatches(); return; }
+  if (has('all')) {
+    if (!fs.existsSync(path.join(BATCH_DIR, 'manifest.json'))) await splitBatches();
+    const manifest = JSON.parse(fs.readFileSync(path.join(BATCH_DIR, 'manifest.json'), 'utf8'));
+    for (const batch of manifest.batches) {
+      if (Number(batch.no) < Number(arg('batch', '1'))) continue;
+      console.log(`\n=== running batch ${batch.no} (${batch.count} cards) ===`);
+      await runBatch(batch.no);
+    }
+    return;
+  }
+  await runBatch(Number(arg('batch', '1')));
 }
 
 main().catch((error) => { console.error('[fatal]', error.message); process.exit(1); });
