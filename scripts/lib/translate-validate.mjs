@@ -7,6 +7,9 @@
  *  3. 实体比对：原文中的数字与特殊符号必须原样出现在译文中
  */
 
+import { detect } from '../../vendor/tinyld.normal.node.mjs';
+import { checkGlossary } from './glossary.mjs';
+
 const EN_WORDS = new Set(`
 the a an and or of to in for on with is are was were be been being by at from this that these those
 it its as not no yes you your we our they their he she his her can could will would shall should may
@@ -145,6 +148,50 @@ export function checkLanguage(text, lang, script = 'Latn') {
   return { ok: true, stats };
 }
 
+export function detectLanguage(text) {
+  const clean = String(text || '').replace(/[0-9]/g, ' ').trim();
+  if (clean.length < 10) return null;
+  try { return detect(clean); } catch { return null; }
+}
+
+const SWAHILI_DETECTOR_CONFUSABLE = new Set(['tl', 'id', 'ms', 'rw', 'rn', 'ny', 'sn', 'ln', 'lg', 'sw']);
+
+/** 轻量语言检测库（tinyld）判定；斯瓦希里语短文本易被判成 Tagalog，保留停用词兜底。 */
+export function checkDetectedLanguage(text, lang) {
+  const detected = detectLanguage(text);
+  if (!detected) return { ok: true, detected: null, note: 'too_short' };
+  if (detected === lang) return { ok: true, detected };
+  if (lang === 'sw' && SWAHILI_DETECTOR_CONFUSABLE.has(detected)) {
+    const stats = languageStats(text, 'sw');
+    if (stats.targetHits >= 3) return { ok: true, detected, note: 'swahili_detector_ambiguous' };
+  }
+  return { ok: false, code: 'LANG_DETECTED_MISMATCH', detail: `detected ${detected}, expected ${lang}`, detected };
+}
+
+/** 50 字样本语法特征校验：检测器必须认同目标语；非英语文本英文功能词占比不得超过 20%。 */
+export function checkGrammarSample(text, lang) {
+  const clean = String(text || '').replace(/```[\s\S]*?```/g, ' ').replace(/[#*_>|]/g, ' ').trim();
+  const sample = clean.slice(0, 60);
+  const letters = (sample.match(/[A-Za-zÀ-ÿąćęłńóśźż\u0600-\u06FF\u0400-\u04FF\u0E00-\u0E7F]/g) || []).length;
+  if (letters >= 12) {
+    const detected = detectLanguage(sample);
+    if (detected && detected !== lang) {
+      const swOk = lang === 'sw' && SWAHILI_DETECTOR_CONFUSABLE.has(detected) && languageStats(clean, 'sw').targetHits >= 2;
+      if (!swOk) {
+        return { ok: false, code: 'GRAMMAR_SUSPECT', detail: `50-char sample detected ${detected}, expected ${lang}` };
+      }
+    }
+  }
+  if (lang !== 'en') {
+    const stats = languageStats(clean, lang);
+    const ratio = stats.tokens ? stats.englishHits / stats.tokens : 0;
+    if (stats.tokens >= 30 && ratio > 0.2) {
+      return { ok: false, code: 'MIXED_ENGLISH', detail: `English function-word ratio ${(ratio * 100).toFixed(0)}% > 20%` };
+    }
+  }
+  return { ok: true, note: 'ok' };
+}
+
 export function checkContent(source, translated) {
   const sourceContent = typeof source?.content === 'string' ? source.content : '';
   const translatedContent = typeof translated?.content === 'string' ? translated.content : '';
@@ -192,6 +239,20 @@ export function validateTranslation(source, translated, targetLang, options = {}
   const lang = checkLanguage(translatedText, targetLang, options.script || 'Latn');
   if (!lang.ok) failures.push({ code: lang.code, detail: lang.detail });
 
+  // 轻量语言检测库（tinyld）：彻底拦截混杂英文/语言误判
+  const detected = checkDetectedLanguage(translatedText, targetLang);
+  if (!detected.ok) failures.push({ code: detected.code, detail: detected.detail });
+
+  // 50 字样本语法结构校验
+  const grammar = checkGrammarSample(translatedText, targetLang);
+  if (!grammar.ok) failures.push({ code: grammar.code, detail: grammar.detail });
+
+  // 强制术语表
+  if (options.glossary) {
+    const glossary = checkGlossary(sourceText, translatedText, targetLang, options.glossary);
+    if (!glossary.ok) failures.push({ code: 'GLOSSARY_MISSING', detail: glossary.missing.map((m) => `${m.term}=>${m.expected.join('/')}`).join('; ') });
+  }
+
   const entities = checkEntities(sourceText, translatedText);
   if (!entities.ok) {
     failures.push({
@@ -200,5 +261,5 @@ export function validateTranslation(source, translated, targetLang, options = {}
     });
   }
 
-  return { ok: failures.length === 0, failures, stats: { keys, language: lang.stats, entities: entities.source } };
+  return { ok: failures.length === 0, failures, stats: { keys, language: lang.stats, detected: detected.detected, grammar: grammar.note, entities: entities.source } };
 }

@@ -24,6 +24,7 @@ import path from 'node:path';
 import { openDatabase, migrateSchema, closeDatabase } from '../src/db.js';
 import { createDao } from '../src/dao.js';
 import { validateTranslation } from './lib/translate-validate.mjs';
+import { loadGlossary, glossaryPromptBlock } from './lib/glossary.mjs';
 
 const ROOT = process.cwd();
 const args = process.argv.slice(2);
@@ -52,6 +53,7 @@ const LANG_TIER = langEntry?.tier || 1;
 const LANG_DISPLAY = langEntry?.name_zh || LANG_NAME[LANG] || LANG;
 const LANG_SCRIPT = langEntry?.script || 'Latn';
 const LOCALE_NEEDS_CLOUD = path.resolve('reports/translate/locale_needs_cloud.jsonl');
+const GLOSSARY = loadGlossary();
 const LOCAL_BASE = (process.env.LOCAL_BASE_URL || 'http://192.168.3.227:3679/v1').replace(/\/$/, '');
 const LOCAL_MODEL = process.env.LOCAL_MODEL_NAME || 'qwen3.8-35b-a3b@q5_k_m';
 const CLOUD_BASE = (process.env.CLOUD_BASE_URL || 'https://api.deepseek.com/v1').replace(/\/$/, '');
@@ -108,13 +110,14 @@ function extractJson(text) {
 }
 
 function buildPrompt(card) {
+  const glossaryBlock = glossaryPromptBlock(GLOSSARY, LANG_BASE);
   return `把下面 JSON 中的 title、content、tags 翻译成 ${LANG_DISPLAY}。
 硬性要求：
 1. 返回合法 JSON，Key 必须与输入完全一致（id / title / content / tags）。
 2. 数字、货币符号、百分比原样保留（例如 25%、500、$、€）。
 3. 品牌与指标缩写保留英文（ACOS、ROAS、CTR、SKU、Amazon）。
 4. 只输出 JSON，不要解释、不要 Markdown 围栏。
-
+${glossaryBlock ? `\n${glossaryBlock}\n` : ''}
 输入：
 ${JSON.stringify(card, null, 2)}`;
 }

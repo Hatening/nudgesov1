@@ -1,0 +1,12 @@
+{
+  "total": 5,
+  "local_pass": 3,
+  "cloud_localized": 2,
+  "cloud_failed": 0,
+  "entity_failures": 0,
+  "entity_rate": 0,
+  "admitted": 3,
+  "rejected": 2,
+  "db_inserted": 3,
+  "score_avg": 4
+}
