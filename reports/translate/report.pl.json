@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-21T12:09:44.743Z",
+  "lang": "pl",
+  "local_mode": "mock-english",
+  "cloud_mode": "real",
+  "input": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\sample-cards.jsonl",
+  "output": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\translated.pl.jsonl",
+  "pool": "D:\\Documents\\AI_Projects\\NudgeSo\\nudgev2\\reports\\translate\\cloud_retry_pool.jsonl",
+  "db": ".data/translate-e2e.sqlite",
+  "stats": {
+    "total": 1,
+    "local_ok": 0,
+    "local_failed": 1,
+    "cloud_ok": 1,
+    "cloud_failed": 0,
+    "db_inserted": 1,
+    "db_skipped": 0
+  },
+  "results": [
+    {
+      "id": "card-acos-001",
+      "route": "cloud_pending",
+      "local_failures": [
+        {
+          "code": "LANG_MISMATCH",
+          "detail": "no Polish diacritics/stopwords detected"
+        },
+        {
+          "code": "ENTITY_MISSING",
+          "detail": "numbers=[500,2000] symbols=[=,÷]"
+        }
+      ]
+    },
+    {
+      "id": "card-acos-001",
+      "route": "cloud",
+      "validation": "passed"
+    }
+  ]
+}
