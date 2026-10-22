@@ -22,7 +22,7 @@ const args = process.argv.slice(2);
 const has = (n) => args.includes(`--${n}`);
 const arg = (n, d) => { const i = args.indexOf(`--${n}`); return i > -1 && args[i + 1] ? args[i + 1] : d; };
 const BASE = (process.env.HARRIER_EMBED_URL || 'http://192.168.3.227:3679/v1').replace(/\/$/, '');
-const MODEL = process.env.HARRIER_MODEL || 'harrier-oss-v1-27b';
+const MODEL = process.env.HARRIER_MODEL || 'text-embedding-harrier-27b';
 const BATCH = Math.max(1, Number(arg('batch', process.env.HARRIER_BATCH || '4')));
 const LIMIT = Number(arg('limit', '0'));
 const ALL = has('all');

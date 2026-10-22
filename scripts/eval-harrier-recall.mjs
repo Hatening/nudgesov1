@@ -10,7 +10,7 @@ const INDEX = arg('index', '.data/harrier-index.json');
 const QUESTIONS = arg('questions', 'db/seed/qa_eval_set.jsonl');
 const OUT = arg('out', 'reports/eval/harrier-recall.json');
 const BASE = (process.env.HARRIER_EMBED_URL || 'http://192.168.3.227:3679/v1').replace(/\/$/, '');
-const MODEL = process.env.HARRIER_MODEL || 'harrier-oss-v1-27b';
+const MODEL = process.env.HARRIER_MODEL || 'text-embedding-harrier-27b';
 const BATCH = Number(arg('batch', '4'));
 const LIMIT = Number(arg('limit', '0'));
 

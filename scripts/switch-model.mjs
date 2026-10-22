@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * 单卡分时复用：Qwen 35B <-> Harrier 27B 一键切换。
+ * 单卡分时复用：Qwen 35B <-> Harrier 27B 一键切换（LM Studio REST API 优先）。
  *
  * 用法：
  *   node scripts/switch-model.mjs --model=harrier
@@ -8,26 +8,19 @@
  *   node scripts/switch-model.mjs --model=harrier --dry-run
  *
  * 环境变量：
- *   LMSTUDIO_LMS        lms.exe 路径（默认 ~/.lmstudio/bin/lms.exe）
- *   LOCAL_BASE_URL      LM Studio API（默认 http://192.168.3.227:3679/v1）
- *   QWEN_MODEL          默认 qwen3.8-35b-a3b@q5_k_m
- *   HARRIER_MODEL       默认 harrier-oss-v1-27b
- *   MODEL_SWITCH_CMD    可选：自定义命令模板，支持 {action} {model}
- *                       （用于远程主机，如 "ssh user@host lms {action} {model}"）
- *
- * 切换期间写 .data/engine-status.json，服务端返回 503 降级提示。
+ *   LOCAL_BASE_URL  默认 http://192.168.3.227:3679/v1
+ *   LM_API_TOKEN    LM Studio API token（如启用了鉴权）
+ *   QWEN_MODEL      默认 qwen3.8-35b-a3b@q5_k_m
+ *   HARRIER_MODEL   默认 text-embedding-harrier-27b
+ *   MODEL_SWITCH_CMD  REST 失败时的兜底命令模板，支持 {action} {model}
  */
 import fs from 'node:fs';
-import fsp from 'node:fs/promises';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const args = process.argv.slice(2);
 const arg = (name, fallback) => { const i = args.indexOf(`--${name}`); return i > -1 && args[i + 1] ? args[i + 1] : fallback; };
-const equalsArg = (name, fallback) => {
-  const hit = args.find((a) => a.startsWith(`--${name}=`));
-  return hit ? hit.slice(name.length + 3) : fallback;
-};
+const equalsArg = (name, fallback) => { const hit = args.find((a) => a.startsWith(`--${name}=`)); return hit ? hit.slice(name.length + 3) : fallback; };
 const modelKey = equalsArg('model', arg('model', ''));
 const dryRun = args.includes('--dry-run');
 if (!['qwen', 'harrier'].includes(modelKey)) {
@@ -36,81 +29,87 @@ if (!['qwen', 'harrier'].includes(modelKey)) {
 }
 
 const API = (process.env.LOCAL_BASE_URL || 'http://192.168.3.227:3679/v1').replace(/\/$/, '');
-const LMS = process.env.LMSTUDIO_LMS || path.join(process.env.USERPROFILE || '', '.lmstudio', 'bin', 'lms.exe');
+const ORIGIN = API.replace(/\/v1$/, '');
+const TOKEN = process.env.LM_API_TOKEN || '';
 const MODELS = {
   qwen: process.env.QWEN_MODEL || 'qwen3.8-35b-a3b@q5_k_m',
-  harrier: process.env.HARRIER_MODEL || 'harrier-oss-v1-27b',
+  harrier: process.env.HARRIER_MODEL || 'text-embedding-harrier-27b',
 };
-const STATUS = path.resolve('.data/engine-status.json');
 const target = MODELS[modelKey];
-const other = MODELS[modelKey === 'qwen' ? 'harrier' : 'qwen'];
+const STATUS = path.resolve('.data/engine-status.json');
 
 function writeStatus(state, message, extra = {}) {
   fs.mkdirSync(path.dirname(STATUS), { recursive: true });
   fs.writeFileSync(STATUS, JSON.stringify({ state, message, model: target, updated_at: new Date().toISOString(), ...extra }, null, 2));
 }
-function runCommand(command, timeout = 600000) {
-  return spawnSync(command, { shell: true, encoding: 'utf8', timeout });
+function headers() {
+  const h = { 'content-type': 'application/json' };
+  if (TOKEN) h.authorization = `Bearer ${TOKEN}`;
+  return h;
 }
-async function loadedModels() {
-  try {
-    const res = await fetch(`${API}/models`, { signal: AbortSignal.timeout(5000) });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return (data.data || []).map((m) => m.id);
-  } catch { return []; }
+async function lm(pathname, options = {}) {
+  const res = await fetch(`${ORIGIN}${pathname}`, { ...options, headers: { ...headers(), ...(options.headers || {}) }, signal: AbortSignal.timeout(120000) });
+  const text = await res.text();
+  let body; try { body = JSON.parse(text); } catch { body = text; }
+  if (!res.ok) throw new Error(`${pathname} HTTP ${res.status}: ${String(text).slice(0, 300)}`);
+  return body;
 }
-async function waitForModel(id, timeoutMs = 600000) {
+async function listModels() {
+  const data = await lm('/api/v0/models');
+  return data.data || [];
+}
+async function waitLoaded(id, timeoutMs = 600000) {
   const started = Date.now();
   while (Date.now() - started < timeoutMs) {
-    const models = await loadedModels();
-    if (models.some((m) => m === id || m.includes(id))) return true;
+    const models = await listModels();
+    const hit = models.find((m) => m.id === id);
+    if (hit?.state === 'loaded') return true;
     await new Promise((r) => setTimeout(r, 3000));
   }
   return false;
 }
-function switchWithTemplate(action) {
+function fallback(action, extra = {}) {
   const template = process.env.MODEL_SWITCH_CMD;
-  if (!template) return null;
+  if (!template) return false;
   const command = template.replaceAll('{action}', action).replaceAll('{model}', target);
-  const result = runCommand(command);
-  return { ok: result.status === 0, stdout: result.stdout, stderr: result.stderr, command };
+  const result = spawnSync(command, { shell: true, encoding: 'utf8', timeout: 600000 });
+  if (result.status !== 0) throw new Error(`fallback ${action} failed: ${result.stderr}`);
+  return true;
 }
 
 async function main() {
   console.log(`[switch] ${modelKey} -> ${target}`);
-  console.log(`[switch] api=${API} lms=${LMS}`);
-  const current = await loadedModels();
-  console.log(`[switch] currently loaded: ${current.join(', ') || '(none)'}`);
+  console.log(`[switch] api=${ORIGIN}`);
+  const models = await listModels();
+  const loaded = models.filter((m) => m.state === 'loaded');
+  console.log(`[switch] loaded: ${loaded.map((m) => m.id).join(', ') || '(none)'}`);
 
   if (dryRun) {
-    console.log('[dry-run] would unload all, then load', target);
-    if (process.env.MODEL_SWITCH_CMD) console.log('[dry-run] template:', process.env.MODEL_SWITCH_CMD.replaceAll('{model}', target));
+    console.log(`[dry-run] unload: ${loaded.map((m) => m.id).join(', ') || '(none)'}`);
+    console.log(`[dry-run] load: ${target}`);
     return;
   }
 
-  writeStatus('switching', '系统正在升级本地引擎，请稍候', { from: current });
+  writeStatus('switching', '系统正在升级本地引擎，请稍候', { from: loaded.map((m) => m.id) });
   try {
-    let unload = switchWithTemplate('unload');
-    if (!unload) {
-      if (!fs.existsSync(LMS)) throw new Error(`lms not found: ${LMS}; set LMSTUDIO_LMS or MODEL_SWITCH_CMD`);
-      unload = runCommand(`"${LMS}" unload --all`);
+    for (const model of loaded) {
+      console.log(`[switch] unload ${model.id}`);
+      await lm('/api/v1/models/unload', { method: 'POST', body: JSON.stringify({ instance_id: model.id }) });
     }
-    console.log('[switch] unload:', unload.stdout?.trim() || unload.stderr?.trim() || 'ok');
-    // 给显存释放留时间
-    await new Promise((r) => setTimeout(r, 4000));
+    await new Promise((r) => setTimeout(r, 3000));
 
-    let load = switchWithTemplate('load');
-    if (!load) {
-      const loadCmd = modelKey === 'harrier'
-        ? `"${LMS}" load "${target}" --gpu max --context-length 8192 --yes`
-        : `"${LMS}" load "${target}" --gpu max --context-length 32768 --yes`;
-      load = runCommand(loadCmd);
+    const contextLength = modelKey === 'harrier' ? 8192 : 32768;
+    const loadBody = { model: target, context_length: contextLength };
+    if (modelKey === 'qwen') loadBody.flash_attention = true;
+    console.log(`[switch] load ${target} (context ${contextLength})`);
+    try {
+      await lm('/api/v1/models/load', { method: 'POST', body: JSON.stringify(loadBody) });
+    } catch (error) {
+      console.error(`[switch] REST load failed: ${error.message}`);
+      if (!fallback('load')) throw error;
     }
-    console.log('[switch] load:', load.stdout?.trim() || load.stderr?.trim() || 'ok');
 
-    const ready = await waitForModel(target);
-    if (!ready) throw new Error(`model ${target} not visible at ${API}/models within timeout`);
+    if (!await waitLoaded(target)) throw new Error(`model ${target} not loaded within timeout`);
     writeStatus('ready', '本地引擎已就绪', { model: target });
     console.log(`[switch] ready: ${target}`);
   } catch (error) {
