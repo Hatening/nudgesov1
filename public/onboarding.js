@@ -6,6 +6,24 @@ let site = null;
 let draft = null;
 let selectedTemplate = 'restaurant';
 
+const STATE_KEY = 'nudgeso_onboarding_state';
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STATE_KEY);
+    if (!raw) return null;
+    const obj = JSON.parse(raw);
+    if (obj && typeof obj === 'object') return obj;
+  } catch (e) {}
+  return null;
+}
+function saveState(patch) {
+  const cur = loadState() || {};
+  const next = Object.assign({}, cur, patch);
+  try { localStorage.setItem(STATE_KEY, JSON.stringify(next)); } catch (e) {}
+  return next;
+}
+
 function showOnly(id) {
   for (const panel of panels) {
     const el = document.getElementById(panel);
@@ -74,8 +92,11 @@ $('#authForm').addEventListener('submit', async (event) => {
   busy(button, true);
   try {
     const data = await authenticate(email, password);
-    token = data.token;
+    token = data.token || data.access_token;
     localStorage.setItem('relaydesk_token', token);
+    if (data.refresh_token) localStorage.setItem('relaydesk_refresh_token', data.refresh_token);
+    localStorage.setItem('nudgeso_onboarding_pending', '1');
+    saveState({ step: 'site', siteId: null });
     showOnly('sitePanel');
     setStep('site');
   } catch (err) {
@@ -107,6 +128,7 @@ $('#createSite').addEventListener('click', async () => {
       body: JSON.stringify({ name, industry_template: selectedTemplate })
     });
     site = data.site;
+    saveState({ step: 'kb', siteId: site.id });
     showOnly('kbPanel');
     setStep('kb');
   } catch (err) {
@@ -137,7 +159,7 @@ $('#kbFile').addEventListener('change', async () => {
     draft = data.document;
     $('#kbPreview').textContent = draft.content;
     $('#kbDraft').classList.remove('hidden');
-    $('#kbStatus').textContent = '草稿 / Draft';
+    $('#kbStatus').textContent = '整理好了，等你确认 / Ready to check';
     $('#kbStatus').style.color = 'var(--muted)';
     button.disabled = false;
   } catch (err) {
@@ -164,6 +186,7 @@ $('#kbConfirm').addEventListener('click', async () => {
     const link = $('#standaloneUrl');
     link.href = embed.standalone_url;
     link.textContent = embed.standalone_url;
+    saveState({ step: 'embed', siteId: site.id });
     $('#embedPanel').classList.remove('hidden');
     setStep('embed');
     $('#embedPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -184,14 +207,54 @@ $('#copyEmbed').addEventListener('click', async () => {
   }
 });
 
+const finishBtn = $('#finishOnboarding');
+if (finishBtn) {
+  finishBtn.addEventListener('click', () => {
+    try {
+      localStorage.setItem('nudgeso_onboarding_done', '1');
+      localStorage.removeItem('nudgeso_onboarding_pending');
+    } catch (e) {}
+    location.href = '/';
+  });
+}
+
+async function loadEmbedCode(targetSite) {
+  const embed = await api(`/api/v1/sites/${encodeURIComponent(targetSite.id)}/embed-code`);
+  $('#embedSnippet').textContent = embed.snippet;
+  const link = $('#standaloneUrl');
+  link.href = embed.standalone_url;
+  link.textContent = embed.standalone_url;
+}
+
 (async function boot() {
   if (!token) return;
   try {
     await api('/api/v1/auth/me');
-    showOnly('sitePanel');
-    setStep('site');
   } catch {
     token = '';
     localStorage.removeItem('relaydesk_token');
+    return;
   }
+  const state = loadState();
+  if (state && state.siteId) {
+    try {
+      const data = await api('/api/v1/sites');
+      const items = data.items || [];
+      const found = items.find((s) => String(s.id) === String(state.siteId)) || items[0];
+      if (found) {
+        site = found;
+        if (state.step === 'embed') {
+          await loadEmbedCode(site);
+          showOnly('embedPanel');
+          setStep('embed');
+        } else {
+          showOnly('kbPanel');
+          setStep('kb');
+        }
+        return;
+      }
+    } catch (e) { /* fall through to site step */ }
+  }
+  showOnly('sitePanel');
+  setStep('site');
 })();

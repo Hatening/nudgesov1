@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+
+const API = 'http://127.0.0.1:3030';
+const PAGES = ['overview', 'inbox', 'assistant', 'knowledge', 'glossary', 'channels', 'languages', 'analytics', 'tests', 'growth', 'settings'];
+
+test('NudgeSo UI: login, 11 views render, independent pages load without errors', async ({ page, request }) => {
+  test.setTimeout(120_000);
+  const email = `ui-regression-${Date.now()}@example.test`;
+  const password = 'TestPass123!';
+  const registration = await request.post('/api/v1/auth/register', { data: { email, password } });
+  expect(registration.status()).toBe(201);
+  const auth = await registration.json();
+  const token = auth.access_token || auth.token;
+
+  const errors: string[] = [];
+  page.on('pageerror', (error) => errors.push(String(error)));
+  page.on('console', (message) => {
+    if (message.type() === 'error' && !message.text().includes('fonts.googleapis')) errors.push(message.text());
+  });
+
+  await page.addInitScript((value) => localStorage.setItem('relaydesk_token', value), token);
+  await page.goto('/');
+  await expect(page.locator('.app-shell')).toBeVisible();
+  await expect(page.locator('#page h1').first()).toContainText(/Hello|欢迎/i);
+
+  for (const name of PAGES) {
+    await page.evaluate((value) => document.querySelector(`[data-page="${value}"]`)?.click(), name);
+    await expect(page.locator('#page h1').first()).toBeVisible();
+  }
+  expect(errors, errors.join('\n')).toEqual([]);
+
+  for (const path of ['/insights.html', '/queue.html', '/upload.html', '/manual.html']) {
+    const response = await page.goto(path);
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('h1').first()).toBeVisible();
+  }
+});

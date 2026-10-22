@@ -7,8 +7,21 @@ function esc(value) {
   }[c]));
 }
 
-function badge(value, cls) {
-  return `<span class="badge ${esc(cls)}">${esc(value)}</span>`;
+function icon(name) {
+  return window.NS_ICON ? window.NS_ICON(name, 15) : '';
+}
+
+// 三通道状态标签：图标 + 文字 + 颜色
+function statusBadge(status) {
+  if (status === 'resolved') return `<span class="badge resolved">${icon('check')} 已处理</span>`;
+  if (status === 'in_review') return `<span class="badge in_review">${icon('clock')} 处理中</span>`;
+  return `<span class="badge pending">${icon('clock')} 等待中</span>`;
+}
+
+function riskBadge(level) {
+  if (level === 'high' || level === 'critical') return `<span class="badge high">${icon('alert')} 要紧</span>`;
+  if (level === 'low') return `<span class="badge low">${icon('check')} 不急</span>`;
+  return `<span class="badge medium">${icon('info')} 一般</span>`;
 }
 
 function render(items) {
@@ -16,6 +29,7 @@ function render(items) {
   rows.innerHTML = '';
   $('#queueCount').textContent = String(items.length);
   $('#emptyState').classList.toggle('hidden', items.length > 0);
+  document.querySelector('.table-card').classList.toggle('hidden', items.length === 0);
   for (const item of items) {
     const tr = document.createElement('tr');
     const financial = item.category === 'financial';
@@ -25,23 +39,19 @@ function render(items) {
     tr.dataset.risk = item.risk;
     tr.dataset.category = item.category || 'general';
     tr.dataset.priority = item.priority || 'normal';
-    if (urgent) {
-      tr.classList.add('urgent-row');
-      tr.style.background = '#fff1f2';
-      tr.style.boxShadow = 'inset 4px 0 0 #e11d48';
-    }
+    if (urgent) tr.classList.add('urgent-row');
     const resolveLabel = window.relaydeskI18n && window.relaydeskI18n.locale !== 'zh'
       ? window.relaydeskI18n.t('resolve')
       : '标记已处理';
     tr.innerHTML = `
-      <td class="message-cell">${esc(item.message)}</td>
-      <td class="site-cell">${esc(item.site_name || '')}</td>
-      <td>${esc(item.language || '')}</td>
-      <td>${esc(item.intent || '')}</td>
-      <td>${badge(item.risk_level || item.risk || 'high', urgent ? 'high' : (item.risk === 'high' ? 'high' : 'medium'))} ${financial ? badge('financial', 'high') : ''} ${urgent ? badge('urgent', 'high') : badge(item.priority || 'normal', 'medium')}</td>
-      <td>${badge(item.status || 'pending', item.status || 'pending')}</td>
-      <td>${esc(new Date(item.created_at).toLocaleString())}</td>
-      <td><div class="row-actions"><button class="btn small" type="button" data-action="resolve" data-id="${esc(item.id)}">${esc(resolveLabel)}</button></div></td>
+      <td class="message-cell" data-label="客户说的话">${esc(item.message)}</td>
+      <td data-label="店铺">${esc(item.site_name || '')}</td>
+      <td data-label="语言">${esc(item.language || '')}</td>
+      <td data-label="想问什么">${esc(item.intent || '')}</td>
+      <td data-label="要紧程度">${riskBadge(item.risk_level || item.risk)} ${financial ? '<span class="badge high">' + icon('alert') + ' 涉及钱</span>' : ''} ${urgent && !financial ? '<span class="badge high">' + icon('alert') + ' 很急</span>' : ''}</td>
+      <td data-label="状态">${statusBadge(item.status || 'pending')}</td>
+      <td data-label="时间">${esc(new Date(item.created_at).toLocaleString())}</td>
+      <td class="row-actions-cell" data-label="操作"><div class="row-actions"><button class="btn small" type="button" data-action="resolve" data-id="${esc(item.id)}">${icon('check')} ${esc(resolveLabel)}</button></div></td>
     `;
     rows.appendChild(tr);
   }
@@ -65,6 +75,11 @@ async function api(path, options = {}) {
   if (token) headers.authorization = `Bearer ${token}`;
   const response = await fetch(path, { ...options, headers });
   const data = await response.json().catch(() => ({}));
+  if (response.status === 401) {
+    try { localStorage.removeItem('relaydesk_token'); localStorage.removeItem('relaydesk_refresh_token'); } catch (e) {}
+    location.replace('/login.html?redirect=' + encodeURIComponent(location.pathname + location.search));
+    return data;
+  }
   if (!response.ok) throw new Error(data.error || `请求失败 / Request failed (${response.status})`);
   return data;
 }
@@ -72,8 +87,7 @@ async function api(path, options = {}) {
 async function load() {
   $('#queueError').textContent = '';
   if (!token) {
-    $('#queueError').textContent = '未登录，请先登录商家后台。/ Please log in first.';
-    $('#emptyState').classList.remove('hidden');
+    location.replace('/login.html?redirect=' + encodeURIComponent(location.pathname + location.search));
     return;
   }
   try {

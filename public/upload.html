@@ -3,92 +3,165 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>上传专属资料 · RelayDesk</title>
+<title>上传店铺资料 · NudgeSo</title>
+<script>(function(){try{if(!localStorage.getItem('relaydesk_token')){location.replace('/login.html?redirect='+encodeURIComponent(location.pathname+location.search));}}catch(e){}})();</script>
+<link rel="icon" href="/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <style>
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-  .top{height:62px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 24px;gap:14px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800}
-  .mark{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#6d6be5,#4544ba);color:#fff;display:grid;place-items:center}
-  .top a{margin-left:auto;font-size:13px;font-weight:650;color:#5b5bd6;text-decoration:none}
-  .wrap{max-width:900px;margin:0 auto;padding:26px 20px 60px}
-  h1{font-size:26px;letter-spacing:-.6px;margin:0 0 6px}
-  .sub{color:var(--muted);font-size:13px;margin:0 0 20px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:22px;margin-bottom:18px}
-  .drop{border:1.5px dashed #c9d1e0;border-radius:14px;padding:34px;text-align:center;color:#7b8798;background:#fbfcff;cursor:pointer;transition:.15s}
-  .drop:hover,.drop.on{border-color:#5b5bd6;background:#f7f7ff;color:#4e4bc5}
-  .drop strong{display:block;font-size:15px;margin-bottom:6px;color:#3b475a}
-  .file-row{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:13px;color:#5f6b7e;background:#f4f6fa;border-radius:9px;padding:10px 12px}
+  body{margin:0;background:var(--oat);color:var(--ink);font-family:"Asap","Baloo 2",ui-rounded,system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7}
+  h1,h2,h3{font-family:"Baloo 2","Asap",ui-rounded,sans-serif;line-height:1.25}
+  a{color:inherit}
+  .top{height:auto;min-height:64px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:12px 24px}
+  .brand{display:flex;align-items:center;gap:10px;color:var(--primary)}
+  .brand b{font-family:"Baloo 2",sans-serif;font-size:20px;color:var(--ink);letter-spacing:-.2px}
+  .brand small{display:block;font-size:13px;color:var(--muted);font-weight:500;font-family:"Asap",sans-serif}
+  .top-back{margin-left:auto;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);text-decoration:none;font-size:16px;font-weight:600;white-space:nowrap}
+  .top-back:hover{border-color:var(--primary);background:var(--primary-soft);color:var(--primary-dark)}
+  .wrap{max-width:1000px;margin:0 auto;padding:32px 20px 72px}
+  .head{margin-bottom:24px}
+  h1{font-size:36px;margin:0 0 8px}
+  .sub{color:var(--muted);font-size:18px;margin:0;max-width:640px}
+
+  /* 4-step guide */
+  .wsteps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0 26px}
+  .wstep{background:#fff;border:1.5px solid var(--line);border-radius:20px;padding:16px 14px;text-align:center}
+  .wstep .num{width:44px;height:44px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-family:"Baloo 2",sans-serif;font-size:20px;font-weight:700;margin:0 auto 10px}
+  .wstep .ico{color:var(--primary);display:block;margin:0 auto 8px}
+  .wstep p{margin:0;font-size:16px;font-weight:600;color:var(--ink);line-height:1.4}
+
+  .credit{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--line);border-left:6px solid var(--amber);border-radius:18px;padding:14px 18px;margin-bottom:22px;font-size:17px}
+  .credit .credit-ico{color:var(--amber);flex:0 0 auto}
+  .credit b{font-family:"Baloo 2",sans-serif;font-size:19px}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-card,24px);box-shadow:0 6px 20px rgba(38,43,51,.05);padding:26px;margin-bottom:22px}
+  .card h2{font-size:26px;margin:0 0 6px}
+  .card .hint{color:var(--muted);font-size:17px;margin:0 0 18px}
+
+  .drop{border:2.5px dashed var(--primary-light);border-radius:22px;padding:44px 24px;text-align:center;color:var(--muted);background:var(--cream);cursor:pointer;transition:.15s}
+  .drop:hover,.drop.on{border-color:var(--primary);background:var(--primary-soft);color:var(--primary-dark)}
+  .drop .ico{color:var(--primary);display:block;margin:0 auto 12px}
+  .drop strong{display:block;font-family:"Baloo 2",sans-serif;font-size:21px;margin-bottom:8px;color:var(--ink)}
+  .drop small{font-size:16px}
+
+  .file-row{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:17px;color:var(--ink);background:var(--cream);border:1.5px solid var(--line);border-radius:14px;padding:12px 16px;min-height:48px}
   .file-row[hidden]{display:none}
-  .btn{border:1px solid #e0e5ee;background:#fff;color:#46556b;border-radius:9px;padding:10px 16px;font:inherit;font-size:13px;font-weight:650;cursor:pointer}
-  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
-  .btn:disabled{opacity:.5;cursor:not-allowed}
-  .status{margin-top:14px;font-size:13px;padding:10px 12px;border-radius:10px;display:none}
-  .status.ok{display:block;background:#eefaf3;color:#17845a;border:1px solid #d8f0e3}
-  .status.err{display:block;background:#fff1f2;color:#b43743;border:1px solid #f6d9dc}
-  .status.info{display:block;background:#f2f5ff;color:#4e4bc5;border:1px solid #e2e6ff}
-  .credit-line{font-size:12.5px;color:#4e4bc5;background:#f2f5ff;border:1px solid #e2e6ff;border-radius:9px;padding:8px 12px;margin-bottom:16px}
-  .cost-hint{font-size:11px;color:#93a0b3;margin:10px 0 0;line-height:1.6}
-  .confirm{border:1.5px solid #f0c987;background:#fffdf5;border-radius:14px;padding:18px;margin-top:16px}
-  .confirm h3{margin:0 0 6px;font-size:15px;color:#8a5a12}
-  .confirm p{margin:0 0 10px;font-size:12.5px;color:#8a6a3a}
-  .confirm textarea{width:100%;min-height:160px;border:1px solid #e6d9bd;border-radius:10px;padding:12px;font:inherit;font-size:13.5px;line-height:1.6;box-sizing:border-box;background:#fff}
-  .confirm-actions{display:flex;gap:10px;margin-top:12px}
-  .cards{display:grid;gap:12px}
-  .kcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
-  .kcard h3{margin:0 0 6px;font-size:15px}
-  .kcard p{margin:0 0 10px;color:#5f6b7e;font-size:13px;line-height:1.6;white-space:pre-wrap;max-height:120px;overflow:auto}
-  .pill{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:3px 8px;background:#fff4e6;color:#b06a12;margin-right:6px}
-  .pill.ok{background:#eefaf3;color:#17845a}
-  .empty{color:#93a0b3;font-size:13px;text-align:center;padding:24px}
+  .file-row .fs{margin-left:auto;color:var(--muted);font-size:16px}
+
+  .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+  .btn{border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:16px;padding:14px 22px;font-family:inherit;font-size:18px;font-weight:600;cursor:pointer;min-height:52px;display:inline-flex;align-items:center;gap:8px}
+  .btn:hover{border-color:var(--primary);background:var(--primary-soft);color:var(--primary-dark)}
+  .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff;min-height:52px;box-shadow:0 6px 16px rgba(238,110,58,.28)}
+  .btn.primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);color:#fff}
+  .btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+  .cost-hint{font-size:15px;color:var(--muted);margin:14px 0 0;line-height:1.7}
+
+  .status{margin-top:16px;font-size:17px;padding:14px 16px;border-radius:14px;display:none;align-items:flex-start;gap:10px}
+  .status[hidden]{display:none}
+  .status.ok{display:flex;background:#E2F5EC;color:#137A56;border:1.5px solid #BFE8D5}
+  .status.err{display:flex;background:#FBE7E9;color:#B03A47;border:1.5px solid #F0C4CA}
+  .status.info{display:flex;background:var(--primary-soft);color:var(--primary-dark);border:1.5px solid #F8D3B8}
+
+  .confirm{border:2px solid var(--amber);background:#FFF9F0;border-radius:20px;padding:22px;margin-top:20px}
+  .confirm h3{margin:0 0 6px;font-size:21px;color:#9A6312;display:flex;align-items:center;gap:8px}
+  .confirm p{margin:0 0 12px;font-size:16px;color:#7A5A2A}
+  .confirm textarea{width:100%;min-height:180px;border:1.5px solid #EAD9B8;border-radius:14px;padding:14px;font-family:inherit;font-size:17px;line-height:1.7;box-sizing:border-box;background:#fff;color:var(--ink)}
+  .confirm-actions{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap}
+
+  .cards{display:grid;gap:14px}
+  .kcard{border:1.5px solid var(--line);border-radius:20px;padding:18px 20px;background:#fff}
+  .kcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .kcard h3{margin:0;font-size:20px}
+  .kcard p{margin:10px 0 12px;color:var(--muted);font-size:16px;line-height:1.7;white-space:pre-wrap;max-height:150px;overflow:auto}
+  .badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 12px;font-size:15px;font-weight:700;white-space:nowrap}
+  .badge.green{background:#E2F5EC;color:#137A56}
+  .badge.amber{background:#FDF0DC;color:#9A6312}
+  .kcard .btn{min-height:48px;padding:10px 18px;font-size:16px}
+  .empty{color:var(--muted);font-size:17px;text-align:center;padding:32px 12px}
+
+  @media(max-width:720px){
+    .wrap{padding:22px 16px 56px}
+    h1{font-size:30px}
+    .wsteps{grid-template-columns:1fr 1fr}
+    .btn{width:100%;justify-content:center}
+  }
 </style>
 </head>
 <body>
 <div class="top">
-  <div class="mark">R</div>
-  <div class="brand">RelayDesk<small style="display:block;font-size:10px;color:#7b8798;font-weight:500">Seller knowledge upload</small></div>
-  <a href="/">← 返回后台</a>
+  <div class="brand"><img src="/img/icon.png" alt="NudgeSo" style="height:40px;width:auto;display:block"></div>
+  <div><b>NudgeSo</b><small>上传店铺资料</small></div>
+  <a class="top-back" href="/" id="backHome"></a>
 </div>
 <div class="wrap">
-  <h1>上传专属资料</h1>
-  <p class="sub">支持 PDF / TXT / Markdown / 图片（PNG、JPG）。扫描件或图片会先走 OCR 识别，需你二次确认文字准确后再蒸馏入库。</p>
-  <div class="credit-line" id="creditLine">正在读取企业额度…</div>
+  <div class="head">
+    <h1>上传店铺资料</h1>
+    <p class="sub">把你的产品说明、发货规则、退货规则放进来。系统会自动读懂，然后用这些资料回答客户的问题。</p>
+  </div>
+
+  <div class="wsteps" aria-label="上传步骤">
+    <div class="wstep"><span class="num">1</span><span class="ico" data-ico="upload"></span><p>把资料拖进来</p></div>
+    <div class="wstep"><span class="num">2</span><span class="ico" data-ico="assistant"></span><p>系统自动读懂</p></div>
+    <div class="wstep"><span class="num">3</span><span class="ico" data-ico="info"></span><p>请你核对一下</p></div>
+    <div class="wstep"><span class="num">4</span><span class="ico" data-ico="check"></span><p>正式加入店铺</p></div>
+  </div>
+
+  <div class="credit" id="creditLine"><span class="credit-ico" data-ico="clock"></span><span>正在读取本月还能用多少次…</span></div>
 
   <div class="card">
     <div class="drop" id="drop">
-      <strong>点击选择文件，或拖拽到这里</strong>
-      支持 .pdf / .txt / .md / .png / .jpg / .jpeg，单文件不超过 5MB
+      <span class="ico" data-ico="upload"></span>
+      <strong>点这里选文件，或把文件拖到这里</strong>
+      <small>支持 PDF、TXT、Markdown、图片（PNG / JPG），单个文件不超过 5MB</small>
     </div>
     <input id="file" type="file" accept=".pdf,.txt,.md,.png,.jpg,.jpeg,application/pdf,text/plain,text/markdown,image/png,image/jpeg" hidden>
-    <div class="file-row" id="fileRow" hidden><span id="fileName"></span><span id="fileSize" style="margin-left:auto;color:#93a0b3"></span></div>
-    <div style="display:flex;gap:10px;margin-top:16px">
-      <button class="btn primary" id="upload" disabled>开始上传</button>
-      <button class="btn" id="refresh">刷新已上传资料</button>
+    <div class="file-row" id="fileRow"><span id="fileName"></span><span class="fs" id="fileSize"></span></div>
+    <div class="actions">
+      <button class="btn primary" id="upload" disabled></button>
+      <button class="btn" id="refresh"></button>
     </div>
-    <p class="cost-hint">计费：纯文本提取 2 Credits · 云端蒸馏另加 5 Credits · OCR 识别每页 10 Credits。额度不足时请求会被拦截（402）。</p>
+    <p class="cost-hint">图片和扫描版 PDF 会先认出里面的字，请你核对一遍再加入，这样答客户才不会出错。</p>
     <div class="status" id="status"></div>
     <div class="confirm" id="confirmPanel" hidden>
-      <h3>请二次确认 OCR 识别结果</h3>
-      <p>系统已从图片中提取以下文字（本次 OCR 将按页扣除 Credits）。请核对是否准确；可直接在下方修改，确认后再进入蒸馏与草稿入库流程。</p>
+      <h3><span data-ico="info"></span>系统认出了图片里的字，请你核对一下</h3>
+      <p>下面是系统从图片里认出来的内容。看看有没有认错的字，有错可以直接在框里改；没错就点下面的按钮加入店铺资料。</p>
       <textarea id="ocrText" spellcheck="false"></textarea>
       <div class="confirm-actions">
-        <button class="btn primary" id="confirmOcr">确认无误，继续蒸馏</button>
-        <button class="btn" id="cancelOcr">取消</button>
+        <button class="btn primary" id="confirmOcr"></button>
+        <button class="btn" id="cancelOcr"></button>
       </div>
     </div>
   </div>
 
   <div class="card">
-    <h2 style="font-size:16px;margin:0 0 14px">我的知识卡（草稿需确认入库）</h2>
-    <div class="cards" id="cards"><div class="empty">加载中…</div></div>
+    <h2>我的店铺资料</h2>
+    <p class="hint">下面是你上传过的资料。带「待确认」的还没生效，点一下确认就正式能用了。</p>
+    <div class="cards" id="cards"><div class="empty">正在读取…</div></div>
   </div>
 </div>
 
+<script src="/icons.js"></script>
 <script src="/vendor/pdf.min.js"></script>
 <script>
 (function () {
+  // ---- 内联图标填充（icons.js 已加载）----
+  function paintIcons(root) {
+    (root || document).querySelectorAll('[data-ico]').forEach(function (el) {
+      el.innerHTML = window.NS_ICON(el.getAttribute('data-ico'), el.classList.contains('credit-ico') ? 24 : 30);
+    });
+  }
+  document.getElementById('backHome').innerHTML = window.NS_ICON('chevron-right', 18) + ' <span>返回后台</span>';
+  document.getElementById('upload').innerHTML = window.NS_ICON('upload', 20) + ' <span>开始上传</span>';
+  document.getElementById('refresh').innerHTML = window.NS_ICON('refresh', 20) + ' <span>刷新一下</span>';
+  document.getElementById('confirmOcr').innerHTML = window.NS_ICON('check', 20) + ' <span>确认无误，加入店铺资料</span>';
+  document.getElementById('cancelOcr').innerHTML = window.NS_ICON('close', 20) + ' <span>取消</span>';
+  paintIcons();
+
   var TOKEN = localStorage.getItem('relaydesk_token') || '';
-  if (!TOKEN) { location.href = '/'; return; }
+  if (!TOKEN) { location.replace('/login.html?redirect='+encodeURIComponent(location.pathname+location.search)); return; }
   if (window.pdfjsLib) window.pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdf.worker.min.js';
 
   var drop = document.getElementById('drop');
@@ -116,9 +189,10 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  function setStatus(text, kind) {
-    statusBox.textContent = text;
+  function setStatus(html, kind) {
+    statusBox.innerHTML = html;
     statusBox.className = 'status ' + (kind || '');
+    paintIcons(statusBox);
   }
   function choose(file) {
     picked = file;
@@ -168,7 +242,7 @@
     return postJson('/api/v1/seller/knowledge/upload', { filename: filename, content: text });
   }
 
-  // PDF 扫描件：用 pdf.js 渲染前 3 页为 PNG，再交给云端 OCR
+  // PDF 扫描件：用 pdf.js 渲染前 3 页为 PNG，再交给云端识别
   async function renderPdfPages(dataUrl) {
     var binary = atob(String(dataUrl).split(',')[1] || '');
     var bytes = new Uint8Array(binary.length);
@@ -197,7 +271,7 @@
     ocrText.value = text;
     confirmPanel.hidden = false;
     confirmPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setStatus(note || 'OCR 完成，请在上方核对文字后点击「确认无误，继续蒸馏」。', 'info');
+    setStatus(note || '已经认出了图片里的字，请看上面核对一下。', 'info');
   }
 
   async function loadCredits() {
@@ -208,39 +282,40 @@
       var p = data.profile || {};
       var monthly = p.monthly_credits == null ? 100 : p.monthly_credits;
       var used = p.used_credits == null ? 0 : p.used_credits;
-      creditLine.textContent = '企业额度：剩余 ' + Math.max(0, monthly - used) + ' / ' + monthly + ' Credits（本月已用 ' + used + '）';
+      creditLine.innerHTML = window.NS_ICON('clock', 22) + '<span>这个月还能免费帮你回客户 <b>'
+        + Math.max(0, monthly - used) + '</b> 次（本月已用 ' + used + ' 次）</span>';
     } catch (error) {
-      creditLine.textContent = '企业额度读取失败';
+      creditLine.innerHTML = window.NS_ICON('clock', 22) + '<span>暂时读不到本月还能用多少次</span>';
     }
   }
 
   confirmBtn.addEventListener('click', async function () {
     var text = ocrText.value.trim();
-    if (text.length < 10) { setStatus('识别文字太短，请补充后再确认。', 'err'); return; }
+    if (text.length < 10) { setStatus(window.NS_ICON('alert', 20) + ' 认出的字太少了，请补一补再确认。', 'err'); return; }
     confirmBtn.disabled = true;
-    setStatus('正在调用模型蒸馏为知识卡…', 'info');
+    setStatus(window.NS_ICON('assistant', 20) + ' 系统正在读懂这些资料，请稍等…', 'info');
     try {
       var result = await uploadText(text, pendingFilename || 'scan.pdf');
       if (!result.ok) throw new Error(result.data.error || ('HTTP ' + result.status));
-      setStatus('已生成 ' + result.data.items.length + ' 张草稿卡，本次扣除 ' + (result.data.credits ? result.data.credits.charged : 0) + ' Credits，剩余 ' + (result.data.credits ? result.data.credits.remaining_credits : '—') + '。', 'ok');
+      setStatus(window.NS_ICON('check', 20) + ' 好啦，已经帮你整理成 ' + result.data.items.length + ' 条店铺资料，加在下面列表里了。', 'ok');
       confirmPanel.hidden = true;
       await load();
       await loadCredits();
     } catch (error) {
-      setStatus('蒸馏失败：' + error.message, 'err');
+      setStatus(window.NS_ICON('alert', 20) + ' 没成功：' + esc(error.message), 'err');
     } finally {
       confirmBtn.disabled = false;
     }
   });
   cancelBtn.addEventListener('click', function () {
     confirmPanel.hidden = true;
-    setStatus('已取消，未入库。你可以重新选择文件。', '');
+    setStatus(window.NS_ICON('close', 20) + ' 已取消，这条资料没有加进来。你可以重新选文件。', '');
   });
 
   uploadBtn.addEventListener('click', async function () {
     if (!picked) return;
     uploadBtn.disabled = true;
-    setStatus('处理中…', 'info');
+    setStatus(window.NS_ICON('assistant', 20) + ' 正在处理你的文件，请稍等…', 'info');
     try {
       var name = picked.name || 'upload';
       var isPdf = /\.pdf$/i.test(name) || picked.type === 'application/pdf';
@@ -250,7 +325,7 @@
         var imageUrl = await readAsBase64(picked);
         var ocrResult = await ocr([imageUrl]);
         if (!ocrResult.ok) throw new Error(ocrResult.data.error || ('OCR HTTP ' + ocrResult.status));
-        showConfirm(ocrResult.data.text, name, 'OCR 完成，本次扣除 ' + ocrResult.data.credits.charged + ' Credits（' + ocrResult.data.pages + ' 页），请核对文字。');
+        showConfirm(ocrResult.data.text, name, '已经认出了图片里的字（' + (ocrResult.data.pages || 1) + ' 页），请看上面核对一下。');
         await loadCredits();
         return;
       }
@@ -259,17 +334,17 @@
         var pdfUrl = await readAsBase64(picked);
         var firstTry = await postJson('/api/v1/seller/knowledge/upload', { filename: name, file_base64: pdfUrl.split(',')[1] });
         if (firstTry.ok) {
-          setStatus('PDF 文本层提取成功，已生成 ' + firstTry.data.items.length + ' 张草稿卡，本次扣除 ' + firstTry.data.credits.charged + ' Credits。', 'ok');
+          setStatus(window.NS_ICON('check', 20) + ' 好啦，已经帮你整理成 ' + firstTry.data.items.length + ' 条店铺资料，加在下面列表里了。', 'ok');
           await load();
           await loadCredits();
           return;
         }
         if (firstTry.status === 422 && firstTry.data.code === 'NEEDS_OCR') {
-          setStatus('检测到扫描件，正在渲染页面并调用云端 OCR…', 'info');
+          setStatus(window.NS_ICON('assistant', 20) + ' 这是扫描版文件，正在认出里面的字…', 'info');
           var images = await renderPdfPages(pdfUrl);
           var scanned = await ocr(images);
           if (!scanned.ok) throw new Error(scanned.data.error || ('OCR HTTP ' + scanned.status));
-          showConfirm(scanned.data.text, name, 'OCR 完成，本次扣除 ' + scanned.data.credits.charged + ' Credits（' + scanned.data.pages + ' 页），请核对文字。');
+          showConfirm(scanned.data.text, name, '已经认出了图片里的字（' + (scanned.data.pages || 1) + ' 页），请看上面核对一下。');
           await loadCredits();
           return;
         }
@@ -280,11 +355,11 @@
       var text = await readAsText(picked);
       var result = await uploadText(text, name);
       if (!result.ok) throw new Error(result.data.error || ('HTTP ' + result.status));
-      setStatus('已生成 ' + result.data.items.length + ' 张草稿卡，本次扣除 ' + result.data.credits.charged + ' Credits，剩余 ' + result.data.credits.remaining_credits + '。', 'ok');
+      setStatus(window.NS_ICON('check', 20) + ' 好啦，已经帮你整理成 ' + result.data.items.length + ' 条店铺资料，加在下面列表里了。', 'ok');
       await load();
       await loadCredits();
     } catch (error) {
-      setStatus(String(error.message).indexOf('额度不足') >= 0 ? '额度不足，请升级套餐' : ('处理失败：' + error.message), 'err');
+      setStatus(window.NS_ICON('alert', 20) + ' 没成功：' + esc(String(error.message).indexOf('额度不足') >= 0 ? '这个月免费次数用完了，请联系我们升级套餐。' : error.message), 'err');
     } finally {
       uploadBtn.disabled = false;
     }
@@ -299,33 +374,35 @@
       });
       var data = await res.json().catch(function () { return {}; });
       if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
-      setStatus('已确认入库：' + (data.item && data.item.title || id), 'ok');
+      setStatus(window.NS_ICON('check', 20) + ' 已确认加入：' + (data.item && data.item.title || id), 'ok');
       await load();
     } catch (error) {
-      setStatus('确认失败：' + error.message, 'err');
+      setStatus(window.NS_ICON('alert', 20) + ' 没成功：' + esc(error.message), 'err');
     }
   }
 
   async function load() {
     try {
       var res = await fetch('/api/v1/seller/knowledge', { headers: authHeaders() });
-      if (res.status === 401) { location.href = '/'; return; }
+      if (res.status === 401) { try{localStorage.removeItem('relaydesk_token');localStorage.removeItem('relaydesk_refresh_token');}catch(e){} location.replace('/login.html?redirect='+encodeURIComponent(location.pathname+location.search)); return; }
       var data = await res.json();
       var items = data.items || [];
-      if (!items.length) { cardsBox.innerHTML = '<div class="empty">还没有上传资料。选择上方文件开始。</div>'; return; }
+      if (!items.length) { cardsBox.innerHTML = '<div class="empty">还没有店铺资料。用上面的地方传第一份吧。</div>'; return; }
       cardsBox.innerHTML = items.map(function (item) {
         var draft = item.status !== 'confirmed';
-        return '<div class="kcard"><h3>' + esc(item.title) + '</h3>'
+        var badge = draft
+          ? '<span class="badge amber">' + window.NS_ICON('clock', 16) + ' 待确认</span>'
+          : '<span class="badge green">' + window.NS_ICON('check', 16) + ' 已生效</span>';
+        return '<div class="kcard"><div class="kcard-top"><h3>' + esc(item.title) + '</h3>' + badge + '</div>'
           + '<p>' + esc(String(item.content || '').slice(0, 280)) + '</p>'
-          + '<span class="pill' + (draft ? '' : ' ok') + '">' + esc(item.status) + '</span>'
-          + (draft ? '<button class="btn" data-confirm="' + esc(item.id) + '" style="padding:6px 12px;font-size:12px">确认入库</button>' : '')
+          + (draft ? '<button class="btn" data-confirm="' + esc(item.id) + '">' + window.NS_ICON('check', 18) + ' 确认加入</button>' : '')
           + '</div>';
       }).join('');
       Array.prototype.forEach.call(cardsBox.querySelectorAll('[data-confirm]'), function (btn) {
         btn.addEventListener('click', function () { confirmCard(btn.getAttribute('data-confirm')); });
       });
     } catch (error) {
-      cardsBox.innerHTML = '<div class="empty">加载失败：' + esc(error.message) + '</div>';
+      cardsBox.innerHTML = '<div class="empty">读取失败：' + esc(error.message) + '</div>';
     }
   }
 

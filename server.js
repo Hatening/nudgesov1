@@ -113,10 +113,10 @@ function applySecurityHeaders(req, res) {
   res.setHeader('Content-Security-Policy', [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline'",
-    "style-src 'self' 'unsafe-inline'",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "img-src 'self' data:",
     "connect-src 'self'",
-    "font-src 'self'",
+    "font-src 'self' https://fonts.gstatic.com",
     "frame-ancestors 'self'",
     "base-uri 'self'",
     "form-action 'self'"
@@ -1214,11 +1214,13 @@ async function handleApi(req, res, url) {
   if (p === '/api/bootstrap' && method === 'GET') {
     const bootstrapAuth = v1Auth(req);
     const tenantId = bootstrapAuth?.user?.tenant_id;
+    const demoKnowledge = dao.listGlobalKnowledge().filter((k) => k.status === 'confirmed' && /^kb_demo_/.test(k.id));
+    const tenantKnowledge = tenantId ? dao.listTenantKnowledge(tenantId) : [];
     return json(res, 200, {
       settings,
       profile: tenantId ? dao.getTenantProfile(tenantId) : null,
-      sellerKnowledge: tenantId ? dao.listTenantKnowledge(tenantId) : [],
-      knowledge: dao.listGlobalKnowledge(),
+      sellerKnowledge: tenantKnowledge,
+      knowledge: [...tenantKnowledge, ...demoKnowledge],
       glossary: dao.listGlossary(),
       conversations: dao.listConversations(),
       stats: dao.stats()

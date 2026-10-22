@@ -3,93 +3,112 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8fafc">
-  <title>RelayDesk — 商家上线 / Merchant onboarding</title>
+  <meta name="theme-color" content="#F3EAD8">
+  <title>NudgeSo — 一步步装好客服</title>
+  <link rel="icon" href="/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="/tailwind.vendor.js"></script>
   <link rel="stylesheet" href="/ui.css">
   <link rel="stylesheet" href="/onboarding.css">
 </head>
-<body class="min-h-screen bg-slate-100 text-slate-900 antialiased" data-page="onboarding">
-  <header class="topbar mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-5 sm:px-8">
-    <a class="brand inline-flex items-center gap-3" href="/" aria-label="RelayDesk home">
-      <span class="brand-mark grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-base font-extrabold text-white shadow-lg shadow-indigo-500/20">R</span>
-      <span><strong class="block text-sm font-bold tracking-tight text-slate-900">RelayDesk</strong><small class="block text-[11px] text-slate-500">商家上线 / Merchant onboarding</small></span>
+<body data-page="onboarding">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="NudgeSo home">
+      <img src="/img/logo-lockup.png" alt="NudgeSo" style="height:46px;width:auto;display:block">
     </a>
-    <a class="back-link rounded-lg px-2 py-1 text-xs font-medium text-slate-500 transition hover:bg-white hover:text-indigo-600" href="/">返回工作台 / Back to workspace</a>
+    <a class="back-link" href="/">返回后台</a>
   </header>
 
-  <main class="mx-auto grid max-w-6xl gap-8 px-4 pb-12 pt-2 sm:px-8 lg:grid-cols-[1.02fr_.98fr] lg:items-start lg:gap-12 lg:pt-6">
-    <section class="intro lg:sticky lg:top-8">
-      <p class="eyebrow text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600">FIRST PHASE · AC-01</p>
-      <h1 class="mt-3 max-w-xl text-4xl font-extrabold leading-[1.05] tracking-[-0.04em] text-slate-950 sm:text-5xl">把客服站点上线，<br class="hidden sm:block">从账号到嵌入代码。</h1>
-      <p class="lede mt-5 max-w-lg text-sm leading-7 text-slate-500">注册商家账号 → 新建站点并选择行业模板 → 上传并确认知识库 → 获取可复制的嵌入代码。</p>
-      <ol class="steps mt-8 grid gap-2.5" aria-label="Onboarding progress">
-        <li data-step="auth" class="step active flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-semibold transition"><span class="grid h-7 w-7 place-items-center rounded-lg text-[11px] font-bold">1</span>账号 / Account</li>
-        <li data-step="site" class="step flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-medium transition"><span class="grid h-7 w-7 place-items-center rounded-lg text-[11px] font-bold">2</span>站点 / Site</li>
-        <li data-step="kb" class="step flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-medium transition"><span class="grid h-7 w-7 place-items-center rounded-lg text-[11px] font-bold">3</span>知识 / Knowledge</li>
-        <li data-step="embed" class="step flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm font-medium transition"><span class="grid h-7 w-7 place-items-center rounded-lg text-[11px] font-bold">4</span>嵌入 / Embed</li>
+  <main class="ob-main">
+    <section class="intro">
+      <p class="eyebrow">一共 4 步，大约 5 分钟</p>
+      <h1>跟着走，一步步把客服装好</h1>
+      <p class="lede">创建账号 → 告诉我你的店铺 → 上传店铺资料 → 装到你的网站上。</p>
+      <ol class="steps" aria-label="Onboarding progress">
+        <li data-step="auth" class="step active"><span class="n">1</span>创建账号</li>
+        <li data-step="site" class="step"><span class="n">2</span>我的店铺</li>
+        <li data-step="kb" class="step"><span class="n">3</span>店铺资料</li>
+        <li data-step="embed" class="step"><span class="n">4</span>装上网站</li>
       </ol>
     </section>
 
-    <div class="min-w-0">
-      <section id="authPanel" class="card panel rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 sm:p-8" aria-labelledby="authTitle">
-        <p class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600">STEP 01</p>
-        <h2 id="authTitle" class="mt-2 text-2xl font-bold tracking-tight text-slate-950">商家登录 / 注册</h2>
-        <p class="muted mt-2 text-sm leading-6 text-slate-500">使用邮箱和密码注册；如果邮箱已存在，会自动切换到登录。</p>
-        <form id="authForm" class="mt-6 grid gap-4" novalidate>
-          <div><label class="mb-1.5 block text-xs font-semibold text-slate-600" for="email">邮箱 / Email</label><input id="email" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-500 transition focus:border-indigo-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-100" name="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
-          <div><label class="mb-1.5 block text-xs font-semibold text-slate-600" for="password">密码 / Password</label><input id="password" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-500 transition focus:border-indigo-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-100" name="password" type="password" autocomplete="current-password" placeholder="至少 6 位 / at least 6 characters" minlength="6" required></div>
-          <button id="authSubmit" class="btn primary mt-1 inline-flex w-full items-center justify-center rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-200" type="submit">注册 / 登录</button>
-          <p id="authError" class="error text-xs text-rose-600" role="alert"></p>
+    <div class="ob-panels">
+      <section id="authPanel" class="card panel" aria-labelledby="authTitle">
+        <p class="step-tag">第 1 步，共 4 步</p>
+        <h2 id="authTitle">创建账号</h2>
+        <p class="muted">填邮箱和密码就行。这个邮箱已经注册过的话，会自动帮你登录。</p>
+        <form id="authForm" class="ob-form" novalidate>
+          <div class="field">
+            <label for="email">邮箱</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="password">密码</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="至少 6 位" minlength="6" required>
+          </div>
+          <button id="authSubmit" class="btn primary ob-cta" type="submit">创建账号</button>
+          <p id="authError" class="error" role="alert"></p>
         </form>
       </section>
 
-      <section id="sitePanel" class="card panel hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 sm:p-8" aria-labelledby="siteTitle">
-        <p class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600">STEP 02</p>
-        <h2 id="siteTitle" class="mt-2 text-2xl font-bold tracking-tight text-slate-950">新建站点 / Create site</h2>
-        <p class="muted mt-2 text-sm leading-6 text-slate-500">一个商家可以创建多个站点；每个站点有自己的知识库和嵌入代码。</p>
-        <label class="mb-1.5 mt-6 block text-xs font-semibold text-slate-600" for="siteName">站点名称 / Site name</label>
-        <input id="siteName" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-500 transition focus:border-indigo-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-indigo-100" name="siteName" type="text" placeholder="例如：Northstar Goods 官网" required>
-        <h3 class="mb-2 mt-6 text-xs font-semibold text-slate-600">行业模板 / Industry template</h3>
-        <div id="templateGrid" class="template-grid grid grid-cols-2 gap-2 sm:grid-cols-3" role="group" aria-label="Industry template">
-          <button type="button" class="template selected rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-semibold text-slate-600 transition hover:border-indigo-300 hover:bg-indigo-50/50" data-template="restaurant">餐饮 / Restaurant</button>
-          <button type="button" class="template rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-semibold text-slate-600 transition hover:border-indigo-300 hover:bg-indigo-50/50" data-template="retail">零售 / Retail</button>
-          <button type="button" class="template rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-semibold text-slate-600 transition hover:border-indigo-300 hover:bg-indigo-50/50" data-template="clinic">诊所 / Clinic</button>
-          <button type="button" class="template rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-semibold text-slate-600 transition hover:border-indigo-300 hover:bg-indigo-50/50" data-template="local_service">本地服务 / Local service</button>
-          <button type="button" class="template rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs font-semibold text-slate-600 transition hover:border-indigo-300 hover:bg-indigo-50/50" data-template="cross_border">跨境 / Cross-border</button>
+      <section id="sitePanel" class="card panel hidden" aria-labelledby="siteTitle">
+        <p class="step-tag">第 2 步，共 4 步</p>
+        <h2 id="siteTitle">告诉我你的店铺</h2>
+        <p class="muted">起个店名，再选一个最像你家店的样子。以后想改随时能改。</p>
+        <label class="ob-label" for="siteName">店铺叫什么名字</label>
+        <input id="siteName" class="ob-input" name="siteName" type="text" placeholder="例如：Northstar Goods 官网" required>
+        <h3 class="ob-h3">你家店最像哪一种？</h3>
+        <div id="templateGrid" class="template-grid" role="group" aria-label="Industry template">
+          <button type="button" class="template selected" data-template="restaurant"><span class="t-ico" data-ico="shop"></span>餐饮</button>
+          <button type="button" class="template" data-template="retail"><span class="t-ico" data-ico="globe"></span>零售小店</button>
+          <button type="button" class="template" data-template="clinic"><span class="t-ico" data-ico="shield"></span>诊所</button>
+          <button type="button" class="template" data-template="local_service"><span class="t-ico" data-ico="home"></span>本地服务</button>
+          <button type="button" class="template" data-template="cross_border"><span class="t-ico" data-ico="languages"></span>跨境卖货</button>
         </div>
-        <button id="createSite" class="btn primary mt-6 inline-flex w-full items-center justify-center rounded-xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-200" type="button">创建站点 / Create site</button>
-        <p id="siteError" class="error mt-3 text-xs text-rose-600" role="alert"></p>
+        <button id="createSite" class="btn primary ob-cta" type="button">下一步：店铺资料</button>
+        <p id="siteError" class="error" role="alert"></p>
       </section>
 
-      <section id="kbPanel" class="card panel hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 sm:p-8" aria-labelledby="kbTitle">
-        <p class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600">STEP 03</p>
-        <h2 id="kbTitle" class="mt-2 text-2xl font-bold tracking-tight text-slate-950">知识库上传 / Knowledge upload</h2>
-        <p class="muted mt-2 text-sm leading-6 text-slate-500">上传一个 ≤1 MB 的文本文件（.txt / .md）。系统会生成草稿，确认后才会进入知识库。</p>
-        <label class="mb-1.5 mt-6 block text-xs font-semibold text-slate-600" for="kbFile">知识文件 / Knowledge file</label>
-        <input id="kbFile" class="block w-full cursor-pointer rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-xs text-slate-500 file:mr-3 file:rounded-lg file:border-0 file:bg-indigo-50 file:px-3 file:py-2 file:text-xs file:font-semibold file:text-indigo-700 hover:file:bg-indigo-100" type="file" accept=".txt,.md,text/plain">
-        <p id="kbFileName" class="file-name mt-2 text-xs text-slate-500"></p>
-        <div id="kbDraft" class="draft mt-5 hidden rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <h3 class="text-xs font-bold text-slate-700">知识草稿 / Knowledge draft</h3>
-          <pre id="kbPreview" class="snippet mt-3 max-h-64 overflow-auto rounded-xl bg-slate-950 p-4 text-[11px] leading-5 text-slate-200"></pre>
-          <button id="kbConfirm" class="btn primary mt-4 inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-semibold text-white shadow-md shadow-indigo-500/20 transition hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-200" type="button">确认知识库 / Confirm</button>
-          <p id="kbStatus" class="status mt-3 text-xs font-medium text-slate-500" role="status"></p>
+      <section id="kbPanel" class="card panel hidden" aria-labelledby="kbTitle">
+        <p class="step-tag">第 3 步，共 4 步</p>
+        <h2 id="kbTitle">上传店铺资料</h2>
+        <p class="muted">把产品说明、发货时间、退货规则写成一个文字文件（.txt / .md，不超过 1MB）传上来。系统会自动读懂。</p>
+        <label class="ob-label" for="kbFile">选一个资料文件</label>
+        <input id="kbFile" class="ob-file" type="file" accept=".txt,.md,text/plain">
+        <p id="kbFileName" class="file-name"></p>
+        <div id="kbDraft" class="draft hidden">
+          <h3>系统帮你整理好了，看看对不对</h3>
+          <pre id="kbPreview" class="snippet"></pre>
+          <button id="kbConfirm" class="btn primary ob-cta" type="button"><span class="lbl">对，就用这些资料</span></button>
+          <p id="kbStatus" class="status" role="status"></p>
         </div>
-        <p id="kbError" class="error mt-3 text-xs text-rose-600" role="alert"></p>
+        <p id="kbError" class="error" role="alert"></p>
       </section>
 
-      <section id="embedPanel" class="card panel hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/60 sm:p-8" aria-labelledby="embedTitle">
-        <p class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-indigo-600">STEP 04</p>
-        <h2 id="embedTitle" class="mt-2 text-2xl font-bold tracking-tight text-slate-950">嵌入代码 / Embed code</h2>
-        <p class="muted mt-2 text-sm leading-6 text-slate-500">将下面的代码放到你的店铺页面，或直接使用独立页链接。</p>
-        <pre id="embedSnippet" class="snippet mt-5 overflow-auto rounded-2xl bg-slate-950 p-4 text-[11px] leading-6 text-indigo-100"></pre>
-        <button id="copyEmbed" class="btn mt-4 inline-flex items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 shadow-sm transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-700" type="button">复制代码 / Copy code</button>
-        <p class="standalone mt-4 break-all text-xs text-slate-500">独立页 / Standalone page: <a id="standaloneUrl" class="font-medium text-indigo-600 underline decoration-indigo-200 underline-offset-2" href="#" target="_blank" rel="noopener"></a></p>
-        <p id="copyStatus" class="status mt-3 text-xs font-medium text-slate-500" role="status"></p>
+      <section id="embedPanel" class="card panel hidden" aria-labelledby="embedTitle">
+        <p class="step-tag">第 4 步，共 4 步</p>
+        <h2 id="embedTitle">装到你的网站上</h2>
+        <p class="muted">把下面这段代码复制下来，发给做你网站的人，让他粘贴到网页里就好了。</p>
+        <pre id="embedSnippet" class="snippet"></pre>
+        <button id="copyEmbed" class="btn ob-cta" type="button"><span class="lbl">复制这段代码</span></button>
+        <p class="standalone">独立页地址：<a id="standaloneUrl" href="#" target="_blank" rel="noopener"></a></p>
+        <p id="copyStatus" class="status" role="status"></p>
+        <button id="finishOnboarding" class="btn primary ob-cta" type="button" style="margin-top:14px">进入后台 / Start using NudgeSo</button>
       </section>
     </div>
   </main>
 
+  <script src="/icons.js"></script>
+  <script>
+  (function () {
+    document.querySelectorAll('[data-ico]').forEach(function (el) {
+      el.innerHTML = window.NS_ICON(el.getAttribute('data-ico'), 24);
+    });
+  })();
+  </script>
   <script src="/i18n.js" defer></script>
   <script src="/onboarding.js" defer></script>
 </body>

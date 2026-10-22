@@ -1,0 +1,59 @@
+/* NudgeSo — independent sign-in page */
+:root{
+  --primary:#EE6E3A; --primary-dark:#C8541F; --primary-soft:#FDEBDD;
+  --oat:#F3EAD8; --cream:#F7F4EC; --ink:#262B33; --muted:#5b6470;
+  --line:#E7DFCF; --red:#D95C68; --green:#18A874;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Asap",ui-rounded,system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:
+    radial-gradient(900px 520px at 85% 12%, var(--oat) 0%, var(--cream) 60%);
+  color:var(--ink); min-height:100vh; display:flex; flex-direction:column;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--primary-dark);text-decoration:none;font-weight:600}
+a:hover{text-decoration:underline}
+.topbar{
+  display:flex;align-items:center;gap:10px;padding:18px 24px;max-width:1100px;width:100%;margin:0 auto;
+}
+.topbar img{height:36px;width:auto;display:block}
+.hero-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 20px 56px}
+.card{
+  width:100%;max-width:440px;background:#fff;border:1.5px solid var(--line);
+  border-radius:26px;box-shadow:0 18px 50px rgba(38,43,51,.10);padding:36px 32px;
+}
+.brand-row{display:flex;justify-content:center;margin-bottom:14px}
+.brand-row img{height:64px;width:auto;display:block}
+h1{font-family:"Baloo 2","Asap",ui-rounded,sans-serif;font-size:28px;text-align:center;line-height:1.2}
+.sub{text-align:center;color:var(--muted);font-size:15px;line-height:1.6;margin:10px 0 24px}
+.field{margin-bottom:16px}
+label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
+input{
+  width:100%;border:1.5px solid var(--line);border-radius:14px;padding:14px 15px;
+  font:inherit;font-size:16px;background:var(--cream);color:var(--ink);
+}
+input:focus{outline:3px solid var(--primary-soft);border-color:var(--primary);background:#fff}
+.row-between{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:-4px 0 18px;font-size:14px}
+.btn-primary{
+  width:100%;min-height:52px;border:none;border-radius:999px;background:var(--primary);color:#fff;
+  font:inherit;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(238,110,58,.28);
+  transition:background .15s ease;
+}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-primary:disabled{background:#E4E1DA;color:#A6A9AF;cursor:not-allowed;box-shadow:none}
+.error{color:var(--red);font-weight:600;font-size:14px;min-height:20px;margin:6px 0 4px;text-align:center}
+.note{
+  display:none;background:var(--primary-soft);border:1.5px dashed var(--primary);border-radius:14px;
+  padding:12px 14px;font-size:14px;line-height:1.6;color:var(--ink);margin:10px 0;
+}
+.note.show{display:block}
+.signup-line{text-align:center;margin-top:18px;font-size:15px;color:var(--muted)}
+.foot{
+  text-align:center;color:var(--muted);font-size:13px;padding:20px;border-top:1px solid var(--line);
+}
+@media(max-width:480px){
+  .card{padding:28px 22px;border-radius:22px}
+  h1{font-size:25px}
+}

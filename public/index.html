@@ -1,4 +1,134 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f6f8fc"><title>RelayDesk — Global support workspace</title><link rel="stylesheet" href="/styles.css"></head>
-<body><div class="app-shell"><aside class="sidebar"><div class="brand"><div class="brand-mark">R</div><div><strong>RelayDesk</strong><small>Support workspace</small></div></div><div class="workspace"><div class="store-avatar">N</div><div class="workspace-copy"><strong id="storeNameSide">Northstar Goods</strong><small>Free workspace</small></div><span class="chevron">⌄</span></div><nav id="nav"><div class="nav-label">WORKSPACE</div><button class="nav-item active" data-page="overview"><span>◫</span> Overview</button><button class="nav-item" data-page="inbox"><span>▤</span> Inbox <i id="openCount">3</i></button><button class="nav-item" data-page="assistant"><span>✳</span> AI assistant</button><button class="nav-item" data-page="knowledge"><span>▧</span> Knowledge base</button><button class="nav-item" data-page="glossary"><span>文</span> Terminology</button><button class="nav-item" data-page="channels"><span>⌘</span> Channels</button><button class="nav-item" data-page="languages"><span>◎</span> Languages</button><div class="nav-label">INSIGHTS</div><button class="nav-item" data-page="analytics"><span>▥</span> Analytics</button><button class="nav-item" data-page="tests"><span>✓</span> Quality & tests</button><button class="nav-item" data-page="growth"><span>↗</span> Seller briefings</button><div class="nav-label">SELLER TOOLS</div><a class="nav-item" href="/upload.html"><span>⇪</span> 上传专属资料</a><a class="nav-item" href="/manual.html"><span>?</span> 使用指南</a><div class="nav-label">ADMIN</div><button class="nav-item" data-page="settings"><span>⚙</span> Settings</button></nav><div class="sidebar-bottom"><div class="plan-box" style="margin-bottom:10px"><div class="plan-top"><span class="plan-dot"></span><strong>企业额度</strong><span class="plan-count" id="creditCount">—</span></div><div class="meter"><span id="creditBar" style="width:0%"></span></div><small id="creditText">本月剩余 Credits</small></div><div class="plan-box"><div class="plan-top"><span class="plan-dot"></span><strong>Free plan</strong><span class="plan-count">68 / 200</span></div><div class="meter"><span style="width:34%"></span></div><small>Replies used this month</small><button class="upgrade-small" data-page="settings">Explore plans <span>→</span></button></div><div class="profile"><div class="profile-avatar">NS</div><div><strong>Northstar team</strong><small>Store admin</small></div><span class="more">•••</span></div></div></aside>
-<main class="main"><header class="topbar"><div class="crumb"><span>Workspace</span><b>/</b><strong id="pageCrumb">Overview</strong></div><div class="top-actions"><a class="btn small primary" href="/onboarding.html" style="text-decoration:none">商家登录 / 注册</a><div class="status-pill"><span></span> All systems operational</div><button class="icon-btn" title="Help">?</button><button class="icon-btn" title="Notifications">♧<em></em></button><div class="top-avatar">NS</div></div></header><section id="page" class="page-content"></section><footer class="footer"><span>RelayDesk MVP · Self-hostable support workspace</span><span><span class="green-dot"></span> Local workspace <span class="footer-sep">·</span> <a href="/api/health" target="_blank">API status</a></span></footer></main></div><div id="toast" class="toast" role="status"></div><script src="/app.js" defer></script></body></html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F3EAD8">
+<title>NudgeSo — Calm Customer Support</title>
+<script>
+/* Client-side route gate (runs before render). */
+(function(){
+  try{
+    var hasToken=!!localStorage.getItem('relaydesk_token');
+    if(!hasToken){location.replace('/landing.html');return;}
+    var pending=localStorage.getItem('nudgeso_onboarding_pending');
+    var done=localStorage.getItem('nudgeso_onboarding_done');
+    if(pending==='1' && done!=='1'){location.replace('/onboarding.html');}
+  }catch(e){}
+})();
+</script>
+<link rel="icon" href="/favicon/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="/img/logo-lockup.png" alt="NudgeSo — Calm Customer Support" class="brand-logo">
+    </div>
+
+    <div class="workspace">
+      <div class="store-avatar">N</div>
+      <div class="workspace-copy"><strong id="storeNameSide">My store</strong><small>www.nudgeso.com</small></div>
+    </div>
+
+    <nav id="nav">
+      <div class="nav-label">What you do each day</div>
+      <button class="nav-item active" data-page="overview">
+        <svg class="ns-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9.5 20v-6h5v6"/></svg>
+        Home</button>
+      <button class="nav-item" data-page="inbox">
+        <svg class="ns-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5z"/></svg>
+        Customer messages <i id="openCount">0</i></button>
+      <button class="nav-item" data-page="knowledge">
+        <svg class="ns-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1.5-5h13L20 9"/><path d="M4 9a2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0 2.5 2.5 0 0 0 5 0"/><path d="M5 11v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/><path d="M9 20v-5h6v5"/></svg>
+        My store info</button>
+      <a class="nav-item" href="/manual.html">
+        <svg class="ns-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.2 9.2a2.8 2.8 0 0 1 5.5.9c0 1.8-2.7 2.3-2.7 3.9"/><path d="M12 17.2h.01"/></svg>
+        Help &amp; guide</a>
+
+      <details class="advanced-fold">
+        <summary>
+          <svg class="ns-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.5M12 18.5V21M4.2 7l2.1 1.2M17.7 15.8l2.1 1.2M4.2 17l2.1-1.2M17.7 8.2l2.1-1.2"/></svg>
+          Advanced · rarely used
+          <svg class="ns-icon fold-caret" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="advanced-note">Usually already set for you — most owners never need these.</div>
+        <button class="nav-item" data-page="assistant">
+          <svg class="ns-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/></svg>
+          AI helper</button>
+        <button class="nav-item" data-page="glossary">
+          <svg class="ns-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h11a2 2 0 0 1 2 2v14l-3-2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M9 9h6M9 13h4"/></svg>
+          Product words</button>
+        <button class="nav-item" data-page="channels">
+          <svg class="ns-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="13" rx="2"/><path d="M8 21h8M12 18v3"/><path d="M7 10l4 2.5L7 15M12.5 15H16"/></svg>
+          Where customers write</button>
+        <button class="nav-item" data-page="languages">
+          <svg class="ns-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/></svg>
+          Languages</button>
+        <button class="nav-item" data-page="analytics">
+          <svg class="ns-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 16v-5M12 16V8M16 16v-3M20 16v-7"/></svg>
+          How support is going</button>
+        <button class="nav-item" data-page="tests">
+          <svg class="ns-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v5.2L5.6 16a2 2 0 0 0 1.8 3h9.2a2 2 0 0 0 1.8-3L14 8.2V3"/><path d="M8 14h8"/></svg>
+          Check answer quality</button>
+        <button class="nav-item" data-page="growth">
+          <svg class="ns-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l5-5 3.5 3.5L18 10"/><path d="M14 10h4v4"/></svg>
+          Seller briefings</button>
+        <button class="nav-item" data-page="settings">
+          <svg class="ns-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.5M12 18.5V21M4.2 7l2.1 1.2M17.7 15.8l2.1 1.2M4.2 17l2.1-1.2M17.7 8.2l2.1-1.2"/></svg>
+          System settings</button>
+      </details>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="plan-box">
+        <div class="plan-top"><span class="plan-dot"></span><strong>Replies left this month</strong><span class="plan-count" id="creditCount">—</span></div>
+        <div class="meter"><span id="creditBar" style="width:0%"></span></div>
+        <small id="creditText">Your free usage</small>
+        <button class="upgrade-small" data-page="settings">Upgrade <svg class="ns-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;margin-left:6px"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="profile">
+        <div class="profile-avatar">NS</div>
+        <div><strong>Store owner</strong><small>www.nudgeso.com</small></div>
+      </div>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <svg class="ns-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="crumb"><span>NudgeSo</span><b>/</b><strong id="pageCrumb">Home</strong></div>
+      <div class="top-actions">
+        <button class="btn small" id="signOutBtn" type="button">Sign out / 退出</button>
+        <div class="status-pill"><span></span> Working normally</div>
+      </div>
+    </header>
+    <section id="page" class="page-content"></section>
+    <footer class="footer">
+      <span>NudgeSo · Calm Customer Support · www.nudgeso.com</span>
+      <span><span class="green-dot"></span> All systems running <span class="footer-sep">·</span> <a href="/api/health" target="_blank">API status</a></span>
+    </footer>
+  </main>
+</div>
+<div id="toast" class="toast" role="status"></div>
+<script src="/icons.js"></script>
+<script src="/app.js" defer></script>
+<script>
+  (function(){
+    var sb=document.getElementById('sidebar'),sc=document.getElementById('scrim'),hb=document.getElementById('hamburger');
+    function closeDrawer(){sb.classList.remove('open');sc.classList.remove('show');}
+    hb.addEventListener('click',function(){sb.classList.add('open');sc.classList.add('show');});
+    sc.addEventListener('click',closeDrawer);
+    document.querySelectorAll('.nav-item').forEach(function(b){b.addEventListener('click',function(){if(window.innerWidth<860)closeDrawer();});});
+  })();
+</script>
+</body></html>

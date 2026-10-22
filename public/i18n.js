@@ -13,7 +13,7 @@
   const copy = {
     en: {
       privacyTitle: 'Privacy notice',
-      chatSubtitle: 'RelayDesk · Customer support',
+      chatSubtitle: 'NudgeSo · Customer support',
       passwordHint: 'at least 6 characters',
       queueSubtitle: 'Escalation queue',
       privacyText: 'We process your message and basic session data to provide support. Please do not send passwords, card numbers, or government IDs.',
@@ -24,7 +24,7 @@
       voice: 'Voice',
       upload: 'Upload .wav',
       hint: 'If speech is unavailable, use text or upload a .wav recording.',
-      footer: 'RelayDesk · Text replies only',
+      footer: 'NudgeSo · Text replies only',
       welcome: 'Hello, welcome. Tell me what you need and I will use the store knowledge to help. Refunds and complaints are handed to the merchant.',
       onboardingSubtitle: 'Merchant onboarding',
       back: 'Back to workspace',
@@ -61,7 +61,7 @@
     },
     ar: {
       privacyTitle: 'إشعار الخصوصية',
-      chatSubtitle: 'RelayDesk · دعم العملاء',
+      chatSubtitle: 'NudgeSo · دعم العملاء',
       passwordHint: '6 أحرف على الأقل',
       queueSubtitle: 'قائمة التصعيد',
       privacyText: 'نعالج رسالتك وبيانات الجلسة الأساسية لتقديم الدعم. لا ترسل كلمات المرور أو أرقام البطاقات أو أرقام الهوية.',
@@ -72,7 +72,7 @@
       voice: 'صوت',
       upload: 'رفع .wav',
       hint: 'إذا تعذر التعرف على الصوت، استخدم النص أو ارفع تسجيلاً بصيغة .wav.',
-      footer: 'RelayDesk · ردود نصية فقط',
+      footer: 'NudgeSo · ردود نصية فقط',
       welcome: 'مرحباً بك. أخبرني بما تحتاجه وسأستخدم معرفة المتجر لمساعدتك. تُحوَّل طلبات الاسترداد والشكاوى إلى التاجر.',
       onboardingSubtitle: 'تأهيل التاجر',
       back: 'العودة إلى مساحة العمل',
@@ -130,18 +130,18 @@
       text('#consentButton', dict.consent);
       text('.privacy-foot', dict.privacyFoot);
       placeholder('#messageInput', dict.placeholder);
-      text('#sendButton', dict.send);
-      text('#voiceButton', dict.voice);
-      text('#uploadVoiceButton', dict.upload);
+      text('#sendButton .lbl', dict.send);
+      text('#voiceButton .lbl', dict.voice);
+      text('#uploadVoiceButton .lbl', dict.upload);
       text('.composer-hint', dict.hint);
       text('.chat-footer', dict.footer);
       const welcome = document.querySelector('#messages .message[data-segment="welcome"]');
       if (welcome) {
         const meta = welcome.querySelector('.message-meta');
         welcome.firstChild.textContent = dict.welcome + ' ';
-        if (meta) meta.textContent = 'RelayDesk · Auto greeting';
+        if (meta) meta.textContent = 'NudgeSo · Auto greeting';
       }
-      document.title = 'RelayDesk Support';
+      document.title = 'NudgeSo Support';
     } else if (page === 'onboarding') {
       text('.brand small', dict.onboardingSubtitle);
       text('.back-link', dict.back);
@@ -171,22 +171,22 @@
       text('#kbPanel .muted', dict.kbMuted);
       text('label[for="kbFile"]', dict.kbFile);
       text('#kbDraft h3', dict.kbDraft);
-      text('#kbConfirm', dict.kbConfirm);
+      text('#kbConfirm .lbl', dict.kbConfirm);
       text('#embedTitle', dict.embedTitle);
       text('#embedPanel .muted', dict.embedMuted);
-      text('#copyEmbed', dict.copy);
+      text('#copyEmbed .lbl', dict.copy);
       const standalone = document.querySelector('.standalone');
       if (standalone) {
         const link = standalone.querySelector('#standaloneUrl');
         standalone.firstChild.textContent = dict.standalone + ': ';
         if (link) link.setAttribute('aria-label', dict.standalone);
       }
-      document.title = 'RelayDesk — Merchant onboarding';
+      document.title = 'NudgeSo — Merchant onboarding';
     } else if (page === 'queue') {
       text('.brand small', dict.queueSubtitle);
       text('.page-head h1', dict.queueHeading);
       text('.page-head .muted', dict.queueMuted);
-      text('#refreshButton', dict.refresh);
+      text('#refreshButton .lbl', dict.refresh);
       text('#emptyState strong', dict.empty);
       text('#emptyState p', dict.emptyHint);
       text('.footnote', dict.footnote);
@@ -194,7 +194,7 @@
       headers.forEach((th, index) => {
         if (dict.queueHeaders[index]) th.textContent = dict.queueHeaders[index];
       });
-      document.title = 'RelayDesk — Escalation queue';
+      document.title = 'NudgeSo — Escalation queue';
     }
   }
 
