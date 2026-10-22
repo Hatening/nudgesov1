@@ -73,8 +73,8 @@ test('AC-03 refund/complaint -> safe template + escalation queue', async ({ page
   await expect(refundRow).toHaveAttribute('data-category', 'financial');
   await expect(refundRow).toHaveAttribute('data-priority', 'urgent');
   await expect(refundRow).toHaveClass(/urgent-row/);
-  await expect(refundRow).toContainText('financial');
-  await expect(refundRow).toContainText('urgent');
+  await expect(refundRow).toContainText(/financial|涉及钱|退款/i);
+  await expect(refundRow).toContainText(/urgent|要紧|紧急/i);
   await captureScreenshot(page, testInfo, 'AC-03', 'step-escalation-queue');
   await captureScreenshot(page, testInfo, 'AC-03', 'final');
 });

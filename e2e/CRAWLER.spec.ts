@@ -14,15 +14,15 @@ import { captureScreenshot } from './helpers/screenshot';
  */
 
 const VIEWS: Array<[string, RegExp]> = [
-  ['overview', /Overview|Good morning/i],
-  ['inbox', /Inbox/i],
-  ['assistant', /AI assistant/i],
-  ['knowledge', /Knowledge base/i],
-  ['glossary', /Terminology/i],
-  ['channels', /Channels/i],
+  ['overview', /Hello/i],
+  ['inbox', /Customer messages/i],
+  ['assistant', /Try the AI helper/i],
+  ['knowledge', /My store info/i],
+  ['glossary', /Product words/i],
+  ['channels', /Where customers write/i],
   ['languages', /Languages/i],
-  ['analytics', /Analytics/i],
-  ['tests', /Quality & regression tests|Quality & tests/i],
+  ['analytics', /How support is going/i],
+  ['tests', /Check answer quality/i],
   ['growth', /Seller briefings/i],
   ['settings', /Settings/i],
 ];
@@ -37,21 +37,22 @@ async function registerViaApi(request: any, email: string) {
 }
 
 async function loginViaUi(page: Page, email: string) {
-  await page.goto('/');
+  await page.goto('/login.html');
+  await expect(page.getByRole('heading', { name: /Welcome back/i })).toBeVisible();
+  await page.locator('#email').fill(email);
+  await page.locator('#password').fill(PASSWORD);
+  await page.locator('#loginBtn').click();
+  await page.waitForURL(/\/$/, { timeout: 20_000 });
   await page.waitForSelector('.app-shell', { timeout: 15_000 });
-  await expect(page.getByRole('heading', { name: /商家登录|Merchant sign in/i })).toBeVisible();
-  await page.locator('#dashboardEmail').fill(email);
-  await page.locator('#dashboardPassword').fill(PASSWORD);
-  await page.locator('#dashboardLoginForm button[type="submit"]').click();
-  await expect(page.locator('#page h1').first()).not.toContainText(/商家登录|Merchant sign in/i, { timeout: 20_000 });
   await expect(page.locator('.nav-item[data-page="overview"]')).toBeVisible({ timeout: 15_000 });
 }
 
 async function gotoView(page: Page, view: string) {
   await page.keyboard.press('Escape').catch(() => {});
-  await page.locator(`.nav-item[data-page="${view}"]`).click();
+  // Advanced nav items live inside a closed <details>; programmatic click works.
+  await page.evaluate((name) => document.querySelector(`.nav-item[data-page="${name}"]`)?.click(), view);
   await expect(page.locator('#page')).toBeVisible();
-  await page.waitForTimeout(120);
+  await page.waitForTimeout(200);
 }
 
 /** 页面可交互控件的快照（只取 #page 内部、可见、未禁用） */
@@ -297,17 +298,13 @@ test.describe('CRAWLER', () => {
       localStorage.removeItem('relaydesk_refresh_token');
     });
     await page.reload();
+    await expect(page).toHaveURL(/landing\.html/, { timeout: 15_000 });
     await expect(
-      page.getByRole('heading', { name: /商家登录|Merchant sign in/i }),
-      'logged-out reload must render the gate'
+      page.getByRole('heading', { name: /Calm Customer Support/i }),
+      'logged-out reload must render the public gate'
     ).toBeVisible({ timeout: 15_000 });
-    await expect(page.locator('#page')).not.toContainText(/Northstar Goods|support workspace data/i);
-    await page.locator('.nav-item[data-page="inbox"]').click();
-    await expect(
-      page.getByRole('heading', { name: /商家登录|Merchant sign in/i }),
-      'menu click without a session must stay on the gate'
-    ).toBeVisible();
-    await expect(page.locator('#page')).not.toContainText(/Unauthorized|Unable to connect/i);
+    await expect(page.locator('body')).not.toContainText(/Northstar Goods|support workspace data/i);
+    await expect(page.locator('body')).not.toContainText(/Unauthorized|Unable to connect/i);
     await captureScreenshot(page, testInfo, 'CRAWLER', 't3-gate', { fullPage: false });
 
     const anon = await apiRequest.newContext({ baseURL: process.env.BASE_URL || 'http://127.0.0.1:3030' });

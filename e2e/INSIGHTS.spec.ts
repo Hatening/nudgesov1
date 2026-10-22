@@ -36,10 +36,12 @@ async function seedTwoInsights(request: any) {
     });
     expect(response.status()).toBe(201);
   }
+  return token;
 }
 
 test('INSIGHTS: list → detail jump renders markdown and keeps both ad slots', async ({ page, request }) => {
-  await seedTwoInsights(request);
+  const token = await seedTwoInsights(request);
+  await page.addInitScript((value) => localStorage.setItem('relaydesk_token', value), token);
 
   await page.goto('/insights.html');
   await expect(page.locator('.card').first()).toBeVisible({ timeout: 10000 });
@@ -70,7 +72,8 @@ test('INSIGHTS: list → detail jump renders markdown and keeps both ad slots', 
 });
 
 test('INSIGHTS: detail page fits 390px without horizontal overflow', async ({ page, request }) => {
-  await seedTwoInsights(request);
+  const token = await seedTwoInsights(request);
+  await page.addInitScript((value) => localStorage.setItem('relaydesk_token', value), token);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/insights.html');
   await expect(page.locator('.card').first()).toBeVisible({ timeout: 10000 });

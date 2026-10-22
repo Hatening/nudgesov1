@@ -113,10 +113,10 @@ function applySecurityHeaders(req, res) {
   res.setHeader('Content-Security-Policy', [
     "default-src 'self'",
     "script-src 'self' 'unsafe-inline'",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+    "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "connect-src 'self'",
-    "font-src 'self' https://fonts.gstatic.com",
+    "font-src 'self'",
     "frame-ancestors 'self'",
     "base-uri 'self'",
     "form-action 'self'"
