@@ -20,7 +20,8 @@
     "verify:sqlite": "node scripts/verify-sqlite.mjs",
     "prune:data": "node scripts/prune-data.mjs",
     "backup:sqlite": "node scripts/backup-sqlite.mjs",
-    "batch:overnight": "node scripts/run-full-batch.mjs --all --workers 3"
+    "batch:overnight": "node scripts/run-full-batch.mjs --all --workers 3",
+    "batch:cloud": "node scripts/run-cloud-batch.mjs --workers 18"
   },
   "engines": {
     "node": ">=25.0.0"

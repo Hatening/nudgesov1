@@ -1,0 +1,17 @@
+{
+  "workers": 18,
+  "cards": 2181,
+  "jobs": 10905,
+  "admitted": 10848,
+  "manual": 57,
+  "admission_rate": 99.5,
+  "manual_rate": 0.5,
+  "retries": 584,
+  "cloud_calls": 11489,
+  "tokens": {
+    "input": 6107126,
+    "output": 12335458
+  },
+  "cost_cny": 49.6144,
+  "duration_ms": 3556351
+}
