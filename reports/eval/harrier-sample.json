@@ -1,0 +1,8 @@
+{
+  "model": "text-embedding-harrier-27b",
+  "sample_questions": 200,
+  "sampling": "every 10th question",
+  "top1_hit_rate": 17.0,
+  "top5_hit_rate": 23.0,
+  "note": "Quick stratified sample; full 2,000-question run reported in harrier-recall.json (top5 26.9%)"
+}
