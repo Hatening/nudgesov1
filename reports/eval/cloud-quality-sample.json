@@ -1,0 +1,214 @@
+{
+  "sampled": 20,
+  "avg": 4.64,
+  "pass45": 18,
+  "pass48": 12,
+  "by_lang": {
+    "en-US": {
+      "n": 4,
+      "avg": 4.4,
+      "pass45": 3,
+      "pass48": 2
+    },
+    "es-ES": {
+      "n": 4,
+      "avg": 4.7,
+      "pass45": 4,
+      "pass48": 2
+    },
+    "de-DE": {
+      "n": 4,
+      "avg": 4.85,
+      "pass45": 4,
+      "pass48": 4
+    },
+    "fr-FR": {
+      "n": 4,
+      "avg": 4.7,
+      "pass45": 3,
+      "pass48": 3
+    },
+    "pl-PL": {
+      "n": 4,
+      "avg": 4.58,
+      "pass45": 4,
+      "pass48": 1
+    }
+  },
+  "samples": [
+    {
+      "locale": "en-US",
+      "id": "kb_en-US_kb_ecommerce_ai_skills_eff874e15caaeb48",
+      "score": 4.8,
+      "issues": [
+        "源文括号中的标签为“<自检>/<self_check>”，译文将其处理为“<self-check> / <self_check>”，若“<自检>”是需保留的字面标签，则存在符号/格式偏移。"
+      ]
+    },
+    {
+      "locale": "en-US",
+      "id": "kb_en-US_kb_f07fb3a77071f517",
+      "score": 4.5,
+      "issues": [
+        "“覆盖列表的50%以上”译为“cover more than 50% of the list”会排除正好50%，建议改为“cover at least 50% of the list”或“50% or more of the list”。",
+        "“sample size (recommended to cover more than 50% of the list)”表达略生硬，建议调整为更自然的英文。",
+        "整体语义准确，术语基本恰当，无重大增译漏译；属于商业可接受、可小幅润色的译文。"
+      ]
+    },
+    {
+      "locale": "en-US",
+      "id": "kb_en-US_kb_wixqa_8f686f1a6b188ff4",
+      "score": 3.5,
+      "issues": [
+        "增译明显：译文新增了原文没有的“This option isn't supported at this time”“event creation ... limited to you and ... site collaborators”“Thank you for your understanding”，改变信息范围并添加未经原文支持的限制/权限说明。",
+        "语义偏移：原文仅说明目前成员无法从 live site 创建活动，译文扩展为权限与站点协作者限制，属于额外承诺/政策细节。",
+        "术语与语法本身基本正确，“live site”保持了一致；但客服答复应严格对应原文，当前不可直接商用。"
+      ]
+    },
+    {
+      "locale": "en-US",
+      "id": "kb_en-US_kb_wixqa_56dfeafe066745c3",
+      "score": 4.8,
+      "issues": [
+        "原文“control the length”改为“limit the length”，语义略有收窄（控制→限制），但在此语境下不影响理解，属可接受的等义改写",
+        "译文与原文几乎完全一致，未做实质语言转换（原文即为英文），若目标语言非英文则需确认是否满足本地化要求",
+        "其余部分（术语“maximum stay rule”“90 days by default”、逻辑顺序调整、标点与破折号使用）准确流畅，无增译漏译或数字错误，可直接商用"
+      ]
+    },
+    {
+      "locale": "es-ES",
+      "id": "kb_es-ES_kb_wixqa_91d6c6205c463f29",
+      "score": 4.5,
+      "issues": [
+        "“100 opciones de elección”表达不够自然，术语略显生硬；建议改为“100 valores/alternativas por opción”等更符合电商客服习惯的说法。"
+      ]
+    },
+    {
+      "locale": "es-ES",
+      "id": "kb_es-ES_kb_wixqa_6b9929c50f7922ea",
+      "score": 5,
+      "issues": []
+    },
+    {
+      "locale": "es-ES",
+      "id": "kb_es-ES_kb_wixqa_60fade328eb0105a",
+      "score": 4.8,
+      "issues": [
+        "Menor matiz: “Haga clic en el menú desde el Editor” sería más fiel como “Haga clic en el menú en el Editor” o “en el menú del Editor”."
+      ]
+    },
+    {
+      "locale": "es-ES",
+      "id": "kb_es-ES_kb_wixqa_7de511432d86eda6",
+      "score": 4.5,
+      "issues": [
+        "Se añade “Le confirmamos que”, que no aparece en el original; aunque es natural en atención al cliente, constituye una ligera ampliación no presente en la fuente.",
+        "“bundled with/together” se traduce como “junto con”, lo que es aceptable, pero pierde matiz de “empaquetado/conjunto”."
+      ]
+    },
+    {
+      "locale": "de-DE",
+      "id": "kb_de-DE_kb_wixqa_c8288d7075f7a971",
+      "score": 4.8,
+      "issues": [
+        "术语一致性：“Shared Gallery”保留英文；若德语 Wix 界面有官方本地化名称，应统一使用该术语。"
+      ]
+    },
+    {
+      "locale": "de-DE",
+      "id": "kb_de-DE_kb_wixqa_b7df633e7205c04d",
+      "score": 5,
+      "issues": []
+    },
+    {
+      "locale": "de-DE",
+      "id": "kb_de-DE_kb_wixqa_62e3cc81e2cbb30e",
+      "score": 4.8,
+      "issues": [
+        "\"unten stehenden\" 按现行正字法更常写作 \"untenstehenden\"（两者均可，属细微风格问题）",
+        "原文 \"Q:\" 译为 \"F:\"（Frage）属本地化惯例，可接受，但如需严格对应标签格式可考虑保留 \"Q:\"",
+        "末尾链接仍为英文原文链接，若面向德语用户可考虑替换为对应德语支持页面"
+      ]
+    },
+    {
+      "locale": "de-DE",
+      "id": "kb_de-DE_kb_wixqa_5f03a47b220e01fe",
+      "score": 4.8,
+      "issues": [
+        "„Übersichtsboard zur Bestellverfolgung“ ist verständlich, aber „Board“ ist ein Anglizismus; natürlicher wäre z. B. „Übersichtstafel zur Bestellverfolgung“ oder „Bestellverfolgungs-Board“."
+      ]
+    },
+    {
+      "locale": "fr-FR",
+      "id": "kb_fr-FR_kb_wixqa_5a24c4635a78c27d",
+      "score": 5,
+      "issues": []
+    },
+    {
+      "locale": "fr-FR",
+      "id": "kb_fr-FR_kb_ecommerce_ai_skills_198211573bf7d8c2",
+      "score": 4.2,
+      "issues": [
+        "多处普通名词在句中不当大写：\"frais de Retour\"（出现两次）、\"frais de Livraison FBA\"、\"les Retours sont traités\"，法语正字法错误，疑似术语库强制大写泄漏，需改为 retour/livraison/retours",
+        "\"les frais de logistique comme de Retour sont à la charge du vendeur\" 中 \"comme de\" 结构生硬，建议改为 \"les frais de logistique et de retour\"",
+        "\"une commission est prélevée selon le pourcentage convenu\" 稍欠地道，宜作 \"au taux convenu\" 或 \"selon le taux convenu\"",
+        "\"gestion intégrale / gestion semi-intégrale\" 虽可理解但非 Temu 全托管/半托管的通行说法（常见为 \"entièrement géré\" / \"semi-géré\"），术语一致性可商榷",
+        "\"le prix d'approvisionnement est imposé par la plateforme\" 对应\"由平台要求\"，语义可行但略强化为\"imposé\"，影响轻微",
+        "数字与符号（0%、15%）均正确，无漏译或增译"
+      ]
+    },
+    {
+      "locale": "fr-FR",
+      "id": "kb_fr-FR_kb_wixqa_d084418d53f5b79c",
+      "score": 4.8,
+      "issues": [
+        "Légère lourdeur stylistique : « Si des épisodes de podcast sont manquants » pourrait être plus naturellement formulé « S'il manque des épisodes de podcast »."
+      ]
+    },
+    {
+      "locale": "fr-FR",
+      "id": "kb_fr-FR_kb_wixqa_dbed27d54f06e7af",
+      "score": 4.8,
+      "issues": [
+        "Le gras Markdown autour de « My Wallet » n’est pas repris ; à vérifier également si ce libellé d’interface doit être localisé selon la terminologie Wix FR."
+      ]
+    },
+    {
+      "locale": "pl-PL",
+      "id": "kb_pl-PL_kb_wixqa_f4b953881cca74a4",
+      "score": 4.5,
+      "issues": [
+        "Fraza „Na etapie, gdy witryna została już utworzona” jest nieco niezgrabna i kalkowana; naturalniej: „W przypadku witryny, którą już utworzono”.",
+        "„W swoim koncie” brzmi mniej naturalnie niż „Na swoim koncie”.",
+        "Zaimek „do niego” w „przenieść do niego swój plan i domenę” może być niejednoznaczny; lepiej „do nowej witryny”."
+      ]
+    },
+    {
+      "locale": "pl-PL",
+      "id": "kb_pl-PL_kb_wixqa_5f87b2eafd4f2e13",
+      "score": 4.8,
+      "issues": [
+        "“Na etapie obecnym”稍显生硬，建议改为“Obecnie”。",
+        "“korzystali wcześniej z logowania przez konto zewnętrzne”可改为“korzystali wcześniej z logowania za pomocą konta zewnętrznego”，更自然。"
+      ]
+    },
+    {
+      "locale": "pl-PL",
+      "id": "kb_pl-PL_kb_wixqa_39c47fee5ed3a25f",
+      "score": 4.5,
+      "issues": [
+        "W nawiasie „np. jeśli prowadzisz stronę podróżniczą, aby wyświetlić inne blogi Wix związane z podróżami” konstrukcja jest nieco niezgrabna i może sugerować celność „aby”, podczas gdy w oryginale chodzi o chęć wyświetlenia powiązanych blogów; lepiej np. „np. jeśli masz stronę podróżniczą i chcesz wyświetlić inne blogi Wix związane z podróżami”."
+      ]
+    },
+    {
+      "locale": "pl-PL",
+      "id": "kb_pl-PL_kb_wixqa_ec5a0a2cb7b12499",
+      "score": 4.5,
+      "issues": [
+        "„Mamy świadomość problemu polegającego na tym, że...” jest nieco rozwlekłe i kalkowane; naturalniej: „Wiemy o problemie...” lub „Zdajemy sobie sprawę z problemu...”.",
+        "„W międzyczasie” jest dosłownym tłumaczeniem „Meanwhile”; w tym kontekście bardziej naturalne byłoby „Tymczasem”.",
+        "Dodane „(finalizacji zamówienia)” nie występuje w oryginale i jest niekonsekwentne względem tytułu, gdzie użyto tylko „kasy”; nie jest błędem, ale to drobna nadinterpretacja.",
+        "„pierwotną walutę” jest zrozumiałe, ale bardziej idiomatycznie byłoby „oryginalną walutę” lub „początkową walutę”."
+      ]
+    }
+  ]
+}
