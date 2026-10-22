@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-10-22",
+  "expand": {
+    "咋回事": ["怎么回事", "为什么", "原因"],
+    "咋办": ["怎么办", "如何处理"],
+    "收不到提醒": ["通知", "推送", "push notification", "消息提醒"],
+    "收不到通知": ["提醒", "推送", "notification"],
+    "退款": ["退货", "refund", "reembolso", "zwrot pieniędzy"],
+    "退货": ["退款", "return", "devolución", "zwrot"],
+    "物流": ["配送", "运输", "shipping", "delivery", "envío", "versand"],
+    "运费": ["物流费", "shipping cost", "flete"],
+    "广告": ["投放", "ads", "advertising", "ACOS", "ROAS"],
+    "acos": ["广告花费", "广告销售额", "ad spend", "ad sales"],
+    "封号": ["账户冻结", "suspension", "account health"],
+    "侵权": ["知识产权", "IP", "copyright", "trademark"],
+    "差评": ["review", "评价", "negative review"],
+    "发票": ["invoice", "faktura", "factura"],
+    "税": ["VAT", "税务", "tax", "IOSS"],
+    "清关": ["海关", "customs", "clearance"],
+    "断货": ["缺货", "stockout", "out of stock"],
+    "补货": ["restock", "补货计划", "replenishment"]
+  }
+}
