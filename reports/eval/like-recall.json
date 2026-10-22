@@ -1,0 +1,284 @@
+{
+  "questions": 20,
+  "top1_hit_rate": 20,
+  "top3_hit_rate": 25,
+  "top5_hit_rate": 25,
+  "duration_ms": 383906,
+  "misses": [
+    {
+      "question": "Wix Editor 的图库能不能在访客向下滚动页面时自动显示更多图片？",
+      "terms": [
+        "Wix",
+        "Editor"
+      ],
+      "source": "kb_wixqa_0008cfcce8bce1f0",
+      "top": [
+        "kb_wixqa_e9bef1308a46924c",
+        "kb_wixqa_c121cbc74cf3a43c",
+        "kb_wixqa_87758454d16e6fd0",
+        "kb_wixqa_0cfc27b72febbcec",
+        "kb_wixqa_72d76f157a4f2fbf"
+      ]
+    },
+    {
+      "question": "wix相册往下滑会不会自己多出几张图，不用点 show more 那种？",
+      "terms": [
+        "不用点",
+        "show",
+        "more",
+        "那种"
+      ],
+      "source": "kb_wixqa_0008cfcce8bce1f0",
+      "top": [
+        "kb_wixqa_60fade328eb0105a",
+        "kb_wixqa_da365ecb355c42ba",
+        "kb_wixqa_5bf19115de26988d",
+        "kb_wixqa_24d3f7b75039418e",
+        "kb_wixqa_d907e8f0d54eb2b6"
+      ]
+    },
+    {
+      "question": "我想让网站滚动时自动加载更多产品图片，是不是把图库的 Show More 按钮设成自动点击就行？",
+      "terms": [
+        "是不是把图库的",
+        "Show",
+        "More",
+        "按钮设成自动点击就行"
+      ],
+      "source": "kb_wixqa_0008cfcce8bce1f0",
+      "top": [
+        "kb_wixqa_60fade328eb0105a",
+        "kb_wixqa_da365ecb355c42ba",
+        "kb_wixqa_5bf19115de26988d",
+        "kb_wixqa_24d3f7b75039418e",
+        "kb_wixqa_d907e8f0d54eb2b6"
+      ]
+    },
+    {
+      "question": "如果我用的是 Pro Gallery 并且图片很多，滚动到底部会自动出现剩余图片，还是仍然必须点 Show More？",
+      "terms": [
+        "如果我用的是",
+        "Pro",
+        "Gallery",
+        "并且图片很多",
+        "还是仍然必须点",
+        "Show",
+        "More"
+      ],
+      "source": "kb_wixqa_0008cfcce8bce1f0",
+      "top": [
+        "kb_wixqa_5bf19115de26988d",
+        "kb_wixqa_60fade328eb0105a",
+        "kb_wixqa_7dc45eeeee628fbe",
+        "kb_wixqa_3f02a85ff1e4b1bf",
+        "kb_wixqa_de64a9f0538133cd"
+      ]
+    },
+    {
+      "question": "Facebook 广告因为网站里卖电子烟被拒，Wix 建议哪些内容必须避免？",
+      "terms": [
+        "电子烟",
+        "vape",
+        "电子香烟",
+        "烟油",
+        "广告审核",
+        "广告违规",
+        "FB",
+        "facebook",
+        "违禁品",
+        "禁止销售"
+      ],
+      "source": "kb_wixqa_60cb8a1c17c89acd",
+      "top": [
+        "kb_ecommerce_ai_skills_86c8a2c3ec950b07",
+        "kb_ecommerce_ai_skills_86cd7317d7ec767a",
+        "kb_ecommerce_ai_skills_fb981a4bc145ba2b",
+        "kb_ecommerce_ai_skills_e23528a0225838c2",
+        "kb_ecommerce_ai_skills_41d65ae5c3b5b2e0"
+      ]
+    },
+    {
+      "question": "fb ads 老被拒，是不是网站有酒、dating 或 political 内容就不行啊？",
+      "terms": [
+        "fb",
+        "ads",
+        "老被拒",
+        "是不是网站有酒",
+        "dating",
+        "political",
+        "内容就不行啊"
+      ],
+      "source": "kb_wixqa_60cb8a1c17c89acd",
+      "top": [
+        "kb_ecommerce_ai_skills_86cd7317d7ec767a",
+        "kb_ecommerce_ai_skills_fb981a4bc145ba2b",
+        "kb_ecommerce_ai_skills_e23528a0225838c2",
+        "kb_ecommerce_ai_skills_41d65ae5c3b5b2e0",
+        "kb_ecommerce_ai_skills_578a8597e3e19360"
+      ]
+    },
+    {
+      "question": "Wix Studio 合作伙伴后台为什么收不到用户回复的推送通知？",
+      "terms": [
+        "未收到",
+        "通知",
+        "notification",
+        "Wix",
+        "Studio"
+      ],
+      "source": "kb_wixqa_cd06afcd182fea38",
+      "top": [
+        "kb_wixqa_87758454d16e6fd0",
+        "kb_wixqa_cd5eb31daee82b0f",
+        "kb_wixqa_36d7c4b2a9ee5b25",
+        "kb_wixqa_b423a73fd1c14d7c",
+        "kb_wixqa_ab02f747e0dda575"
+      ]
+    },
+    {
+      "question": "wix studio partner dashboard 有人回我消息没 push，是我哪里设置错了吗？",
+      "terms": [
+        "wix",
+        "studio",
+        "partner",
+        "dashboard",
+        "有人回我消息没",
+        "push",
+        "是我哪里设置错了吗"
+      ],
+      "source": "kb_wixqa_cd06afcd182fea38",
+      "top": [
+        "kb_wixqa_87758454d16e6fd0",
+        "kb_wixqa_cd5eb31daee82b0f",
+        "kb_wixqa_36d7c4b2a9ee5b25",
+        "kb_wixqa_b423a73fd1c14d7c",
+        "kb_wixqa_ab02f747e0dda575"
+      ]
+    },
+    {
+      "question": "Wix Studio 里客户回复我的工单，手机推送收不到，是不是邮箱通知没开启导致的？",
+      "terms": [
+        "未收到",
+        "通知",
+        "notification",
+        "Wix",
+        "Studio",
+        "里客户回复我的工单",
+        "手机推送收不到"
+      ],
+      "source": "kb_wixqa_cd06afcd182fea38",
+      "top": [
+        "kb_wixqa_87758454d16e6fd0",
+        "kb_wixqa_cd5eb31daee82b0f",
+        "kb_wixqa_36d7c4b2a9ee5b25",
+        "kb_wixqa_b423a73fd1c14d7c",
+        "kb_wixqa_ab02f747e0dda575"
+      ]
+    },
+    {
+      "question": "Wix Studio Partner Dashboard 在手机 App 上会不会有用户回复推送，还是桌面和移动端都没有？",
+      "terms": [
+        "Wix",
+        "Studio",
+        "Partner",
+        "Dashboard",
+        "在手机",
+        "App",
+        "上会不会有用户回复推送",
+        "还是桌面和移动端都没有"
+      ],
+      "source": "kb_wixqa_cd06afcd182fea38",
+      "top": [
+        "kb_wixqa_87758454d16e6fd0",
+        "kb_wixqa_d81e416693afb365",
+        "kb_wixqa_cd5eb31daee82b0f",
+        "kb_wixqa_93d74045491dfddf",
+        "kb_wixqa_36d7c4b2a9ee5b25"
+      ]
+    },
+    {
+      "question": "wix 菜单点到 subpage 时 parent item 会不会变色高亮啊？",
+      "terms": [
+        "wix",
+        "菜单点到",
+        "subpage",
+        "parent",
+        "item",
+        "会不会变色高亮啊"
+      ],
+      "source": "kb_wixqa_136413922d0871ee",
+      "top": [
+        "kb_wixqa_6c123d5e8d02625b",
+        "kb_wixqa_efb1a1679277099d",
+        "kb_wixqa_9b621e3bd00d1540",
+        "kb_wixqa_6f54c216f0e6d0ef",
+        "kb_wixqa_263c252bc7fd350e"
+      ]
+    },
+    {
+      "question": "我给子页面设置了 hover 颜色，为什么点击进入后父菜单不保持高亮，是菜单样式没生效吗？",
+      "terms": [
+        "我给子页面设置了",
+        "hover",
+        "颜色",
+        "是菜单样式没生效吗"
+      ],
+      "source": "kb_wixqa_136413922d0871ee",
+      "top": [
+        "kb_wixqa_e52f73c62975310f",
+        "kb_wixqa_5a58b8f1e91ff096",
+        "kb_wixqa_1d581adf1b356646",
+        "kb_wixqa_7f358e7d41cd4a59",
+        "kb_wixqa_1e19e9730f33df03"
+      ]
+    },
+    {
+      "question": "如果子页面不在菜单结构里，只是从首页按钮跳转过去，上级菜单项还会高亮吗？",
+      "terms": [
+        "如果子页面不在菜单结构里",
+        "只是从首页按钮跳转过去",
+        "上级菜单项还会高亮吗"
+      ],
+      "source": "kb_wixqa_136413922d0871ee",
+      "top": []
+    },
+    {
+      "question": "用 Wix 邮件营销发送给 info@、support@ 这类角色地址，会带来哪些送达率风险？",
+      "terms": [
+        "Wix",
+        "邮件营销发送给",
+        "info@",
+        "support@",
+        "这类角色地址",
+        "会带来哪些送达率风险"
+      ],
+      "source": "kb_wixqa_0ef7ea066f141dcb",
+      "top": [
+        "kb_wixqa_263c252bc7fd350e",
+        "kb_wixqa_fcf59ef8bfcbe627",
+        "kb_wixqa_a8558d9d9efdd148",
+        "kb_wixqa_91d6c6205c463f29",
+        "kb_wixqa_882be7b4cf43f231"
+      ]
+    },
+    {
+      "question": "Wix 邮件营销里 double opt-in 对 support@ 不管用，是不是说明这个角色地址不能收信？",
+      "terms": [
+        "Wix",
+        "邮件营销里",
+        "double",
+        "opt-in",
+        "support@",
+        "不管用"
+      ],
+      "source": "kb_wixqa_0ef7ea066f141dcb",
+      "top": [
+        "kb_wixqa_7babe46e534d9a06",
+        "kb_wixqa_263c252bc7fd350e",
+        "kb_wixqa_fcf59ef8bfcbe627",
+        "kb_wixqa_a8558d9d9efdd148",
+        "kb_wixqa_91d6c6205c463f29"
+      ]
+    }
+  ]
+}

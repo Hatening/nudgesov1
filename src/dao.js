@@ -365,6 +365,15 @@ export function createDao(db) {
     : '');
 
   dao.listGlobalKnowledge = (audience = 'all', options = {}) => db.prepare(`SELECT * FROM knowledge WHERE scope = 'global'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)}${surfaceClause(options.surface)} ORDER BY rowid DESC`).all().map(mapKnowledge);
+  dao.searchKnowledgeByTerms = (audience = 'all', terms = [], options = {}) => {
+    const clean = [...new Set(terms.map((t) => String(t || '').trim()).filter(Boolean))].slice(0, 10);
+    if (!clean.length) return [];
+    const likeClause = clean.map(() => '(title LIKE ? OR content LIKE ? OR tags_json LIKE ?)').join(' OR ');
+    const params = [];
+    for (const term of clean) { const q = `%${term}%`; params.push(q, q, q); }
+    const sql = `SELECT * FROM knowledge WHERE scope = 'global'${audienceClause(audience)}${quarantineClause(options.includeQuarantined)}${surfaceClause(options.surface)} AND (${likeClause}) LIMIT 200`;
+    return db.prepare(sql).all(...params).map(mapKnowledge);
+  };
   dao.countGlobalKnowledge = (audience = 'all') => Number(db.prepare(`SELECT COUNT(*) AS count FROM knowledge WHERE scope = 'global'${audienceClause(audience)}`).get().count || 0);
   dao.findGlobalKnowledge = (knowledgeId) => mapKnowledge(db.prepare("SELECT * FROM knowledge WHERE id = ? AND scope = 'global'").get(knowledgeId));
   dao.createGlobalKnowledge = (item) => {

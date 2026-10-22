@@ -14,8 +14,8 @@ import { createDao } from './src/dao.js';
 import { createRateLimiter } from './src/rate-limit.js';
 import { extractPdfText, isPdfBuffer } from './src/pdf-text.js';
 import { distillKnowledge } from './src/knowledge-distill.js';
-import { semanticSearch, mergeHits } from './src/semantic-retrieval.js';
-import { expandQuery } from './src/query-expansion.js';
+import { rewriteQuery } from './src/qwen-rewrite.js';
+import { rankByTerms } from './src/like-retrieval.js';
 import { createLlmGateway } from './src/llm.js';
 import { redactPII, privacyNotice, CONSENT_VERSION } from './src/privacy.js';
 import { createMetrics } from './src/observability.js';
@@ -1324,14 +1324,10 @@ async function handleApi(req, res, url) {
       return;
     }
     // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
-    const corpus = dao.listGlobalKnowledge(audience, { includeQuarantined: false, surface: 'seller_console' });
-    const lexical = rankKnowledge(question, corpus);
-    let semantic = [];
-    try {
-      const expandedQuery = expandQuery(question).expanded;
-      semantic = await semanticSearch(expandedQuery, corpus, { limit: 12 });
-    } catch { semantic = []; }
-    const hits = mergeHits(semantic, lexical, 5);
+    const terms = await rewriteQuery(question);
+    const candidates = dao.searchKnowledgeByTerms(audience, terms, { includeQuarantined: false, surface: 'seller_console' });
+    let hits = rankByTerms(candidates, terms, 5);
+    if (!hits.length) hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false, surface: 'seller_console' }));
     res.writeHead(200, {
       'content-type': 'text/event-stream; charset=utf-8',
       'cache-control': 'no-cache',
@@ -1391,14 +1387,10 @@ async function handleApi(req, res, url) {
       });
     }
     // 检索池已在上面按 audience 硬过滤（买家 buyer / 卖家 seller），不存在 all。
-    const corpus = dao.listGlobalKnowledge(audience, { includeQuarantined: false, surface: 'seller_console' });
-    const lexical = rankKnowledge(question, corpus);
-    let semantic = [];
-    try {
-      const expandedQuery = expandQuery(question).expanded;
-      semantic = await semanticSearch(expandedQuery, corpus, { limit: 12 });
-    } catch { semantic = []; }
-    const hits = mergeHits(semantic, lexical, 5);
+    const terms = await rewriteQuery(question);
+    const candidates = dao.searchKnowledgeByTerms(audience, terms, { includeQuarantined: false, surface: 'seller_console' });
+    let hits = rankByTerms(candidates, terms, 5);
+    if (!hits.length) hits = rankKnowledge(question, dao.listGlobalKnowledge(audience, { includeQuarantined: false, surface: 'seller_console' }));
     let result = await llm.answer(promptQuestion, hits, lang, settings);
     const model = result?.provider && result?.answer ? result.model : 'extractive-fallback';
     if (!result || result.error) result = fallbackAnswer(question, hits, lang);
