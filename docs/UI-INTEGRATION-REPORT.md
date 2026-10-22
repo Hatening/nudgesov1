@@ -74,17 +74,27 @@ npm test → 88 / 88 passed
 - `reports/ui-integration/landing.png`
 - `reports/ui-integration/dashboard.png`
 
-## 4. 已知问题（必须如实说明）
+## 4. 旧 E2E 迁移完成（15/15 绿）
 
-旧的 14 条 Playwright 用例是按**旧 UI 登录流程**写的：
+已按新登录/入驻流程迁移全部旧用例：
 
-- 旧流程：`/` 直接显示商家登录表单（`#dashboardEmail` / `#dashboardLoginForm`）
-- 新流程：`/` 未登录跳 `landing.html` → `login.html` → 登录后回 `/`
+- AC-01：landing → onboarding 注册 → 建站 → 上传/确认资料 → embed code
+- CRAWLER：Tier 1 标题改为新 UI 文案；Tier 3 未登录断言改为落地页
+- DASHBOARD：landing/login → 登录后导航
+- INSIGHTS：两个用例注入 token 后访问新洞察页
+- AC-03：保留 `data-category=financial`、`data-priority=urgent`、`urgent-row` 断言；视觉文案兼容“涉及钱/要紧”
+- AC-05：字体改为本地自托管，客户聊天窗零第三方请求
+- UI-390：390px 下 11 个后台视图 + insights/queue/upload/manual + chat/onboarding 全部无横向溢出
+- 修复 Export 按钮失败无反馈（现在失败也会 toast）
 
-因此旧用例（AC-01、CRAWLER、DASHBOARD、UI-390 等）会失败，**不是新 UI 运行错误**，而是测试脚本未迁移。当前以新的 `NUDGESO-UI.spec.ts` 作为 UI 回归基线；旧用例需要按新登录/入驻流程重写后恢复。
+最终结果：
+
+```
+Playwright: 15 passed
+node --test: 88 passed
+```
 
 ## 5. 下一步
 
-1. 重写旧 14 条 Playwright 用例到新登录/入驻流程；
-2. 验证 onboarding 注册 → 创建店铺 → 上传资料 → 确认入库完整链路；
-3. 视觉走查移动端 390px（新 UI 已带响应式规则，但未逐页截图对比）。
+1. 观察 Harrier 27B 离线索引完成后跑 2,000 道 QA 召回对比；
+2. 持续在真实设备上抽查移动端触摸目标与字号。
