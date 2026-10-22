@@ -21,7 +21,11 @@
     "prune:data": "node scripts/prune-data.mjs",
     "backup:sqlite": "node scripts/backup-sqlite.mjs",
     "batch:overnight": "node scripts/run-full-batch.mjs --all --workers 3",
-    "batch:cloud": "node scripts/run-cloud-batch.mjs --workers 18"
+    "batch:cloud": "node scripts/run-cloud-batch.mjs --workers 18",
+    "model:switch": "node scripts/switch-model.mjs",
+    "index:harrier": "node scripts/build-harrier-index.mjs",
+    "eval:harrier": "node scripts/eval-harrier-recall.mjs",
+    "requeue:cards": "node scripts/requeue-problem-cards.mjs"
   },
   "engines": {
     "node": ">=25.0.0"

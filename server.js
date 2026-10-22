@@ -1,5 +1,6 @@
 import http from 'node:http';
 import fs from 'node:fs/promises';
+import fsSync from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -1136,6 +1137,12 @@ async function handleV1(req, res, p, method) {
   return json(res, 404, { error: 'API route not found' });
 }
 
+function readEngineStatus() {
+  try {
+    return JSON.parse(fsSync.readFileSync(path.resolve('.data/engine-status.json'), 'utf8'));
+  } catch { return { state: 'ready', message: '' }; }
+}
+
 async function handleApi(req, res, url) {
   const p = url.pathname;
   const method = req.method;
@@ -1173,8 +1180,15 @@ async function handleApi(req, res, url) {
       llmConfigured: llmStatus.configured,
       llmProvider: llmStatus.provider,
       knowledgeCount: dao.countGlobalKnowledge(),
-      uptimeSeconds: Math.round(process.uptime())
+      uptimeSeconds: Math.round(process.uptime()),
+      engine: readEngineStatus()
     });
+  }
+  if (p === '/api/engine-status' && method === 'GET') {
+    return json(res, 200, readEngineStatus());
+  }
+  if ((p === '/api/chat' || p === '/api/chat/stream') && readEngineStatus().state === 'switching') {
+    return json(res, 503, { error: 'engine_upgrading', message: '系统正在升级本地引擎，请稍候' });
   }
   if (!enforceRate(res, `legacy:${clientIp(req)}`, RATE_LIMIT_LEGACY_MAX)) return;
   // 仪表盘接口需要会话（或 APP_API_KEY）；买家窗口用的 /api/chat* 与反馈接口保持公开。
