@@ -7,13 +7,14 @@
 import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import { DatabaseSync } from 'node:sqlite';
+import { expandQuery } from '../src/query-expansion.js';
 
 const EMBED_URL = 'http://192.168.3.227:3679/v1/embeddings';
 const MODEL = 'text-embedding-bge-m3';
 const QUESTIONS = 'db/seed/qa_eval_set.jsonl';
 const OUT = 'reports/eval/embedding-recall.json';
-const BATCH = 32;
-const WORKERS = 4;
+const BATCH = 8;
+const WORKERS = 2;
 
 const questions = fs.readFileSync(QUESTIONS, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
 const db = new DatabaseSync('.data/relaydesk.sqlite');
@@ -54,7 +55,7 @@ async function embedAll(texts, label) {
 }
 
 const cardVecs = await embedAll(cards.map((c) => c.text), 'cards');
-const qVecs = await embedAll(questions.map((q) => q.question), 'questions');
+const qVecs = await embedAll(questions.map((q) => expandQuery(q.question).expanded), 'questions');
 console.log(`embedded cards=${cardVecs.length} questions=${qVecs.length}`);
 
 const cardIndex = new Map(cards.map((c, i) => [c.id, i]));
