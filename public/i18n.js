@@ -30,7 +30,9 @@
       back: 'Back to workspace',
       onboardingHeading: 'Launch your support site, from account to embed code.',
       onboardingLede: 'Create an account → add a site and industry template → upload and confirm knowledge → copy the embed code.',
+      onboardingEyebrow: '4 steps · about 5 minutes',
       steps: ['Account', 'Site', 'Knowledge', 'Embed'],
+      stepTags: ['Step 1 of 4', 'Step 2 of 4', 'Step 3 of 4', 'Step 4 of 4'],
       authTitle: 'Merchant sign in / register',
       authMuted: 'Register with email and password; an existing email switches to sign-in.',
       email: 'Email',
@@ -39,8 +41,20 @@
       siteTitle: 'Create site',
       siteMuted: 'A merchant can create multiple sites; each has its own knowledge and embed code.',
       siteName: 'Site name',
+      siteNamePlaceholder: 'e.g. Northstar Goods',
+      templates: ['Restaurant', 'Retail shop', 'Clinic', 'Local service', 'Cross-border'],
       template: 'Industry template',
       createSite: 'Create site',
+      finish: 'Go to workspace',
+      working: 'Working…',
+      requiredEmailPassword: 'Email and password are required.',
+      requiredSiteName: 'Site name is required.',
+      fileTooLarge: 'File must be 1 MB or smaller.',
+      requestFailed: 'Request failed.',
+      kbReady: 'Ready to check',
+      kbConfirmed: 'Confirmed',
+      copied: 'Copied',
+      copyFailed: 'Copy failed; select the code manually.',
       kbTitle: 'Knowledge upload',
       kbMuted: 'Upload a text file up to 1 MB (.txt / .md). A draft is created and enters the knowledge base only after you confirm it.',
       kbFile: 'Knowledge file',
@@ -78,7 +92,9 @@
       back: 'العودة إلى مساحة العمل',
       onboardingHeading: 'أطلق موقع الدعم، من الحساب إلى كود التضمين.',
       onboardingLede: 'أنشئ حساباً ← أضف موقعاً وقالب قطاع ← ارفع المعرفة وأكدها ← انسخ كود التضمين.',
+      onboardingEyebrow: '4 خطوات · حوالي 5 دقائق',
       steps: ['الحساب', 'الموقع', 'المعرفة', 'التضمين'],
+      stepTags: ['الخطوة 1 من 4', 'الخطوة 2 من 4', 'الخطوة 3 من 4', 'الخطوة 4 من 4'],
       authTitle: 'تسجيل دخول / تسجيل التاجر',
       authMuted: 'سجّل بالبريد وكلمة المرور؛ إذا كان البريد موجوداً فسيتم التبديل إلى تسجيل الدخول.',
       email: 'البريد الإلكتروني',
@@ -87,8 +103,20 @@
       siteTitle: 'إنشاء موقع',
       siteMuted: 'يمكن للتاجر إنشاء عدة مواقع؛ لكل موقع معرفته وكود التضمين الخاص به.',
       siteName: 'اسم الموقع',
+      siteNamePlaceholder: 'مثال: Northstar Goods',
+      templates: ['مطعم', 'متجر بيع بالتجزئة', 'عيادة', 'خدمة محلية', 'بيع عبر الحدود'],
       template: 'قالب القطاع',
       createSite: 'إنشاء الموقع',
+      finish: 'الانتقال إلى مساحة العمل',
+      working: 'جارٍ العمل…',
+      requiredEmailPassword: 'البريد الإلكتروني وكلمة المرور مطلوبان.',
+      requiredSiteName: 'اسم الموقع مطلوب.',
+      fileTooLarge: 'يجب ألا يتجاوز الملف 1 ميغابايت.',
+      requestFailed: 'فشل الطلب.',
+      kbReady: 'جاهز للمراجعة',
+      kbConfirmed: 'تم التأكيد',
+      copied: 'تم النسخ',
+      copyFailed: 'فشل النسخ؛ حدّد الكود يدوياً.',
       kbTitle: 'رفع المعرفة',
       kbMuted: 'ارفع ملفاً نصياً حتى 1 ميغابايت (.txt / .md). ستُنشأ مسودة ولن تدخل قاعدة المعرفة إلا بعد التأكيد.',
       kbFile: 'ملف المعرفة',
@@ -145,8 +173,14 @@
     } else if (page === 'onboarding') {
       text('.brand small', dict.onboardingSubtitle);
       text('.back-link', dict.back);
+      text('.intro .eyebrow', dict.onboardingEyebrow);
       text('.intro h1', dict.onboardingHeading);
       text('.lede', dict.onboardingLede);
+      if (dict.stepTags) {
+        document.querySelectorAll('.step-tag').forEach((tag, index) => {
+          if (dict.stepTags[index]) tag.textContent = dict.stepTags[index];
+        });
+      }
       if (dict.steps) {
         document.querySelectorAll('.steps li').forEach((li, index) => {
           if (!dict.steps[index]) return;
@@ -165,6 +199,14 @@
       text('#siteTitle', dict.siteTitle);
       text('#sitePanel .muted', dict.siteMuted);
       text('label[for="siteName"]', dict.siteName);
+      placeholder('#siteName', dict.siteNamePlaceholder);
+      if (dict.templates) {
+        document.querySelectorAll('.template').forEach((button, index) => {
+          if (!dict.templates[index]) return;
+          [...button.childNodes].filter((node) => node.nodeType === 3).forEach((node) => node.remove());
+          button.appendChild(document.createTextNode(dict.templates[index]));
+        });
+      }
       text('#sitePanel h3', dict.template);
       text('#createSite', dict.createSite);
       text('#kbTitle', dict.kbTitle);
@@ -175,6 +217,7 @@
       text('#embedTitle', dict.embedTitle);
       text('#embedPanel .muted', dict.embedMuted);
       text('#copyEmbed .lbl', dict.copy);
+      text('#finishOnboarding', dict.finish);
       const standalone = document.querySelector('.standalone');
       if (standalone) {
         const link = standalone.querySelector('#standaloneUrl');

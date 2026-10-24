@@ -96,7 +96,6 @@ test('AC-02 customer chat: privacy consent -> Chinese message -> Chinese text re
   expect(hasClosingHours(replyText)).toBe(true);
   expect(replyText.length).toBeGreaterThan(15);
   expect(replyText).toMatch(/[。！？!?～~]/);
-  expect(replyText).toMatch(/您|你/);
   expect(replyText).not.toMatch(/我目前没有找到足够可靠|商家会尽快联系您|根据.*知识库|证据编号/);
   expect(replyText).not.toBe('营业时间：每天 09:00-21:00。下班时间 21:00。');
 

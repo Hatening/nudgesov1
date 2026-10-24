@@ -1,4 +1,8 @@
 const $ = (s) => document.querySelector(s);
+function tr(key, fallback) {
+  const value = window.relaydeskI18n?.t(key);
+  return value && value !== key ? value : fallback;
+}
 const panels = ['authPanel', 'sitePanel', 'kbPanel', 'embedPanel'];
 const steps = ['auth', 'site', 'kb', 'embed'];
 let token = localStorage.getItem('relaydesk_token') || '';
@@ -50,7 +54,7 @@ function busy(button, isBusy, label) {
   if (!button) return;
   if (!button.dataset.idleLabel) button.dataset.idleLabel = label || button.textContent;
   button.disabled = isBusy;
-  button.textContent = isBusy ? '处理中… / Working…' : button.dataset.idleLabel;
+  button.textContent = isBusy ? tr('working', 'Working…') : button.dataset.idleLabel;
 }
 
 async function api(path, options = {}) {
@@ -58,7 +62,7 @@ async function api(path, options = {}) {
   if (token) headers.authorization = `Bearer ${token}`;
   const response = await fetch(path, { ...options, headers });
   const data = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(data.error || `请求失败 / Request failed (${response.status})`);
+  if (!response.ok) throw new Error(data.error || `${tr('requestFailed', 'Request failed')} (${response.status})`);
   return data;
 }
 
@@ -85,7 +89,7 @@ $('#authForm').addEventListener('submit', async (event) => {
   const email = $('#email').value.trim();
   const password = $('#password').value;
   if (!email || !password) {
-    error('authError', '请填写邮箱和密码 / Email and password are required.');
+    error('authError', tr('requiredEmailPassword', 'Email and password are required.'));
     return;
   }
   const button = $('#authSubmit');
@@ -102,7 +106,7 @@ $('#authForm').addEventListener('submit', async (event) => {
   } catch (err) {
     error('authError', err.message);
   } finally {
-    busy(button, false, '注册 / 登录');
+    busy(button, false, tr('authSubmit', 'Register / Sign in'));
   }
 });
 
@@ -117,7 +121,7 @@ $('#createSite').addEventListener('click', async () => {
   error('siteError', '');
   const name = $('#siteName').value.trim();
   if (!name) {
-    error('siteError', '请填写站点名称 / Site name is required.');
+    error('siteError', tr('requiredSiteName', 'Site name is required.'));
     return;
   }
   const button = $('#createSite');
@@ -134,7 +138,7 @@ $('#createSite').addEventListener('click', async () => {
   } catch (err) {
     error('siteError', err.message);
   } finally {
-    busy(button, false, '创建站点 / Create site');
+    busy(button, false, tr('createSite', 'Create site'));
   }
 });
 
@@ -145,7 +149,7 @@ $('#kbFile').addEventListener('change', async () => {
   const sizeLabel = file.size < 1024 ? `${file.size} B` : `${Math.round(file.size / 1024)} KB`;
   $('#kbFileName').textContent = `${file.name} · ${sizeLabel}`;
   if (file.size > 1_000_000) {
-    error('kbError', '文件超过 1 MB / File must be 1 MB or smaller.');
+    error('kbError', tr('fileTooLarge', 'File must be 1 MB or smaller.'));
     return;
   }
   const button = $('#kbConfirm');
@@ -159,7 +163,7 @@ $('#kbFile').addEventListener('change', async () => {
     draft = data.document;
     $('#kbPreview').textContent = draft.content;
     $('#kbDraft').classList.remove('hidden');
-    $('#kbStatus').textContent = '整理好了，等你确认 / Ready to check';
+    $('#kbStatus').textContent = tr('kbReady', 'Ready to check');
     $('#kbStatus').style.color = 'var(--muted)';
     button.disabled = false;
   } catch (err) {
@@ -178,10 +182,10 @@ $('#kbConfirm').addEventListener('click', async () => {
       body: JSON.stringify({ document_id: draft.id })
     });
     draft = confirmed.document;
-    $('#kbStatus').textContent = '已确认 / Confirmed';
+    $('#kbStatus').textContent = tr('kbConfirmed', 'Confirmed');
     $('#kbStatus').style.color = 'var(--green)';
     const embed = await api(`/api/v1/sites/${encodeURIComponent(site.id)}/embed-code`);
-    busy(button, false, '确认知识库 / Confirm');
+    busy(button, false, tr('kbConfirm', 'Confirm knowledge'));
     $('#embedSnippet').textContent = embed.snippet;
     const link = $('#standaloneUrl');
     link.href = embed.standalone_url;
@@ -193,7 +197,7 @@ $('#kbConfirm').addEventListener('click', async () => {
   } catch (err) {
     error('kbError', err.message);
   } finally {
-    busy(button, false, '确认知识库 / Confirm');
+    busy(button, false, tr('kbConfirm', 'Confirm knowledge'));
   }
 });
 
@@ -201,9 +205,9 @@ $('#copyEmbed').addEventListener('click', async () => {
   const text = $('#embedSnippet').textContent;
   try {
     await navigator.clipboard.writeText(text);
-    $('#copyStatus').textContent = '已复制 / Copied';
+    $('#copyStatus').textContent = tr('copied', 'Copied');
   } catch {
-    $('#copyStatus').textContent = '复制失败，请手动选择代码 / Copy failed; select the code manually.';
+    $('#copyStatus').textContent = tr('copyFailed', 'Copy failed; select the code manually.');
   }
 });
 
