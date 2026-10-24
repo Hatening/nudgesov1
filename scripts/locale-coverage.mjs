@@ -7,7 +7,7 @@ const app = fs.readFileSync(path.join(root, 'public', 'app.js'), 'utf8');
 
 const supportedMatch = i18n.match(/const supported\s*=\s*\[([^\]]+)\]/);
 const uiLocales = supportedMatch
-  ? [...supportedMatch[1].matchAll(/['"]([a-z-]+)['"]/g)].map((match) => match[1])
+  ? [...supportedMatch[1].matchAll(/['"]([A-Za-z-]+)['"]/g)].map((match) => match[1])
   : [];
 
 const languagesMatch = app.match(/const languages\s*=\s*\[([\s\S]*?)\];/);

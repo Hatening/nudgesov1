@@ -1,13 +1,14 @@
 (function () {
-  const supported = ['zh', 'en', 'ar', 'es', 'fr', 'de', 'pt', 'it', 'ja', 'ko', 'ru'];
+  const supported = ['zh', 'zh-CN', 'zh-TW', 'en', 'en-AU', 'ar', 'az', 'bg', 'bn', 'cs', 'da', 'de', 'el', 'es', 'fa', 'fr', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'ko', 'ms', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'sw', 'th', 'tr', 'uk', 'ur', 'vi'];
   const params = new URLSearchParams(window.location.search);
   const stored = window.localStorage.getItem('relaydesk_locale');
-  const requested = params.get('lang') || stored || 'zh';
-  const locale = supported.includes(String(requested).toLowerCase().split('-')[0])
-    ? String(requested).toLowerCase().split('-')[0]
-    : 'zh';
+  const requested = String(params.get('lang') || stored || 'zh').toLowerCase().replace('_', '-');
+  const exactLocale = supported.find((code) => code.toLowerCase() === requested);
+  const baseLocale = requested.split('-')[0];
+  const locale = exactLocale || (supported.includes(baseLocale) ? baseLocale : 'zh');
+  const rtlLocales = new Set(['ar', 'he', 'fa', 'ur']);
   document.documentElement.lang = locale;
-  document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.dir = rtlLocales.has(locale.split('-')[0]) ? 'rtl' : 'ltr';
   document.body.dataset.locale = locale;
 
   const copy = {
@@ -181,7 +182,7 @@
   }
 
   function apply(locale) {
-    const dict = copy[locale];
+    const dict = copy[locale] || copy[locale.split('-')[0]];
     if (!dict) return;
     const page = document.body.dataset.page;
     if (page === 'chat') {
@@ -282,7 +283,7 @@
     const select = document.createElement('select');
     select.className = 'language-switch';
     select.setAttribute('aria-label', 'Language / اللغة / 语言');
-    [['zh', 'ZH'], ['en', 'EN'], ['ar', 'AR'], ['es', 'ES'], ['fr', 'FR'], ['de', 'DE'], ['pt', 'PT'], ['it', 'IT'], ['ja', 'JA'], ['ko', 'KO'], ['ru', 'RU']].forEach(([value, label]) => {
+    [['zh', 'ZH'], ['zh-CN', 'ZH-CN'], ['zh-TW', 'ZH-TW'], ['en', 'EN'], ['en-AU', 'EN-AU'], ['ar', 'AR'], ['az', 'AZ'], ['bg', 'BG'], ['bn', 'BN'], ['cs', 'CS'], ['da', 'DA'], ['de', 'DE'], ['el', 'EL'], ['es', 'ES'], ['fa', 'FA'], ['fr', 'FR'], ['he', 'HE'], ['hi', 'HI'], ['hr', 'HR'], ['hu', 'HU'], ['id', 'ID'], ['it', 'IT'], ['ja', 'JA'], ['ko', 'KO'], ['ms', 'MS'], ['nl', 'NL'], ['no', 'NO'], ['pl', 'PL'], ['pt-BR', 'PT-BR'], ['pt-PT', 'PT-PT'], ['ro', 'RO'], ['ru', 'RU'], ['sk', 'SK'], ['sv', 'SV'], ['sw', 'SW'], ['th', 'TH'], ['tr', 'TR'], ['uk', 'UK'], ['ur', 'UR'], ['vi', 'VI']].forEach(([value, label]) => {
       const option = document.createElement('option');
       option.value = value;
       option.textContent = label;
@@ -301,7 +302,7 @@
   apply(locale);
   window.relaydeskI18n = {
     locale,
-    t: (key) => copy[locale]?.[key] || key
+    t: (key) => copy[locale]?.[key] || copy[locale.split('-')[0]]?.[key] || key
   };
   addSwitcher();
 })();

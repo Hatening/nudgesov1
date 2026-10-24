@@ -176,23 +176,24 @@ test.describe('Phase 13 — UI link, language and layout matrix', () => {
     await page.screenshot({ path: path.join(process.env.RUN_DIR || 'artifacts', 'phase13-chat-ar.png'), fullPage: true });
   });
 
-  test('10 high-value locales load without CJK leakage (European) and stay within 390px', async ({ page }) => {
-    const runDir = process.env.RUN_DIR || 'artifacts';
-    await fs.mkdir(runDir, { recursive: true });
+  test('all generated UI locales load, stay within 390px and use the right direction', async ({ page }) => {
+    const locales = ['en', 'en-AU', 'ar', 'az', 'bg', 'bn', 'cs', 'da', 'de', 'el', 'es', 'fa', 'fr', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'ko', 'ms', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'sw', 'th', 'tr', 'uk', 'ur', 'vi', 'zh-CN', 'zh-TW'];
+    const rtl = new Set(['ar', 'he', 'fa', 'ur']);
+    const cjk = new Set(['ja', 'ko', 'zh-CN', 'zh-TW']);
     await page.setViewportSize({ width: 390, height: 844 });
-    for (const locale of ['es', 'fr', 'de', 'pt', 'it', 'ja', 'ko', 'ru']) {
+    for (const locale of locales) {
       await page.goto(`/onboarding.html?lang=${locale}`);
       await expect(page.locator('html')).toHaveAttribute('lang', locale);
       await expect(page.locator('.intro h1')).not.toBeEmpty();
+      await expect(page.locator('html')).toHaveAttribute('dir', rtl.has(locale) ? 'rtl' : 'ltr');
       await assertNoHorizontalOverflow(page);
-      const text = await page.evaluate(() => {
-        document.querySelectorAll('.panel').forEach((panel) => panel.classList.remove('hidden'));
-        return document.querySelector('main')?.innerText || '';
-      });
-      if (locale !== 'ja' && locale !== 'ko') {
+      if (!cjk.has(locale)) {
+        const text = await page.evaluate(() => {
+          document.querySelectorAll('.panel').forEach((panel) => panel.classList.remove('hidden'));
+          return document.querySelector('main')?.innerText || '';
+        });
         expect(text, locale).not.toMatch(/[\u4e00-\u9fff]/);
       }
-      await page.screenshot({ path: path.join(runDir, `phase13-onboarding-${locale}.png`), fullPage: true });
     }
   });
 

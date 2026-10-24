@@ -28,7 +28,7 @@ applicable to NudgeSo and are not silently copied here.
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
-| UI locales with translated copy | **11** (`zh`, `en`, `ar`, `es`, `fr`, `de`, `pt`, `it`, `ja`, `ko`, `ru`) |
+| UI locales with translated copy | **40** (`zh` default plus 39 generated locale bundles) |
 | Dashboard language options | **20** |
 
 The 4 skipped tests are:
@@ -85,16 +85,15 @@ The read-only cloud smoke passed against `https://nudgeso.onrender.com` after
 the QA commit. Render environment variables and persistent-disk status still
 need dashboard access; the cloud smoke cannot prove those settings.
 
-## P1 — 10 high-value locales
+## P1 — full target locale set
 
-Added draft locale bundles for `es`, `fr`, `de`, `pt`, `it`, `ja`, `ko`, `ru`;
-`en` and `ar` already existed. The Phase 13 matrix now checks all ten high-value
-locales at 390px, and checks for Chinese leakage in the six European locales.
-Japanese and Korean are excluded from the CJK regex because Kanji/Hanja are
-legitimate script content.
+Generated 39 locale bundles with the DeepSeek API, covering the 37 locale
+variants from the screenshot plus `en`, `th` and `ur`; Chinese base remains the
+default `zh` shell. The Phase 13 matrix checks all 39 generated locales at
+390px, their `lang` attribute, and the correct RTL direction.
 
 **Still required:** native-speaker review, especially for privacy, refund and
-legal copy. The bundles are explicitly marked as drafts.
+legal copy. The bundles are explicitly marked as generated drafts.
 
 ## What is actually strong
 
@@ -111,18 +110,22 @@ legal copy. The bundles are explicitly marked as drafts.
 
 ### 1. 37-language copy/visual matrix
 
-The screenshot shows a 37-option language selector (34 base languages plus
-variants such as `EN-AU`, `PT-BR`, `ZH-TW`). The actual UI locale dictionary now
-has 11 complete locales:
+The screenshot lists 37 locale variants. The UI now supports the full target set
+through 39 generated locale bundles plus the default Chinese bundle:
 
 ```text
-zh, en, ar, es, fr, de, pt, it, ja, ko, ru
+ar, az, bg, bn, cs, da, de, el, en, en-AU, es, fa, fr, he, hi, hr, hu,
+id, it, ja, ko, ms, nl, no, pl, pt-BR, pt-PT, ro, ru, sk, sv, sw, th, tr,
+uk, ur, vi, zh-CN, zh-TW
 ```
 
-The 10 high-value target languages are covered by draft translations in
-`public/ui-locales.js`; they are not yet native-speaker certified. The remaining
-selector languages are still not complete locale bundles, so a 37-language
-matrix would still produce false confidence for those locales.
+All 39 locale bundles were generated through the DeepSeek API. `th` (Thai) and
+`ur` (Urdu, RTL) were added beyond the 37-item list. The default `zh` shell
+remains available as the Chinese base.
+
+The 390px overflow/direction matrix now covers all 39 generated locales. Native
+speaker review is still required for legal, privacy and refund copy; the bundles
+are API-generated drafts, not certified translations.
 
 ### 2. Full 37-language translation
 

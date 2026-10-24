@@ -19,6 +19,7 @@
     "qa:links": "node scripts/dead-links.mjs",
     "qa:locales": "node scripts/locale-coverage.mjs",
     "qa:geometry": "node scripts/ui-geometry-warnings.mjs",
+    "locales:generate": "node scripts/generate-ui-locales.mjs",
     "test:gpc": "node --test test/gpc.test.js",
     "test:kb": "node --test test/kb-seed.test.js",
     "check": "node --check server.js && node --check public/app.js && node --test",
