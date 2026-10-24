@@ -176,6 +176,26 @@ test.describe('Phase 13 — UI link, language and layout matrix', () => {
     await page.screenshot({ path: path.join(process.env.RUN_DIR || 'artifacts', 'phase13-chat-ar.png'), fullPage: true });
   });
 
+  test('10 high-value locales load without CJK leakage (European) and stay within 390px', async ({ page }) => {
+    const runDir = process.env.RUN_DIR || 'artifacts';
+    await fs.mkdir(runDir, { recursive: true });
+    await page.setViewportSize({ width: 390, height: 844 });
+    for (const locale of ['es', 'fr', 'de', 'pt', 'it', 'ja', 'ko', 'ru']) {
+      await page.goto(`/onboarding.html?lang=${locale}`);
+      await expect(page.locator('html')).toHaveAttribute('lang', locale);
+      await expect(page.locator('.intro h1')).not.toBeEmpty();
+      await assertNoHorizontalOverflow(page);
+      const text = await page.evaluate(() => {
+        document.querySelectorAll('.panel').forEach((panel) => panel.classList.remove('hidden'));
+        return document.querySelector('main')?.innerText || '';
+      });
+      if (locale !== 'ja' && locale !== 'ko') {
+        expect(text, locale).not.toMatch(/[\u4e00-\u9fff]/);
+      }
+      await page.screenshot({ path: path.join(runDir, `phase13-onboarding-${locale}.png`), fullPage: true });
+    }
+  });
+
   test('capture zh/en/ar onboarding visual evidence', async ({ page }) => {
     const runDir = process.env.RUN_DIR || 'artifacts';
     await fs.mkdir(runDir, { recursive: true });

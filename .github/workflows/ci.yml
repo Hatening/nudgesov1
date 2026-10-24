@@ -74,6 +74,7 @@ jobs:
           npm run qa:inventory
           npm run qa:locales
           npm run qa:links
+          npm run qa:geometry
 
       - name: Playwright (all E2E, including i18n and 390px UI)
         env:

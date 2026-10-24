@@ -23,11 +23,12 @@ applicable to NudgeSo and are not silently copied here.
 | Discovered inputs / selects / textareas | 11 |
 | Unique same-origin links checked | 24 |
 | Dead links | **0** |
-| Node / unit tests | **88 / 88 pass** |
-| Playwright full suite | **21 pass, 4 intentionally skipped** |
-| Phase 13 UI matrix | **5 / 5 pass** |
+| Node / unit tests | **89 / 89 pass** |
+| Playwright full suite | **22 pass, 4 intentionally skipped** |
+| Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
-| UI locales with translated copy | **3** (`zh`, `en`, `ar`) |
+| Geometry warnings | **15 warnings, 0 hard failures** |
+| UI locales with translated copy | **11** (`zh`, `en`, `ar`, `es`, `fr`, `de`, `pt`, `it`, `ja`, `ko`, `ru`) |
 | Dashboard language options | **20** |
 
 The 4 skipped tests are:
@@ -53,11 +54,47 @@ The 4 skipped tests are:
 | Screenshot evidence | **Pass** | zh/en/ar + queue/chat screenshots |
 | Financial firewall | **Pass** | FinancialGuard unit + AC-03 + Phase 13 |
 | Tenant / audience isolation | **Pass** | audience-isolation, kb-isolation, rag-isolation |
-| PII redaction | **Pass at unit level** | `test/privacy.test.js`; no dedicated outbound-request E2E |
+| PII redaction | **Pass** | Unit + gateway + server `/api/chat` outbound body assertion |
 | Timeout / fallback | **Pass** | llm-fallback, LLM tests |
 | Concurrent writes | **Pass** | db-concurrency test |
 | Billing / free tier paywall | **Not implemented for NudgeSo chat** | Credits are enforced for OCR/upload; no subscription/payment provider |
 | Local model deployed to production | **Not done** | No GPU on Render; requires a separate GPU host |
+
+## P2 — geometry warnings
+
+`npm run qa:geometry` now records non-blocking warnings for:
+
+- clipped text (`scrollWidth/scrollHeight` larger than the client box);
+- clickable targets under 24px;
+- overlapping adjacent controls over 20%.
+
+It currently reports 15 warnings, all from small text links on the login
+fallback page. They are evidence for a UI polish pass, not a hard gate yet.
+
+## P3 — outbound PII
+
+The LLM gateway now applies `redactPII` to the customer question and retrieved
+evidence before both OpenAI-compatible and Ollama requests. The integration test
+in `test/llm.test.js` captures the server's actual outbound `/api/chat` request
+and asserts that email, phone and card values are absent and the `[redacted-*]`
+placeholders are present.
+
+## Deployment check
+
+The read-only cloud smoke passed against `https://nudgeso.onrender.com` after
+the QA commit. Render environment variables and persistent-disk status still
+need dashboard access; the cloud smoke cannot prove those settings.
+
+## P1 — 10 high-value locales
+
+Added draft locale bundles for `es`, `fr`, `de`, `pt`, `it`, `ja`, `ko`, `ru`;
+`en` and `ar` already existed. The Phase 13 matrix now checks all ten high-value
+locales at 390px, and checks for Chinese leakage in the six European locales.
+Japanese and Korean are excluded from the CJK regex because Kanji/Hanja are
+legitimate script content.
+
+**Still required:** native-speaker review, especially for privacy, refund and
+legal copy. The bundles are explicitly marked as drafts.
 
 ## What is actually strong
 
@@ -75,19 +112,17 @@ The 4 skipped tests are:
 ### 1. 37-language copy/visual matrix
 
 The screenshot shows a 37-option language selector (34 base languages plus
-variants such as `EN-AU`, `PT-BR`, `ZH-TW`), but the actual UI locale dictionary
-has only three complete locales:
+variants such as `EN-AU`, `PT-BR`, `ZH-TW`). The actual UI locale dictionary now
+has 11 complete locales:
 
 ```text
-zh, en, ar
+zh, en, ar, es, fr, de, pt, it, ja, ko, ru
 ```
 
-The Dashboard language list has 20 options, but that is a setting list, not 20
-translated UI bundles. Running 37 locales now would generate false confidence:
-most pages would fall back to Chinese/English or show missing keys.
-
-The correct next step is to add real locale files, not to run a matrix against
-empty locales.
+The 10 high-value target languages are covered by draft translations in
+`public/ui-locales.js`; they are not yet native-speaker certified. The remaining
+selector languages are still not complete locale bundles, so a 37-language
+matrix would still produce false confidence for those locales.
 
 ### 2. Full 37-language translation
 

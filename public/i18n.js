@@ -1,5 +1,5 @@
 (function () {
-  const supported = ['zh', 'en', 'ar'];
+  const supported = ['zh', 'en', 'ar', 'es', 'fr', 'de', 'pt', 'it', 'ja', 'ko', 'ru'];
   const params = new URLSearchParams(window.location.search);
   const stored = window.localStorage.getItem('relaydesk_locale');
   const requested = params.get('lang') || stored || 'zh';
@@ -166,7 +166,8 @@
       urgent: 'عاجل',
       resolve: 'تحديد كمعالج',
       footnote: 'البيانات من GET /api/v1/escalations؛ تُعرض فقط عناصر التصعيد الخاصة بالتاجر الحالي.'
-    }
+    },
+    ...(window.NS_UI_LOCALES || {})
   };
 
   function text(selector, value) {
@@ -281,7 +282,7 @@
     const select = document.createElement('select');
     select.className = 'language-switch';
     select.setAttribute('aria-label', 'Language / اللغة / 语言');
-    [['zh', 'ZH'], ['en', 'EN'], ['ar', 'ع']].forEach(([value, label]) => {
+    [['zh', 'ZH'], ['en', 'EN'], ['ar', 'AR'], ['es', 'ES'], ['fr', 'FR'], ['de', 'DE'], ['pt', 'PT'], ['it', 'IT'], ['ja', 'JA'], ['ko', 'KO'], ['ru', 'RU']].forEach(([value, label]) => {
       const option = document.createElement('option');
       option.value = value;
       option.textContent = label;

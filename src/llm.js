@@ -1,3 +1,5 @@
+import { redactPII } from './privacy.js';
+
 function parseModelJson(content) {
   const text = String(content || '').trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
   return JSON.parse(text);
@@ -13,6 +15,14 @@ function joinEvidence(hits, maxChars = 5000) {
     used += block.length;
   });
   return parts.join('\n\n');
+}
+
+function safeHits(hits) {
+  return hits.map((hit) => ({
+    ...hit,
+    title: redactPII(hit.title || ''),
+    content: redactPII(hit.content || '')
+  }));
 }
 
 function systemPrompt(lang) {
@@ -144,13 +154,15 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
     if (!hits.length) return { error: 'no_evidence', provider };
     if (now() < openUntil) return { error: 'circuit_open', provider };
     totalCalls += 1;
+    const safeQuestion = redactPII(question);
+    const safeEvidence = safeHits(hits);
 
     let lastFailure;
     for (let attempt = 0; attempt < 2; attempt++) {
       try {
         const response = provider === 'openai'
-          ? await openaiCall(question, hits, lang)
-          : await ollamaCall(question, hits, lang);
+          ? await openaiCall(safeQuestion, safeEvidence, lang)
+          : await ollamaCall(safeQuestion, safeEvidence, lang);
         const parsed = parseModelJson(response.content);
         if (typeof parsed.answer !== 'string' || !parsed.answer.trim()) throw new Error('LLM returned an empty answer');
         const confidence = Math.max(0, Math.min(1, Number(parsed.confidence) || 0));
@@ -252,6 +264,8 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
     if (!hits.length) return { error: 'no_evidence', provider };
     if (now() < openUntil) return { error: 'circuit_open', provider };
     totalCalls += 1;
+    const safeQuestion = redactPII(question);
+    const safeEvidence = safeHits(hits);
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
@@ -261,7 +275,7 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
         stream: true,
         messages: [
           { role: 'system', content: systemPrompt(lang) },
-          { role: 'user', content: `QUESTION:\n${question}\n\nSTORE KNOWLEDGE:\n${joinEvidence(hits)}\n\nLANGUAGE: ${lang}\nReturn JSON only.` }
+          { role: 'user', content: `QUESTION:\n${safeQuestion}\n\nSTORE KNOWLEDGE:\n${joinEvidence(safeEvidence)}\n\nLANGUAGE: ${lang}\nReturn JSON only.` }
         ]
       };
       if (provider === 'openai' && responseFormat !== 'none') baseBody.response_format = { type: responseFormat };
@@ -308,6 +322,7 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
     if (!order.length) return null;
     if (now() < openUntil) return { error: 'circuit_open', provider: primary };
     totalCalls += 1;
+    const safePrompt = redactPII(prompt);
 
     const lastErrors = [];
     for (const provider of order) {
@@ -316,7 +331,7 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
         temperature,
         messages: [
           { role: 'system', content: '你是一个严谨的电商知识结构化助手。只输出合法 JSON，不要解释。' },
-          { role: 'user', content: prompt }
+          { role: 'user', content: safePrompt }
         ]
       };
       if (provider === 'openai' && responseFormat !== 'none') body.response_format = { type: responseFormat };
@@ -348,7 +363,7 @@ export function createLlmGateway({ env = process.env, fetchImpl = globalThis.fet
     if (!Array.isArray(imageDataUrls) || imageDataUrls.length === 0) return { error: 'no_images', provider: 'openai' };
     if (now() < openUntil) return { error: 'circuit_open', provider: 'openai' };
     totalCalls += 1;
-    const content = [{ type: 'text', text: prompt }];
+    const content = [{ type: 'text', text: redactPII(prompt) }];
     for (const url of imageDataUrls.slice(0, 6)) {
       content.push({ type: 'image_url', image_url: { url } });
     }

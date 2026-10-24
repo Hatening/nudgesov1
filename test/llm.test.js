@@ -151,8 +151,32 @@ test('P3-04 LLM gateway: OpenAI-compatible, Ollama, grounding and circuit fallba
   assert.equal(broken.status().circuit_open, true);
 });
 
-test('P3-04 LLM gateway: server /api/chat uses configured provider and returns model name', async (t) => {
+test('P3-04 LLM gateway: PII is redacted before any outbound model request', async (t) => {
   const mock = await startMockProvider('openai-ok');
+  t.after(async () => closeServer(mock.server));
+  const gateway = createLlmGateway({
+    env: {
+      LLM_PROVIDER: 'openai',
+      LLM_BASE_URL: `http://127.0.0.1:${mock.port}/v1`,
+      LLM_MODEL: 'pii-test-model',
+      LLM_API_KEY: 'test-key',
+      LLM_TIMEOUT_MS: '2000'
+    }
+  });
+  const question = 'My email is customer@example.test, phone +86 138 0013 8000, card 4111 1111 1111 1111. Where is my parcel?';
+  const hits = [{ id: 'kb_pii', title: 'Customer contact', content: 'Call +86 138 0013 8000 or email customer@example.test' }];
+  const result = await gateway.answer(question, hits, 'en', {});
+  assert.equal(result.provider, 'openai');
+  const outbound = JSON.stringify(mock.state.calls[0].body);
+  assert.doesNotMatch(outbound, /customer@example\.test/);
+  assert.doesNotMatch(outbound, /138 0013 8000/);
+  assert.doesNotMatch(outbound, /4111 1111 1111 1111/);
+  assert.match(outbound, /\[redacted-email\]/);
+  assert.match(outbound, /\[redacted-phone\]/);
+  assert.match(outbound, /\[redacted-card\]/);
+});
+
+test('P3-04 LLM gateway: server /api/chat uses configured provider and returns model name', async (t) => {  const mock = await startMockProvider('openai-ok');
   const dataDir = await fs.mkdtemp(path.join(os.tmpdir(), 'relaydesk-llm-integration-'));
   const port = await freePort();
   const child = spawn(process.execPath, ['server.js'], {
@@ -199,4 +223,21 @@ test('P3-04 LLM gateway: server /api/chat uses configured provider and returns m
   assert.match(streamText, /"token"/);
   assert.match(streamText, /"done":true/);
   assert.match(streamText, /mock-integration-model/);
+
+  const piiResponse = await fetch(`http://127.0.0.1:${port}/api/chat`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      message: 'My email is live-customer@example.test, phone +86 138 0013 8000, card 4111 1111 1111 1111. Where is my parcel?',
+      language: 'en'
+    })
+  });
+  assert.equal(piiResponse.status, 200);
+  const outbound = JSON.stringify(mock.state.calls.at(-1)?.body || {});
+  assert.doesNotMatch(outbound, /live-customer@example\.test/);
+  assert.doesNotMatch(outbound, /138 0013 8000/);
+  assert.doesNotMatch(outbound, /4111 1111 1111 1111/);
+  assert.match(outbound, /\[redacted-email\]/);
+  assert.match(outbound, /\[redacted-phone\]/);
+  assert.match(outbound, /\[redacted-card\]/);
 });
