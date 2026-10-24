@@ -67,6 +67,14 @@ jobs:
           cat "$RUNNER_TEMP/relaydesk-server.log"
           exit 1
 
+      - name: UI inventory, locale coverage and dead links
+        env:
+          BASE_URL: http://127.0.0.1:3030
+        run: |
+          npm run qa:inventory
+          npm run qa:locales
+          npm run qa:links
+
       - name: Playwright (all E2E, including i18n and 390px UI)
         env:
           RUN_ID: ci-${{ github.run_id }}
@@ -89,3 +97,4 @@ jobs:
             ${{ runner.temp }}/relaydesk-server.log
             ${{ runner.temp }}/mock-llm.log
             artifacts/playwright
+            artifacts/qa-matrix
