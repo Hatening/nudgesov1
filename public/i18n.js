@@ -70,6 +70,22 @@
       empty: 'No escalations right now',
       emptyHint: 'Complaints and refund requests will appear here.',
       queueHeaders: ['Message', 'Site', 'Lang', 'Intent', 'Risk', 'Status', 'Time', 'Action'],
+      labelCustomer: 'Customer message',
+      labelSite: 'Site',
+      labelLanguage: 'Language',
+      labelIntent: 'What they asked',
+      labelRisk: 'Priority',
+      labelStatus: 'Status',
+      labelTime: 'Time',
+      labelAction: 'Action',
+      riskHigh: 'High',
+      riskMedium: 'Medium',
+      riskLow: 'Low',
+      statusPending: 'Waiting',
+      statusInReview: 'In review',
+      statusResolved: 'Resolved',
+      financial: 'Financial',
+      urgent: 'Urgent',
       resolve: 'Mark resolved',
       footnote: 'Data from GET /api/v1/escalations; only the current merchant tenant is shown.'
     },
@@ -132,6 +148,22 @@
       empty: 'لا توجد عناصر تصعيد حالياً',
       emptyHint: 'ستظهر هنا الشكاوى وطلبات الاسترداد.',
       queueHeaders: ['الرسالة', 'الموقع', 'اللغة', 'النية', 'المخاطر', 'الحالة', 'الوقت', 'الإجراء'],
+      labelCustomer: 'رسالة العميل',
+      labelSite: 'الموقع',
+      labelLanguage: 'اللغة',
+      labelIntent: 'ما سأل عنه',
+      labelRisk: 'الأولوية',
+      labelStatus: 'الحالة',
+      labelTime: 'الوقت',
+      labelAction: 'الإجراء',
+      riskHigh: 'مرتفع',
+      riskMedium: 'متوسط',
+      riskLow: 'منخفض',
+      statusPending: 'قيد الانتظار',
+      statusInReview: 'قيد المراجعة',
+      statusResolved: 'تم الحل',
+      financial: 'مالي',
+      urgent: 'عاجل',
       resolve: 'تحديد كمعالج',
       footnote: 'البيانات من GET /api/v1/escalations؛ تُعرض فقط عناصر التصعيد الخاصة بالتاجر الحالي.'
     }
@@ -227,11 +259,13 @@
       document.title = 'NudgeSo — Merchant onboarding';
     } else if (page === 'queue') {
       text('.brand small', dict.queueSubtitle);
+      text('.back-link', dict.back);
       text('.page-head h1', dict.queueHeading);
       text('.page-head .muted', dict.queueMuted);
       text('#refreshButton .lbl', dict.refresh);
       text('#emptyState strong', dict.empty);
       text('#emptyState p', dict.emptyHint);
+      text('#emptyState a.btn', dict.back);
       text('.footnote', dict.footnote);
       const headers = document.querySelectorAll('.queue-table thead th');
       headers.forEach((th, index) => {
@@ -247,7 +281,7 @@
     const select = document.createElement('select');
     select.className = 'language-switch';
     select.setAttribute('aria-label', 'Language / اللغة / 语言');
-    [['zh', '中'], ['en', 'EN'], ['ar', 'ع']].forEach(([value, label]) => {
+    [['zh', 'ZH'], ['en', 'EN'], ['ar', 'ع']].forEach(([value, label]) => {
       const option = document.createElement('option');
       option.value = value;
       option.textContent = label;

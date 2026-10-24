@@ -7,21 +7,26 @@ function esc(value) {
   }[c]));
 }
 
+function tr(key, fallback) {
+  const value = window.relaydeskI18n?.t(key);
+  return value && value !== key ? value : fallback;
+}
+
 function icon(name) {
   return window.NS_ICON ? window.NS_ICON(name, 15) : '';
 }
 
 // 三通道状态标签：图标 + 文字 + 颜色
 function statusBadge(status) {
-  if (status === 'resolved') return `<span class="badge resolved">${icon('check')} 已处理</span>`;
-  if (status === 'in_review') return `<span class="badge in_review">${icon('clock')} 处理中</span>`;
-  return `<span class="badge pending">${icon('clock')} 等待中</span>`;
+  if (status === 'resolved') return `<span class="badge resolved">${icon('check')} ${esc(tr('statusResolved', '已处理'))}</span>`;
+  if (status === 'in_review') return `<span class="badge in_review">${icon('clock')} ${esc(tr('statusInReview', '处理中'))}</span>`;
+  return `<span class="badge pending">${icon('clock')} ${esc(tr('statusPending', '等待中'))}</span>`;
 }
 
 function riskBadge(level) {
-  if (level === 'high' || level === 'critical') return `<span class="badge high">${icon('alert')} 要紧</span>`;
-  if (level === 'low') return `<span class="badge low">${icon('check')} 不急</span>`;
-  return `<span class="badge medium">${icon('info')} 一般</span>`;
+  if (level === 'high' || level === 'critical') return `<span class="badge high">${icon('alert')} ${esc(tr('riskHigh', '要紧'))}</span>`;
+  if (level === 'low') return `<span class="badge low">${icon('check')} ${esc(tr('riskLow', '不急'))}</span>`;
+  return `<span class="badge medium">${icon('info')} ${esc(tr('riskMedium', '一般'))}</span>`;
 }
 
 function render(items) {
@@ -31,29 +36,27 @@ function render(items) {
   $('#emptyState').classList.toggle('hidden', items.length > 0);
   document.querySelector('.table-card').classList.toggle('hidden', items.length === 0);
   for (const item of items) {
-    const tr = document.createElement('tr');
+    const row = document.createElement('tr');
     const financial = item.category === 'financial';
     const urgent = item.priority === 'urgent' || financial;
-    tr.dataset.escalationId = item.id;
-    tr.dataset.status = item.status;
-    tr.dataset.risk = item.risk;
-    tr.dataset.category = item.category || 'general';
-    tr.dataset.priority = item.priority || 'normal';
-    if (urgent) tr.classList.add('urgent-row');
-    const resolveLabel = window.relaydeskI18n && window.relaydeskI18n.locale !== 'zh'
-      ? window.relaydeskI18n.t('resolve')
-      : '标记已处理';
-    tr.innerHTML = `
-      <td class="message-cell" data-label="客户说的话">${esc(item.message)}</td>
-      <td data-label="店铺">${esc(item.site_name || '')}</td>
-      <td data-label="语言">${esc(item.language || '')}</td>
-      <td data-label="想问什么">${esc(item.intent || '')}</td>
-      <td data-label="要紧程度">${riskBadge(item.risk_level || item.risk)} ${financial ? '<span class="badge high">' + icon('alert') + ' 涉及钱</span>' : ''} ${urgent && !financial ? '<span class="badge high">' + icon('alert') + ' 很急</span>' : ''}</td>
-      <td data-label="状态">${statusBadge(item.status || 'pending')}</td>
-      <td data-label="时间">${esc(new Date(item.created_at).toLocaleString())}</td>
-      <td class="row-actions-cell" data-label="操作"><div class="row-actions"><button class="btn small" type="button" data-action="resolve" data-id="${esc(item.id)}">${icon('check')} ${esc(resolveLabel)}</button></div></td>
+    row.dataset.escalationId = item.id;
+    row.dataset.status = item.status;
+    row.dataset.risk = item.risk;
+    row.dataset.category = item.category || 'general';
+    row.dataset.priority = item.priority || 'normal';
+    if (urgent) row.classList.add('urgent-row');
+    const resolveLabel = tr('resolve', '标记已处理');
+    row.innerHTML = `
+      <td class="message-cell" data-label="${esc(tr('labelCustomer', '客户说的话'))}">${esc(item.message)}</td>
+      <td data-label="${esc(tr('labelSite', '店铺'))}">${esc(item.site_name || '')}</td>
+      <td data-label="${esc(tr('labelLanguage', '语言'))}">${esc(item.language || '')}</td>
+      <td data-label="${esc(tr('labelIntent', '想问什么'))}">${esc(item.intent || '')}</td>
+      <td data-label="${esc(tr('labelRisk', '要紧程度'))}">${riskBadge(item.risk_level || item.risk)} ${financial ? '<span class="badge high">' + icon('alert') + ' ' + esc(tr('financial', '涉及钱')) + '</span>' : ''} ${urgent && !financial ? '<span class="badge high">' + icon('alert') + ' ' + esc(tr('urgent', '很急')) + '</span>' : ''}</td>
+      <td data-label="${esc(tr('labelStatus', '状态'))}">${statusBadge(item.status || 'pending')}</td>
+      <td data-label="${esc(tr('labelTime', '时间'))}">${esc(new Date(item.created_at).toLocaleString())}</td>
+      <td class="row-actions-cell" data-label="${esc(tr('labelAction', '操作'))}"><div class="row-actions"><button class="btn small" type="button" data-action="resolve" data-id="${esc(item.id)}">${icon('check')} ${esc(resolveLabel)}</button></div></td>
     `;
-    rows.appendChild(tr);
+    rows.appendChild(row);
   }
   rows.querySelectorAll('[data-action="resolve"]').forEach((button) => {
     button.addEventListener('click', async () => {
