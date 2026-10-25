@@ -4,5 +4,7 @@
         domains:
           - github.com
           - "*.github.com"
+          - codeload.github.com
+          - objects.githubusercontent.com
     action: allow
-    reason: "Allow Git fetch/push to the project's GitHub remote"
+    reason: Allow GitHub push/fetch and release assets
