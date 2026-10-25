@@ -1,0 +1,8 @@
+﻿rules:
+  - match:
+      network:
+        domains:
+          - github.com
+          - "*.github.com"
+    action: allow
+    reason: "Allow Git fetch/push to the project's GitHub remote"
