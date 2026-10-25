@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261025-100041-FINAL-DEMO-FIXED/`
+- `artifacts/runs/RUN-20261025-112519-QUALITY-GATE-FINAL/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -24,7 +24,7 @@ applicable to NudgeSo and are not silently copied here.
 | Unique same-origin links checked | 24 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **29 pass, 4 intentionally skipped** |
+| Playwright full suite | **33 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -68,6 +68,79 @@ Seven Playwright checks cover the carousel and global localization: multi-scenar
 navigation, 39-locale coverage, stable demo height during typing, reduced
 motion, 390px overflow, timed auto-advance, and full-page language switching.
 
+## Quality system — 2026-10-25
+
+A quality gate layer was added around the existing tests rather than replacing
+them. It separates route relationships, user journeys, permissions, runtime
+coverage, failure evidence and unexecuted risk.
+
+### New assets
+
+- `docs/product/page-registry.json`
+- `docs/product/user-journeys.md`
+- `docs/product/permissions-matrix.csv`
+- `docs/quality/quality-gates.md`
+- `docs/quality/test-strategy.md`
+- `docs/quality/i18n-policy.md`
+- `docs/quality/visual-baselines.md`
+- `docs/quality/ai-repair-policy.md`
+- `scripts/quality-static-audit.mjs`
+- `e2e/QUALITY-MATRIX.spec.ts`
+- `artifacts/quality/static-audit.json` / `.md`
+- `artifacts/quality/runtime-matrix.json`
+
+### Executed quality matrix
+
+| Check | Result |
+|---|---|
+| Static pages | 11 |
+| Local asset references | 29 checked, 0 missing |
+| Duplicate static DOM ids | 0 |
+| Images without alt | 0 |
+| Locale bundles | UI 39 + `zh` default; landing 39; demo 39 |
+| Locale key/empty-value failures | 0 (placeholder mismatches: 0) |
+| High-confidence secrets | 0 |
+| Dependency audit (prod) | 0 vulnerabilities |
+| Runtime routes × viewports | 40 rows: 40 PASS, 0 page errors, 0 console errors, 0 overflow |
+| Workspace views at 320/1440 | 11 × 2: PASS |
+| API anonymous/malformed matrix | PASS |
+| Landing locale switching (7 risk locales) | PASS |
+| Node test suite | 89 / 89 pass |
+| Playwright full suite | 33 pass, 4 skipped |
+| Visual baselines | 3 / 3 pass (local approved Windows Chromium) |
+| QA inventory | 11 pages, 89 links, 52 buttons, 12 inputs |
+| Dead links | 24 checked, 0 dead |
+| Geometry warnings | 15 warnings, 0 hard failures |
+
+### Defects found and fixed during the redesign
+
+1. `/insights.html` at 320px had horizontal overflow (347/320): the top header
+   actions did not wrap. Fixed with a narrow-screen header layout; matrix now
+   passes at 320/390/768/1440.
+2. The insights newsletter email input had no accessible name. Added an
+   accessible label.
+3. `/languages` workspace view overflowed at 320px. The language grid now uses
+   one column below 400px.
+4. Dashboard search/reply/assistant/knowledge/settings controls lacked static
+   names or associated labels. Added explicit accessible names; the runtime
+   matrix now checks these controls.
+5. Test-only false positives were corrected: the public-page matrix no longer
+   reuses an authenticated page (which redirected marketing pages to the
+   dashboard), and accessible-name checks now account for image alt text and
+   wrapping labels. These are test corrections, not product weakening.
+
+### Not run / residual risk
+
+- Native-speaker semantic review for 39 generated locales.
+- Real iOS/Android devices.
+- Firefox and WebKit.
+- Full axe-core/WCAG audit (structural checks only).
+- Lighthouse/performance budget (not configured).
+- Visual baselines for the 11 dashboard views and non-onboarding pages.
+- Production write/payment/destructive-data tests.
+- Dynamic insight-detail route in the isolated quality fixture when no insight
+  exists; this is recorded as NOT RUN rather than a pass.
+
 ## Match against the shared test framework
 
 | Shared requirement | Status | Evidence / limit |
@@ -81,7 +154,7 @@ motion, 390px overflow, timed auto-advance, and full-page language switching.
 | Arabic RTL | **Pass** | Chat, onboarding, queue |
 | No Chinese in English/Arabic UI | **Pass** | Phase 13; fixed queue chrome |
 | 390px and 1440px horizontal overflow | **Pass** | Phase 13, UI-390 |
-| 37-language copy/visual matrix | **Not done** | Only 3 UI locales exist; see below |
+| 39-locale structure and landing matrix | **Pass for executed checks** | static bundle audit + 39-locale landing test; native review NOT RUN |
 | Text truncation / overlap / 24px target audit | **Partial** | Overflow is tested; overlap/truncation not yet a gate |
 | Screenshot evidence | **Pass** | zh/en/ar + queue/chat screenshots |
 | Financial firewall | **Pass** | FinancialGuard unit + AC-03 + Phase 13 |

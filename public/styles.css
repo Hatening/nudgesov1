@@ -358,3 +358,6 @@ button{touch-action:manipulation}
   .upgrade-banner{flex-direction:column;align-items:flex-start}
   .footer{display:none}
 }
+@media (max-width:400px){
+  .language-grid{grid-template-columns:1fr}
+}

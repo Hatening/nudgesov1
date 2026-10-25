@@ -87,8 +87,11 @@
     .nav{display:none}
   }
   @media(max-width:560px){
-    .top-in{padding:0 16px}
+    .top-in{padding:10px 16px;min-height:0;flex-wrap:wrap}
+    .top-cta{width:100%;margin-left:0;justify-content:flex-start;flex-wrap:wrap;gap:8px}
+    .top-cta .btn{padding:9px 12px;font-size:14px;min-height:44px}
     .wrap{padding:0 16px 48px}
+    .ad-leaderboard{margin-top:16px}
   }
 </style>
 </head>
@@ -166,7 +169,7 @@
       <div class="side-card subscribe">
         <h3>每周一封开店建议</h3>
         <p>平台有什么新变化、钱该怎么花，周一早上发给你。</p>
-        <input id="email" type="email" placeholder="you@example.com" autocomplete="email">
+        <input id="email" type="email" placeholder="you@example.com" autocomplete="email" aria-label="邮箱">
         <button class="btn" id="subscribe">订阅</button>
       </div>
     </aside>

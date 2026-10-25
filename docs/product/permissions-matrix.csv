@@ -1,0 +1,34 @@
+resource,action,guest,merchant,customer,operator,notes
+/landing.html,view,allow,allow,allow,allow,public marketing
+/login.html,view,allow,allow,allow,allow,public auth
+/onboarding.html,view,allow,allow,allow,allow,public onboarding; writes require auth
+/chat.html?site=<embed_key>,view,allow,allow,allow,allow,requires valid embed key; rate limited
+/chat.html,consent,allow,allow,allow,deny,privacy gate before first message
+/chat.html,send message,allow,allow,allow,allow,public buyer session; PII redaction
+/,view,deny,allow,deny,allow,merchant session required
+/dashboard,view 11 views,deny,allow,deny,allow,tenant scoped
+/queue.html,view,deny,allow,deny,allow,merchant queue
+/upload.html,view,deny,allow,deny,allow,merchant knowledge upload
+/manual.html,view,deny,allow,deny,allow,merchant help
+/insights.html,view,allow,allow,allow,allow,public briefings
+/insight.html?id=<id>,view,allow,allow,allow,allow,public detail
+/api/health,get,allow,allow,allow,allow,no secrets
+/api/chat,post,allow,allow,allow,allow,public buyer; rate limit and PII redaction
+/api/chat/stream,post,allow,allow,allow,allow,public buyer; rate limit
+/api/insights,get,allow,allow,allow,allow,public
+/api/v1/auth/register,post,allow,allow,allow,allow,rate limited; no account enumeration copy
+/api/v1/auth/login,post,allow,allow,allow,allow,rate limited
+/api/v1/auth/me,get,deny,allow,deny,allow,requires access token
+/api/v1/sites,get/post,deny,allow,deny,allow,tenant scoped
+/api/v1/escalations,get,deny,allow,deny,allow,tenant scoped
+/api/bootstrap,get,deny,allow,deny,allow,tenant scoped
+/api/v1/privacy/export,get,deny,allow,deny,deny,merchant's own data only
+/api/v1/privacy/messages,delete,deny,allow,deny,deny,merchant's own data only
+/api/ops/repair,post,deny,deny,deny,allow,operator secret; 503 when unconfigured is safe
+/api/ops/metrics,get,deny,deny,deny,allow,operator secret
+/api/knowledge,get/post,deny,allow,deny,allow,tenant scoped
+/api/glossary,get/post,deny,allow,deny,allow,tenant scoped
+/api/conversations,get/post,deny,allow,deny,allow,tenant scoped
+/api/settings,patch,deny,allow,deny,allow,tenant scoped
+/api/export,get,deny,allow,deny,allow,tenant scoped
+/api/test/run,post,deny,allow,deny,allow,tenant scoped

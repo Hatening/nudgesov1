@@ -76,7 +76,10 @@ jobs:
           npm run qa:links
           npm run qa:geometry
 
-      - name: Playwright (all E2E, including i18n and 390px UI)
+      - name: Static quality audit
+        run: npm run quality:static
+
+      - name: Playwright (all E2E, including quality matrix, i18n and 390px UI)
         env:
           RUN_ID: ci-${{ github.run_id }}
           RUN_DIR: ${{ runner.temp }}/relaydesk-ci-artifacts

@@ -37,7 +37,9 @@
     "eval:harrier": "node scripts/eval-harrier-recall.mjs",
     "requeue:cards": "node scripts/requeue-problem-cards.mjs",
     "locales:generate:demo": "node scripts/generate-demo-locales.mjs",
-    "locales:generate:landing": "node scripts/generate-landing-locales.mjs"
+    "locales:generate:landing": "node scripts/generate-landing-locales.mjs",
+    "quality:static": "node scripts/quality-static-audit.mjs",
+    "quality:matrix": "playwright test e2e/QUALITY-MATRIX.spec.ts --workers=1"
   },
   "engines": {
     "node": ">=25.0.0"
