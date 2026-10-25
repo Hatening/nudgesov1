@@ -23,7 +23,8 @@ test.describe('Landing demo carousel', () => {
     await expect(pause).toHaveAttribute('aria-pressed', 'false');
   });
 
-  test('every supported locale renders non-empty demo copy and correct direction', async ({ page }) => {
+  test('every supported locale renders without page overflow and correct direction', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/landing.html');
     const select = page.locator('#siteLang');
     await expect(select.locator('option')).toHaveCount(ALL_LOCALES.length);
@@ -41,6 +42,8 @@ test.describe('Landing demo carousel', () => {
       }
       const dir = await page.locator('.chat-demo-wrap').getAttribute('dir');
       expect(dir, locale).toBe(['ar', 'he', 'fa', 'ur'].includes(locale) ? 'rtl' : 'ltr');
+      const widths = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
+      expect(widths.scroll, locale).toBeLessThanOrEqual(widths.client + 1);
     }
   });
 
@@ -51,6 +54,18 @@ test.describe('Landing demo carousel', () => {
     await expect(page.locator('.chat-demo-wrap')).toHaveAttribute('data-autoplay', 'off');
     await expect(page.locator('#demoThread .bubble.cust')).toBeVisible();
     await context.close();
+  });
+
+  test('demo canvas keeps a stable height while the reply is typed', async ({ page }) => {
+    await page.goto('/landing.html');
+    await page.locator('#demoCarousel').scrollIntoViewIfNeeded();
+    await page.locator('#demoScenarios .demo-scenario').nth(3).click();
+    const before = await page.locator('#demoCarousel').boundingBox();
+    await page.waitForTimeout(1_200);
+    const after = await page.locator('#demoCarousel').boundingBox();
+    expect(before, 'bounding box should exist').not.toBeNull();
+    expect(after, 'bounding box should exist').not.toBeNull();
+    expect(Math.abs((after?.height || 0) - (before?.height || 0))).toBeLessThan(2);
   });
 
   test('fits the landing demo at 390px without overflow', async ({ page }) => {

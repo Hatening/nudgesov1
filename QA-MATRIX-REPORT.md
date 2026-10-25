@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261025-093455-FINAL-GLOBAL2/`
+- `artifacts/runs/RUN-20261025-100041-FINAL-DEMO-FIXED/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -24,7 +24,7 @@ applicable to NudgeSo and are not silently copied here.
 | Unique same-origin links checked | 24 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **28 pass, 4 intentionally skipped** |
+| Playwright full suite | **29 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -52,6 +52,10 @@ The landing page now uses an accessible four-scenario conversation carousel:
 
 It auto-advances only while visible and playing, pauses on pointer/focus,
 respects `prefers-reduced-motion`, and exposes previous/next/play-pause controls.
+The demo canvas reserves a fixed 360px thread area on desktop and 420px on
+phones, so typewriter growth never moves the sections below. Typewriter steps
+are 23ms (previously 16ms, about 30% slower) and auto-advance is 5.88s
+(previously 4.2s, 40% longer).
 All 39 generated page and demo locales are loadable through the global language
 selector, with RTL direction for Arabic, Hebrew, Persian and Urdu.
 
@@ -60,9 +64,9 @@ removed: they simulated product actions and made the marketing page feel like a
 live console. The demo now demonstrates the draft and handoff without pretending
 to send anything.
 
-Six Playwright checks cover the carousel and global localization: multi-scenario
-navigation, 39-locale coverage, reduced motion, 390px overflow, timed
-auto-advance, and full-page language switching.
+Seven Playwright checks cover the carousel and global localization: multi-scenario
+navigation, 39-locale coverage, stable demo height during typing, reduced
+motion, 390px overflow, timed auto-advance, and full-page language switching.
 
 ## Match against the shared test framework
 

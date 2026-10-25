@@ -30,6 +30,8 @@
   var bizPrice = document.getElementById('bizPrice');
   var bizBilling = document.getElementById('bizBilling');
   var yearly = false;
+  var TYPE_INTERVAL_MS = 23;
+  var AUTO_ADVANCE_MS = 5880;
 
   function renderBilling() {
     var pro = currentCopy.proPlan || {};
@@ -207,7 +209,7 @@
       autoTimer = null;
       if (!playing || pausedByUser || hovering || !demoVisible || document.hidden) return;
       renderScenario((scenarioIndex + 1) % currentDemo.scenarios.length);
-    }, 4200);
+    }, AUTO_ADVANCE_MS);
   }
 
   function updateScenarioTabs() {
@@ -226,7 +228,7 @@
     (function step() {
       i = Math.min(text.length, i + 2);
       node.textContent = text.slice(0, i);
-      if (i < text.length) typingTimer = setTimeout(step, 16);
+      if (i < text.length) typingTimer = setTimeout(step, TYPE_INTERVAL_MS);
       else {
         typingTimer = null;
         if (onDone) onDone();
