@@ -31,14 +31,32 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'off',
     video: 'off',
+    launchOptions: process.env.PLAYWRIGHT_EXECUTABLE_PATH
+      ? { executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH }
+      : {},
   },
   projects: [
     {
       name: 'chromium',
+      testIgnore: /CROSS-BROWSER\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         viewport: { width: 1440, height: 900 },
       },
     },
+    ...(process.env.CROSS_BROWSER === '1'
+      ? [
+          {
+            name: 'firefox',
+            testMatch: /CROSS-BROWSER\.spec\.ts/,
+            use: { ...devices['Desktop Firefox'] },
+          },
+          {
+            name: 'webkit',
+            testMatch: /CROSS-BROWSER\.spec\.ts/,
+            use: { ...devices['Desktop Safari'] },
+          },
+        ]
+      : []),
   ],
 });

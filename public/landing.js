@@ -54,7 +54,6 @@
     var panel = item.querySelector('.faq-a');
     btn.addEventListener('click', function () {
       var open = item.getAttribute('aria-expanded') === 'true';
-      item.setAttribute('aria-expanded', String(!open));
       btn.setAttribute('aria-expanded', String(!open));
       panel.style.maxHeight = open ? null : panel.scrollHeight + 'px';
     });

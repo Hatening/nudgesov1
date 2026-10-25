@@ -4,14 +4,14 @@
    ============================================================ */
 
 :root {
-  --orange: #EE6E3A;
-  --orange-dark: #C8541F;
+  --orange: #B84A1D;
+  --orange-dark: #9A3B10;
   --orange-light: #F59E5E;
   --oatmeal: #F3EAD8;
   --offwhite: #F7F4EC;
   --ink: #262B33;
   --ink-soft: #333945;
-  --gray: #8A8E96;
+  --gray: #62676F;
   --gray-line: #E2D9C6;
   --peach-soft: #FDEBDD;
   --white: #FFFFFF;
@@ -162,7 +162,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .chat-demo-wrap { background: var(--ink); border-radius: 28px; padding: 44px; margin-top: 70px; color: #fff; }
 .chat-demo-wrap .demo-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
 .chat-demo-wrap .demo-head h3 { color: #fff; font-size: 30px; }
-.chat-demo-wrap .demo-head span { color: var(--gray); font-size: 15px; }
+.chat-demo-wrap .demo-head span { color: #B9C0CA; font-size: 15px; }
 .demo-thread { display: flex; flex-direction: column; gap: 14px; max-width: 640px; height: var(--demo-thread-height); min-height: var(--demo-thread-height); overflow: hidden; }
 .bubble-row { display: flex; gap: 10px; align-items: flex-start; }
 .bubble-row.right { flex-direction: row-reverse; }
@@ -179,7 +179,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .bubble.cust { background: var(--ink-soft); color: #E8EAEE; border-radius: 4px 18px 18px 18px; }
 .bubble.ai-b { background: var(--peach-soft); color: var(--ink); border-radius: 18px 4px 18px 18px; }
 .bubble .meta { font-size: 13px; margin-top: 6px; }
-.bubble.cust .meta { color: #9aa0aa; }
+.bubble.cust .meta { color: #C5CBD4; }
 .bubble.ai-b .meta { color: var(--orange-dark); }
 .bubble.typing-cursor::after {
   content: '▋'; color: var(--orange-dark); margin-left: 2px;
@@ -364,7 +364,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .footer .brand { display: flex; align-items: center; gap: 10px; }
 .footer .brand-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: #fff; }
 .footer .foot-links { display: flex; gap: 26px; margin-left: auto; flex-wrap: wrap; }
-.footer .foot-links a { color: #8A8E96; font-size: 15px; }
+.footer .foot-links a { color: #C9CDD4; font-size: 15px; }
 .footer .foot-links a:hover { color: #fff; }
 .footer .foot-url { color: #C9CDD4; font-size: 15px; }
 

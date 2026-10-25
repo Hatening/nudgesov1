@@ -15,7 +15,7 @@ h1 { font-family: "Baloo 2", "Asap", sans-serif; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
 .brand-mark {
   width: 48px; height: 48px; border-radius: 16px;
-  background: var(--rs-orange-soft, #FDEBDD); color: var(--rs-orange, #EE6E3A);
+  background: var(--rs-orange-soft, #FDEBDD); color: var(--rs-orange, #B84A1D);
   display: grid; place-items: center;
 }
 .brand strong { display: block; font-family: "Baloo 2", sans-serif; font-size: 19px; }
@@ -26,7 +26,7 @@ h1 { font-family: "Baloo 2", "Asap", sans-serif; }
   background: #fff; color: var(--rs-muted, #5b6470);
   font-size: 15.5px; font-weight: 600; text-decoration: none;
 }
-.back-link:hover { border-color: var(--rs-orange, #EE6E3A); color: var(--rs-orange-dark, #C8541F); background: var(--rs-orange-soft, #FDEBDD); }
+.back-link:hover { border-color: var(--rs-orange, #B84A1D); color: var(--rs-orange-dark, #9A3B10); background: var(--rs-orange-soft, #FDEBDD); }
 
 .queue-page { max-width: 1200px; margin: 0 auto; padding: 8px 20px 64px; }
 .page-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
@@ -38,7 +38,7 @@ h1 { font-family: "Baloo 2", "Asap", sans-serif; }
   min-width: 48px; height: 48px; padding: 0 10px;
   border-radius: 999px;
   display: grid; place-items: center;
-  background: var(--rs-orange, #EE6E3A); color: #fff;
+  background: var(--rs-orange, #B84A1D); color: #fff;
   font-family: "Baloo 2", sans-serif; font-size: 19px; font-weight: 700;
 }
 

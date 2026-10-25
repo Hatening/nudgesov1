@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261025-112519-QUALITY-GATE-FINAL/`
+- `artifacts/runs/RUN-20261025-234529-PHASE1/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -24,7 +24,7 @@ applicable to NudgeSo and are not silently copied here.
 | Unique same-origin links checked | 24 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **33 pass, 4 intentionally skipped** |
+| Playwright full suite | **34 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -128,6 +128,27 @@ coverage, failure evidence and unexecuted risk.
    reuses an authenticated page (which redirected marketing pages to the
    dashboard), and accessible-name checks now account for image alt text and
    wrapping labels. These are test corrections, not product weakening.
+
+### Phase 1 additions (2026-10-25)
+
+- **axe-core 4.14.0 WCAG 2 A/AA scan**: 11 core surfaces, 0 serious/critical
+  violations after contrast and FAQ ARIA fixes. Full report:
+  `artifacts/quality/axe-results.json`.
+- **Cross-browser CI projects**: Firefox and WebKit smoke tests added; CI installs
+  both engines and runs the cross-browser spec. Local cached-engine evidence:
+  Chromium 12/12, Firefox 12/12, WebKit 12/12.
+- **Performance evidence**: `scripts/performance-audit.mjs`, all measured pages
+  under the warning budgets (`artifacts/quality/performance.json`); Lighthouse is
+  still NOT RUN.
+- **Full visual evidence**: 43 screenshots across public pages and 11 workspace
+  views at 390/1440 (`artifacts/quality/visual-evidence/index.html`). These are
+  review evidence, not approved baselines.
+- **Backup/restore drill**: SQLite backup passed integrity, WAL and foreign-key
+  checks; backup counts match source (`artifacts/quality/backup-drill.sqlite`).
+- **Post-deploy verifier**: `npm run verify:deploy` checks health, landing assets,
+  www CORS, Render live SHA and service config. It passed against `c5bf9ba`.
+- **Content truth audit**: `docs/quality/content-truth-audit.md` records landing
+  claims that are ahead of implementation (channels, pricing, legal pages).
 
 ### Not run / residual risk
 

@@ -35,9 +35,9 @@ const report = {
   notRun: [
     'Native-speaker semantic review',
     'Real iOS/Android hardware pass',
-    'Firefox and WebKit runs',
-    'Lighthouse performance budget (not configured)',
-    'Full WCAG audit with axe-core (not installed; structural checks only)',
+    'Manual keyboard and screen-reader review',
+    'Lighthouse performance budget (custom measurement only)',
+    'Approved visual baselines for non-onboarding pages',
     'Production write / payment / destructive-data tests (forbidden)',
   ],
 };

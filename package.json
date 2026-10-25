@@ -39,7 +39,11 @@
     "locales:generate:demo": "node scripts/generate-demo-locales.mjs",
     "locales:generate:landing": "node scripts/generate-landing-locales.mjs",
     "quality:static": "node scripts/quality-static-audit.mjs",
-    "quality:matrix": "playwright test e2e/QUALITY-MATRIX.spec.ts --workers=1"
+    "quality:matrix": "playwright test e2e/QUALITY-MATRIX.spec.ts --workers=1",
+    "quality:a11y": "playwright test e2e/A11Y.spec.ts --workers=1",
+    "quality:performance": "node scripts/performance-audit.mjs",
+    "quality:visual": "node scripts/capture-visual-evidence.mjs",
+    "verify:deploy": "node scripts/post-deploy-check.mjs"
   },
   "engines": {
     "node": ">=25.0.0"

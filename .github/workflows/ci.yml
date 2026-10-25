@@ -87,6 +87,14 @@ jobs:
           mkdir -p "$RUN_DIR"
           npx playwright test --workers=1
 
+      - name: Install cross-browser engines
+        run: npx playwright install --with-deps firefox webkit
+
+      - name: Cross-browser smoke
+        env:
+          CROSS_BROWSER: '1'
+        run: npx playwright test e2e/CROSS-BROWSER.spec.ts --project=firefox --project=webkit --workers=1
+
       - name: Verify SQLite
         env:
           DB_PATH: ${{ runner.temp }}/relaydesk-ci/relaydesk.sqlite

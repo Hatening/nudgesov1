@@ -3,8 +3,8 @@
  * so templates that reference them still work. */
 :root{
   /* Brand palette */
-  --primary:#EE6E3A;        /* warm orange = only primary action color */
-  --primary-dark:#C8541F;
+  --primary:#B84A1D;        /* warm orange = only primary action color */
+  --primary-dark:#9A3B10;
   --primary-light:#F59E5E;
   --primary-soft:#FDEBDD;
   --oat:#F3EAD8;            /* oat background */
@@ -169,7 +169,7 @@ button{touch-action:manipulation}
 /* ---------- Badges (icon + text + color = 3-channel) ---------- */
 .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:var(--cream);color:var(--muted);font-size:13px;font-weight:700;white-space:nowrap}
 .badge.green{background:var(--green-soft);color:#137A56}
-.badge.orange{background:var(--amber-soft);color:#9A6312}
+.badge.orange{background:var(--amber-soft);color:#87530A}
 .badge.purple{background:var(--primary-soft);color:var(--primary-dark)}
 .badge.red{background:var(--red-soft);color:#B03A47}
 .badge.blue{background:#E5EFFB;color:#2F63A8}
@@ -288,7 +288,7 @@ button{touch-action:manipulation}
 .brief-card{overflow:hidden}
 .brief-art{height:110px;background:linear-gradient(130deg,var(--primary-soft),var(--oat));display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--primary)}
 .brief-body{padding:18px}
-.sponsored{display:inline-flex;padding:5px 9px;border-radius:8px;background:var(--amber-soft);color:#9A6312;font-size:11px;letter-spacing:.5px;font-weight:800;text-transform:uppercase}
+.sponsored{display:inline-flex;padding:5px 9px;border-radius:8px;background:var(--amber-soft);color:#87530A;font-size:11px;letter-spacing:.5px;font-weight:800;text-transform:uppercase}
 .brief-body h3{font-size:17px;line-height:1.4;margin:10px 0 6px}
 .brief-body p{font-size:14px;color:var(--muted);line-height:1.6}
 .brief-meta{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;margin-top:14px}

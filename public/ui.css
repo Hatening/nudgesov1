@@ -1,8 +1,8 @@
 /* NudgeSo shared component layer for independent pages (chat / onboarding / queue / insights).
  * Class selectors are preserved; only brand tokens, colors and radius changed. */
 :root {
-  --rs-orange: #EE6E3A;
-  --rs-orange-dark: #C8541F;
+  --rs-orange: #B84A1D;
+  --rs-orange-dark: #9A3B10;
   --rs-orange-soft: #FDEBDD;
   --rs-ink: #262B33;
   --rs-muted: #5b6470;
@@ -148,9 +148,9 @@ html[dir="rtl"] .queue-table td { text-align: right; }
 .site-cell { color: var(--rs-muted); }
 .badge { display: inline-flex; align-items: center; border-radius: 999px; padding: .35rem .7rem; font-size: .8rem; font-weight: 800; white-space: nowrap; }
 .badge.high { background: #FBE7E9; color: #B03A47; }
-.badge.medium { background: #FDF0DC; color: #9A6312; }
+.badge.medium { background: #FDF0DC; color: #87530A; }
 .badge.low { background: #E2F5EC; color: #137A56; }
-.badge.pending { background: #FDF0DC; color: #9A6312; }
+.badge.pending { background: #FDF0DC; color: #87530A; }
 .badge.in_review { background: var(--rs-orange-soft); color: var(--rs-orange-dark); }
 .badge.resolved { background: #E2F5EC; color: #137A56; }
 .row-actions { display: flex; gap: .5rem; }
