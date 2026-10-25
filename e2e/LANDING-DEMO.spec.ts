@@ -96,6 +96,20 @@ test.describe('Landing demo carousel', () => {
     await expect(page.locator('#demoScenarios .demo-scenario').nth(1)).toHaveAttribute('aria-selected', 'true');
   });
 
+  test('keeps the brand orange while using the accessible primary orange', async ({ page }) => {
+    await page.goto('/landing.html');
+    const tokens = await page.evaluate(() => {
+      const style = getComputedStyle(document.documentElement);
+      return {
+        logo: style.getPropertyValue('--logo-orange').trim(),
+        primary: style.getPropertyValue('--orange').trim(),
+      };
+    });
+    expect(tokens.logo.toLowerCase()).toBe('#ee6e3a');
+    expect(tokens.primary.toLowerCase()).toBe('#b84a1d');
+    await expect(page.locator('img.brand-logo')).toHaveAttribute('src', '/img/logo-full.png');
+  });
+
   test('global language selector localizes the landing page and the demo together', async ({ page }) => {
     await page.goto('/landing.html');
     const select = page.locator('#siteLang');

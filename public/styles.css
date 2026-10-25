@@ -3,6 +3,7 @@
  * so templates that reference them still work. */
 :root{
   /* Brand palette */
+  --logo-orange:#EE6E3A;
   --primary:#B84A1D;        /* warm orange = only primary action color */
   --primary-dark:#9A3B10;
   --primary-light:#F59E5E;
@@ -49,7 +50,7 @@ button{touch-action:manipulation}
 .sidebar{width:var(--sidebar-w);flex:0 0 var(--sidebar-w);background:var(--white);border-right:1px solid var(--line);padding:22px 16px 16px;display:flex;flex-direction:column;min-height:100vh;gap:6px;overflow-y:auto}
 .brand{display:block;padding:2px 8px 18px}
 .brand-logo{display:block;width:100%;height:auto}
-.brand .ns-logo{color:var(--primary)}
+.brand .ns-logo{color:var(--logo-orange)}
 .brand strong{font-family:"Baloo 2";font-size:24px;font-weight:700;display:block;letter-spacing:-.3px;color:var(--ink);line-height:1.1}
 .brand small{display:block;font-size:14px;color:var(--muted);margin-top:2px;font-family:"Asap"}
 .brand-mark{display:none}
@@ -193,7 +194,7 @@ button{touch-action:manipulation}
 
 /* ---------- Forms ---------- */
 .search{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:var(--radius-control);outline:none;font:inherit;font-size:16px;color:var(--ink);background:#fff}
-.search:focus,input:focus,textarea:focus,select:focus{border-color:var(--primary-light);box-shadow:0 0 0 4px rgba(238,110,58,.15);outline:none}
+.search:focus,input:focus,textarea:focus,select:focus{border-color:var(--primary-light);box-shadow:0 0 0 4px rgba(184,74,29,.15);outline:none}
 .field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
 .field label{font-size:15px;color:var(--ink);font-weight:700}
 .field input,.field textarea,.field select{width:100%;border:1.5px solid var(--line);border-radius:var(--radius-control);padding:14px 15px;font:inherit;font-size:16px;color:var(--ink);background:#fff;min-height:48px}

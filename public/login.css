@@ -38,7 +38,7 @@ input:focus{outline:3px solid var(--primary-soft);border-color:var(--primary);ba
 .row-between{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:-4px 0 18px;font-size:14px}
 .btn-primary{
   width:100%;min-height:52px;border:none;border-radius:999px;background:var(--primary);color:#fff;
-  font:inherit;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(238,110,58,.28);
+  font:inherit;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(184,74,29,.28);
   transition:background .15s ease;
 }
 .btn-primary:hover{background:var(--primary-dark)}

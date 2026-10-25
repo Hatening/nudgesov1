@@ -96,7 +96,7 @@ ${draft?`<div class="draft-preview"><strong style="display:flex;gap:8px;align-it
 <button class="btn small" data-action="goto-knowledge">Add store info / 去补资料</button>
 <button class="btn small" data-action="goto-assistant">Tune the AI / 调整 AI</button>
 </div>
-<a href="/queue.html" style="display:inline-block;margin-top:10px;font-size:14px;font-weight:600;color:var(--primary-dark,#C8541F)">Open human queue / 人工队列</a>
+<a href="/queue.html" style="display:inline-block;margin-top:10px;font-size:14px;font-weight:600;color:var(--primary-dark,#9A3B10)">Open human queue / 人工队列</a>
 </div></aside>
 </div>`;},
 assistant(){return `${heading('Try the AI helper','Type a customer question and see how the AI answers, before using it live.',badge('Draft only','purple'))}

@@ -4,6 +4,7 @@
    ============================================================ */
 
 :root {
+  --logo-orange: #EE6E3A;
   --orange: #B84A1D;
   --orange-dark: #9A3B10;
   --orange-light: #F59E5E;
@@ -60,7 +61,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 :focus-visible { outline: 3px solid var(--orange-light); outline-offset: 2px; border-radius: 6px; }
 
 /* ---------- Logo SVG ---------- */
-.logo-mark { width: 34px; height: 34px; color: var(--orange); flex: none; }
+.logo-mark { width: 34px; height: 34px; color: var(--logo-orange); flex: none; }
 .logo-mark.ink { color: var(--ink); }
 .logo-mark.on-dark { color: #fff; }
 
@@ -72,7 +73,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   white-space: nowrap;
 }
 .btn:hover { transform: translateY(-1px); }
-.btn-primary { background: var(--orange); color: #fff; box-shadow: 0 8px 20px rgba(238,110,58,.28); }
+.btn-primary { background: var(--orange); color: #fff; box-shadow: 0 8px 20px rgba(184,74,29,.28); }
 .btn-primary:hover { background: var(--orange-dark); }
 .btn-outline { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
 .btn-outline:hover { background: var(--ink); color: #fff; }

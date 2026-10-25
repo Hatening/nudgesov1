@@ -106,7 +106,7 @@ body {
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(238,110,58,.28);
+  box-shadow: 0 6px 16px rgba(184,74,29,.28);
 }
 .primary.big-btn:hover { background: var(--rs-orange-dark, #9A3B10); }
 .primary.big-btn:disabled { opacity: .5; cursor: not-allowed; }
@@ -170,7 +170,7 @@ body {
   font: inherit; font-size: 17px;
   color: var(--rs-ink, #262B33);
 }
-.composer-input:focus { outline: none; border-color: var(--rs-orange, #B84A1D); background: #fff; box-shadow: 0 0 0 3px rgba(238,110,58,.15); }
+.composer-input:focus { outline: none; border-color: var(--rs-orange, #B84A1D); background: #fff; box-shadow: 0 0 0 3px rgba(184,74,29,.15); }
 .composer-input:disabled { opacity: .6; }
 .send-btn {
   flex: 0 0 auto;
@@ -183,7 +183,7 @@ body {
   color: #fff;
   font: inherit; font-size: 17px; font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(238,110,58,.26);
+  box-shadow: 0 6px 14px rgba(184,74,29,.26);
 }
 .send-btn:hover:not(:disabled) { background: var(--rs-orange-dark, #9A3B10); }
 .send-btn:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }

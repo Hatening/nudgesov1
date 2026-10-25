@@ -132,6 +132,40 @@ report.assets.checked = referencedAssets.size;
 if (report.assets.missing.length) addHard('One or more referenced local assets are missing.', report.assets.missing);
 if (report.html.duplicateIds.length) addHard('Duplicate DOM ids found in static HTML.', report.html.duplicateIds);
 
+/* UI primary color must not silently regress to the old bright orange.
+ * The logo token and logo image assets are intentionally exempt; the old
+ * primary is otherwise a hard failure. */
+const oldPrimaryPattern = /#EE6E3A|#C8541F|rgba\(\s*238\s*,\s*110\s*,\s*58/gi;
+const colorFiles = [];
+for (const dir of ['public']) {
+  const walk = (folder) => {
+    for (const name of fs.readdirSync(folder)) {
+      const absolute = path.join(folder, name);
+      const stat = fs.statSync(absolute);
+      if (stat.isDirectory()) {
+        if (name !== 'img' && name !== 'qa') walk(absolute);
+      } else if (/\.(css|html)$/i.test(name) && name !== 'tailwind.vendor.js') {
+        colorFiles.push(absolute);
+      }
+    }
+  };
+  walk(path.join(root, dir));
+}
+for (const absolute of colorFiles) {
+  const rel = path.relative(root, absolute);
+  const text = fs.readFileSync(absolute, 'utf8');
+  text.split(/\r?\n/).forEach((line, index) => {
+    if (!oldPrimaryPattern.test(line)) return;
+    oldPrimaryPattern.lastIndex = 0;
+    if (/--logo-orange|logo-orange/.test(line)) return;
+    report.warnings.push({ message: 'Old UI primary orange remains in a production style/HTML file.', details: { file: rel, line: index + 1, text: line.trim().slice(0, 180) } });
+  });
+  oldPrimaryPattern.lastIndex = 0;
+}
+if (report.warnings.some((warning) => warning.message.startsWith('Old UI primary orange'))) {
+  addHard('Old bright orange remains in UI CSS/HTML outside the logo token.', report.warnings.filter((warning) => warning.message.startsWith('Old UI primary orange')));
+}
+
 // Same-origin links are checked by qa:links at runtime; keep this report honest.
 report.api.linksCheckedBy = 'npm run qa:links';
 

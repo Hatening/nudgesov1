@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261026-012745-PHASE2-FINAL/`
+- `artifacts/runs/RUN-20261026-072238-ORANGE-FINAL/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -24,7 +24,7 @@ applicable to NudgeSo and are not silently copied here.
 | Unique same-origin links checked | 27 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **35 pass, 4 intentionally skipped** |
+| Playwright full suite | **36 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -128,6 +128,18 @@ coverage, failure evidence and unexecuted risk.
    reuses an authenticated page (which redirected marketing pages to the
    dashboard), and accessible-name checks now account for image alt text and
    wrapping labels. These are test corrections, not product weakening.
+
+### Final orange token sweep (2026-10-26)
+
+- Every UI primary/shadow token now uses the accessible deep orange `#B84A1D`
+  with dark hover `#9A3B10`; old `#EE6E3A` and `#C8541F` are absent from UI
+  CSS/HTML except the intended logo token.
+- Logo orange is isolated as `--logo-orange: #EE6E3A` and applied to logo
+  marks; the logo image assets are unchanged.
+- Added a regression test asserting logo orange and primary orange tokens.
+- Static audit now fails if the old primary leaks back into UI CSS/HTML (logo
+  token exempt).
+- Visual evidence refreshed to 47 screenshots; 36-test full suite passes.
 
 ### Phase 2 additions (2026-10-26)
 

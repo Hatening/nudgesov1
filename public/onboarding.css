@@ -72,7 +72,7 @@ h1, h2, h3 { font-family: "Baloo 2", "Asap", ui-rounded, sans-serif; line-height
   font-family: "Baloo 2", sans-serif;
   font-size: 19px; font-weight: 700;
 }
-.steps li.active { border-color: var(--rs-orange, #B84A1D); background: #fff; color: var(--rs-orange-dark, #9A3B10); box-shadow: 0 8px 24px rgba(238,110,58,.14); }
+.steps li.active { border-color: var(--rs-orange, #B84A1D); background: #fff; color: var(--rs-orange-dark, #9A3B10); box-shadow: 0 8px 24px rgba(184,74,29,.14); }
 .steps li.active .n { background: var(--rs-orange, #B84A1D); color: #fff; }
 .steps li.done { border-color: #C9EBDB; background: #E2F5EC; color: #137A56; }
 .steps li.done .n { background: var(--rs-green, #18A874); color: #fff; }
@@ -102,7 +102,7 @@ h1, h2, h3 { font-family: "Baloo 2", "Asap", ui-rounded, sans-serif; line-height
   font: inherit; font-size: 17px;
   color: var(--rs-ink, #262B33);
 }
-.ob-input:focus, .field input:focus { outline: none; border-color: var(--rs-orange, #B84A1D); background: #fff; box-shadow: 0 0 0 3px rgba(238,110,58,.15); }
+.ob-input:focus, .field input:focus { outline: none; border-color: var(--rs-orange, #B84A1D); background: #fff; box-shadow: 0 0 0 3px rgba(184,74,29,.15); }
 .ob-h3 { margin: 20px 0 10px; font-size: 17.5px; color: var(--rs-ink, #262B33); }
 
 .template-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -123,7 +123,7 @@ h1, h2, h3 { font-family: "Baloo 2", "Asap", ui-rounded, sans-serif; line-height
   border-color: var(--rs-orange, #B84A1D) !important;
   background: var(--rs-orange-soft, #FDEBDD) !important;
   color: var(--rs-orange-dark, #9A3B10) !important;
-  box-shadow: 0 0 0 3px rgba(238,110,58,.15);
+  box-shadow: 0 0 0 3px rgba(184,74,29,.15);
 }
 .template.selected .t-ico { color: var(--rs-orange-dark, #9A3B10); }
 
