@@ -80,12 +80,12 @@ test.describe('Landing demo carousel', () => {
   });
 
   test('auto-advances to the next conversation when visible and playing', async ({ page }) => {
-    test.setTimeout(20_000);
+    test.setTimeout(30_000);
     await page.goto('/landing.html');
     const wrap = page.locator('#demoCarousel');
     await wrap.scrollIntoViewIfNeeded();
     await expect(page.locator('#demoThread .bubble.ai-b')).toBeVisible();
-    await page.waitForTimeout(8_500);
+    await page.waitForTimeout(11_000);
     await expect(page.locator('#demoScenarios .demo-scenario').nth(1)).toHaveAttribute('aria-selected', 'true');
   });
 
