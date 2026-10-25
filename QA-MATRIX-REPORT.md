@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261024-174156-FINAL-ALL/`
+- `artifacts/runs/RUN-20261025-081442-FINAL-CAROUSEL-ALL/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -19,12 +19,12 @@ applicable to NudgeSo and are not silently copied here.
 |---|---|
 | Independent HTML pages | 11 |
 | Discovered links | 89 |
-| Discovered buttons | 48 |
-| Discovered inputs / selects / textareas | 11 |
+| Discovered buttons | 55 |
+| Discovered inputs / selects / textareas | 12 |
 | Unique same-origin links checked | 24 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **22 pass, 4 intentionally skipped** |
+| Playwright full suite | **27 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -35,6 +35,23 @@ The 4 skipped tests are:
 
 - 3 Windows-only visual baselines (opt-in local gate);
 - 1 read-only cloud smoke (requires an explicit deployed URL).
+
+## Landing conversation carousel
+
+The landing page now uses an accessible four-scenario conversation carousel:
+
+- shipping delay;
+- return or exchange;
+- product compatibility;
+- complaint / human handoff.
+
+It auto-advances only while visible and playing, pauses on pointer/focus,
+respects `prefers-reduced-motion`, and exposes previous/next/play-pause controls.
+All 39 generated demo locales are loadable through the demo language select, with
+RTL direction for Arabic, Hebrew, Persian and Urdu.
+
+Five Playwright checks cover the carousel: multi-scenario navigation, locale
+coverage, reduced motion, 390px overflow, and timed auto-advance.
 
 ## Match against the shared test framework
 
