@@ -529,6 +529,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
   .dash-shell { grid-template-columns: 240px 1fr; }
   .dash-right { display: none; }
 }
+@media (max-width: 860px) {
+  .navbar .nav-actions .btn-primary { white-space: normal; text-align: center; line-height: 1.2; }
+  .feature-card, .price-card, .how-step, .final-cta { min-width: 0; }
+  .price-card .badge { white-space: normal; overflow-wrap: anywhere; }
+  .feature-card *, .price-card *, .how-step *, .final-cta * { overflow-wrap: anywhere; }
+}
 @media (max-width: 600px) {
   .features-grid { grid-template-columns: 1fr; }
 }

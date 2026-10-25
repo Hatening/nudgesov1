@@ -43,6 +43,13 @@ test.describe('Landing demo carousel', () => {
       const dir = await page.locator('.chat-demo-wrap').getAttribute('dir');
       expect(dir, locale).toBe(['ar', 'he', 'fa', 'ur'].includes(locale) ? 'rtl' : 'ltr');
       const widths = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, client: document.documentElement.clientWidth }));
+      if (widths.scroll > widths.client + 1) {
+        const offenders = await page.evaluate(() => Array.from(document.querySelectorAll('body *')).filter((el) => {
+          const r = el.getBoundingClientRect();
+          return r.width > 0 && getComputedStyle(el).position !== 'fixed' && r.right > window.innerWidth + 1;
+        }).slice(0, 8).map((el) => ({ tag: el.tagName, className: String(el.className).slice(0, 80), right: Math.round(el.getBoundingClientRect().right), text: (el.textContent || '').trim().slice(0, 60) })));
+        throw new Error(`${locale} overflow ${widths.scroll}/${widths.client}: ${JSON.stringify(offenders)}`);
+      }
       expect(widths.scroll, locale).toBeLessThanOrEqual(widths.client + 1);
     }
   });
