@@ -1,6 +1,15 @@
-/* NudgeSo marketing site — main.js (vanilla JS) */
+/* NudgeSo marketing site — vanilla JS */
 (function () {
   'use strict';
+
+  var landingLocales = window.NS_LANDING_LOCALES || {};
+  var demoLocales = window.NS_DEMO_LOCALES || {};
+  var localeCodes = Object.keys(landingLocales);
+  var localeLookup = {};
+  localeCodes.forEach(function (code) { localeLookup[code.toLowerCase()] = code; });
+  var rtlLocales = ['ar', 'he', 'fa', 'ur'];
+  var currentLocale = 'en';
+  var currentCopy = landingLocales.en || {};
 
   /* ---------- Navbar scroll state ---------- */
   var navbar = document.getElementById('navbar');
@@ -23,22 +32,19 @@
   var yearly = false;
 
   function renderBilling() {
+    var pro = currentCopy.proPlan || {};
+    var business = currentCopy.businessPlan || {};
     sw.classList.toggle('yearly', yearly);
     sw.setAttribute('aria-checked', String(yearly));
     optM.classList.toggle('active', !yearly);
     optY.classList.toggle('active', yearly);
     saveNote.hidden = !yearly;
     proPrice.textContent = yearly ? '15' : '19';
-    proBilling.textContent = yearly
-      ? '$15 / month · billed annually'
-      : '$19 / month · billed monthly';
+    proBilling.textContent = yearly ? pro.billingYearly : pro.billingMonthly;
     if (bizPrice) bizPrice.textContent = yearly ? '39' : '49';
-    if (bizBilling) bizBilling.textContent = yearly
-      ? '$39 / month · billed annually'
-      : '$49 / month · billed monthly';
+    if (bizBilling) bizBilling.textContent = yearly ? business.billingYearly : business.billingMonthly;
   }
   sw.addEventListener('click', function () { yearly = !yearly; renderBilling(); });
-  renderBilling();
 
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.faq-item').forEach(function (item) {
@@ -52,26 +58,109 @@
     });
   });
 
+  /* ---------- Landing copy helpers ---------- */
+  function root(selector) { return document.querySelector(selector); }
+  function roots(selector) { return Array.prototype.slice.call(document.querySelectorAll(selector)); }
+  function setText(selector, value) {
+    var node = typeof selector === 'string' ? root(selector) : selector;
+    if (node && value) node.textContent = value;
+  }
+  function setList(selector, values) {
+    roots(selector).forEach(function (node, index) {
+      if (values && values[index]) node.textContent = values[index];
+    });
+  }
+  function setLeadingText(node, value) {
+    if (!node || !value) return;
+    Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+      if (child.nodeType === 3) node.removeChild(child);
+    });
+    node.appendChild(document.createTextNode(value));
+  }
+  function setPlanCard(card, plan) {
+    if (!card || !plan) return;
+    setText(card.querySelector('h3'), plan.name);
+    setText(card.querySelector('.billing'), plan.billing);
+    setText(card.querySelector('.badge'), plan.badge);
+    setText(card.querySelector('a.btn'), plan.cta);
+    var items = card.querySelectorAll('ul li');
+    (plan.features || []).forEach(function (feature, index) {
+      if (items[index]) setLeadingText(items[index], feature);
+    });
+  }
+  function applyPageLocale(locale) {
+    currentLocale = locale;
+    currentCopy = landingLocales[locale] || landingLocales.en || {};
+    var copy = currentCopy;
+    document.documentElement.lang = locale;
+    document.documentElement.dir = rtlLocales.indexOf(locale.split('-')[0]) >= 0 ? 'rtl' : 'ltr';
+    if (copy.metaTitle) document.title = copy.metaTitle;
+    var description = root('meta[name="description"]');
+    if (description && copy.metaDescription) description.setAttribute('content', copy.metaDescription);
+    setList('.nav-links a', copy.nav);
+    setList('.foot-links a', copy.nav);
+    setText('.nav-actions .signin', copy.signIn);
+    setText('.nav-actions > .btn-primary', copy.startFree);
+    setText('.hero .eyebrow', copy.heroEyebrow);
+    setText('.hero h1', copy.heroTitle);
+    setText('.hero .sub', copy.heroSub);
+    setText('.cta-row .btn-primary', copy.startFree);
+    setText('.cta-row .btn-outline', copy.signIn);
+    setText('#product .section-head h2', copy.featuresTitle);
+    setText('#product .section-head p', copy.featuresSub);
+    roots('.features-grid .feature-card').forEach(function (card, index) {
+      var feature = (copy.features || [])[index] || {};
+      setText(card.querySelector('h3'), feature.title);
+      setText(card.querySelector('p'), feature.body);
+    });
+    setText('#how .section-head h2', copy.howTitle);
+    setText('#how .section-head p', copy.howSub);
+    roots('.how-step').forEach(function (step, index) {
+      var item = (copy.howSteps || [])[index] || {};
+      setText(step.querySelector('h3'), item.title);
+      setText(step.querySelector('p'), item.body);
+    });
+    setText('#pricing .section-head h2', copy.pricingTitle);
+    setText('#pricing .section-head p', copy.pricingSub);
+    setText('#optMonthly', copy.monthly);
+    setText('#optYearly', copy.yearly);
+    setText('#saveNote', copy.saveNote);
+    var cards = roots('.pricing-grid .price-card');
+    setPlanCard(cards[0], copy.freePlan);
+    setPlanCard(cards[1], copy.proPlan);
+    setPlanCard(cards[2], copy.businessPlan);
+    setText('.pricing-note', copy.pricingNote);
+    setText('#faq .section-head h2', copy.faqTitle);
+    roots('.faq-item').forEach(function (item, index) {
+      var faq = (copy.faqs || [])[index] || {};
+      var question = item.querySelector('.faq-q');
+      if (question && faq.q) {
+        Array.prototype.slice.call(question.childNodes).forEach(function (child) {
+          if (child.nodeType === 3) question.removeChild(child);
+        });
+        question.insertBefore(document.createTextNode(faq.q + ' '), question.firstChild);
+      }
+      setText(item.querySelector('.faq-a p'), faq.a);
+    });
+    setText('.final-cta h2', copy.finalTitle);
+    setText('.final-cta p', copy.finalSub);
+    setText('.final-cta a.btn', copy.finalCta);
+    setText('.foot-url', copy.footerTag);
+    renderBilling();
+    var siteLang = root('#siteLang');
+    if (siteLang) siteLang.value = locale;
+  }
+
   /* ---------- AI chat demo carousel ---------- */
-  var demoLocales = window.NS_DEMO_LOCALES || {};
-  var localeCodes = Object.keys(demoLocales);
-  var localeLookup = {};
-  localeCodes.forEach(function (code) { localeLookup[code.toLowerCase()] = code; });
   var demoWrap = document.getElementById('demoCarousel');
   var demoThread = document.getElementById('demoThread');
   var demoScenarios = document.getElementById('demoScenarios');
-  var demoLocale = document.getElementById('demoLocale');
   var demoTitle = document.getElementById('demoTitle');
   var demoSubtitle = document.getElementById('demoSubtitle');
-  var demoLocaleLabel = document.getElementById('demoLocaleLabel');
   var demoStatus = document.getElementById('demoStatus');
   var demoPrev = document.getElementById('demoPrev');
   var demoNext = document.getElementById('demoNext');
   var demoPlayPause = document.getElementById('demoPlayPause');
-  var draftBtn = document.getElementById('draftBtn');
-  var approveRow = document.getElementById('approveRow');
-  var approveBtn = document.getElementById('approveBtn');
-  var regenerateBtn = document.getElementById('regenerateBtn');
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var playing = !reduceMotion;
   var pausedByUser = false;
@@ -80,19 +169,17 @@
   var scenarioIndex = 0;
   var autoTimer = null;
   var typingTimer = null;
-  var activeDraft = null;
-  var currentDemo = null;
-  var currentLocale = 'en';
-  var rtlLocales = ['ar', 'he', 'fa', 'ur'];
+  var currentDemo = demoLocales.en;
+  var demoLocaleCodes = Object.keys(demoLocales);
 
-  if (!demoWrap || !demoThread || !demoScenarios || !demoLocale || !localeCodes.length) return;
+  if (!demoWrap || !demoThread || !demoScenarios || !demoLocaleCodes.length) return;
 
   function pickLocale(value) {
     var code = String(value || '').toLowerCase().replace('_', '-');
     if (localeLookup[code]) return localeLookup[code];
     var base = code.split('-')[0];
     if (localeLookup[base]) return localeLookup[base];
-    return demoLocales.en ? 'en' : localeCodes[0];
+    return landingLocales.en ? 'en' : localeCodes[0];
   }
 
   function clearTimers() {
@@ -102,23 +189,20 @@
     typingTimer = null;
   }
 
-  function setText(node, value) {
-    if (node && value) node.textContent = value;
-  }
-
   function setPlayUi() {
     demoWrap.dataset.autoplay = (!reduceMotion && playing && !pausedByUser) ? 'on' : 'off';
     demoPlayPause.setAttribute('aria-pressed', String(!reduceMotion && playing && !pausedByUser));
     demoPlayPause.setAttribute('aria-label', playing ? currentDemo.controls.pause : currentDemo.controls.play);
-    demoPlayPause.textContent = playing ? 'Ⅱ' : '▶';
+    demoPlayPause.innerHTML = playing
+      ? '<span class="pause-bars" aria-hidden="true"><span></span><span></span></span>'
+      : '<span class="play-triangle" aria-hidden="true"></span>';
   }
 
   function scheduleNext() {
     clearTimeout(autoTimer);
     autoTimer = null;
     if (reduceMotion || !playing || pausedByUser || hovering || !demoVisible || document.hidden) return;
-    var scenario = currentDemo.scenarios[scenarioIndex];
-    if (!scenario) return;
+    if (!currentDemo.scenarios[scenarioIndex]) return;
     autoTimer = setTimeout(function () {
       autoTimer = null;
       if (!playing || pausedByUser || hovering || !demoVisible || document.hidden) return;
@@ -154,7 +238,6 @@
     clearTimers();
     scenarioIndex = ((index % currentDemo.scenarios.length) + currentDemo.scenarios.length) % currentDemo.scenarios.length;
     var scenario = currentDemo.scenarios[scenarioIndex];
-    var replyMeta = currentDemo.controls.draftMeta;
     updateScenarioTabs();
     demoStatus.textContent = scenario.tab;
     demoThread.innerHTML =
@@ -166,65 +249,60 @@
         '<div class="avatar ai"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="10" r="1.6" fill="#fff"/><circle cx="15" cy="10" r="1.6" fill="#fff"/><path d="M8 14q4 4 8 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>' +
         '<div class="bubble ai-b" id="demoReply"><span class="demo-reply-text"></span><div class="meta demo-reply-meta"></div></div>' +
       '</div>';
-    var customerText = demoThread.querySelector('.demo-customer-text');
-    var customerMeta = demoThread.querySelector('.demo-customer-meta');
     var replyText = demoThread.querySelector('.demo-reply-text');
     var replyMetaNode = demoThread.querySelector('.demo-reply-meta');
-    setText(customerText, scenario.customer);
-    setText(customerMeta, scenario.customerMeta);
-    setText(replyMetaNode, replyMeta);
-    activeDraft = demoThread.querySelector('#demoReply');
-    draftBtn.disabled = false;
-    setText(draftBtn, currentDemo.controls.draft);
-    setText(approveBtn, currentDemo.controls.approve);
-    setText(regenerateBtn, currentDemo.controls.regenerate);
-    approveRow.hidden = true;
+    setText(demoThread.querySelector('.demo-customer-text'), scenario.customer);
+    setText(demoThread.querySelector('.demo-customer-meta'), scenario.customerMeta);
+    setText(replyMetaNode, currentDemo.controls.draftMeta);
     setPlayUi();
     if (reduceMotion) {
       setText(replyText, scenario.reply);
       setText(replyMetaNode, scenario.replyMeta);
-      approveRow.hidden = false;
       return;
     }
     typeReply(replyText, scenario.reply, function () {
       setText(replyMetaNode, scenario.replyMeta);
-      approveRow.hidden = false;
       scheduleNext();
     });
   }
 
-  function applyLocale(locale) {
-    currentLocale = locale;
+  function applyDemoLocale(locale) {
     currentDemo = demoLocales[locale] || demoLocales.en;
     demoWrap.dataset.locale = locale;
     demoWrap.dir = rtlLocales.indexOf(locale.split('-')[0]) >= 0 ? 'rtl' : 'ltr';
-    demoLocale.value = locale;
     setText(demoTitle, currentDemo.title);
     setText(demoSubtitle, currentDemo.subtitle);
-    setText(demoLocaleLabel, currentDemo.localeLabel);
-    demoLocale.setAttribute('aria-label', currentDemo.localeLabel);
+    if (siteLang) siteLang.setAttribute('aria-label', 'Language');
     demoScenarios.setAttribute('aria-label', currentDemo.scenarioLabel);
+    demoPrev.textContent = demoWrap.dir === 'rtl' ? '→' : '←';
+    demoNext.textContent = demoWrap.dir === 'rtl' ? '←' : '→';
     updateScenarioTabs();
     renderScenario(0);
   }
 
-  Object.keys(demoLocales).forEach(function (code) {
+  function applySiteLocale(locale) {
+    applyPageLocale(locale);
+    applyDemoLocale(locale);
+  }
+
+  /* ---------- Site language selector ---------- */
+  var siteLang = document.getElementById('siteLang');
+  if (!siteLang) return;
+  localeCodes.forEach(function (code) {
     var option = document.createElement('option');
     option.value = code;
     option.textContent = code.toUpperCase();
-    demoLocale.appendChild(option);
+    siteLang.appendChild(option);
   });
-
-  var queryLang = new URLSearchParams(window.location.search).get('demoLang');
+  var queryLang = new URLSearchParams(window.location.search).get('lang');
   var savedLang = '';
-  try { savedLang = localStorage.getItem('nudgeso_demo_locale') || ''; } catch (e) {}
+  try { savedLang = localStorage.getItem('nudgeso_site_locale') || ''; } catch (e) {}
   currentLocale = pickLocale(queryLang || savedLang || 'en');
-  applyLocale(currentLocale);
-
-  demoLocale.addEventListener('change', function () {
-    var next = pickLocale(demoLocale.value);
-    try { localStorage.setItem('nudgeso_demo_locale', next); } catch (e) {}
-    applyLocale(next);
+  applySiteLocale(currentLocale);
+  siteLang.addEventListener('change', function () {
+    var next = pickLocale(siteLang.value);
+    try { localStorage.setItem('nudgeso_site_locale', next); } catch (e) {}
+    applySiteLocale(next);
   });
 
   demoScenarios.addEventListener('click', function (event) {
@@ -232,15 +310,8 @@
     if (!button) return;
     renderScenario(Number(button.dataset.index) || 0);
   });
-
-  demoPrev.addEventListener('click', function () {
-    renderScenario(scenarioIndex - 1);
-  });
-
-  demoNext.addEventListener('click', function () {
-    renderScenario(scenarioIndex + 1);
-  });
-
+  demoPrev.addEventListener('click', function () { renderScenario(scenarioIndex - 1); });
+  demoNext.addEventListener('click', function () { renderScenario(scenarioIndex + 1); });
   demoPlayPause.addEventListener('click', function () {
     if (reduceMotion) return;
     playing = !playing;
@@ -248,24 +319,6 @@
     setPlayUi();
     if (playing) scheduleNext();
     else clearTimeout(autoTimer);
-  });
-
-  draftBtn.addEventListener('click', function () {
-    renderScenario(scenarioIndex);
-  });
-
-  regenerateBtn.addEventListener('click', function () {
-    renderScenario(scenarioIndex);
-  });
-
-  approveBtn.addEventListener('click', function () {
-    if (!activeDraft) return;
-    activeDraft.classList.add('approved');
-    var scenario = currentDemo.scenarios[scenarioIndex];
-    setText(activeDraft.querySelector('.demo-reply-meta'), scenario.approvedMeta);
-    setText(demoStatus, scenario.approvedMeta);
-    approveBtn.classList.add('approved');
-    setTimeout(function () { approveBtn.classList.remove('approved'); }, 1200);
   });
 
   demoWrap.addEventListener('pointerenter', function () {
@@ -286,22 +339,18 @@
       scheduleNext();
     }
   });
-
   document.addEventListener('visibilitychange', function () {
     demoVisible = !document.hidden;
     if (demoVisible) scheduleNext();
     else clearTimeout(autoTimer);
   });
-
   if (window.IntersectionObserver) {
-    var observer = new IntersectionObserver(function (entries) {
+    new IntersectionObserver(function (entries) {
       demoVisible = entries.some(function (entry) { return entry.isIntersecting; });
       if (demoVisible) scheduleNext();
       else clearTimeout(autoTimer);
-    }, { threshold: 0.2 });
-    observer.observe(demoWrap);
+    }, { threshold: 0.2 }).observe(demoWrap);
   }
-
   if (window.matchMedia) {
     var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (motionQuery.addEventListener) {

@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261025-081442-FINAL-CAROUSEL-ALL/`
+- `artifacts/runs/RUN-20261025-093455-FINAL-GLOBAL2/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -19,12 +19,12 @@ applicable to NudgeSo and are not silently copied here.
 |---|---|
 | Independent HTML pages | 11 |
 | Discovered links | 89 |
-| Discovered buttons | 55 |
+| Discovered buttons | 52 |
 | Discovered inputs / selects / textareas | 12 |
 | Unique same-origin links checked | 24 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **27 pass, 4 intentionally skipped** |
+| Playwright full suite | **28 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -38,6 +38,11 @@ The 4 skipped tests are:
 
 ## Landing conversation carousel
 
+The landing page now has a single global language selector in the navigation.
+Changing it localizes the full landing page and the demo together; there is no
+bilingual demo-only selector left. The page has 39 generated locales plus the
+`zh` default.
+
 The landing page now uses an accessible four-scenario conversation carousel:
 
 - shipping delay;
@@ -47,11 +52,17 @@ The landing page now uses an accessible four-scenario conversation carousel:
 
 It auto-advances only while visible and playing, pauses on pointer/focus,
 respects `prefers-reduced-motion`, and exposes previous/next/play-pause controls.
-All 39 generated demo locales are loadable through the demo language select, with
-RTL direction for Arabic, Hebrew, Persian and Urdu.
+All 39 generated page and demo locales are loadable through the global language
+selector, with RTL direction for Arabic, Hebrew, Persian and Urdu.
 
-Five Playwright checks cover the carousel: multi-scenario navigation, locale
-coverage, reduced motion, 390px overflow, and timed auto-advance.
+The old homepage-only Approve / Regenerate / See another draft controls were
+removed: they simulated product actions and made the marketing page feel like a
+live console. The demo now demonstrates the draft and handoff without pretending
+to send anything.
+
+Six Playwright checks cover the carousel and global localization: multi-scenario
+navigation, 39-locale coverage, reduced motion, 390px overflow, timed
+auto-advance, and full-page language switching.
 
 ## Match against the shared test framework
 

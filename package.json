@@ -36,7 +36,8 @@
     "index:harrier": "node scripts/build-harrier-index.mjs",
     "eval:harrier": "node scripts/eval-harrier-recall.mjs",
     "requeue:cards": "node scripts/requeue-problem-cards.mjs",
-    "locales:generate:demo": "node scripts/generate-demo-locales.mjs"
+    "locales:generate:demo": "node scripts/generate-demo-locales.mjs",
+    "locales:generate:landing": "node scripts/generate-landing-locales.mjs"
   },
   "engines": {
     "node": ">=25.0.0"

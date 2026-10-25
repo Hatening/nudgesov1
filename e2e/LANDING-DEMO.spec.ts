@@ -6,6 +6,7 @@ test.describe('Landing demo carousel', () => {
   test('renders multiple scenarios, supports manual navigation and pause', async ({ page }) => {
     await page.goto('/landing.html');
     await expect(page.locator('#demoScenarios .demo-scenario')).toHaveCount(4);
+    await expect(page.locator('#demoPlayPause .pause-bars')).toBeVisible();
     await expect(page.locator('#demoThread .bubble.cust')).toBeVisible();
     const first = await page.locator('#demoThread .bubble.cust').innerText();
 
@@ -24,19 +25,16 @@ test.describe('Landing demo carousel', () => {
 
   test('every supported locale renders non-empty demo copy and correct direction', async ({ page }) => {
     await page.goto('/landing.html');
-    const select = page.locator('#demoLocale');
+    const select = page.locator('#siteLang');
     await expect(select.locator('option')).toHaveCount(ALL_LOCALES.length);
     for (const locale of ALL_LOCALES) {
       await select.selectOption(locale);
       await expect(page.locator('.chat-demo-wrap')).toHaveAttribute('data-locale', locale);
+      await expect(page.locator('.hero h1')).not.toBeEmpty();
       await expect(page.locator('#demoThread .bubble.cust')).not.toBeEmpty();
       await expect(page.locator('#demoTitle')).not.toBeEmpty();
       await expect(page.locator('#demoSubtitle')).not.toBeEmpty();
-      await expect(page.locator('#demoLocaleLabel')).not.toBeEmpty();
       await expect(page.locator('#demoScenarios .demo-scenario').first()).not.toBeEmpty();
-      await expect(page.locator('#draftBtn')).not.toBeEmpty();
-      await expect(page.locator('#approveBtn')).not.toBeEmpty();
-      await expect(page.locator('#regenerateBtn')).not.toBeEmpty();
       await expect(page.locator('#demoReply')).not.toBeEmpty();
       if (!['en', 'en-AU'].includes(locale)) {
         await expect(page.locator('#demoTitle')).not.toHaveText('Watch NudgeSo draft the reply');
@@ -74,5 +72,23 @@ test.describe('Landing demo carousel', () => {
     await expect(page.locator('#demoThread .bubble.ai-b')).toBeVisible();
     await page.waitForTimeout(8_500);
     await expect(page.locator('#demoScenarios .demo-scenario').nth(1)).toHaveAttribute('aria-selected', 'true');
+  });
+
+  test('global language selector localizes the landing page and the demo together', async ({ page }) => {
+    await page.goto('/landing.html');
+    const select = page.locator('#siteLang');
+    await expect(select.locator('option')).toHaveCount(ALL_LOCALES.length);
+    const englishTitle = await page.locator('.hero h1').innerText();
+    await select.selectOption('es');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+    await expect(page.locator('.chat-demo-wrap')).toHaveAttribute('data-locale', 'es');
+    await expect(page.locator('.hero h1')).not.toHaveText(englishTitle);
+    await expect(page.locator('.nav-links a').first()).not.toHaveText('Product');
+    await expect(page.locator('#proBilling')).toContainText('mes');
+    await expect(page.locator('.pricing-grid .price-card').first().locator('.billing')).not.toHaveText('For a small business trying it out');
+    await select.selectOption('ar');
+    await expect(page.locator('.chat-demo-wrap')).toHaveAttribute('dir', 'rtl');
+    await select.selectOption('en');
+    await expect(page.locator('.hero h1')).toHaveText(englishTitle);
   });
 });
