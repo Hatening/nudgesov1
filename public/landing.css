@@ -531,6 +531,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 }
 @media (max-width: 860px) {
   .navbar .nav-actions .btn-primary { white-space: normal; text-align: center; line-height: 1.2; }
+  .final-cta { flex-direction: column; align-items: stretch; }
+  .final-cta .btn-dark { white-space: normal; text-align: center; max-width: 100%; }
   .feature-card, .price-card, .how-step, .final-cta { min-width: 0; }
   .price-card .badge { white-space: normal; overflow-wrap: anywhere; }
   .feature-card *, .price-card *, .how-step *, .final-cta * { overflow-wrap: anywhere; }
