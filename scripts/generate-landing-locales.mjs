@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const cacheDir = path.join(root, 'artifacts', 'landing-locale-generation');
+const cacheDir = path.join(root, 'artifacts', 'landing-locale-generation-v2');
 const outputPath = path.join(root, 'public', 'landing-locales.js');
 
 const source = {
@@ -17,7 +17,7 @@ const source = {
   featuresTitle: "Everything your inbox needs, nothing it doesn't",
   featuresSub: 'Built for small businesses who want to reply well without the chaos.',
   features: [
-    { title: 'One calm queue', body: 'Email, chat and social threads merged and prioritized, so nothing falls through the cracks.' },
+    { title: 'One calm queue', body: 'Live today: website chat and a shared merchant inbox. Email and social connectors are rolling out separately, so we do not pretend they are already merged.' },
     { title: 'Drafts in your voice', body: "The AI learns your tone and suggests replies you'll actually want to send." },
     { title: 'Set up in minutes', body: 'Connect your inbox in a few clicks, import your FAQs, and the AI already knows your voice.' },
     { title: 'No late-night pings', body: 'Async by default, customers get honest reply times and your business gets its evenings back.' }
@@ -25,50 +25,52 @@ const source = {
   howTitle: 'How it works',
   howSub: 'Three quiet steps between a noisy inbox and a calm one.',
   howSteps: [
-    { title: 'Connect your inbox', body: 'Plug in your email, chat and social channels. NudgeSo merges everything into one shared queue.' },
+    { title: 'Connect your inbox', body: 'Set up the website chat and shared inbox that are live today. Email and social connectors are a separate, assisted setup.' },
     { title: 'AI drafts friendly replies', body: 'The AI reads the thread, matches your tone from past replies, and drafts a warm answer for every message.' },
     { title: 'You approve, nudge, move on', body: 'Tweak a word or hit send. Threads snooze themselves until customers hear back. No pressure, ever.' }
   ],
   pricingTitle: 'Simple pricing',
-  pricingSub: 'Start free, upgrade when your business outgrows the shared inbox.',
+  pricingSub: 'Start free. Paid plans are preview-only while billing is being finished.',
   monthly: 'Monthly',
   yearly: 'Yearly',
   saveNote: '~21% off',
   freePlan: {
     name: 'Free',
     billing: 'For a small business trying it out',
-    features: ['Shared inbox', 'A generous monthly allowance of free AI drafts', 'Community support'],
+    features: ['Shared inbox', 'A generous monthly allowance of free AI drafts', 'Help guide'],
     cta: 'Start for free'
   },
   proPlan: {
     name: 'Pro',
-    badge: 'Most popular',
+    badge: 'Preview plan',
     billingMonthly: '$19 / month · billed monthly',
     billingYearly: '$15 / month · billed annually',
-    features: ['Everything in Free', 'Email, chat & social channels', 'Priority support'],
-    cta: 'Try Pro free'
+    features: ['Everything in Free', 'Website chat + shared inbox', 'Preview of planned priority support'],
+    cta: 'Preview Pro'
   },
   businessPlan: {
     name: 'Business',
-    badge: 'Example price — adjustable',
+    badge: 'Preview price — no charge',
     billingMonthly: '$49 / month · billed monthly',
     billingYearly: '$39 / month · billed annually',
-    features: ['Everything in Pro', 'Multiple staff seats', 'Onboarding help & a dedicated contact'],
-    cta: 'Start free trial'
+    features: ['Everything in Pro', 'Multiple staff seats (preview)', 'Guided setup help'],
+    cta: 'Talk to us'
   },
-  pricingNote: 'Plan limits are illustrative and can be adjusted before launch.',
+  pricingNote: 'Preview pricing only: no payment is collected. Plan limits and paid features are illustrative and can be adjusted before billing launches.',
   faqTitle: 'Frequently asked questions',
   faqs: [
     { q: 'What does "async-first" actually mean?', a: 'It means customers leave a message and get an honest reply window (like "we\'ll be back in a few hours") instead of waiting on a live chat. You answer on your own schedule, and nobody gets anxious watching three dots bounce.' },
     { q: 'How long does setup take?', a: 'Most small businesses are up and running in under ten minutes. Connect your inbox, drop in a few FAQs, and the AI already starts writing replies that sound like you.' },
     { q: 'Does the AI send replies on its own?', a: 'No. The AI always drafts — a human on your team approves before anything reaches the customer. You stay in control of your voice; the AI just removes the typing.' },
-    { q: "What's included in the free plan?", a: "The free plan gives you the shared inbox and a generous monthly allowance of free AI drafts, plus community support. It's built for small businesses who want to try calm support before paying a cent." },
-    { q: 'Which channels can I connect?', a: 'Email, live chat and major social messaging channels all land in the same queue on Pro. Whatever your customers use, you reply from one calm place.' }
+    { q: "What's included in the free plan?", a: "The free plan gives you the shared inbox and a generous monthly allowance of free AI drafts, plus the help guide. Paid plans are preview-only until billing is live." },
+    { q: 'Which channels can I connect?', a: 'Live today: the standalone website chat and the merchant shared inbox. Email and social messaging (including WhatsApp and Instagram) are not connected yet; they need an assisted setup and will roll out separately. We will only list a channel as available once it is genuinely connected.' }
   ],
   finalTitle: 'Bring calm to your inbox',
   finalSub: 'Set up in minutes · Free for small businesses · www.nudgeso.com',
   finalCta: 'Get NudgeSo free',
-  footerTag: 'NudgeSo · Calm Customer Support · www.nudgeso.com'
+  footerTag: 'NudgeSo · Calm Customer Support · www.nudgeso.com',
+  privacy: 'Privacy Policy',
+  terms: 'Terms of Service'
 };
 
 const targets = [

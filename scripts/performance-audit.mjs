@@ -17,6 +17,8 @@ const pages = [
   { name: 'login', path: '/login.html', auth: false },
   { name: 'onboarding', path: '/onboarding.html', auth: false },
   { name: 'insights', path: '/insights.html', auth: false },
+  { name: 'privacy', path: '/privacy.html', auth: false },
+  { name: 'terms', path: '/terms.html', auth: false },
   { name: 'workspace', path: '/', auth: true },
 ];
 

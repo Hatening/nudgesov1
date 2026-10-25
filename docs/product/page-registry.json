@@ -187,6 +187,36 @@
       "notRunWhenNoFixture": true
     },
     {
+      "id": "privacy-draft",
+      "route": "/privacy.html",
+      "file": "public/privacy.html",
+      "title": "Privacy Policy (draft)",
+      "roles": ["guest", "merchant", "customer"],
+      "locales": ["en"],
+      "entryPoints": ["landing footer"],
+      "keyActions": ["read draft", "return to landing"],
+      "expectedStates": ["draft banner", "placeholders", "noindex", "mobile"],
+      "requirements": ["LEGAL-PRIVACY"],
+      "testIds": ["e2e/QUALITY-MATRIX.spec.ts", "e2e/A11Y.spec.ts", "e2e/CROSS-BROWSER.spec.ts"],
+      "criticality": "P1",
+      "legalStatus": "DRAFT — requires qualified counsel; placeholders unresolved"
+    },
+    {
+      "id": "terms-draft",
+      "route": "/terms.html",
+      "file": "public/terms.html",
+      "title": "Terms of Service (draft)",
+      "roles": ["guest", "merchant", "customer"],
+      "locales": ["en"],
+      "entryPoints": ["landing footer", "privacy draft"],
+      "keyActions": ["read draft", "return to landing"],
+      "expectedStates": ["draft banner", "placeholders", "noindex", "mobile"],
+      "requirements": ["LEGAL-TERMS"],
+      "testIds": ["e2e/QUALITY-MATRIX.spec.ts", "e2e/A11Y.spec.ts", "e2e/CROSS-BROWSER.spec.ts"],
+      "criticality": "P1",
+      "legalStatus": "DRAFT — requires qualified counsel; placeholders unresolved"
+    },
+    {
       "id": "not-found",
       "route": "/404.html",
       "file": "public/404.html",

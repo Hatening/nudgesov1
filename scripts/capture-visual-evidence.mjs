@@ -53,6 +53,8 @@ const publicPages = [
   ['onboarding', '/onboarding.html'],
   ['insights', '/insights.html'],
   ['404', '/404.html'],
+  ['privacy', '/privacy.html'],
+  ['terms', '/terms.html'],
 ];
 for (const [name, url] of publicPages) {
   await capture(name, base + url, 1440);

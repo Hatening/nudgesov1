@@ -126,6 +126,8 @@ test.describe('Quality Matrix — complete route surface', () => {
       `/chat.html?site=${encodeURIComponent(site.embed_key)}`,
       '/',
       '/404.html',
+      '/privacy.html',
+      '/terms.html',
     ];
     if (insightPath) routes.splice(6, 0, insightPath);
     else notRun.push('dynamic insight detail route: no insight exists in the isolated fixture');
@@ -208,6 +210,20 @@ test.describe('Quality Matrix — complete route surface', () => {
     }
     await context.close();
     expect(failures, failures.join('\n')).toEqual([]);
+  });
+
+  test('legal pages are visibly drafts, noindexed and linked', async ({ page }) => {
+    for (const route of ['/privacy.html', '/terms.html']) {
+      const response = await page.goto(route, { waitUntil: 'domcontentloaded' });
+      expect(response?.status(), route).toBe(200);
+      await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/i);
+      await expect(page.locator('.draft')).toContainText(/DRAFT FOR LEGAL REVIEW/i);
+      await expect(page.locator('a[href="/landing.html"]').first()).toBeVisible();
+    }
+    const landing = await page.goto('/landing.html');
+    expect(landing?.status()).toBe(200);
+    await expect(page.locator('.legal-links a[href="/privacy.html"]')).toHaveCount(1);
+    await expect(page.locator('.legal-links a[href="/terms.html"]')).toHaveCount(1);
   });
 
   test('API access matrix rejects unauthenticated and malformed calls', async ({ request }) => {

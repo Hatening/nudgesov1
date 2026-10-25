@@ -100,6 +100,7 @@
     if (description && copy.metaDescription) description.setAttribute('content', copy.metaDescription);
     setList('.nav-links a', copy.nav);
     setList('.foot-links a', copy.nav);
+    setList('.legal-links a', [copy.privacy, copy.terms]);
     setText('.nav-actions .signin', copy.signIn);
     setText('.nav-actions > .btn-primary', copy.startFree);
     setText('.hero .eyebrow', copy.heroEyebrow);

@@ -10,21 +10,21 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261025-234529-PHASE1/`
+- `artifacts/runs/RUN-20261026-012745-PHASE2-FINAL/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
 
 | Item | Result |
 |---|---|
-| Independent HTML pages | 11 |
-| Discovered links | 89 |
+| Independent HTML pages | 13 |
+| Discovered links | 107 |
 | Discovered buttons | 52 |
 | Discovered inputs / selects / textareas | 12 |
-| Unique same-origin links checked | 24 |
+| Unique same-origin links checked | 27 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **34 pass, 4 intentionally skipped** |
+| Playwright full suite | **35 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -128,6 +128,20 @@ coverage, failure evidence and unexecuted risk.
    reuses an authenticated page (which redirected marketing pages to the
    dashboard), and accessible-name checks now account for image alt text and
    wrapping labels. These are test corrections, not product weakening.
+
+### Phase 2 additions (2026-10-26)
+
+- Landing copy was corrected to describe the currently live website chat and
+  shared inbox, not unconnected Email/WhatsApp/Instagram channels.
+- Paid plans are explicitly preview pricing with no payment collected; CTAs are
+  `Preview Pro` / `Talk to us`.
+- `/privacy.html` and `/terms.html` were added as noindex, visibly marked draft
+  templates with placeholders for legal review. They are not final legal documents.
+- Landing was regenerated in all 39 locales for the corrected copy and the new
+  Privacy/Terms footer labels.
+- Legal draft tests verify status, noindex, draft banner and footer links.
+- Full suite now includes 35 passing tests; axe scan covers 12 surfaces; legal
+  pages are in the route, cross-browser and visual evidence matrices.
 
 ### Phase 1 additions (2026-10-25)
 

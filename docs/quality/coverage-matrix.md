@@ -22,10 +22,12 @@ Chromium; isolated SQLite fixture; public and authenticated contexts are separat
 | `/chat.html?site=…` | PASS | PASS | PASS | PASS | runtime matrix + AC-02/04 |
 | `/` workspace | PASS | PASS | PASS | PASS | runtime matrix |
 | `/404.html` | PASS | PASS | PASS | PASS | runtime matrix |
+| `/privacy.html` | PASS | PASS | PASS | PASS | legal draft test + runtime matrix |
+| `/terms.html` | PASS | PASS | PASS | PASS | legal draft test + runtime matrix |
 | `/insight.html?id=…` | NOT RUN | PASS | NOT RUN | NOT RUN | `INSIGHTS.spec.ts` covers detail rendering at 390; no extra-width run |
 
-Route count: 40 executed rows, 40 PASS, 0 page errors, 0 console errors, 0
-horizontal overflow, 0 structural failures.
+Route count: 48 executed rows, 48 PASS, 0 page errors, 0 console errors, 0
+horizontal overflow, 0 structural failures. Legal pages are noindexed drafts.
 
 ## 2. Workspace views
 
@@ -82,7 +84,7 @@ horizontal overflow, 0 structural failures.
 | L5 visual | 3 onboarding baselines | PASS | Windows Chromium only |
 | L6 fonts | `document.fonts.status` only | PARTIAL / NOT RUN | no glyph/fallback audit |
 | L7 i18n | static + runtime + RTL | PASS for structure | native review NOT RUN |
-| L8 accessibility | structural name/label/alt/id checks | PARTIAL | axe/WCAG NOT RUN |
+| L8 accessibility | axe 4.14.0 WCAG 2 A/AA on 12 surfaces + structural checks | PASS for automated checks | manual keyboard/screen-reader review NOT RUN |
 | L8 performance | not configured | NOT RUN | no invented Lighthouse budget |
 | L8 security | secret scan, dependency audit, auth tests | PASS for executed checks | no DAST/pen-test |
 
@@ -91,7 +93,9 @@ horizontal overflow, 0 structural failures.
 - `artifacts/quality/static-audit.json`
 - `artifacts/quality/static-audit.md`
 - `artifacts/quality/runtime-matrix.json`
-- `artifacts/runs/RUN-20261025-112519-QUALITY-GATE-FINAL/`
+- `artifacts/runs/RUN-20261026-012745-PHASE2-FINAL/`
+- `artifacts/quality/axe-results.json`
+- `artifacts/quality/visual-evidence/index.html`
 - `artifacts/playwright/report/index.html`
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`

@@ -41,7 +41,7 @@ test.describe('Cross-browser smoke', () => {
     const authPage = await authContext.newPage();
 
     for (const width of [390, 1440]) {
-      for (const route of ['/landing.html', '/login.html', '/onboarding.html', '/404.html']) {
+      for (const route of ['/landing.html', '/login.html', '/onboarding.html', '/404.html', '/privacy.html', '/terms.html']) {
         await check(publicPage, route, width);
       }
       for (const route of ['/', '/queue.html', '/upload.html', `/chat.html?site=${encodeURIComponent(site.embed_key)}`]) {

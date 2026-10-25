@@ -4,9 +4,9 @@ import { chromium } from 'playwright';
 
 const base = (process.env.BASE_URL || 'http://127.0.0.1:3030').replace(/\/$/, '');
 const outputDir = path.join(process.cwd(), 'artifacts', 'qa-matrix');
-const pages = ['/landing.html', '/login.html', '/onboarding.html', '/upload.html', '/manual.html', '/insights.html', '/queue.html', '/chat.html'];
+const pages = ['/landing.html', '/login.html', '/onboarding.html', '/upload.html', '/manual.html', '/insights.html', '/queue.html', '/chat.html', '/privacy.html', '/terms.html'];
 const viewports = [{ width: 390, height: 844 }, { width: 1440, height: 900 }];
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_EXECUTABLE_PATH || undefined });
 const report = { generated_at: new Date().toISOString(), base, pages: [], totals: { warnings: 0 } };
 
 for (const route of pages) {

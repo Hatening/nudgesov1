@@ -19,7 +19,7 @@ window.NS_LANDING_LOCALES = {
     "features": [
       {
         "title": "One calm queue",
-        "body": "Email, chat and social threads merged and prioritized, so nothing falls through the cracks."
+        "body": "Live today: website chat and a shared merchant inbox. Email and social connectors are rolling out separately, so we do not pretend they are already merged."
       },
       {
         "title": "Drafts in your voice",
@@ -39,7 +39,7 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Connect your inbox",
-        "body": "Plug in your email, chat and social channels. NudgeSo merges everything into one shared queue."
+        "body": "Set up the website chat and shared inbox that are live today. Email and social connectors are a separate, assisted setup."
       },
       {
         "title": "AI drafts friendly replies",
@@ -51,7 +51,7 @@ window.NS_LANDING_LOCALES = {
       }
     ],
     "pricingTitle": "Simple pricing",
-    "pricingSub": "Start free, upgrade when your business outgrows the shared inbox.",
+    "pricingSub": "Start free. Paid plans are preview-only while billing is being finished.",
     "monthly": "Monthly",
     "yearly": "Yearly",
     "saveNote": "~21% off",
@@ -61,35 +61,35 @@ window.NS_LANDING_LOCALES = {
       "features": [
         "Shared inbox",
         "A generous monthly allowance of free AI drafts",
-        "Community support"
+        "Help guide"
       ],
       "cta": "Start for free"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Most popular",
+      "badge": "Preview plan",
       "billingMonthly": "$19 / month · billed monthly",
       "billingYearly": "$15 / month · billed annually",
       "features": [
         "Everything in Free",
-        "Email, chat & social channels",
-        "Priority support"
+        "Website chat + shared inbox",
+        "Preview of planned priority support"
       ],
-      "cta": "Try Pro free"
+      "cta": "Preview Pro"
     },
     "businessPlan": {
       "name": "Business",
-      "badge": "Example price — adjustable",
+      "badge": "Preview price — no charge",
       "billingMonthly": "$49 / month · billed monthly",
       "billingYearly": "$39 / month · billed annually",
       "features": [
         "Everything in Pro",
-        "Multiple staff seats",
-        "Onboarding help & a dedicated contact"
+        "Multiple staff seats (preview)",
+        "Guided setup help"
       ],
-      "cta": "Start free trial"
+      "cta": "Talk to us"
     },
-    "pricingNote": "Plan limits are illustrative and can be adjusted before launch.",
+    "pricingNote": "Preview pricing only: no payment is collected. Plan limits and paid features are illustrative and can be adjusted before billing launches.",
     "faqTitle": "Frequently asked questions",
     "faqs": [
       {
@@ -106,17 +106,19 @@ window.NS_LANDING_LOCALES = {
       },
       {
         "q": "What's included in the free plan?",
-        "a": "The free plan gives you the shared inbox and a generous monthly allowance of free AI drafts, plus community support. It's built for small businesses who want to try calm support before paying a cent."
+        "a": "The free plan gives you the shared inbox and a generous monthly allowance of free AI drafts, plus the help guide. Paid plans are preview-only until billing is live."
       },
       {
         "q": "Which channels can I connect?",
-        "a": "Email, live chat and major social messaging channels all land in the same queue on Pro. Whatever your customers use, you reply from one calm place."
+        "a": "Live today: the standalone website chat and the merchant shared inbox. Email and social messaging (including WhatsApp and Instagram) are not connected yet; they need an assisted setup and will roll out separately. We will only list a channel as available once it is genuinely connected."
       }
     ],
     "finalTitle": "Bring calm to your inbox",
     "finalSub": "Set up in minutes · Free for small businesses · www.nudgeso.com",
     "finalCta": "Get NudgeSo free",
-    "footerTag": "NudgeSo · Calm Customer Support · www.nudgeso.com"
+    "footerTag": "NudgeSo · Calm Customer Support · www.nudgeso.com",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   },
   "en-AU": {
     "metaTitle": "NudgeSo — Calm Customer Support for small businesses",
@@ -137,7 +139,7 @@ window.NS_LANDING_LOCALES = {
     "features": [
       {
         "title": "One calm queue",
-        "body": "Email, chat and social threads merged and prioritized, so nothing falls through the cracks."
+        "body": "Live today: website chat and a shared merchant inbox. Email and social connectors are rolling out separately, so we do not pretend they are already merged."
       },
       {
         "title": "Drafts in your voice",
@@ -157,7 +159,7 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Connect your inbox",
-        "body": "Plug in your email, chat and social channels. NudgeSo merges everything into one shared queue."
+        "body": "Set up the website chat and shared inbox that are live today. Email and social connectors are a separate, assisted setup."
       },
       {
         "title": "AI drafts friendly replies",
@@ -169,7 +171,7 @@ window.NS_LANDING_LOCALES = {
       }
     ],
     "pricingTitle": "Simple pricing",
-    "pricingSub": "Start free, upgrade when your business outgrows the shared inbox.",
+    "pricingSub": "Start free. Paid plans are preview-only while billing is being finished.",
     "monthly": "Monthly",
     "yearly": "Yearly",
     "saveNote": "~21% off",
@@ -179,35 +181,35 @@ window.NS_LANDING_LOCALES = {
       "features": [
         "Shared inbox",
         "A generous monthly allowance of free AI drafts",
-        "Community support"
+        "Help guide"
       ],
       "cta": "Start for free"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Most popular",
+      "badge": "Preview plan",
       "billingMonthly": "$19 / month · billed monthly",
       "billingYearly": "$15 / month · billed annually",
       "features": [
         "Everything in Free",
-        "Email, chat & social channels",
-        "Priority support"
+        "Website chat + shared inbox",
+        "Preview of planned priority support"
       ],
-      "cta": "Try Pro free"
+      "cta": "Preview Pro"
     },
     "businessPlan": {
       "name": "Business",
-      "badge": "Example price — adjustable",
+      "badge": "Preview price — no charge",
       "billingMonthly": "$49 / month · billed monthly",
       "billingYearly": "$39 / month · billed annually",
       "features": [
         "Everything in Pro",
-        "Multiple staff seats",
-        "Onboarding help & a dedicated contact"
+        "Multiple staff seats (preview)",
+        "Guided setup help"
       ],
-      "cta": "Start free trial"
+      "cta": "Talk to us"
     },
-    "pricingNote": "Plan limits are illustrative and can be adjusted before launch.",
+    "pricingNote": "Preview pricing only: no payment is collected. Plan limits and paid features are illustrative and can be adjusted before billing launches.",
     "faqTitle": "Frequently asked questions",
     "faqs": [
       {
@@ -224,21 +226,23 @@ window.NS_LANDING_LOCALES = {
       },
       {
         "q": "What's included in the free plan?",
-        "a": "The free plan gives you the shared inbox and a generous monthly allowance of free AI drafts, plus community support. It's built for small businesses who want to try calm support before paying a cent."
+        "a": "The free plan gives you the shared inbox and a generous monthly allowance of free AI drafts, plus the help guide. Paid plans are preview-only until billing is live."
       },
       {
         "q": "Which channels can I connect?",
-        "a": "Email, live chat and major social messaging channels all land in the same queue on Pro. Whatever your customers use, you reply from one calm place."
+        "a": "Live today: the standalone website chat and the merchant shared inbox. Email and social messaging (including WhatsApp and Instagram) are not connected yet; they need an assisted setup and will roll out separately. We will only list a channel as available once it is genuinely connected."
       }
     ],
     "finalTitle": "Bring calm to your inbox",
     "finalSub": "Set up in minutes · Free for small businesses · www.nudgeso.com",
     "finalCta": "Get NudgeSo free",
-    "footerTag": "NudgeSo · Calm Customer Support · www.nudgeso.com"
+    "footerTag": "NudgeSo · Calm Customer Support · www.nudgeso.com",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
   },
   "ar": {
-    "metaTitle": "NudgeSo — دعم عملاء هادئ للشركات الصغيرة",
-    "metaDescription": "دعم غير متزامن أولًا يصوغ إجابات دافئة، ويرتّب ما يهم في قائمة انتظار، ويمنحك مساحة للتنفس.",
+    "metaTitle": "NudgeSo — دعم عملاء هادئ للأعمال الصغيرة",
+    "metaDescription": "دعم غير متزامن أولاً يصوغ ردوداً دافئة، ويضع ما يهم في قائمة انتظار، ويترك لك مساحة للتنفس.",
     "nav": [
       "المنتج",
       "الأسعار",
@@ -246,28 +250,28 @@ window.NS_LANDING_LOCALES = {
       "الأسئلة الشائعة"
     ],
     "signIn": "تسجيل الدخول",
-    "startFree": "ابدأ مجانًا",
-    "heroEyebrow": "مكتب مساعدة بالذكاء الاصطناعي غير متزامن أولًا",
-    "heroTitle": "دعم عملاء هادئ للشركات الصغيرة",
-    "heroSub": "دعم غير متزامن أولًا يصوغ إجابات دافئة، ويرتّب ما يهم في قائمة انتظار، ويمنحك مساحة للتنفس — بلا حياة داخل صندوق الوارد بعد الآن.",
+    "startFree": "ابدأ مجاناً",
+    "heroEyebrow": "مكتب مساعدة ذكي غير متزامن أولاً",
+    "heroTitle": "دعم عملاء هادئ للأعمال الصغيرة",
+    "heroSub": "دعم غير متزامن أولاً يصوغ ردوداً دافئة، ويضع ما يهم في قائمة انتظار، ويترك لك مساحة للتنفس — بلا حياة داخل صندوق الوارد بعد الآن.",
     "featuresTitle": "كل ما يحتاجه صندوق الوارد، ولا شيء زائد",
-    "featuresSub": "مصمم للشركات الصغيرة التي تريد الرد جيدًا دون الفوضى.",
+    "featuresSub": "مصمم للأعمال الصغيرة التي تريد الرد جيداً دون فوضى.",
     "features": [
       {
         "title": "قائمة انتظار هادئة واحدة",
-        "body": "رسائل البريد والدردشة والمنصات الاجتماعية مدمجة ومرتّبة حسب الأولوية، حتى لا يضيع شيء."
+        "body": "متاح اليوم: دردشة الموقع وصندوق وارد مشترك للتجار. موصلات البريد الإلكتروني والتواصل الاجتماعي تُطلق بشكل منفصل، لذلك لا ندّعي أنها مدمجة بالفعل."
       },
       {
         "title": "مسودات بصوتك",
-        "body": "يتعلّم الذكاء الاصطناعي نبرتك ويقترح ردودًا سترغب فعلاً في إرسالها."
+        "body": "يتعلم الذكاء الاصطناعي نبرتك ويقترح ردوداً سترغب فعلاً في إرسالها."
       },
       {
-        "title": "الإعداد في دقائق",
-        "body": "اربط صندوق الوارد بنقرات قليلة، واستورد أسئلتك الشائعة، وسيعرف الذكاء الاصطناعي نبرتك بالفعل."
+        "title": "الإعداد خلال دقائق",
+        "body": "اربط صندوق الوارد بنقرات قليلة، واستورد أسئلتك الشائعة، وسيعرف الذكاء الاصطناعي نبرتك مسبقاً."
       },
       {
         "title": "لا تنبيهات في وقت متأخر من الليل",
-        "body": "غير متزامن افتراضيًا، يحصل العملاء على أوقات رد صادقة وتستعيد أعمالك أمسياتها."
+        "body": "غير متزامن افتراضياً، يحصل العملاء على أوقات رد صادقة وتستعيد أعمالك أمسياتها."
       }
     ],
     "howTitle": "كيف يعمل",
@@ -275,206 +279,210 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "اربط صندوق الوارد",
-        "body": "أضف قنوات بريدك الإلكتروني والدردشة والتواصل الاجتماعي. يدمج NudgeSo كل شيء في قائمة انتظار مشتركة واحدة."
+        "body": "أعدّ دردشة الموقع وصندوق الوارد المشترك المتاحين اليوم. موصلات البريد الإلكتروني والتواصل الاجتماعي إعداد منفصل وبمساعدة."
       },
       {
-        "title": "يصوغ الذكاء الاصطناعي ردودًا ودّية",
+        "title": "يصوغ الذكاء الاصطناعي ردوداً ودودة",
         "body": "يقرأ الذكاء الاصطناعي المحادثة، ويطابق نبرتك من الردود السابقة، ويصوغ إجابة دافئة لكل رسالة."
       },
       {
-        "title": "أنت توافق، وتنبّه، وتنتقل",
-        "body": "عدّل كلمة أو اضغط إرسال. تُؤجّل المحادثات نفسها حتى يتلقى العملاء ردًا. لا ضغط، أبدًا."
+        "title": "أنت توافق، وتنبّه بلطف، ثم تمضي",
+        "body": "عدّل كلمة أو اضغط إرسال. تُؤجّل المحادثات نفسها حتى يتلقى العملاء رداً. لا ضغط، أبداً."
       }
     ],
     "pricingTitle": "أسعار بسيطة",
-    "pricingSub": "ابدأ مجانًا، وارتقِ عندما ينمو عملك بما يتجاوز صندوق الوارد المشترك.",
+    "pricingSub": "ابدأ مجاناً. الخطط المدفوعة للمعاينة فقط ريثما يكتمل إعداد الفوترة.",
     "monthly": "شهري",
     "yearly": "سنوي",
     "saveNote": "خصم ~21%",
     "freePlan": {
       "name": "مجاني",
-      "billing": "لعمل صغير يجرّبه",
+      "billing": "لعمل صغير يجربه",
       "features": [
         "صندوق وارد مشترك",
         "حصة شهرية سخية من مسودات الذكاء الاصطناعي المجانية",
-        "دعم المجتمع"
+        "دليل المساعدة"
       ],
-      "cta": "ابدأ مجانًا"
+      "cta": "ابدأ مجاناً"
     },
     "proPlan": {
-      "name": "احترافي",
-      "badge": "الأكثر شيوعًا",
-      "billingMonthly": "$19 / شهر · تُفوتر شهريًا",
-      "billingYearly": "$15 / شهر · تُفوتر سنويًا",
+      "name": "Pro",
+      "badge": "خطة معاينة",
+      "billingMonthly": "$19 / شهر · تُفوتر شهرياً",
+      "billingYearly": "$15 / شهر · تُفوتر سنوياً",
       "features": [
-        "كل ما في الخطة المجانية",
-        "قنوات البريد والدردشة والتواصل الاجتماعي",
-        "دعم ذو أولوية"
+        "كل ما في المجاني",
+        "دردشة الموقع + صندوق وارد مشترك",
+        "معاينة دعم ذي أولوية مخطط له"
       ],
-      "cta": "جرّب الخطة الاحترافية مجانًا"
+      "cta": "معاينة Pro"
     },
     "businessPlan": {
-      "name": "أعمال",
-      "badge": "سعر توضيحي — قابل للتعديل",
-      "billingMonthly": "$49 / شهر · تُفوتر شهريًا",
-      "billingYearly": "$39 / شهر · تُفوتر سنويًا",
+      "name": "Business",
+      "badge": "سعر معاينة — بدون رسوم",
+      "billingMonthly": "$49 / شهر · تُفوتر شهرياً",
+      "billingYearly": "$39 / شهر · تُفوتر سنوياً",
       "features": [
-        "كل ما في الخطة الاحترافية",
-        "عدة مقاعد للموظفين",
-        "مساعدة في الإعداد وجهة اتصال مخصصة"
+        "كل ما في Pro",
+        "مقاعد متعددة للموظفين (معاينة)",
+        "مساعدة في الإعداد الموجّه"
       ],
-      "cta": "ابدأ التجربة المجانية"
+      "cta": "تحدث إلينا"
     },
-    "pricingNote": "حدود الخطط توضيحية ويمكن تعديلها قبل الإطلاق.",
+    "pricingNote": "أسعار المعاينة فقط: لا يتم تحصيل أي دفعة. حدود الخطط والميزات المدفوعة توضيحية ويمكن تعديلها قبل إطلاق الفوترة.",
     "faqTitle": "الأسئلة الشائعة",
     "faqs": [
       {
-        "q": "ماذا يعني \"غير متزامن أولًا\" فعليًا؟",
-        "a": "يعني أن العملاء يتركون رسالة ويحصلون على نافذة رد صادقة (مثل \"سنعود خلال بضع ساعات\") بدلًا من الانتظار في دردشة مباشرة. تجيب وفق جدولك الخاص، ولا يقلق أحد وهو يشاهد ثلاث نقاط تقفز."
+        "q": "ماذا يعني \"غير متزامن أولاً\" فعلياً؟",
+        "a": "يعني أن العملاء يتركون رسالة ويحصلون على نافذة رد صادقة (مثل \"سنعود بعد بضع ساعات\") بدلاً من انتظار دردشة مباشرة. تجيب وفق جدولك الخاص، ولا يقلق أحد لمشاهدة ثلاث نقاط تقفز."
       },
       {
         "q": "كم يستغرق الإعداد؟",
-        "a": "تكون معظم الشركات الصغيرة جاهزة وتعمل في أقل من عشر دقائق. اربط صندوق الوارد، وأضف بعض الأسئلة الشائعة، ويبدأ الذكاء الاصطناعي فورًا في كتابة ردود تبدو مثلك."
+        "a": "معظم الأعمال الصغيرة تبدأ العمل في أقل من عشر دقائق. اربط صندوق الوارد، وأضف بعض الأسئلة الشائعة، ويبدأ الذكاء الاصطناعي فوراً بكتابة ردود تبدو وكأنها منك."
       },
       {
         "q": "هل يرسل الذكاء الاصطناعي الردود من تلقاء نفسه؟",
-        "a": "لا. يصوغ الذكاء الاصطناعي المسودات دائمًا — يوافق شخص من فريقك قبل أن يصل أي شيء إلى العميل. تبقى مسيطرًا على نبرتك؛ الذكاء الاصطناعي يزيل الكتابة فقط."
+        "a": "لا. يصوغ الذكاء الاصطناعي دائماً مسودات — يوافق شخص من فريقك قبل أن يصل أي شيء إلى العميل. تبقى مسيطراً على صوتك؛ الذكاء الاصطناعي يزيل الكتابة فقط."
       },
       {
-        "q": "ما الذي تتضمنه الخطة المجانية؟",
-        "a": "تمنحك الخطة المجانية صندوق الوارد المشترك وحصة شهرية سخية من مسودات الذكاء الاصطناعي المجانية، إضافة إلى دعم المجتمع. إنها مصممة للشركات الصغيرة التي تريد تجربة الدعم الهادئ قبل أن تدفع سنتًا واحدًا."
+        "q": "ما الذي تشمله الخطة المجانية؟",
+        "a": "تمنحك الخطة المجانية صندوق الوارد المشترك وحصة شهرية سخية من مسودات الذكاء الاصطناعي المجانية، إضافة إلى دليل المساعدة. الخطط المدفوعة للمعاينة فقط حتى تصبح الفوترة متاحة."
       },
       {
         "q": "ما القنوات التي يمكنني ربطها؟",
-        "a": "تصل قنوات البريد الإلكتروني والدردشة المباشرة وأهم قنوات المراسلة الاجتماعية كلها إلى قائمة الانتظار نفسها في الخطة الاحترافية. أيًا كانت القنوات التي يستخدمها عملاؤك، ترد من مكان هادئ واحد."
+        "a": "متاح اليوم: دردشة الموقع المستقلة وصندوق الوارد المشترك للتجار. البريد الإلكتروني والرسائل الاجتماعية (بما في ذلك WhatsApp وInstagram) غير متصلة بعد؛ تحتاج إلى إعداد بمساعدة وستُطلق بشكل منفصل. لن ندرج أي قناة كمتاحة إلا بعد أن تكون متصلة فعلاً."
       }
     ],
-    "finalTitle": "اجلب الهدوء إلى صندوق الوارد",
-    "finalSub": "الإعداد في دقائق · مجاني للشركات الصغيرة · www.nudgeso.com",
-    "finalCta": "احصل على NudgeSo مجانًا",
-    "footerTag": "NudgeSo · دعم عملاء هادئ · www.nudgeso.com"
+    "finalTitle": "أضف الهدوء إلى صندوق الوارد",
+    "finalSub": "الإعداد خلال دقائق · مجاني للأعمال الصغيرة · www.nudgeso.com",
+    "finalCta": "احصل على NudgeSo مجاناً",
+    "footerTag": "NudgeSo · دعم عملاء هادئ · www.nudgeso.com",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة"
   },
   "az": {
     "metaTitle": "NudgeSo — Kiçik bizneslər üçün sakit müştəri dəstəyi",
-    "metaDescription": "Asinxron yönümlü dəstək səmimi cavablar hazırlayır, vacib olanları növbəyə salır və sizə nəfəs almaq üçün yer verir.",
+    "metaDescription": "Asinxron əsaslı dəstək isti cavabların qaralamasını hazırlayır, vacib olanları növbəyə qoyur və sizə nəfəs almaq üçün məkan verir.",
     "nav": [
       "Məhsul",
       "Qiymətlər",
       "Necə",
-      "FAQ"
+      "Sual-Cavab"
     ],
     "signIn": "Daxil ol",
     "startFree": "Pulsuz başla",
-    "heroEyebrow": "Asinxron yönümlü AI dəstək masası",
+    "heroEyebrow": "Asinxron əsaslı AI yardım masası",
     "heroTitle": "Kiçik bizneslər üçün sakit müştəri dəstəyi",
-    "heroSub": "Asinxron yönümlü dəstək səmimi cavablar hazırlayır, vacib olanları növbəyə salır və sizə nəfəs almaq üçün yer verir — artıq gələnlər qutunuzda yaşamaq məcburiyyəti yoxdur.",
-    "featuresTitle": "Gələnlər qutunuz üçün lazım olan hər şey, lazım olmayan heç nə",
-    "featuresSub": "Xaos olmadan yaxşı cavab vermək istəyən kiçik bizneslər üçün hazırlanıb.",
+    "heroSub": "Asinxron əsaslı dəstək isti cavabların qaralamasını hazırlayır, vacib olanları növbəyə qoyur və sizə nəfəs almaq üçün məkan verir — artıq gələn qutunuzda yaşamağa ehtiyac yoxdur.",
+    "featuresTitle": "Gələn qutunuzun ehtiyac duyduğu hər şey, ehtiyac duymadığı heç nə",
+    "featuresSub": "Qarışıqlıq olmadan yaxşı cavab vermək istəyən kiçik bizneslər üçün.",
     "features": [
       {
-        "title": "Vahid sakit növbə",
-        "body": "E-poçt, çat və sosial media söhbətləri birləşdirilir və prioritetləşdirilir, beləliklə heç nə diqqətdən kənarda qalmır."
+        "title": "Bir sakit növbə",
+        "body": "Artıq işləyir: veb-sayt çatı və satıcı üçün ortaq gələn qutusu. E-poçt və sosial bağlayıcılar ayrıca təqdim olunur, ona görə də onların artıq birləşdirildiyini iddia etmirik."
       },
       {
-        "title": "Sizin üslubunuzda qaralamalar",
-        "body": "AI sizin tonunuzu öyrənir və həqiqətən göndərmək istəyəcəyiniz cavablar təklif edir."
+        "title": "Sizin səsinizlə qaralamalar",
+        "body": "AI tonunuzu öyrənir və həqiqətən göndərmək istəyəcəyiniz cavablar təklif edir."
       },
       {
-        "title": "Dəqiqələr içində qurulur",
-        "body": "Gələnlər qutunuzu bir neçə kliklə qoşun, FAQ-larınızı idxal edin və AI artıq sizin üslubunuzu bilir."
+        "title": "Dəqiqələr içində qurulum",
+        "body": "Gələn qutunuzu bir neçə kliklə qoşun, tez-tez verilən suallarınızı idxal edin və AI artıq səsinizi tanıyır."
       },
       {
         "title": "Gecə yarısı bildirişləri yoxdur",
-        "body": "Standart olaraq asinxron işləyir: müştərilər dürüst cavab müddətləri alır, biznesiniz isə axşamlarını geri qazanır."
+        "body": "Standart olaraq asinxron; müştərilər dürüst cavab vaxtları alır, biznesiniz isə axşamlarını geri qazanır."
       }
     ],
     "howTitle": "Necə işləyir",
-    "howSub": "Səs-küylü gələnlər qutusundan sakit bir qutuya doğru üç sakit addım.",
+    "howSub": "Səs-küylü gələn qutu ilə sakit gələn qutu arasında üç sakit addım.",
     "howSteps": [
       {
-        "title": "Gələnlər qutunuzu qoşun",
-        "body": "E-poçt, çat və sosial kanallarınızı qoşun. NudgeSo hər şeyi bir ümumi növbədə birləşdirir."
+        "title": "Gələn qutunuzu qoşun",
+        "body": "Artıq işləyən veb-sayt çatını və ortaq gələn qutusunu qurun. E-poçt və sosial bağlayıcılar ayrıca, köməkli qurulumdur."
       },
       {
-        "title": "AI səmimi cavablar hazırlayır",
-        "body": "AI söhbəti oxuyur, keçmiş cavablarınızdan tonunuzu uyğunlaşdırır və hər mesaj üçün səmimi cavab hazırlayır."
+        "title": "AI dostyana cavabların qaralamasını hazırlayır",
+        "body": "AI yazışmanı oxuyur, keçmiş cavablarınızdan tonunuzu uyğunlaşdırır və hər mesaj üçün isti cavabın qaralamasını hazırlayır."
       },
       {
-        "title": "Siz təsdiqləyir, kiçik düzəliş edir, davam edirsiniz",
-        "body": "Bir sözü dəyişin və ya göndər düyməsini basın. Müştərilər cavab alana qədər söhbətlər avtomatik təxirə salınır. Heç vaxt təzyiq yoxdur."
+        "title": "Siz təsdiqləyin, incə düzəliş edin, davam edin",
+        "body": "Bir sözü dəyişin və ya göndərə basın. Müştərilər cavab eşidənə qədər yazışmalar özlərini yuxuya qoyur. Heç vaxt təzyiq yoxdur."
       }
     ],
     "pricingTitle": "Sadə qiymətlər",
-    "pricingSub": "Pulsuz başlayın, biznesiniz ümumi gələnlər qutusundan böyüdükdə planı təkmilləşdirin.",
+    "pricingSub": "Pulsuz başlayın. Ödəniş tamamlanana qədər ödənişli planlar yalnız önizləmədir.",
     "monthly": "Aylıq",
     "yearly": "İllik",
     "saveNote": "~21% endirim",
     "freePlan": {
       "name": "Pulsuz",
-      "billing": "Xidməti sınayan kiçik biznes üçün",
+      "billing": "Sınayıb görən kiçik biznes üçün",
       "features": [
-        "Ümumi gələnlər qutusu",
-        "Pulsuz AI qaralamaları üçün səxavətli aylıq limit",
-        "İcma dəstəyi"
+        "Ortaq gələn qutusu",
+        "Aylıq səxavətli pulsuz AI qaralama limiti",
+        "Yardım bələdçisi"
       ],
-      "cta": "Pulsuz başlayın"
+      "cta": "Pulsuz başla"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Ən populyar",
-      "billingMonthly": "$19 / ay · aylıq hesablanır",
-      "billingYearly": "$15 / ay · illik hesablanır",
+      "badge": "Önizləmə planı",
+      "billingMonthly": "$19 / ay · aylıq ödənişlə",
+      "billingYearly": "$15 / ay · illik ödənişlə",
       "features": [
         "Pulsuz plandakı hər şey",
-        "E-poçt, çat və sosial kanallar",
-        "Prioritet dəstək"
+        "Veb-sayt çatı + ortaq gələn qutusu",
+        "Planlaşdırılan prioritet dəstəyin önizləməsi"
       ],
-      "cta": "Pro-nu pulsuz sınayın"
+      "cta": "Pro planını önizlə"
     },
     "businessPlan": {
       "name": "Biznes",
-      "badge": "Nümunə qiymət — dəyişdirilə bilər",
-      "billingMonthly": "$49 / ay · aylıq hesablanır",
-      "billingYearly": "$39 / ay · illik hesablanır",
+      "badge": "Önizləmə qiyməti — ödəniş yoxdur",
+      "billingMonthly": "$49 / ay · aylıq ödənişlə",
+      "billingYearly": "$39 / ay · illik ödənişlə",
       "features": [
-        "Pro plandakı hər şey",
-        "Çoxsaylı əməkdaş yerləri",
-        "İlk quraşdırma köməyi və ayrılmış əlaqə şəxsi"
+        "Pro-dakı hər şey",
+        "Çoxlu işçi yerləri (önizləmə)",
+        "Bələdçili qurulum yardımı"
       ],
-      "cta": "Pulsuz sınağa başlayın"
+      "cta": "Bizimlə əlaqə saxlayın"
     },
-    "pricingNote": "Plan limitləri nümunəvidir və buraxılışdan əvvəl dəyişdirilə bilər.",
+    "pricingNote": "Yalnız önizləmə qiymətləri: heç bir ödəniş alınmır. Plan limitləri və ödənişli funksiyalar nümunəvidir və ödəniş işə düşməzdən əvvəl dəyişdirilə bilər.",
     "faqTitle": "Tez-tez verilən suallar",
     "faqs": [
       {
-        "q": "\"Asinxron yönümlü\" əslində nə deməkdir?",
-        "a": "Bu o deməkdir ki, müştərilər mesaj qoyur və canlı çatda gözləmək əvəzinə dürüst cavab pəncərəsi alır (məsələn, \"bir neçə saatdan sonra qayıdacağıq\"). Siz öz cədvəlinizlə cavab verirsiniz və heç kim üç nöqtənin tullanmasına baxıb narahat olmur."
+        "q": "\"Asinxron əsaslı\" əslində nə deməkdir?",
+        "a": "Bu o deməkdir ki, müştərilər canlı çatı gözləmək əvəzinə mesaj buraxır və dürüst cavab pəncərəsi alır (məsələn, \"bir neçə saatdan sonra qayıdacağıq\"). Siz öz cədvəlinizə uyğun cavab verirsiniz və heç kim üç nöqtənin tullanmasına baxıb narahat olmur."
       },
       {
-        "q": "Quraşdırma nə qədər vaxt aparır?",
-        "a": "Əksər kiçik bizneslər on dəqiqədən az vaxtda işə başlayır. Gələnlər qutunuzu qoşun, bir neçə FAQ əlavə edin və AI artıq sizin kimi səslənən cavablar yazmağa başlayır."
+        "q": "Qurulum nə qədər vaxt alır?",
+        "a": "Əksər kiçik bizneslər on dəqiqədən az müddətdə işə başlayır. Gələn qutunuzu qoşun, bir neçə sual-cavab əlavə edin və AI artıq sizin kimi səslənən cavablar yazmağa başlayır."
       },
       {
-        "q": "AI cavabları özü göndərirmi?",
-        "a": "Xeyr. AI həmişə qaralama hazırlayır — hər hansı şey müştəriyə çatmazdan əvvəl komandanızdan bir insan təsdiqləyir. Sizin üslubunuzun nəzarəti sizdə qalır; AI sadəcə yazmağı aradan qaldırır."
+        "q": "AI cavabları özü göndərir?",
+        "a": "Xeyr. AI həmişə qaralama hazırlayır — komandanızdan bir insan hər şey müştəriyə çatmazdan əvvəl təsdiqləyir. Səsə nəzarət sizdə qalır; AI sadəcə yazmağı aradan qaldırır."
       },
       {
         "q": "Pulsuz plana nə daxildir?",
-        "a": "Pulsuz plan sizə ümumi gələnlər qutusu və pulsuz AI qaralamaları üçün səxavətli aylıq limit, həmçinin icma dəstəyi verir. Bir qəpik ödəməzdən əvvəl sakit dəstəyi sınamaq istəyən kiçik bizneslər üçün hazırlanıb."
+        "a": "Pulsuz plan sizə ortaq gələn qutusunu və aylıq səxavətli pulsuz AI qaralama limitini, həmçinin yardım bələdçisini verir. Ödəniş işə düşənə qədər ödənişli planlar yalnız önizləmədir."
       },
       {
         "q": "Hansı kanalları qoşa bilərəm?",
-        "a": "E-poçt, canlı çat və əsas sosial mesajlaşma kanalları Pro-da eyni növbəyə düşür. Müştəriləriniz nədən istifadə edirsə etsin, siz bir sakit yerdən cavab verirsiniz."
+        "a": "Artıq işləyir: müstəqil veb-sayt çatı və satıcı üçün ortaq gələn qutusu. E-poçt və sosial mesajlaşma (o cümlədən WhatsApp və Instagram) hələ qoşulmayıb; onlar köməkli qurulum tələb edir və ayrıca təqdim olunacaq. Bir kanalı yalnız həqiqətən qoşulduqdan sonra mövcud kimi göstərəcəyik."
       }
     ],
-    "finalTitle": "Gələnlər qutunuza sakitlik gətirin",
-    "finalSub": "Dəqiqələr içində qurulur · Kiçik bizneslər üçün pulsuz · www.nudgeso.com",
+    "finalTitle": "Gələn qutunuzda sakitlik yaradın",
+    "finalSub": "Dəqiqələr içində qurulum · Kiçik bizneslər üçün pulsuz · www.nudgeso.com",
     "finalCta": "NudgeSo-nu pulsuz əldə edin",
-    "footerTag": "NudgeSo · Sakit müştəri dəstəyi · www.nudgeso.com"
+    "footerTag": "NudgeSo · Sakit müştəri dəstəyi · www.nudgeso.com",
+    "privacy": "Məxfilik Siyasəti",
+    "terms": "Xidmət Şərtləri"
   },
   "bg": {
     "metaTitle": "NudgeSo — Спокойна клиентска поддръжка за малки бизнеси",
-    "metaDescription": "Поддръжка с асинхронен подход, която създава топли отговори, подрежда важното и ви оставя пространство да дишате.",
+    "metaDescription": "Поддръжка с асинхронен подход, която изготвя топли отговори, подрежда важното и ви оставя пространство да дишате.",
     "nav": [
       "Продукт",
       "Цени",
@@ -483,15 +491,15 @@ window.NS_LANDING_LOCALES = {
     ],
     "signIn": "Вход",
     "startFree": "Започнете безплатно",
-    "heroEyebrow": "AI поддръжка с асинхронен подход",
+    "heroEyebrow": "Асинхронен AI хелпдеск",
     "heroTitle": "Спокойна клиентска поддръжка за малки бизнеси",
-    "heroSub": "Поддръжка с асинхронен подход, която създава топли отговори, подрежда важното и ви оставя пространство да дишате — без повече да живеете в пощата си.",
-    "featuresTitle": "Всичко, което е нужно на пощата ви, и нищо излишно",
-    "featuresSub": "Създадено за малки бизнеси, които искат да отговарят добре без хаос.",
+    "heroSub": "Асинхронна поддръжка, която изготвя топли отговори, подрежда важното и ви оставя пространство да дишате — без повече да живеете в пощенската си кутия.",
+    "featuresTitle": "Всичко необходимо за пощата ви, без нищо излишно",
+    "featuresSub": "Създадено за малки бизнеси, които искат да отговарят добре без хаоса.",
     "features": [
       {
         "title": "Една спокойна опашка",
-        "body": "Имейли, чатове и социални нишки се обединяват и приоритизират, така че нищо да не се изгуби."
+        "body": "Достъпно днес: чат на уебсайта и споделена пощенска кутия за търговци. Имейл и социалните интеграции се пускат отделно, така че не твърдим, че вече са обединени."
       },
       {
         "title": "Чернови във вашия стил",
@@ -499,10 +507,10 @@ window.NS_LANDING_LOCALES = {
       },
       {
         "title": "Настройка за минути",
-        "body": "Свържете пощата си с няколко клика, импортирайте често задаваните въпроси и AI вече познава тона ви."
+        "body": "Свържете пощата си с няколко клика, импортирайте ЧЗВ и AI вече познава стила ви."
       },
       {
-        "title": "Без известия късно през нощта",
+        "title": "Без известия посред нощ",
         "body": "Асинхронно по подразбиране: клиентите получават честни срокове за отговор, а бизнесът ви си връща вечерите."
       }
     ],
@@ -511,324 +519,210 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Свържете пощата си",
-        "body": "Добавете имейл, чат и социални канали. NudgeSo обединява всичко в една споделена опашка."
+        "body": "Настройте чата на уебсайта и споделената пощенска кутия, които са достъпни днес. Имейл и социалните интеграции са отделна настройка с помощ."
       },
       {
-        "title": "AI създава приятелски отговори",
-        "body": "AI прочита нишката, съобразява се с тона ви от предишни отговори и създава топъл отговор за всяко съобщение."
+        "title": "AI изготвя приятелски отговори",
+        "body": "AI прочита разговора, съобразява се с тона ви от предишни отговори и изготвя топъл отговор за всяко съобщение."
       },
       {
-        "title": "Вие одобрявате, насочвате, продължавате",
-        "body": "Променете дума или натиснете изпращане. Нишките се отлагат сами, докато клиентите получат отговор. Без напрежение, винаги."
+        "title": "Одобрявате, коригирате, продължавате",
+        "body": "Променете дума или натиснете „Изпрати“. Разговорите се отлагат сами, докато клиентите получат отговор. Без напрежение, винаги."
       }
     ],
     "pricingTitle": "Прости цени",
-    "pricingSub": "Започнете безплатно, надградете, когато бизнесът ви надрасне споделената поща.",
+    "pricingSub": "Започнете безплатно. Платените планове са само за преглед, докато таксуването се довършва.",
     "monthly": "Месечно",
     "yearly": "Годишно",
     "saveNote": "~21% отстъпка",
     "freePlan": {
       "name": "Безплатен",
-      "billing": "За малък бизнес, който иска да опита",
+      "billing": "За малък бизнес, който иска да го изпробва",
       "features": [
-        "Споделена поща",
-        "Щедър месечен лимит от безплатни AI чернови",
-        "Поддръжка от общността"
+        "Споделена пощенска кутия",
+        "Щедър месечен лимит за безплатни AI чернови",
+        "Ръководство за помощ"
       ],
       "cta": "Започнете безплатно"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Най-популярен",
+      "badge": "План за преглед",
       "billingMonthly": "$19 / месец · таксуване месечно",
       "billingYearly": "$15 / месец · таксуване годишно",
       "features": [
-        "Всичко от безплатния план",
-        "Имейл, чат и социални канали",
-        "Приоритетна поддръжка"
+        "Всичко от Безплатния",
+        "Чат на уебсайта + споделена пощенска кутия",
+        "Преглед на планирана приоритетна поддръжка"
       ],
-      "cta": "Опитайте Pro безплатно"
+      "cta": "Преглед на Pro"
     },
     "businessPlan": {
       "name": "Бизнес",
-      "badge": "Примерна цена — регулируема",
+      "badge": "Цена за преглед — без такса",
       "billingMonthly": "$49 / месец · таксуване месечно",
       "billingYearly": "$39 / месец · таксуване годишно",
       "features": [
         "Всичко от Pro",
-        "Няколко служителски места",
-        "Помощ при първоначално настройване и отделен контакт"
+        "Няколко места за служители (преглед)",
+        "Помощ при настройка с напътствия"
       ],
-      "cta": "Започнете безплатен пробен период"
+      "cta": "Свържете се с нас"
     },
-    "pricingNote": "Лимитите на плановете са примерни и могат да бъдат коригирани преди стартиране.",
+    "pricingNote": "Цените са само за преглед: не се събира плащане. Лимитите на плановете и платените функции са примерни и могат да бъдат коригирани преди стартирането на таксуването.",
     "faqTitle": "Често задавани въпроси",
     "faqs": [
       {
-        "q": "Какво всъщност означава „асинхронен подход“?",
-        "a": "Означава, че клиентите оставят съобщение и получават честен срок за отговор (например „ще се върнем след няколко часа“), вместо да чакат на живо чат. Вие отговаряте по свое време и никой не се тревожи, гледайки как подскачат три точки."
+        "q": "Какво всъщност означава „асинхронно по подразбиране“?",
+        "a": "Означава, че клиентите оставят съобщение и получават честен срок за отговор (например „ще се върнем след няколко часа“), вместо да чакат на чат на живо. Отговаряте по свой график и никой не се изнервя, гледайки как подскачат три точки."
       },
       {
         "q": "Колко време отнема настройката?",
-        "a": "Повечето малки бизнеси започват да работят за под десет минути. Свържете пощата си, добавете няколко често задавани въпроса и AI вече започва да пише отговори, които звучат като вас."
+        "a": "Повечето малки бизнеси са готови за под десет минути. Свържете пощата си, добавете няколко ЧЗВ и AI вече започва да пише отговори, които звучат като вас."
       },
       {
         "q": "AI изпраща ли отговори самостоятелно?",
-        "a": "Не. AI винаги създава чернова — човек от екипа ви я одобрява, преди нещо да стигне до клиента. Вие запазвате контрол върху тона си; AI просто премахва писането."
+        "a": "Не. AI винаги изготвя чернова — човек от екипа ви одобрява, преди нещо да стигне до клиента. Вие запазвате контрола върху стила си; AI просто премахва писането."
       },
       {
         "q": "Какво включва безплатният план?",
-        "a": "Безплатният план ви дава споделената поща и щедър месечен лимит безплатни AI чернови, както и поддръжка от общността. Създаден е за малки бизнеси, които искат да опитат спокойна поддръжка, преди да платят дори стотинка."
+        "a": "Безплатният план ви дава споделена пощенска кутия и щедър месечен лимит за безплатни AI чернови, плюс ръководството за помощ. Платените планове са само за преглед, докато таксуването не заработи."
       },
       {
         "q": "Кои канали мога да свържа?",
-        "a": "Имейл, чат на живо и основните социални канали за съобщения се събират в една и съща опашка в Pro. Каквото и да използват клиентите ви, отговаряте от едно спокойно място."
+        "a": "Достъпни днес: самостоятелният чат на уебсайта и споделената пощенска кутия за търговци. Имейл и социалните съобщения (включително WhatsApp и Instagram) все още не са свързани; те се нуждаят от настройка с помощ и ще бъдат пуснати отделно. Ще посочваме даден канал за наличен само след като е действително свързан."
       }
     ],
     "finalTitle": "Донесете спокойствие в пощата си",
     "finalSub": "Настройка за минути · Безплатно за малки бизнеси · www.nudgeso.com",
     "finalCta": "Вземете NudgeSo безплатно",
-    "footerTag": "NudgeSo · Спокойна клиентска поддръжка · www.nudgeso.com"
+    "footerTag": "NudgeSo · Спокойна клиентска поддръжка · www.nudgeso.com",
+    "privacy": "Политика за поверителност",
+    "terms": "Условия за ползване"
   },
   "bn": {
     "metaTitle": "NudgeSo — ছোট ব্যবসার জন্য শান্ত কাস্টমার সাপোর্ট",
-    "metaDescription": "অ্যাসিন্ক-ফার্স্ট সাপোর্ট, যা আন্তরিক উত্তর খসড়া করে, গুরুত্বপূর্ণ বিষয়গুলো কিউতে রাখে, আর আপনাকে শ্বাস নেওয়ার জায়গা দেয়।",
+    "metaDescription": "অ্যাসিঙ্ক-ফার্স্ট সাপোর্ট যা উষ্ণ উত্তর খসড়া করে, গুরুত্বপূর্ণ বিষয়গুলো সারিবদ্ধ করে এবং আপনাকে শ্বাস নেওয়ার জায়গা দেয়।",
     "nav": [
       "প্রোডাক্ট",
-      "প্রাইসিং",
+      "মূল্য",
       "কীভাবে",
-      "প্রশ্নোত্তর"
+      "সাধারণ প্রশ্ন"
     ],
     "signIn": "সাইন ইন",
-    "startFree": "ফ্রি শুরু করুন",
-    "heroEyebrow": "অ্যাসিন্ক-ফার্স্ট AI হেল্পডেস্ক",
+    "startFree": "বিনামূল্যে শুরু করুন",
+    "heroEyebrow": "অ্যাসিঙ্ক-ফার্স্ট AI হেল্পডেস্ক",
     "heroTitle": "ছোট ব্যবসার জন্য শান্ত কাস্টমার সাপোর্ট",
-    "heroSub": "অ্যাসিন্ক-ফার্স্ট সাপোর্ট, যা আন্তরিক উত্তর খসড়া করে, গুরুত্বপূর্ণ বিষয়গুলো কিউতে রাখে, আর আপনাকে শ্বাস নেওয়ার জায়গা দেয় — আর ইনবক্সেই বাস করতে হবে না।",
-    "featuresTitle": "আপনার ইনবক্সের যা যা দরকার, অপ্রয়োজনীয় কিছু নয়",
-    "featuresSub": "যেসব ছোট ব্যবসা বিশৃঙ্খল ছাড়াই ভালোভাবে উত্তর দিতে চায়, তাদের জন্য তৈরি।",
+    "heroSub": "অ্যাসিঙ্ক-ফার্স্ট সাপোর্ট যা উষ্ণ উত্তর খসড়া করে, গুরুত্বপূর্ণ বিষয়গুলো সারিতে রাখে এবং আপনাকে শ্বাস নেওয়ার জায়গা দেয় — আর ইনবক্সে বন্দি থাকতে হবে না।",
+    "featuresTitle": "আপনার ইনবক্সের যা প্রয়োজন সবই, অপ্রয়োজনীয় কিছুই নয়",
+    "featuresSub": "ছোট ব্যবসার জন্য তৈরি, যারা বিশৃঙ্খলা ছাড়াই ভালোভাবে উত্তর দিতে চায়।",
     "features": [
       {
         "title": "একটি শান্ত কিউ",
-        "body": "ইমেইল, চ্যাট ও সোশ্যাল থ্রেড একসাথে মিলিয়ে অগ্রাধিকার দেওয়া হয়, যাতে কোনো কিছু ফাঁক গলে হারিয়ে না যায়।"
+        "body": "আজ লাইভ: ওয়েবসাইট চ্যাট এবং একটি শেয়ার্ড মার্চেন্ট ইনবক্স। ইমেইল ও সোশ্যাল কানেক্টর আলাদাভাবে চালু হচ্ছে, তাই সেগুলো ইতিমধ্যে একীভূত হয়েছে বলে আমরা দাবি করি না।"
       },
       {
         "title": "আপনার সুরে খসড়া",
-        "body": "AI আপনার সুর শেখে এবং আপনি সত্যিই পাঠাতে চাইবেন এমন উত্তর সাজিয়ে দেয়।"
+        "body": "AI আপনার টোন শেখে এবং এমন উত্তর প্রস্তাব করে যা আপনি সত্যিই পাঠাতে চাইবেন।"
       },
       {
         "title": "কয়েক মিনিটে সেটআপ",
-        "body": "কয়েক ক্লিকে আপনার ইনবক্স সংযুক্ত করুন, FAQ আমদানি করুন, এবং AI ইতিমধ্যেই আপনার সুর জানে।"
+        "body": "কয়েক ক্লিকে আপনার ইনবক্স সংযুক্ত করুন, আপনার FAQ আমদানি করুন, আর AI ইতিমধ্যেই আপনার সুর জানে।"
       },
       {
-        "title": "রাতবিরেতের নোটিফিকেশন নেই",
-        "body": "ডিফল্টভাবে অ্যাসিন্ক; গ্রাহকরা স্পষ্ট উত্তর-সময় পান, আর আপনার ব্যবসা ফিরে পায় সন্ধ্যা।"
+        "title": "রাতবিরেতে কোনো পিং নেই",
+        "body": "ডিফল্টভাবে অ্যাসিঙ্ক, গ্রাহকরা সৎ উত্তরের সময় জানেন এবং আপনার ব্যবসা সন্ধ্যাগুলো ফিরে পায়।"
       }
     ],
-    "howTitle": "এটি কীভাবে কাজ করে",
-    "howSub": "কোলাহলপূর্ণ ইনবক্স থেকে শান্ত ইনবক্সে পৌঁছানোর তিনটি নীরব ধাপ।",
+    "howTitle": "কীভাবে কাজ করে",
+    "howSub": "একটি কোলাহলপূর্ণ ইনবক্স থেকে শান্ত একটিতে পৌঁছানোর তিনটি নীরব ধাপ।",
     "howSteps": [
       {
         "title": "আপনার ইনবক্স সংযুক্ত করুন",
-        "body": "আপনার ইমেইল, চ্যাট ও সোশ্যাল চ্যানেল যুক্ত করুন। NudgeSo সবকিছু এক শেয়ার্ড কিউতে মিলিয়ে দেয়।"
+        "body": "আজ লাইভ থাকা ওয়েবসাইট চ্যাট এবং শেয়ার্ড ইনবক্স সেট আপ করুন। ইমেইল ও সোশ্যাল কানেক্টর আলাদা, সহায়তাযুক্ত সেটআপ।"
       },
       {
         "title": "AI বন্ধুত্বপূর্ণ উত্তর খসড়া করে",
-        "body": "AI থ্রেড পড়ে, আগের উত্তর থেকে আপনার সুর মিলিয়ে নেয়, এবং প্রতিটি বার্তার জন্য আন্তরিক উত্তর খসড়া করে।"
+        "body": "AI থ্রেড পড়ে, আপনার আগের উত্তরগুলো থেকে আপনার সুর মেলায় এবং প্রতিটি বার্তার জন্য একটি উষ্ণ উত্তর খসড়া করে।"
       },
       {
-        "title": "আপনি অনুমোদন করুন, নাজ করুন, এগিয়ে যান",
-        "body": "একটি শব্দ বদলান বা পাঠান চাপুন। গ্রাহক উত্তর না পাওয়া পর্যন্ত থ্রেড নিজে থেকেই বিরত থাকে। কখনও কোনো চাপ নেই।"
+        "title": "আপনি অনুমোদন করুন, নাজ দিন, এগিয়ে যান",
+        "body": "একটি শব্দ বদলান বা সেন্ড চাপুন। গ্রাহকের কাছ থেকে উত্তর না আসা পর্যন্ত থ্রেডগুলো নিজে থেকেই স্নুজ থাকে। কোনো চাপ নেই, কখনোই না।"
       }
     ],
-    "pricingTitle": "সহজ প্রাইসিং",
-    "pricingSub": "ফ্রিতে শুরু করুন, আপনার ব্যবসা শেয়ার্ড ইনবক্সের চেয়ে বড় হলে আপগ্রেড করুন।",
+    "pricingTitle": "সহজ মূল্য",
+    "pricingSub": "বিনামূল্যে শুরু করুন। বিলিং চূড়ান্ত হওয়ার সময় পর্যন্ত পেইড প্ল্যানগুলো শুধু প্রিভিউ।",
     "monthly": "মাসিক",
     "yearly": "বার্ষিক",
-    "saveNote": "~21% সাশ্রয়",
+    "saveNote": "~21% ছাড়",
     "freePlan": {
       "name": "ফ্রি",
-      "billing": "পরখ করে দেখতে চাওয়া ছোট ব্যবসার জন্য",
+      "billing": "পরীক্ষামূলকভাবে ব্যবহার করা ছোট ব্যবসার জন্য",
       "features": [
         "শেয়ার্ড ইনবক্স",
-        "ফ্রি AI খসড়ার উদার মাসিক বরাদ্দ",
-        "কমিউনিটি সাপোর্ট"
+        "বিনামূল্যে AI খসড়ার উদার মাসিক কোটা",
+        "সহায়তা গাইড"
       ],
-      "cta": "ফ্রিতে শুরু করুন"
+      "cta": "বিনামূল্যে শুরু করুন"
     },
     "proPlan": {
       "name": "প্রো",
-      "badge": "সবচেয়ে জনপ্রিয়",
+      "badge": "প্রিভিউ প্ল্যান",
       "billingMonthly": "$19 / মাস · মাসিক বিল",
       "billingYearly": "$15 / মাস · বার্ষিক বিল",
       "features": [
         "ফ্রি-এর সবকিছু",
-        "ইমেইল, চ্যাট ও সোশ্যাল চ্যানেল",
-        "প্রায়োরিটি সাপোর্ট"
+        "ওয়েবসাইট চ্যাট + শেয়ার্ড ইনবক্স",
+        "পরিকল্পিত প্রায়োরিটি সাপোর্টের প্রিভিউ"
       ],
-      "cta": "প্রো ফ্রিতে চেষ্টা করুন"
+      "cta": "প্রো প্রিভিউ করুন"
     },
     "businessPlan": {
       "name": "বিজনেস",
-      "badge": "উদাহরণমূলক মূল্য — পরিবর্তনযোগ্য",
+      "badge": "প্রিভিউ মূল্য — কোনো চার্জ নেই",
       "billingMonthly": "$49 / মাস · মাসিক বিল",
       "billingYearly": "$39 / মাস · বার্ষিক বিল",
       "features": [
         "প্রো-এর সবকিছু",
-        "একাধিক স্টাফ সিট",
-        "অনবোর্ডিং সহায়তা ও একজন ডেডিকেটেড যোগাযোগ"
+        "একাধিক স্টাফ সিট (প্রিভিউ)",
+        "নির্দেশিত সেটআপ সহায়তা"
       ],
-      "cta": "ফ্রি ট্রায়াল শুরু করুন"
+      "cta": "আমাদের সাথে কথা বলুন"
     },
-    "pricingNote": "প্ল্যানের সীমা উদাহরণমূলক এবং লঞ্চের আগে সমন্বয় করা যেতে পারে।",
+    "pricingNote": "শুধুমাত্র প্রিভিউ মূল্য: কোনো পেমেন্ট নেওয়া হয় না। প্ল্যানের সীমা এবং পেইড ফিচারগুলো উদাহরণস্বরূপ এবং বিলিং চালু হওয়ার আগে সমন্বয় করা যেতে পারে।",
     "faqTitle": "প্রায়শই জিজ্ঞাসিত প্রশ্ন",
     "faqs": [
       {
-        "q": "“অ্যাসিন্ক-ফার্স্ট” আসলে কী বোঝায়?",
-        "a": "এর মানে গ্রাহক একটি বার্তা রেখে যান এবং লাইভ চ্যাটে অপেক্ষা না করে স্পষ্ট উত্তর-সময় জানতে পারেন (যেমন “আমরা কয়েক ঘণ্টা পরে ফিরছি”)। আপনি নিজের সময়সূচি অনুযায়ী উত্তর দেন, আর কেউ তিনটি ডট লাফালাফি দেখা নিয়ে উদ্বিগ্ন হয় না।"
+        "q": "“async-first” আসলে কী বোঝায়?",
+        "a": "এর মানে গ্রাহক একটি বার্তা রেখে যান এবং লাইভ চ্যাটের জন্য অপেক্ষা না করে একটি সৎ উত্তরের সময়সীমা পান (যেমন “আমরা কয়েক ঘণ্টায় ফিরে আসব”)। আপনি নিজের সময়সূচি অনুযায়ী উত্তর দেন, আর কেউ তিনটি ডট লাফাতে দেখে উদ্বিগ্ন হয় না।"
       },
       {
         "q": "সেটআপে কত সময় লাগে?",
-        "a": "বেশিরভাগ ছোট ব্যবসা দশ মিনিটের কম সময়ে চালু হয়ে যায়। আপনার ইনবক্স সংযুক্ত করুন, কয়েকটি FAQ যোগ করুন, আর AI তখনই আপনার মতো শোনায় এমন উত্তর লিখতে শুরু করে।"
+        "a": "বেশিরভাগ ছোট ব্যবসা দশ মিনিটেরও কম সময়ে চালু হয়ে যায়। আপনার ইনবক্স সংযুক্ত করুন, কয়েকটি FAQ যোগ করুন, আর AI ইতিমধ্যেই আপনার মতো শোনানো উত্তর লিখতে শুরু করে।"
       },
       {
         "q": "AI কি নিজে থেকেই উত্তর পাঠায়?",
-        "a": "না। AI সবসময় খসড়া করে — গ্রাহকের কাছে কিছু পৌঁছানোর আগে আপনার টিমের একজন মানুষ অনুমোদন করেন। আপনার সুরের নিয়ন্ত্রণ আপনার হাতেই থাকে; AI শুধু টাইপ করার কাজটা সরিয়ে দেয়।"
+        "a": "না। AI সবসময় খসড়া করে — গ্রাহকের কাছে কিছু পৌঁছানোর আগে আপনার টিমের একজন মানুষ অনুমোদন করেন। আপনার সুরের নিয়ন্ত্রণ আপনার কাছেই থাকে; AI শুধু টাইপ করার কাজটা সরিয়ে দেয়।"
       },
       {
-        "q": "ফ্রি প্ল্যানে কী কী অন্তর্ভুক্ত?",
-        "a": "ফ্রি প্ল্যানে শেয়ার্ড ইনবক্স এবং ফ্রি AI খসড়ার উদার মাসিক বরাদ্দ, সঙ্গে কমিউনিটি সাপোর্ট। এক পয়সা দেওয়ার আগেই শান্ত সাপোর্ট পরখ করে দেখতে চাওয়া ছোট ব্যবসার জন্য এটি তৈরি।"
+        "q": "বিনামূল্যের প্ল্যানে কী কী আছে?",
+        "a": "বিনামূল্যের প্ল্যানে শেয়ার্ড ইনবক্স এবং বিনামূল্যে AI খসড়ার একটি উদার মাসিক কোটা থাকে, সাথে সহায়তা গাইড। বিলিং লাইভ হওয়ার আগে পেইড প্ল্যানগুলো শুধু প্রিভিউ।"
       },
       {
-        "q": "কোন কোন চ্যানেল সংযুক্ত করা যায়?",
-        "a": "ইমেইল, লাইভ চ্যাট এবং প্রধান সোশ্যাল মেসেজিং চ্যানেল সবই প্রো-তে একই কিউতে আসে। আপনার গ্রাহক যা-ই ব্যবহার করুন, আপনি এক শান্ত জায়গা থেকেই উত্তর দেন।"
+        "q": "কোন কোন চ্যানেল সংযুক্ত করতে পারি?",
+        "a": "আজ লাইভ: স্ট্যান্ডঅ্যালোন ওয়েবসাইট চ্যাট এবং মার্চেন্ট শেয়ার্ড ইনবক্স। ইমেইল ও সোশ্যাল মেসেজিং (WhatsApp এবং Instagram সহ) এখনো সংযুক্ত নয়; এগুলোর জন্য সহায়তাযুক্ত সেটআপ দরকার এবং আলাদাভাবে চালু হবে। একটি চ্যানেল সত্যিই সংযুক্ত হওয়ার পরেই আমরা সেটিকে উপলব্ধ হিসেবে তালিকাভুক্ত করব।"
       }
     ],
     "finalTitle": "আপনার ইনবক্সে শান্তি আনুন",
-    "finalSub": "কয়েক মিনিটে সেটআপ · ছোট ব্যবসার জন্য ফ্রি · www.nudgeso.com",
-    "finalCta": "NudgeSo ফ্রিতে নিন",
-    "footerTag": "NudgeSo · শান্ত কাস্টমার সাপোর্ট · www.nudgeso.com"
-  },
-  "cs": {
-    "metaTitle": "NudgeSo — Klidná zákaznická podpora pro malé firmy",
-    "metaDescription": "Asynchronní podpora, která navrhuje vřelé odpovědi, řadí to důležité a nechává vám prostor dýchat.",
-    "nav": [
-      "Produkt",
-      "Ceny",
-      "Jak to funguje",
-      "Časté dotazy"
-    ],
-    "signIn": "Přihlásit se",
-    "startFree": "Začít zdarma",
-    "heroEyebrow": "Asynchronní AI helpdesk",
-    "heroTitle": "Klidná zákaznická podpora pro malé firmy",
-    "heroSub": "Asynchronní podpora, která navrhuje vřelé odpovědi, zařazuje to důležité a dává vám prostor dýchat — už nemusíte žít ve své schránce.",
-    "featuresTitle": "Vše, co vaše schránka potřebuje, a nic navíc",
-    "featuresSub": "Pro malé firmy, které chtějí dobře odpovídat bez chaosu.",
-    "features": [
-      {
-        "title": "Jedna klidná fronta",
-        "body": "E-mailová, chatová a sociální vlákna spojená a seřazená podle priority, takže nic nepropadne."
-      },
-      {
-        "title": "Koncepty vaším hlasem",
-        "body": "AI se učí váš tón a navrhuje odpovědi, které budete skutečně chtít odeslat."
-      },
-      {
-        "title": "Nastavení za pár minut",
-        "body": "Připojte svou schránku několika kliknutími, importujte časté dotazy a AI už zná váš styl."
-      },
-      {
-        "title": "Žádná noční pípnutí",
-        "body": "Ve výchozím nastavení asynchronní; zákazníci dostanou poctivou lhůtu odpovědi a vaše firma získá zpět své večery."
-      }
-    ],
-    "howTitle": "Jak to funguje",
-    "howSub": "Tři klidné kroky od hlučné schránky ke klidné.",
-    "howSteps": [
-      {
-        "title": "Připojte svou schránku",
-        "body": "Zapojte e-mail, chat a sociální kanály. NudgeSo vše spojí do jedné sdílené fronty."
-      },
-      {
-        "title": "AI navrhuje přátelské odpovědi",
-        "body": "AI přečte vlákno, sladí váš tón z dřívějších odpovědí a pro každou zprávu navrhne vřelou odpověď."
-      },
-      {
-        "title": "Vy schválíte, popostrčíte a jdete dál",
-        "body": "Změňte slovo nebo stiskněte odeslat. Vlákna se sama odloží, dokud zákazníkům neodpovíte. Žádný tlak, nikdy."
-      }
-    ],
-    "pricingTitle": "Jednoduché ceny",
-    "pricingSub": "Začněte zdarma, přejděte na vyšší plán, až vaše firma přeroste sdílenou schránku.",
-    "monthly": "Měsíčně",
-    "yearly": "Ročně",
-    "saveNote": "~21% sleva",
-    "freePlan": {
-      "name": "Zdarma",
-      "billing": "Pro malou firmu, která to zkouší",
-      "features": [
-        "Sdílená schránka",
-        "Štědrý měsíční limit bezplatných návrhů AI",
-        "Podpora komunity"
-      ],
-      "cta": "Začít zdarma"
-    },
-    "proPlan": {
-      "name": "Pro",
-      "badge": "Nejoblíbenější",
-      "billingMonthly": "$19 / měsíc · účtováno měsíčně",
-      "billingYearly": "$15 / měsíc · účtováno ročně",
-      "features": [
-        "Vše ze Zdarma",
-        "E-mailové, chatové a sociální kanály",
-        "Prioritní podpora"
-      ],
-      "cta": "Vyzkoušet Pro zdarma"
-    },
-    "businessPlan": {
-      "name": "Firma",
-      "badge": "Příklad ceny — upravitelné",
-      "billingMonthly": "$49 / měsíc · účtováno měsíčně",
-      "billingYearly": "$39 / měsíc · účtováno ročně",
-      "features": [
-        "Vše z Pro",
-        "Více míst pro zaměstnance",
-        "Pomoc s onboardingem a vyhrazený kontakt"
-      ],
-      "cta": "Začít zkušební verzi zdarma"
-    },
-    "pricingNote": "Limity plánů jsou ilustrativní a lze je před spuštěním upravit.",
-    "faqTitle": "Často kladené dotazy",
-    "faqs": [
-      {
-        "q": "Co vlastně znamená „async-first“?",
-        "a": "Znamená to, že zákazník zanechá zprávu a dostane poctivé okno pro odpověď (například „vrátíme se za pár hodin“) místo čekání na živém chatu. Odpovídáte podle svého rozvrhu a nikdo se netrápí sledováním poskakujících teček."
-      },
-      {
-        "q": "Jak dlouho trvá nastavení?",
-        "a": "Většina malých firem je v provozu za méně než deset minut. Připojte schránku, vložte několik častých dotazů a AI už začne psát odpovědi, které znějí jako vy."
-      },
-      {
-        "q": "Odesílá AI odpovědi sama?",
-        "a": "Ne. AI vždy připravuje koncept — než se cokoli dostane k zákazníkovi, schválí to člověk z vašeho týmu. Máte kontrolu nad svým hlasem; AI jen odstraňuje psaní."
-      },
-      {
-        "q": "Co je součástí bezplatného plánu?",
-        "a": "Bezplatný plán vám dává sdílenou schránku a štědrý měsíční limit bezplatných návrhů AI plus podporu komunity. Je určený malým firmám, které chtějí vyzkoušet klidnou podporu, než zaplatí jediný cent."
-      },
-      {
-        "q": "Které kanály mohu připojit?",
-        "a": "E-mail, živý chat a hlavní sociální zprávové kanály se u plánu Pro všechny sbíhají do stejné fronty. Ať vaši zákazníci používají cokoli, odpovídáte z jednoho klidného místa."
-      }
-    ],
-    "finalTitle": "Vneste klid do své schránky",
-    "finalSub": "Nastavení za pár minut · Zdarma pro malé firmy · www.nudgeso.com",
-    "finalCta": "Získat NudgeSo zdarma",
-    "footerTag": "NudgeSo · Klidná zákaznická podpora · www.nudgeso.com"
+    "finalSub": "কয়েক মিনিটে সেটআপ · ছোট ব্যবসার জন্য বিনামূল্যে · www.nudgeso.com",
+    "finalCta": "NudgeSo বিনামূল্যে নিন",
+    "footerTag": "NudgeSo · শান্ত কাস্টমার সাপোর্ট · www.nudgeso.com",
+    "privacy": "গোপনীয়তা নীতি",
+    "terms": "পরিষেবার শর্তাবলী"
   },
   "da": {
     "metaTitle": "NudgeSo — Rolig kundesupport til små virksomheder",
-    "metaDescription": "Async-first support, der skriver varme svar, sætter det vigtige i kø og giver dig plads til at trække vejret.",
+    "metaDescription": "Support med asynkron tilgang, der laver udkast til varme svar, sætter det vigtige i kø og giver dig plads til at trække vejret.",
     "nav": [
       "Produkt",
       "Priser",
@@ -837,283 +731,407 @@ window.NS_LANDING_LOCALES = {
     ],
     "signIn": "Log ind",
     "startFree": "Start gratis",
-    "heroEyebrow": "Async-first AI-helpdesk",
+    "heroEyebrow": "AI-helpdesk med asynkron tilgang",
     "heroTitle": "Rolig kundesupport til små virksomheder",
-    "heroSub": "Async-first support, der skriver varme svar, sætter det vigtige i kø og giver dig plads til at trække vejret — slut med at bo i din indbakke.",
-    "featuresTitle": "Alt, din indbakke har brug for, intet den ikke har",
+    "heroSub": "Support med asynkron tilgang, der laver udkast til varme svar, sætter det vigtige i kø og giver dig plads til at trække vejret — slut med at bo i din indbakke.",
+    "featuresTitle": "Alt din indbakke behøver — og intet, den ikke gør",
     "featuresSub": "Bygget til små virksomheder, der vil svare godt uden kaos.",
     "features": [
       {
         "title": "Én rolig kø",
-        "body": "E-mail, chat og sociale tråde samlet og prioriteret, så intet falder mellem to stole."
+        "body": "Live i dag: webchat og en fælles virksomhedsindbakke. E-mail- og sociale integrationer rulles ud separat, så vi foregiver ikke, at de allerede er slået sammen."
       },
       {
-        "title": "Udkast i din stemme",
-        "body": "AI'en lærer din tone og foreslår svar, du faktisk har lyst til at sende."
+        "title": "Udkast med din stemme",
+        "body": "AI'en lærer din tone og foreslår svar, som du faktisk har lyst til at sende."
       },
       {
-        "title": "Klar på få minutter",
-        "body": "Forbind din indbakke med få klik, importér dine FAQ'er, og AI'en kender allerede din stemme."
+        "title": "Opsætning på få minutter",
+        "body": "Forbind din indbakke med få klik, importer dine FAQ'er, og AI'en kender allerede din stemme."
       },
       {
-        "title": "Ingen ping sent om aftenen",
-        "body": "Async som standard, kunderne får ærlige svartider, og din virksomhed får sine aftener tilbage."
+        "title": "Ingen ping om natten",
+        "body": "Asynkron som standard: kunderne får ærlige svartider, og din virksomhed får sine aftener tilbage."
       }
     ],
     "howTitle": "Sådan fungerer det",
-    "howSub": "Tre rolige trin mellem en støjende indbakke og en rolig en.",
+    "howSub": "Tre rolige trin fra en støjende indbakke til en rolig en.",
     "howSteps": [
       {
         "title": "Forbind din indbakke",
-        "body": "Tilslut dine e-mail-, chat- og sociale kanaler. NudgeSo samler alt i én fælles kø."
+        "body": "Opsæt webchatten og den fælles indbakke, som er live i dag. E-mail- og sociale integrationer er en separat opsætning med vejledning."
       },
       {
-        "title": "AI'en skriver venlige svar",
-        "body": "AI'en læser tråden, matcher din tone ud fra tidligere svar og skriver et varmt udkast til hver besked."
+        "title": "AI'en laver venlige svarudkast",
+        "body": "AI'en læser tråden, matcher din tone ud fra tidligere svar og laver et varmt svarudkast til hver besked."
       },
       {
-        "title": "Du godkender, giver et vink og kommer videre",
-        "body": "Ret et ord eller tryk send. Tråde udsættes automatisk, indtil kunden hører tilbage. Aldrig noget pres."
+        "title": "Du godkender, justerer og kommer videre",
+        "body": "Ret et ord eller tryk send. Tråde går i dvale, indtil kunderne hører tilbage. Ingen pres, nogensinde."
       }
     ],
     "pricingTitle": "Enkle priser",
-    "pricingSub": "Start gratis, opgrader når din virksomhed vokser ud af den fælles indbakke.",
+    "pricingSub": "Start gratis. Betalte planer er kun til forhåndsvisning, mens betalingen færdiggøres.",
     "monthly": "Månedligt",
     "yearly": "Årligt",
-    "saveNote": "~21% rabat",
+    "saveNote": "~21 % rabat",
     "freePlan": {
       "name": "Gratis",
-      "billing": "Til en lille virksomhed, der prøver det af",
+      "billing": "Til små virksomheder, der vil prøve det",
       "features": [
         "Fælles indbakke",
         "En generøs månedlig kvote af gratis AI-udkast",
-        "Fællesskabssupport"
+        "Hjælpeguide"
       ],
       "cta": "Start gratis"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Mest populær",
+      "badge": "Forhåndsvisningsplan",
       "billingMonthly": "$19 / måned · faktureres månedligt",
       "billingYearly": "$15 / måned · faktureres årligt",
       "features": [
         "Alt i Gratis",
-        "E-mail-, chat- og sociale kanaler",
-        "Prioriteret support"
+        "Webchat + fælles indbakke",
+        "Forhåndsvisning af planlagt prioriteret support"
       ],
-      "cta": "Prøv Pro gratis"
+      "cta": "Forhåndsvis Pro"
     },
     "businessPlan": {
       "name": "Business",
-      "badge": "Eksempelpris — kan justeres",
+      "badge": "Forhåndsvisningspris — ingen opkrævning",
       "billingMonthly": "$49 / måned · faktureres månedligt",
       "billingYearly": "$39 / måned · faktureres årligt",
       "features": [
         "Alt i Pro",
-        "Flere medarbejderpladser",
-        "Hjælp til onboarding og en dedikeret kontakt"
+        "Flere medarbejderpladser (forhåndsvisning)",
+        "Guidet opsætningshjælp"
       ],
-      "cta": "Start gratis prøveperiode"
+      "cta": "Kontakt os"
     },
-    "pricingNote": "Planbegrænsninger er vejledende og kan justeres før lancering.",
+    "pricingNote": "Kun forhåndsvisningspriser: der opkræves ingen betaling. Planbegrænsninger og betalte funktioner er illustrerende og kan justeres, før betalingen lanceres.",
     "faqTitle": "Ofte stillede spørgsmål",
     "faqs": [
       {
         "q": "Hvad betyder \"async-first\" egentlig?",
-        "a": "Det betyder, at kunderne efterlader en besked og får et ærligt svarvindue (som \"vi er tilbage om et par timer\") i stedet for at vente på en livechat. Du svarer efter din egen tidsplan, og ingen bliver urolige af at se tre prikker hoppe."
+        "a": "Det betyder, at kunderne efterlader en besked og får et ærligt svarvindue (som \"vi er tilbage om et par timer\") i stedet for at vente på en livechat. Du svarer efter din egen tidsplan, og ingen bliver nervøse ved at se tre prikker hoppe."
       },
       {
         "q": "Hvor lang tid tager opsætningen?",
-        "a": "De fleste små virksomheder er klar på under ti minutter. Forbind din indbakke, tilføj et par FAQ'er, og AI'en begynder allerede at skrive svar, der lyder som dig."
+        "a": "De fleste små virksomheder er oppe at køre på under ti minutter. Forbind din indbakke, indsæt et par FAQ'er, og AI'en begynder allerede at skrive svar, der lyder som dig."
       },
       {
         "q": "Sender AI'en svar af sig selv?",
-        "a": "Nej. AI'en skriver altid udkast — en person på dit team godkender, før noget når kunden. Du beholder kontrollen over din stemme; AI'en fjerner bare skrivningen."
+        "a": "Nej. AI'en laver altid udkast — et menneske på dit team godkender, før noget når kunden. Du har fortsat kontrol over din stemme; AI'en fjerner bare skrivearbejdet."
       },
       {
         "q": "Hvad er inkluderet i den gratis plan?",
-        "a": "Den gratis plan giver dig den fælles indbakke og en generøs månedlig kvote af gratis AI-udkast samt fællesskabssupport. Den er bygget til små virksomheder, der vil prøve rolig support, før de betaler noget."
+        "a": "Den gratis plan giver dig den fælles indbakke og en generøs månedlig kvote af gratis AI-udkast samt hjælpeguiden. Betalte planer er kun til forhåndsvisning, indtil betalingen er live."
       },
       {
         "q": "Hvilke kanaler kan jeg forbinde?",
-        "a": "E-mail, livechat og større sociale beskedkanaler lander alle i samme kø på Pro. Uanset hvad dine kunder bruger, svarer du fra ét roligt sted."
+        "a": "Live i dag: den selvstændige webchat og den fælles virksomhedsindbakke. E-mail og sociale beskeder (inklusive WhatsApp og Instagram) er ikke forbundet endnu; de kræver en vejledt opsætning og rulles ud separat. Vi oplister først en kanal som tilgængelig, når den reelt er forbundet."
       }
     ],
     "finalTitle": "Skab ro i din indbakke",
-    "finalSub": "Klar på få minutter · Gratis for små virksomheder · www.nudgeso.com",
+    "finalSub": "Opsætning på få minutter · Gratis for små virksomheder · www.nudgeso.com",
     "finalCta": "Få NudgeSo gratis",
-    "footerTag": "NudgeSo · Rolig kundesupport · www.nudgeso.com"
+    "footerTag": "NudgeSo · Rolig kundesupport · www.nudgeso.com",
+    "privacy": "Privatlivspolitik",
+    "terms": "Servicevilkår"
+  },
+  "cs": {
+    "metaTitle": "NudgeSo — Klidná zákaznická podpora pro malé firmy",
+    "metaDescription": "Asynchronní podpora, která navrhuje vřelé odpovědi, řadí to podstatné do fronty a dává vám prostor dýchat.",
+    "nav": [
+      "Produkt",
+      "Ceník",
+      "Jak to funguje",
+      "Časté dotazy"
+    ],
+    "signIn": "Přihlásit se",
+    "startFree": "Začít zdarma",
+    "heroEyebrow": "Asynchronní AI helpdesk",
+    "heroTitle": "Klidná zákaznická podpora pro malé firmy",
+    "heroSub": "Asynchronní podpora, která navrhuje vřelé odpovědi, řadí to podstatné do fronty a dává vám prostor dýchat — už žádné žití ve vaší schránce.",
+    "featuresTitle": "Vše, co vaše schránka potřebuje, a nic navíc",
+    "featuresSub": "Pro malé firmy, které chtějí dobře odpovídat, ale bez chaosu.",
+    "features": [
+      {
+        "title": "Jedna klidná fronta",
+        "body": "Dnes funguje: chat na webu a sdílená schránka pro obchodníky. E-mailové a sociální konektory zavádíme odděleně, takže nepředstíráme, že už jsou sloučené."
+      },
+      {
+        "title": "Návrhy ve vašem tónu",
+        "body": "AI se učí váš tón a navrhuje odpovědi, které budete skutečně chtít odeslat."
+      },
+      {
+        "title": "Nastavení za pár minut",
+        "body": "Připojte svou schránku několika kliknutími, importujte časté dotazy a AI už zná váš tón."
+      },
+      {
+        "title": "Žádné noční notifikace",
+        "body": "Ve výchozím nastavení asynchronní, zákazníci dostávají poctivé doby odpovědi a vaše firma získá zpět své večery."
+      }
+    ],
+    "howTitle": "Jak to funguje",
+    "howSub": "Tři tiché kroky od hlučné schránky ke klidné.",
+    "howSteps": [
+      {
+        "title": "Připojte svou schránku",
+        "body": "Nastavte chat na webu a sdílenou schránku, které dnes fungují. E-mailové a sociální konektory jsou samostatné nastavení s asistencí."
+      },
+      {
+        "title": "AI navrhuje přátelské odpovědi",
+        "body": "AI si přečte vlákno, sladí váš tón z minulých odpovědí a pro každou zprávu navrhne vřelou odpověď."
+      },
+      {
+        "title": "Vy schválíte, popostrčíte a jdete dál",
+        "body": "Upravte slovo nebo stiskněte odeslat. Vlákna se sama odloží, dokud se zákazníkům neozvete. Nikdy žádný tlak."
+      }
+    ],
+    "pricingTitle": "Jednoduché ceny",
+    "pricingSub": "Začněte zdarma. Placené tarify jsou pouze náhledové, dokud se dokončuje fakturace.",
+    "monthly": "Měsíčně",
+    "yearly": "Ročně",
+    "saveNote": "~21 % sleva",
+    "freePlan": {
+      "name": "Zdarma",
+      "billing": "Pro malou firmu, která to zkouší",
+      "features": [
+        "Sdílená schránka",
+        "Štědrý měsíční limit bezplatných návrhů od AI",
+        "Průvodce nápovědou"
+      ],
+      "cta": "Začít zdarma"
+    },
+    "proPlan": {
+      "name": "Pro",
+      "badge": "Náhledový tarif",
+      "billingMonthly": "$19 / měsíc · účtováno měsíčně",
+      "billingYearly": "$15 / měsíc · účtováno ročně",
+      "features": [
+        "Vše ze tarifu Zdarma",
+        "Chat na webu + sdílená schránka",
+        "Náhled plánované prioritní podpory"
+      ],
+      "cta": "Náhled Pro"
+    },
+    "businessPlan": {
+      "name": "Business",
+      "badge": "Náhledová cena — bez poplatku",
+      "billingMonthly": "$49 / měsíc · účtováno měsíčně",
+      "billingYearly": "$39 / měsíc · účtováno ročně",
+      "features": [
+        "Vše z tarifu Pro",
+        "Více míst pro zaměstnance (náhled)",
+        "Pomoc s nastavením"
+      ],
+      "cta": "Ozvěte se nám"
+    },
+    "pricingNote": "Pouze náhledové ceny: žádná platba se nevybírá. Limity tarifů a placené funkce jsou ilustrativní a před spuštěním fakturace se mohou upravit.",
+    "faqTitle": "Často kladené otázky",
+    "faqs": [
+      {
+        "q": "Co vlastně znamená „async-first“?",
+        "a": "Znamená to, že zákazníci zanechají zprávu a dostanou poctivé okno pro odpověď (například „vrátíme se za pár hodin“) místo čekání na živém chatu. Odpovídáte podle svého rozvrhu a nikdo se netrápí sledováním poskakujících tří teček."
+      },
+      {
+        "q": "Jak dlouho trvá nastavení?",
+        "a": "Většina malých firem je v provozu za méně než deset minut. Připojte svou schránku, vložte několik častých dotazů a AI už začne psát odpovědi, které znějí jako vy."
+      },
+      {
+        "q": "Odesílá AI odpovědi sama?",
+        "a": "Ne. AI vždy jen navrhuje — než se cokoli dostane k zákazníkovi, schválí to člověk z vašeho týmu. Kontrolu nad svým tónem si zachováte; AI jen ušetří psaní."
+      },
+      {
+        "q": "Co je součástí tarifu zdarma?",
+        "a": "Tarif zdarma vám dává sdílenou schránku a štědrý měsíční limit bezplatných návrhů od AI, plus průvodce nápovědou. Placené tarify jsou pouze náhledové, dokud nebude fakturace spuštěna."
+      },
+      {
+        "q": "Které kanály mohu připojit?",
+        "a": "Dnes funguje: samostatný chat na webu a sdílená schránka pro obchodníky. E-mail a sociální zprávy (včetně WhatsApp a Instagramu) zatím nejsou propojené; vyžadují nastavení s asistencí a budou zavedeny samostatně. Kanál uvedeme jako dostupný, až když bude skutečně propojený."
+      }
+    ],
+    "finalTitle": "Vneste klid do své schránky",
+    "finalSub": "Nastavení za pár minut · Zdarma pro malé firmy · www.nudgeso.com",
+    "finalCta": "Získejte NudgeSo zdarma",
+    "footerTag": "NudgeSo · Klidná zákaznická podpora · www.nudgeso.com",
+    "privacy": "Zásady ochrany osobních údajů",
+    "terms": "Podmínky služby"
   },
   "de": {
     "metaTitle": "NudgeSo — Ruhiger Kundensupport für kleine Unternehmen",
-    "metaDescription": "Async-first-Support, der warme Antworten entwirft, Wichtiges in die Warteschlange stellt und dir Raum zum Durchatmen lässt.",
+    "metaDescription": "Async-first-Support, der warme Antworten entwirft, Wichtiges in die Warteschlange legt und Ihnen Raum zum Durchatmen lässt.",
     "nav": [
       "Produkt",
       "Preise",
-      "So funktioniert’s",
+      "So funktioniert's",
       "FAQ"
     ],
     "signIn": "Anmelden",
     "startFree": "Kostenlos starten",
-    "heroEyebrow": "Async-first-KI-Helpdesk",
+    "heroEyebrow": "Async-first KI-Helpdesk",
     "heroTitle": "Ruhiger Kundensupport für kleine Unternehmen",
-    "heroSub": "Async-first-Support, der warme Antworten entwirft, Wichtiges in die Warteschlange stellt und dir Raum zum Durchatmen lässt — Schluss mit dem Leben im Posteingang.",
-    "featuresTitle": "Alles, was dein Posteingang braucht, nichts, was er nicht braucht",
-    "featuresSub": "Gebaut für kleine Unternehmen, die gut antworten wollen, ohne das Chaos.",
+    "heroSub": "Async-first-Support, der warme Antworten entwirft, Wichtiges in die Warteschlange legt und Ihnen Raum zum Durchatmen lässt — Schluss damit, im Posteingang zu leben.",
+    "featuresTitle": "Alles, was Ihr Posteingang braucht – und nichts, was er nicht braucht.",
+    "featuresSub": "Für kleine Unternehmen gemacht, die gut antworten möchten – ohne Chaos.",
     "features": [
       {
         "title": "Eine ruhige Warteschlange",
-        "body": "E-Mail-, Chat- und Social-Threads zusammengeführt und priorisiert, damit nichts durchrutscht."
+        "body": "Heute live: Website-Chat und ein gemeinsamer Händler-Posteingang. E-Mail- und Social-Konnektoren werden separat ausgerollt, daher geben wir nicht vor, dass sie bereits zusammengeführt sind."
       },
       {
-        "title": "Entwürfe in deiner Stimme",
-        "body": "Die KI lernt deinen Ton und schlägt Antworten vor, die du wirklich senden möchtest."
+        "title": "Entwürfe in Ihrem Ton",
+        "body": "Die KI lernt Ihren Ton und schlägt Antworten vor, die Sie wirklich senden möchten."
       },
       {
         "title": "In Minuten eingerichtet",
-        "body": "Verbinde deinen Posteingang mit wenigen Klicks, importiere deine FAQs, und die KI kennt deine Stimme bereits."
+        "body": "Verbinden Sie Ihren Posteingang mit wenigen Klicks, importieren Sie Ihre FAQs, und die KI kennt Ihren Ton bereits."
       },
       {
-        "title": "Keine Benachrichtigungen mitten in der Nacht",
-        "body": "Standardmäßig asynchron: Kundinnen und Kunden erhalten ehrliche Antwortzeiten und dein Unternehmen bekommt seine Abende zurück."
+        "title": "Keine Pings mitten in der Nacht",
+        "body": "Standardmäßig asynchron: Kundinnen und Kunden erhalten ehrliche Antwortzeiten, und Ihr Unternehmen bekommt seine Abende zurück."
       }
     ],
-    "howTitle": "So funktioniert’s",
-    "howSub": "Drei ruhige Schritte vom lauten zum entspannten Posteingang.",
+    "howTitle": "So funktioniert's",
+    "howSub": "Drei ruhige Schritte vom lauten zum ruhigen Posteingang.",
     "howSteps": [
       {
-        "title": "Verbinde deinen Posteingang",
-        "body": "Binde deine E-Mail-, Chat- und Social-Kanäle an. NudgeSo führt alles in einer gemeinsamen Warteschlange zusammen."
+        "title": "Posteingang verbinden",
+        "body": "Richten Sie den Website-Chat und den gemeinsamen Posteingang ein, die heute live sind. E-Mail- und Social-Konnektoren erfordern eine separate Einrichtung mit Unterstützung."
       },
       {
         "title": "KI entwirft freundliche Antworten",
-        "body": "Die KI liest den Thread, trifft deinen Ton anhand vergangener Antworten und entwirft eine warme Antwort für jede Nachricht."
+        "body": "Die KI liest den Verlauf, gleicht Ihren Ton mit früheren Antworten ab und entwirft für jede Nachricht eine warme Antwort."
       },
       {
-        "title": "Du gibst frei, stößt an, machst weiter",
-        "body": "Ändere ein Wort oder klicke auf Senden. Threads pausieren von selbst, bis Kundinnen und Kunden eine Antwort erhalten. Ganz ohne Druck."
+        "title": "Sie geben frei, stupsen an, machen weiter",
+        "body": "Ändern Sie ein Wort oder klicken Sie auf Senden. Threads pausieren von selbst, bis Kundinnen und Kunden eine Rückmeldung erhalten. Ganz ohne Druck."
       }
     ],
     "pricingTitle": "Einfache Preise",
-    "pricingSub": "Kostenlos starten, upgraden, wenn dein Unternehmen aus dem gemeinsamen Posteingang herauswächst.",
+    "pricingSub": "Kostenlos starten. Bezahlpläne sind nur Vorschau, während die Abrechnung fertiggestellt wird.",
     "monthly": "Monatlich",
     "yearly": "Jährlich",
     "saveNote": "~21 % Rabatt",
     "freePlan": {
-      "name": "Free",
-      "billing": "Für ein kleines Unternehmen, das es ausprobiert",
+      "name": "Kostenlos",
+      "billing": "Für kleine Unternehmen, die es ausprobieren",
       "features": [
         "Gemeinsamer Posteingang",
-        "Ein großzügiges monatliches Kontingent kostenloser KI-Entwürfe",
-        "Community-Support"
+        "Ein großzügiges monatliches Kontingent an kostenlosen KI-Entwürfen",
+        "Hilfeleitfaden"
       ],
       "cta": "Kostenlos starten"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Am beliebtesten",
-      "billingMonthly": "$19 / Monat · monatliche Abrechnung",
-      "billingYearly": "$15 / Monat · jährliche Abrechnung",
+      "badge": "Vorschauplan",
+      "billingMonthly": "$19 / Monat · monatlich abgerechnet",
+      "billingYearly": "$15 / Monat · jährlich abgerechnet",
       "features": [
-        "Alles aus Free",
-        "E-Mail-, Chat- & Social-Kanäle",
-        "Prioritäts-Support"
+        "Alles aus Kostenlos",
+        "Website-Chat + gemeinsamer Posteingang",
+        "Vorschau auf geplanten priorisierten Support"
       ],
-      "cta": "Pro kostenlos testen"
+      "cta": "Pro-Vorschau"
     },
     "businessPlan": {
       "name": "Business",
-      "badge": "Beispielpreis — anpassbar",
-      "billingMonthly": "$49 / Monat · monatliche Abrechnung",
-      "billingYearly": "$39 / Monat · jährliche Abrechnung",
+      "badge": "Vorschaupreis — keine Belastung",
+      "billingMonthly": "$49 / Monat · monatlich abgerechnet",
+      "billingYearly": "$39 / Monat · jährlich abgerechnet",
       "features": [
         "Alles aus Pro",
-        "Mehrere Mitarbeiterplätze",
-        "Onboarding-Hilfe & ein fester Ansprechpartner"
+        "Mehrere Mitarbeiterplätze (Vorschau)",
+        "Begleitete Einrichtungshilfe"
       ],
-      "cta": "Kostenlose Testversion starten"
+      "cta": "Sprechen Sie mit uns"
     },
-    "pricingNote": "Die Tarifgrenzen sind beispielhaft und können vor dem Start angepasst werden.",
+    "pricingNote": "Nur Vorschaupreise: Es werden keine Zahlungen eingezogen. Planlimits und kostenpflichtige Funktionen sind beispielhaft und können vor dem Start der Abrechnung angepasst werden.",
     "faqTitle": "Häufig gestellte Fragen",
     "faqs": [
       {
-        "q": "Was bedeutet eigentlich „async-first“?",
-        "a": "Es bedeutet, dass Kundinnen und Kunden eine Nachricht hinterlassen und ein ehrliches Antwortfenster erhalten (etwa „wir sind in ein paar Stunden zurück“), statt auf einen Live-Chat zu warten. Du antwortest nach deinem eigenen Zeitplan, und niemand wird nervös beim Zusehen, wie drei Punkte hüpfen."
+        "q": "Was bedeutet „async-first“ eigentlich?",
+        "a": "Es bedeutet, dass Kundinnen und Kunden eine Nachricht hinterlassen und ein ehrliches Antwortfenster erhalten (etwa „wir sind in ein paar Stunden zurück“), statt auf einen Live-Chat zu warten. Sie antworten nach Ihrem eigenen Zeitplan, und niemand wird nervös, weil drei Punkte hüpfen."
       },
       {
         "q": "Wie lange dauert die Einrichtung?",
-        "a": "Die meisten kleinen Unternehmen sind in unter zehn Minuten einsatzbereit. Verbinde deinen Posteingang, füge ein paar FAQs hinzu, und die KI beginnt bereits, Antworten zu schreiben, die nach dir klingen."
+        "a": "Die meisten kleinen Unternehmen sind in unter zehn Minuten startklar. Verbinden Sie Ihren Posteingang, fügen Sie ein paar FAQs ein, und die KI beginnt bereits, Antworten zu schreiben, die wie Sie klingen."
       },
       {
         "q": "Sendet die KI Antworten von selbst?",
-        "a": "Nein. Die KI entwirft immer nur — ein Mensch aus deinem Team gibt frei, bevor etwas die Kundschaft erreicht. Du behältst die Kontrolle über deine Stimme; die KI nimmt dir nur das Tippen ab."
+        "a": "Nein. Die KI entwirft immer nur — ein Mensch in Ihrem Team gibt frei, bevor etwas die Kundschaft erreicht. Sie behalten die Kontrolle über Ihren Ton; die KI nimmt Ihnen nur das Tippen ab."
       },
       {
-        "q": "Was ist im kostenlosen Tarif enthalten?",
-        "a": "Der kostenlose Tarif bietet dir den gemeinsamen Posteingang und ein großzügiges monatliches Kontingent kostenloser KI-Entwürfe sowie Community-Support. Er ist für kleine Unternehmen gedacht, die ruhigen Support testen möchten, bevor sie einen Cent bezahlen."
+        "q": "Was ist im kostenlosen Plan enthalten?",
+        "a": "Der kostenlose Plan bietet Ihnen den gemeinsamen Posteingang und ein großzügiges monatliches Kontingent an kostenlosen KI-Entwürfen sowie den Hilfeleitfaden. Bezahlpläne sind nur Vorschau, bis die Abrechnung live ist."
       },
       {
         "q": "Welche Kanäle kann ich verbinden?",
-        "a": "E-Mail, Live-Chat und wichtige Social-Messaging-Kanäle landen bei Pro alle in derselben Warteschlange. Was auch immer deine Kundinnen und Kunden nutzen, du antwortest von einem ruhigen Ort aus."
+        "a": "Heute live: der eigenständige Website-Chat und der gemeinsame Händler-Posteingang. E-Mail- und Social-Messaging (einschließlich WhatsApp und Instagram) sind noch nicht verbunden; sie erfordern eine begleitete Einrichtung und werden separat ausgerollt. Wir listen einen Kanal erst als verfügbar, wenn er wirklich verbunden ist."
       }
     ],
-    "finalTitle": "Bring Ruhe in deinen Posteingang",
+    "finalTitle": "Bringen Sie Ruhe in Ihren Posteingang",
     "finalSub": "In Minuten eingerichtet · Kostenlos für kleine Unternehmen · www.nudgeso.com",
-    "finalCta": "NudgeSo kostenlos holen",
-    "footerTag": "NudgeSo · Ruhiger Kundensupport · www.nudgeso.com"
+    "finalCta": "NudgeSo kostenlos nutzen",
+    "footerTag": "NudgeSo · Ruhiger Kundensupport · www.nudgeso.com",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen"
   },
   "el": {
-    "metaTitle": "NudgeSo — Ήρεμη Υποστήριξη Πελατών για μικρές επιχειρήσεις",
+    "metaTitle": "NudgeSo — Ήρεμη υποστήριξη πελατών για μικρές επιχειρήσεις",
     "metaDescription": "Υποστήριξη με προτεραιότητα στην ασύγχρονη επικοινωνία που συντάσσει θερμές απαντήσεις, βάζει σε σειρά ό,τι έχει σημασία και σας αφήνει χώρο να αναπνεύσετε.",
     "nav": [
       "Προϊόν",
-      "Τιμολόγηση",
-      "Πώς λειτουργεί",
+      "Τιμές",
+      "Πώς",
       "Συχνές ερωτήσεις"
     ],
     "signIn": "Σύνδεση",
     "startFree": "Ξεκινήστε δωρεάν",
-    "heroEyebrow": "AI helpdesk με προτεραιότητα στην ασύγχρονη επικοινωνία",
-    "heroTitle": "Ήρεμη Υποστήριξη Πελατών για μικρές επιχειρήσεις",
-    "heroSub": "Υποστήριξη με προτεραιότητα στην ασύγχρονη επικοινωνία που συντάσσει θερμές απαντήσεις, βάζει σε σειρά ό,τι έχει σημασία και σας αφήνει χώρο να αναπνεύσετε — χωρίς να ζείτε πια στα εισερχόμενά σας.",
-    "featuresTitle": "Ό,τι χρειάζονται τα εισερχόμενά σας, τίποτα παραπάνω",
-    "featuresSub": "Φτιαγμένο για μικρές επιχειρήσεις που θέλουν να απαντούν καλά χωρίς το χάος.",
+    "heroEyebrow": "Ασύγχρονο helpdesk AI",
+    "heroTitle": "Ήρεμη υποστήριξη πελατών για μικρές επιχειρήσεις",
+    "heroSub": "Υποστήριξη με προτεραιότητα στην ασύγχρονη επικοινωνία που συντάσσει θερμές απαντήσεις, βάζει σε σειρά ό,τι έχει σημασία και σας αφήνει χώρο να αναπνεύσετε — χωρίς να ζείτε πια μέσα στο inbox σας.",
+    "featuresTitle": "Όλα όσα χρειάζεται το inbox σας, τίποτα περιττό",
+    "featuresSub": "Σχεδιασμένο για μικρές επιχειρήσεις που θέλουν να απαντούν καλά χωρίς το χάος.",
     "features": [
       {
         "title": "Μία ήρεμη ουρά",
-        "body": "Email, chat και νήματα social media ενώνονται και ιεραρχούνται κατά προτεραιότητα, ώστε τίποτα να μη χάνεται."
+        "body": "Διαθέσιμο σήμερα: συνομιλία στον ιστότοπο και κοινό inbox για εμπόρους. Οι συνδέσεις email και κοινωνικών δικτύων κυκλοφορούν ξεχωριστά, οπότε δεν προσποιούμαστε ότι έχουν ήδη ενοποιηθεί."
       },
       {
-        "title": "Προσχέδια στη δική σας φωνή",
-        "body": "Η AI μαθαίνει τον τόνο σας και προτείνει απαντήσεις που θα θέλετε πραγματικά να στείλετε."
+        "title": "Προσχέδια με τη δική σας φωνή",
+        "body": "Το AI μαθαίνει τον τόνο σας και προτείνει απαντήσεις που θα θέλετε πραγματικά να στείλετε."
       },
       {
         "title": "Ρύθμιση σε λίγα λεπτά",
-        "body": "Συνδέστε τα εισερχόμενά σας με λίγα κλικ, εισαγάγετε τις συχνές ερωτήσεις σας και η AI γνωρίζει ήδη τη φωνή σας."
+        "body": "Συνδέστε το inbox σας με λίγα κλικ, εισαγάγετε τις συχνές ερωτήσεις σας και το AI γνωρίζει ήδη τη φωνή σας."
       },
       {
         "title": "Χωρίς ειδοποιήσεις αργά το βράδυ",
-        "body": "Ασύγχρονο από προεπιλογή· οι πελάτες βλέπουν ειλικρινείς χρόνους απάντησης και η επιχείρησή σας παίρνει πίσω τα βράδια της."
+        "body": "Ασύγχρονη εξ ορισμού· οι πελάτες λαμβάνουν ειλικρινείς χρόνους απάντησης και η επιχείρησή σας παίρνει πίσω τα βράδια της."
       }
     ],
     "howTitle": "Πώς λειτουργεί",
-    "howSub": "Τρία ήσυχα βήματα ανάμεσα σε ένα θορυβώδες εισερχόμενο και ένα ήρεμο.",
+    "howSub": "Τρία ήσυχα βήματα από ένα θορυβώδες inbox σε ένα ήρεμο.",
     "howSteps": [
       {
-        "title": "Συνδέστε τα εισερχόμενά σας",
-        "body": "Συνδέστε το email, το chat και τα κοινωνικά σας κανάλια. Το NudgeSo τα ενώνει όλα σε μία κοινή ουρά."
+        "title": "Συνδέστε το inbox σας",
+        "body": "Ρυθμίστε τη συνομιλία στον ιστότοπο και το κοινό inbox που είναι διαθέσιμα σήμερα. Οι συνδέσεις email και κοινωνικών δικτύων αποτελούν ξεχωριστή, υποβοηθούμενη ρύθμιση."
       },
       {
-        "title": "Η AI συντάσσει φιλικές απαντήσεις",
-        "body": "Η AI διαβάζει το νήμα, ταιριάζει τον τόνο σας από παλιές απαντήσεις και συντάσσει μια θερμή απάντηση για κάθε μήνυμα."
+        "title": "Το AI συντάσσει φιλικές απαντήσεις",
+        "body": "Το AI διαβάζει τη συζήτηση, ταιριάζει τον τόνο σας από προηγούμενες απαντήσεις και συντάσσει μια θερμή απάντηση για κάθε μήνυμα."
       },
       {
-        "title": "Εγκρίνετε, δίνετε μια ώθηση και προχωράτε",
-        "body": "Αλλάξτε μια λέξη ή πατήστε αποστολή. Τα νήματα μπαίνουν σε αναμονή μόνα τους μέχρι να λάβουν απάντηση οι πελάτες. Χωρίς πίεση, ποτέ."
+        "title": "Εγκρίνετε, κάνετε μια μικρή προσαρμογή, προχωράτε",
+        "body": "Προσαρμόστε μια λέξη ή πατήστε αποστολή. Οι συζητήσεις αναβάλλονται αυτόματα μέχρι να λάβουν απάντηση οι πελάτες. Χωρίς πίεση, ποτέ."
       }
     ],
-    "pricingTitle": "Απλή τιμολόγηση",
-    "pricingSub": "Ξεκινήστε δωρεάν, αναβαθμίστε όταν η επιχείρησή σας ξεπεράσει το κοινό εισερχόμενο.",
+    "pricingTitle": "Απλές τιμές",
+    "pricingSub": "Ξεκινήστε δωρεάν. Τα πληρωμένα πλάνα είναι μόνο προεπισκόπηση όσο ολοκληρώνεται η χρέωση.",
     "monthly": "Μηνιαία",
     "yearly": "Ετήσια",
     "saveNote": "~21% έκπτωση",
@@ -1121,117 +1139,119 @@ window.NS_LANDING_LOCALES = {
       "name": "Δωρεάν",
       "billing": "Για μια μικρή επιχείρηση που το δοκιμάζει",
       "features": [
-        "Κοινό εισερχόμενο",
-        "Ένας γενναιόδωρος μηνιαίος αριθμός δωρεάν προσχεδίων AI",
-        "Υποστήριξη κοινότητας"
+        "Κοινό inbox",
+        "Ένας γενναιόδωρος μηνιαίος αριθμός δωρεάν AI προσχεδίων",
+        "Οδηγός βοήθειας"
       ],
       "cta": "Ξεκινήστε δωρεάν"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Πιο δημοφιλές",
+      "badge": "Πλάνο προεπισκόπησης",
       "billingMonthly": "$19 / μήνα · χρέωση μηνιαία",
-      "billingYearly": "$15 / μήνα · χρέωση ετησίως",
+      "billingYearly": "$15 / μήνα · χρέωση ετήσια",
       "features": [
-        "Όλα όσα περιλαμβάνει το Δωρεάν πρόγραμμα",
-        "Email, chat και κανάλια social media",
-        "Υποστήριξη κατά προτεραιότητα"
+        "Όλα όσα περιλαμβάνει το Δωρεάν",
+        "Συνομιλία στον ιστότοπο + κοινό inbox",
+        "Προεπισκόπηση της προγραμματισμένης υποστήριξης προτεραιότητας"
       ],
-      "cta": "Δοκιμάστε το Pro δωρεάν"
+      "cta": "Προεπισκόπηση Pro"
     },
     "businessPlan": {
       "name": "Business",
-      "badge": "Ενδεικτική τιμή — προσαρμόσιμη",
+      "badge": "Τιμή προεπισκόπησης — χωρίς χρέωση",
       "billingMonthly": "$49 / μήνα · χρέωση μηνιαία",
-      "billingYearly": "$39 / μήνα · χρέωση ετησίως",
+      "billingYearly": "$39 / μήνα · χρέωση ετήσια",
       "features": [
         "Όλα όσα περιλαμβάνει το Pro",
-        "Πολλαπλές θέσεις προσωπικού",
-        "Βοήθεια κατά την έναρξη & αποκλειστικό σημείο επαφής"
+        "Πολλαπλές θέσεις προσωπικού (προεπισκόπηση)",
+        "Υποβοηθούμενη βοήθεια ρύθμισης"
       ],
-      "cta": "Ξεκινήστε δωρεάν δοκιμή"
+      "cta": "Επικοινωνήστε μαζί μας"
     },
-    "pricingNote": "Τα όρια των προγραμμάτων είναι ενδεικτικά και μπορούν να προσαρμοστούν πριν από την κυκλοφορία.",
+    "pricingNote": "Μόνο τιμές προεπισκόπησης: δεν εισπράττεται καμία πληρωμή. Τα όρια των πλάνων και οι πληρωμένες λειτουργίες είναι ενδεικτικά και μπορούν να προσαρμοστούν πριν από την έναρξη της χρέωσης.",
     "faqTitle": "Συχνές ερωτήσεις",
     "faqs": [
       {
-        "q": "Τι σημαίνει στην πράξη το «async-first»;",
-        "a": "Σημαίνει ότι οι πελάτες αφήνουν ένα μήνυμα και λαμβάνουν ένα ειλικρινές χρονικό περιθώριο απάντησης (όπως «θα επιστρέψουμε σε λίγες ώρες») αντί να περιμένουν σε ζωντανή συνομιλία. Απαντάτε με τον δικό σας ρυθμό και κανείς δεν αγχώνεται βλέποντας τρεις τελείες να αναπηδούν."
+        "q": "Τι σημαίνει στην πραγματικότητα το «async-first»;",
+        "a": "Σημαίνει ότι οι πελάτες αφήνουν ένα μήνυμα και λαμβάνουν ένα ειλικρινές παράθυρο απάντησης (όπως «θα επιστρέψουμε σε λίγες ώρες») αντί να περιμένουν σε ζωντανή συνομιλία. Απαντάτε με το δικό σας πρόγραμμα και κανείς δεν αγχώνεται βλέποντας τρεις τελείες να αναπηδούν."
       },
       {
         "q": "Πόσο χρόνο χρειάζεται η ρύθμιση;",
-        "a": "Οι περισσότερες μικρές επιχειρήσεις είναι έτοιμες σε λιγότερο από δέκα λεπτά. Συνδέστε τα εισερχόμενά σας, προσθέστε μερικές συχνές ερωτήσεις και η AI αρχίζει ήδη να γράφει απαντήσεις που ακούγονται σαν εσάς."
+        "a": "Οι περισσότερες μικρές επιχειρήσεις είναι έτοιμες σε λιγότερο από δέκα λεπτά. Συνδέστε το inbox σας, προσθέστε μερικές συχνές ερωτήσεις και το AI αρχίζει ήδη να γράφει απαντήσεις που ακούγονται σαν εσείς."
       },
       {
-        "q": "Η AI στέλνει απαντήσεις από μόνη της;",
-        "a": "Όχι. Η AI συντάσσει πάντα προσχέδια — ένα άτομο από την ομάδα σας εγκρίνει πριν φτάσει οτιδήποτε στον πελάτη. Εσείς κρατάτε τον έλεγχο της φωνής σας· η AI απλώς αφαιρεί τη δακτυλογράφηση."
+        "q": "Στέλνει το AI απαντήσεις μόνο του;",
+        "a": "Όχι. Το AI συντάσσει πάντα προσχέδια — ένας άνθρωπος στην ομάδα σας εγκρίνει πριν φτάσει οτιδήποτε στον πελάτη. Εσείς κρατάτε τον έλεγχο της φωνής σας· το AI απλώς αφαιρεί τη δακτυλογράφηση."
       },
       {
-        "q": "Τι περιλαμβάνεται στο δωρεάν πρόγραμμα;",
-        "a": "Το δωρεάν πρόγραμμα σάς δίνει το κοινό εισερχόμενο και έναν γενναιόδωρο μηνιαίο αριθμό δωρεάν προσχεδίων AI, καθώς και υποστήριξη κοινότητας. Είναι φτιαγμένο για μικρές επιχειρήσεις που θέλουν να δοκιμάσουν την ήρεμη υποστήριξη πριν πληρώσουν έστω και ένα σεντ."
+        "q": "Τι περιλαμβάνεται στο δωρεάν πλάνο;",
+        "a": "Το δωρεάν πλάνο σάς δίνει το κοινό inbox και έναν γενναιόδωρο μηνιαίο αριθμό δωρεάν AI προσχεδίων, μαζί με τον οδηγό βοήθειας. Τα πληρωμένα πλάνα είναι μόνο προεπισκόπηση μέχρι να είναι διαθέσιμη η χρέωση."
       },
       {
         "q": "Ποια κανάλια μπορώ να συνδέσω;",
-        "a": "Email, ζωντανή συνομιλία και μεγάλα κανάλια κοινωνικών μηνυμάτων καταλήγουν όλα στην ίδια ουρά στο Pro. Ό,τι κι αν χρησιμοποιούν οι πελάτες σας, απαντάτε από ένα ήρεμο σημείο."
+        "a": "Διαθέσιμα σήμερα: η αυτόνομη συνομιλία στον ιστότοπο και το κοινό inbox για εμπόρους. Το email και τα κοινωνικά μηνύματα (συμπεριλαμβανομένων των WhatsApp και Instagram) δεν έχουν συνδεθεί ακόμη· χρειάζονται υποβοηθούμενη ρύθμιση και θα κυκλοφορήσουν ξεχωριστά. Θα αναφέρουμε ένα κανάλι ως διαθέσιμο μόνο όταν είναι πραγματικά συνδεδεμένο."
       }
     ],
-    "finalTitle": "Φέρτε ηρεμία στα εισερχόμενά σας",
+    "finalTitle": "Φέρτε ηρεμία στο inbox σας",
     "finalSub": "Ρύθμιση σε λίγα λεπτά · Δωρεάν για μικρές επιχειρήσεις · www.nudgeso.com",
     "finalCta": "Αποκτήστε το NudgeSo δωρεάν",
-    "footerTag": "NudgeSo · Ήρεμη Υποστήριξη Πελατών · www.nudgeso.com"
+    "footerTag": "NudgeSo · Ήρεμη υποστήριξη πελατών · www.nudgeso.com",
+    "privacy": "Πολιτική απορρήτου",
+    "terms": "Όροι χρήσης"
   },
   "es": {
     "metaTitle": "NudgeSo — Soporte al cliente tranquilo para pequeñas empresas",
-    "metaDescription": "Soporte async-first que redacta respuestas cálidas, pone en cola lo que importa y te deja espacio para respirar.",
+    "metaDescription": "Soporte con enfoque asíncrono que redacta respuestas cálidas, pone en cola lo que importa y te deja espacio para respirar.",
     "nav": [
       "Producto",
       "Precios",
-      "Cómo funciona",
-      "Preguntas frecuentes"
+      "Cómo",
+      "Preguntas"
     ],
     "signIn": "Iniciar sesión",
-    "startFree": "Empezar gratis",
-    "heroEyebrow": "Centro de ayuda de IA async-first",
+    "startFree": "Empieza gratis",
+    "heroEyebrow": "Mesa de ayuda de IA con enfoque asíncrono",
     "heroTitle": "Soporte al cliente tranquilo para pequeñas empresas",
-    "heroSub": "Soporte async-first que redacta respuestas cálidas, pone en cola lo que importa y te deja espacio para respirar — se acabó vivir en tu bandeja de entrada.",
-    "featuresTitle": "Todo lo que tu bandeja de entrada necesita, nada que le sobre",
-    "featuresSub": "Creado para pequeñas empresas que quieren responder bien sin el caos.",
+    "heroSub": "Soporte con enfoque asíncrono que redacta respuestas cálidas, pone en cola lo que importa y te deja espacio para respirar — deja de vivir en tu bandeja de entrada.",
+    "featuresTitle": "Todo lo que tu bandeja de entrada necesita, nada que no necesite",
+    "featuresSub": "Pensado para pequeñas empresas que quieren responder bien sin el caos.",
     "features": [
       {
-        "title": "Una cola tranquila",
-        "body": "Hilos de correo electrónico, chat y redes sociales unificados y priorizados, para que nada se quede sin respuesta."
+        "title": "Una sola cola tranquila",
+        "body": "Disponible hoy: chat del sitio web y una bandeja de entrada compartida para comercios. Los conectores de correo electrónico y redes sociales se implementan por separado, así que no fingimos que ya estén unificados."
       },
       {
         "title": "Borradores con tu voz",
         "body": "La IA aprende tu tono y sugiere respuestas que realmente querrás enviar."
       },
       {
-        "title": "Configúralo en minutos",
+        "title": "Configuración en minutos",
         "body": "Conecta tu bandeja de entrada en unos clics, importa tus preguntas frecuentes y la IA ya conocerá tu voz."
       },
       {
-        "title": "Sin avisos a altas horas de la noche",
+        "title": "Sin notificaciones de madrugada",
         "body": "Asíncrono por defecto: los clientes reciben tiempos de respuesta honestos y tu negocio recupera sus noches."
       }
     ],
     "howTitle": "Cómo funciona",
-    "howSub": "Tres pasos tranquilos entre una bandeja de entrada ruidosa y una en calma.",
+    "howSub": "Tres pasos tranquilos entre una bandeja de entrada ruidosa y una tranquila.",
     "howSteps": [
       {
         "title": "Conecta tu bandeja de entrada",
-        "body": "Conecta tu correo electrónico, chat y canales sociales. NudgeSo lo unifica todo en una cola compartida."
+        "body": "Configura el chat del sitio web y la bandeja de entrada compartida que están disponibles hoy. Los conectores de correo electrónico y redes sociales son una configuración asistida aparte."
       },
       {
-        "title": "La IA redacta respuestas cercanas",
-        "body": "La IA lee el hilo, adapta tu tono a partir de respuestas anteriores y redacta una respuesta cálida para cada mensaje."
+        "title": "La IA redacta respuestas amables",
+        "body": "La IA lee el hilo, ajusta tu tono según respuestas anteriores y redacta una respuesta cálida para cada mensaje."
       },
       {
         "title": "Tú apruebas, das un toque y sigues",
-        "body": "Cambia una palabra o pulsa enviar. Los hilos se posponen solos hasta que el cliente reciba respuesta. Sin presión, nunca."
+        "body": "Ajusta una palabra o pulsa enviar. Los hilos se posponen automáticamente hasta que los clientes reciban respuesta. Sin presión, en ningún momento."
       }
     ],
     "pricingTitle": "Precios sencillos",
-    "pricingSub": "Empieza gratis y mejora cuando tu negocio supere la bandeja compartida.",
+    "pricingSub": "Empieza gratis. Los planes de pago son solo de vista previa mientras terminamos la facturación.",
     "monthly": "Mensual",
     "yearly": "Anual",
     "saveNote": "~21% de descuento",
@@ -1240,116 +1260,118 @@ window.NS_LANDING_LOCALES = {
       "billing": "Para una pequeña empresa que lo está probando",
       "features": [
         "Bandeja de entrada compartida",
-        "Una generosa asignación mensual de borradores de IA gratuitos",
-        "Soporte de la comunidad"
+        "Un cupo mensual generoso de borradores de IA gratuitos",
+        "Guía de ayuda"
       ],
       "cta": "Empieza gratis"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "El más popular",
+      "badge": "Plan de vista previa",
       "billingMonthly": "$19 / mes · facturado mensualmente",
       "billingYearly": "$15 / mes · facturado anualmente",
       "features": [
-        "Todo lo incluido en Gratis",
-        "Correo electrónico, chat y canales sociales",
-        "Soporte prioritario"
+        "Todo lo de Gratis",
+        "Chat del sitio web + bandeja de entrada compartida",
+        "Vista previa del soporte prioritario previsto"
       ],
-      "cta": "Prueba Pro gratis"
+      "cta": "Ver vista previa de Pro"
     },
     "businessPlan": {
       "name": "Empresa",
-      "badge": "Precio de ejemplo — ajustable",
+      "badge": "Precio de vista previa — sin cargo",
       "billingMonthly": "$49 / mes · facturado mensualmente",
       "billingYearly": "$39 / mes · facturado anualmente",
       "features": [
-        "Todo lo incluido en Pro",
-        "Varios puestos para el equipo",
-        "Ayuda con la incorporación y un contacto dedicado"
+        "Todo lo de Pro",
+        "Varios puestos para personal (vista previa)",
+        "Ayuda guiada para la configuración"
       ],
-      "cta": "Empieza la prueba gratis"
+      "cta": "Habla con nosotros"
     },
-    "pricingNote": "Los límites de los planes son ilustrativos y pueden ajustarse antes del lanzamiento.",
+    "pricingNote": "Solo precios de vista previa: no se recoge ningún pago. Los límites de los planes y las funciones de pago son ilustrativos y pueden ajustarse antes del lanzamiento de la facturación.",
     "faqTitle": "Preguntas frecuentes",
     "faqs": [
       {
-        "q": "¿Qué significa realmente \"async-first\"?",
-        "a": "Significa que los clientes dejan un mensaje y reciben una franja de respuesta honesta (como \"volveremos en unas horas\") en lugar de esperar en un chat en vivo. Tú respondes según tu propio horario y nadie se pone nervioso viendo tres puntos rebotar."
+        "q": "¿Qué significa realmente \"prioridad a lo asíncrono\"?",
+        "a": "Significa que los clientes dejan un mensaje y reciben una ventana de respuesta honesta (como \"volveremos en unas horas\") en lugar de esperar en un chat en vivo. Tú respondes a tu propio ritmo y nadie se pone nervioso viendo tres puntos rebotando."
       },
       {
-        "q": "¿Cuánto tarda la configuración?",
-        "a": "La mayoría de las pequeñas empresas están funcionando en menos de diez minutos. Conecta tu bandeja de entrada, añade algunas preguntas frecuentes y la IA empezará a escribir respuestas que suenan como tú."
+        "q": "¿Cuánto se tarda en configurarlo?",
+        "a": "La mayoría de las pequeñas empresas está funcionando en menos de diez minutos. Conecta tu bandeja de entrada, añade algunas preguntas frecuentes y la IA ya empieza a escribir respuestas que suenan como tú."
       },
       {
         "q": "¿La IA envía respuestas por su cuenta?",
-        "a": "No. La IA siempre redacta — una persona de tu equipo aprueba antes de que algo llegue al cliente. Tú mantienes el control de tu voz; la IA solo te ahorra escribir."
+        "a": "No. La IA siempre redacta; una persona de tu equipo aprueba antes de que algo llegue al cliente. Tú mantienes el control de tu voz; la IA solo elimina el tener que teclear."
       },
       {
-        "q": "¿Qué incluye el plan gratis?",
-        "a": "El plan gratis incluye la bandeja de entrada compartida y una generosa asignación mensual de borradores de IA gratuitos, además de soporte de la comunidad. Está pensado para pequeñas empresas que quieren probar el soporte tranquilo antes de pagar nada."
+        "q": "¿Qué incluye el plan gratuito?",
+        "a": "El plan gratuito te da la bandeja de entrada compartida y un cupo mensual generoso de borradores de IA gratuitos, además de la guía de ayuda. Los planes de pago son solo de vista previa hasta que la facturación esté activa."
       },
       {
         "q": "¿Qué canales puedo conectar?",
-        "a": "El correo electrónico, el chat en vivo y los principales canales de mensajería social llegan a la misma cola en Pro. Sea cual sea el canal que usen tus clientes, respondes desde un único lugar tranquilo."
+        "a": "Disponible hoy: el chat independiente del sitio web y la bandeja de entrada compartida para comercios. El correo electrónico y la mensajería social (incluidos WhatsApp e Instagram) aún no están conectados; necesitan una configuración asistida y se lanzarán por separado. Solo indicaremos que un canal está disponible cuando esté realmente conectado."
       }
     ],
-    "finalTitle": "Lleva la calma a tu bandeja de entrada",
+    "finalTitle": "Lleva calma a tu bandeja de entrada",
     "finalSub": "Configúralo en minutos · Gratis para pequeñas empresas · www.nudgeso.com",
-    "finalCta": "Obtén NudgeSo gratis",
-    "footerTag": "NudgeSo · Soporte al cliente tranquilo · www.nudgeso.com"
+    "finalCta": "Consigue NudgeSo gratis",
+    "footerTag": "NudgeSo · Soporte al cliente tranquilo · www.nudgeso.com",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos del Servicio"
   },
   "fa": {
-    "metaTitle": "NudgeSo — پشتیبانی آرام مشتری برای کسب‌وکارهای کوچک",
-    "metaDescription": "پشتیبانی ناهمگام‌محور که پاسخ‌های گرم پیش‌نویس می‌کند، موارد مهم را در صف می‌گذارد و فضایی برای نفس کشیدن برایتان باقی می‌گذارد.",
+    "metaTitle": "NudgeSo — پشتیبانی مشتری آرام برای کسب‌وکارهای کوچک",
+    "metaDescription": "پشتیبانی غیرهمزمان‌محور که پاسخ‌های گرم پیش‌نویس می‌کند، موارد مهم را در صف می‌گذارد و برایتان فضایی برای نفس کشیدن باقی می‌گذارد.",
     "nav": [
       "محصول",
       "قیمت‌گذاری",
       "نحوه کار",
-      "پرسش‌ها"
+      "پرسش‌های متداول"
     ],
     "signIn": "ورود",
     "startFree": "شروع رایگان",
-    "heroEyebrow": "میز پشتیبانی هوش مصنوعی ناهمگام‌محور",
-    "heroTitle": "پشتیبانی آرام مشتری برای کسب‌وکارهای کوچک",
-    "heroSub": "پشتیبانی ناهمگام‌محور که پاسخ‌های گرم پیش‌نویس می‌کند، موارد مهم را در صف می‌گذارد و فضایی برای نفس کشیدن برایتان باقی می‌گذارد — دیگر لازم نیست در صندوق ورودی‌تان زندگی کنید.",
-    "featuresTitle": "هر چیزی که صندوق ورودی شما لازم دارد، بدون هیچ چیز اضافه",
-    "featuresSub": "ساخته‌شده برای کسب‌وکارهای کوچکی که می‌خواهند بدون آشفتگی، خوب پاسخ دهند.",
+    "heroEyebrow": "میز پشتیبانی هوش مصنوعی غیرهمزمان‌محور",
+    "heroTitle": "پشتیبانی مشتری آرام برای کسب‌وکارهای کوچک",
+    "heroSub": "پشتیبانی غیرهمزمان‌محور که پاسخ‌های گرم پیش‌نویس می‌کند، موارد مهم را در صف می‌گذارد و برایتان فضایی برای نفس کشیدن باقی می‌گذارد — دیگر لازم نیست در صندوق ورودی‌تان زندگی کنید.",
+    "featuresTitle": "هر چیزی که صندوق ورودی‌تان نیاز دارد، و هیچ چیز اضافه‌ای",
+    "featuresSub": "برای کسب‌وکارهای کوچکی ساخته شده که می‌خواهند بدون آشفتگی، خوب پاسخ بدهند.",
     "features": [
       {
         "title": "یک صف آرام",
-        "body": "رشته‌های ایمیل، چت و شبکه‌های اجتماعی ادغام و اولویت‌بندی می‌شوند تا هیچ چیزی از قلم نیفتد."
+        "body": "همین امروز فعال است: چت وب‌سایت و یک صندوق ورودی مشترک فروشندگان. اتصال‌دهنده‌های ایمیل و شبکه‌های اجتماعی جداگانه عرضه می‌شوند، بنابراین ادعا نمی‌کنیم که از قبل ادغام شده‌اند."
       },
       {
-        "title": "پیش‌نویس‌هایی با لحن شما",
+        "title": "پیش‌نویس‌ها با لحن خودتان",
         "body": "هوش مصنوعی لحن شما را یاد می‌گیرد و پاسخ‌هایی پیشنهاد می‌دهد که واقعاً بخواهید بفرستید."
       },
       {
         "title": "راه‌اندازی در چند دقیقه",
-        "body": "صندوق ورودی‌تان را با چند کلیک متصل کنید، پرسش‌های متداولتان را وارد کنید، و هوش مصنوعی از همان ابتدا لحن شما را می‌شناسد."
+        "body": "صندوق ورودی‌تان را با چند کلیک متصل کنید، پرسش‌های متداول‌تان را وارد کنید، و هوش مصنوعی از همان ابتدا لحن شما را می‌شناسد."
       },
       {
-        "title": "بدون اعلان‌های نیمه‌شب",
-        "body": "به‌صورت پیش‌فرض ناهمگام؛ مشتریان زمان پاسخ صادقانه می‌گیرند و کسب‌وکارتان عصرهایش را پس می‌گیرد."
+        "title": "بدون اعلان‌های آخر شب",
+        "body": "به‌صورت پیش‌فرض غیرهمزمان؛ مشتریان زمان‌های پاسخ صادقانه می‌گیرند و کسب‌وکارتان عصرهایش را پس می‌گیرد."
       }
     ],
     "howTitle": "نحوه کار",
-    "howSub": "سه گام آرام بین یک صندوق ورودی پرسر و صدا و یک صندوق ورودی آرام.",
+    "howSub": "سه گام آرام بین یک صندوق ورودی شلوغ و یک صندوق ورودی آرام.",
     "howSteps": [
       {
         "title": "صندوق ورودی‌تان را متصل کنید",
-        "body": "ایمیل، چت و کانال‌های اجتماعی‌تان را وصل کنید. NudgeSo همه چیز را در یک صف مشترک ادغام می‌کند."
+        "body": "چت وب‌سایت و صندوق ورودی مشترکی را راه‌اندازی کنید که امروز فعال هستند. اتصال‌های ایمیل و شبکه‌های اجتماعی یک راه‌اندازی جداگانه و همراه با راهنمایی هستند."
       },
       {
         "title": "هوش مصنوعی پاسخ‌های دوستانه پیش‌نویس می‌کند",
-        "body": "هوش مصنوعی رشته گفتگو را می‌خواند، لحن شما را از پاسخ‌های گذشته تطبیق می‌دهد و برای هر پیام یک پاسخ گرم پیش‌نویس می‌کند."
+        "body": "هوش مصنوعی گفتگو را می‌خواند، لحن شما را از پاسخ‌های قبلی تطبیق می‌دهد و برای هر پیام یک پاسخ گرم پیش‌نویس می‌کند."
       },
       {
-        "title": "شما تأیید می‌کنید، یادآوری می‌کنید، و ادامه می‌دهید",
-        "body": "یک کلمه را تغییر دهید یا ارسال را بزنید. رشته‌ها خودشان تا زمانی که مشتری پاسخ را دریافت کند به حالت تعویق می‌روند. هیچ فشاری، هرگز."
+        "title": "شما تأیید می‌کنید، تلنگر می‌زنید، و پیش می‌روید",
+        "body": "یک کلمه را تغییر دهید یا ارسال را بزنید. گفتگوها خودشان تا زمانی که مشتریان پاسخی دریافت کنند در حالت تعویق می‌مانند. هیچ فشاری، هرگز."
       }
     ],
     "pricingTitle": "قیمت‌گذاری ساده",
-    "pricingSub": "رایگان شروع کنید، وقتی کسب‌وکارتان از صندوق ورودی مشترک فراتر رفت ارتقا دهید.",
+    "pricingSub": "رایگان شروع کنید. طرح‌های پولی فقط پیش‌نمایش هستند تا زمانی که صورت‌حساب تکمیل شود.",
     "monthly": "ماهانه",
     "yearly": "سالانه",
     "saveNote": "~21% تخفیف",
@@ -1358,96 +1380,98 @@ window.NS_LANDING_LOCALES = {
       "billing": "برای کسب‌وکار کوچکی که آن را امتحان می‌کند",
       "features": [
         "صندوق ورودی مشترک",
-        "سهمیه ماهانه سخاوتمندانه از پیش‌نویس‌های رایگان هوش مصنوعی",
-        "پشتیبانی جامعه"
+        "سهمیه ماهانه سخاوتمندانه‌ای از پیش‌نویس‌های رایگان هوش مصنوعی",
+        "راهنمای کمک"
       ],
       "cta": "رایگان شروع کنید"
     },
     "proPlan": {
       "name": "حرفه‌ای",
-      "badge": "محبوب‌ترین",
+      "badge": "طرح پیش‌نمایش",
       "billingMonthly": "$19 / ماه · صورت‌حساب ماهانه",
       "billingYearly": "$15 / ماه · صورت‌حساب سالانه",
       "features": [
-        "همه چیز در رایگان",
-        "کانال‌های ایمیل، چت و شبکه‌های اجتماعی",
-        "پشتیبانی اولویت‌دار"
+        "همه‌چیز در رایگان",
+        "چت وب‌سایت + صندوق ورودی مشترک",
+        "پیش‌نمایشی از پشتیبانی اولویت‌دار برنامه‌ریزی‌شده"
       ],
-      "cta": "حرفه‌ای را رایگان امتحان کنید"
+      "cta": "پیش‌نمایش حرفه‌ای"
     },
     "businessPlan": {
       "name": "کسب‌وکار",
-      "badge": "قیمت نمونه — قابل تنظیم",
+      "badge": "قیمت پیش‌نمایش — بدون هزینه",
       "billingMonthly": "$49 / ماه · صورت‌حساب ماهانه",
       "billingYearly": "$39 / ماه · صورت‌حساب سالانه",
       "features": [
-        "همه چیز در حرفه‌ای",
-        "چند صندلی برای کارکنان",
-        "کمک در راه‌اندازی و یک مخاطب اختصاصی"
+        "همه‌چیز در حرفه‌ای",
+        "چند جایگاه کارمند (پیش‌نمایش)",
+        "کمک راه‌اندازی همراه با راهنما"
       ],
-      "cta": "شروع دوره آزمایشی رایگان"
+      "cta": "با ما صحبت کنید"
     },
-    "pricingNote": "محدودیت‌های طرح نمونه‌اند و می‌توانند پیش از راه‌اندازی تنظیم شوند.",
+    "pricingNote": "فقط قیمت‌گذاری پیش‌نمایش: هیچ پرداختی دریافت نمی‌شود. محدودیت‌های طرح و ویژگی‌های پولی نمونه‌ای هستند و ممکن است پیش از راه‌اندازی صورت‌حساب تنظیم شوند.",
     "faqTitle": "پرسش‌های متداول",
     "faqs": [
       {
-        "q": "«ناهمگام‌محور» در واقع به چه معناست؟",
-        "a": "یعنی مشتریان پیامی می‌گذارند و یک بازه پاسخ صادقانه دریافت می‌کنند (مثلاً «چند ساعت دیگر برمی‌گردیم») به‌جای اینکه منتظر چت زنده بمانند. شما طبق برنامه خودتان پاسخ می‌دهید و هیچ‌کس با تماشای سه نقطه‌ای که بالا و پایین می‌رود مضطرب نمی‌شود."
+        "q": "منظور از «غیرهمزمان‌محور» واقعاً چیست؟",
+        "a": "یعنی مشتریان پیامی می‌گذارند و یک بازه پاسخ صادقانه دریافت می‌کنند (مثل «چند ساعت دیگر برمی‌گردیم») نه اینکه منتظر یک چت زنده بمانند. شما بر اساس برنامه خودتان پاسخ می‌دهید و هیچ‌کس با تماشای سه نقطه‌ای که بالا و پایین می‌پرند مضطرب نمی‌شود."
       },
       {
         "q": "راه‌اندازی چقدر طول می‌کشد؟",
-        "a": "بیشتر کسب‌وکارهای کوچک در کمتر از ده دقیقه راه می‌افتند. صندوق ورودی‌تان را متصل کنید، چند پرسش متداول وارد کنید، و هوش مصنوعی از همان ابتدا پاسخ‌هایی می‌نویسد که شبیه شماست."
+        "a": "بیشتر کسب‌وکارهای کوچک در کمتر از ده دقیقه راه می‌افتند. صندوق ورودی‌تان را متصل کنید، چند پرسش متداول را وارد کنید، و هوش مصنوعی از همان ابتدا پاسخ‌هایی می‌نویسد که شبیه شماست."
       },
       {
-        "q": "آیا هوش مصنوعی پاسخ‌ها را خودش می‌فرستد؟",
-        "a": "نه. هوش مصنوعی همیشه پیش‌نویس می‌کند — یک انسان در تیم شما پیش از رسیدن هر چیزی به مشتری آن را تأیید می‌کند. کنترل لحن شما دست خودتان می‌ماند؛ هوش مصنوعی فقط تایپ کردن را حذف می‌کند."
+        "q": "آیا هوش مصنوعی خودش پاسخ‌ها را می‌فرستد؟",
+        "a": "نه. هوش مصنوعی همیشه پیش‌نویس می‌کند — یک انسان در تیم شما پیش از رسیدن هرچیزی به مشتری آن را تأیید می‌کند. کنترل لحن شما دست خودتان می‌ماند؛ هوش مصنوعی فقط تایپ کردن را حذف می‌کند."
       },
       {
-        "q": "طرح رایگان شامل چه چیزهایی است؟",
-        "a": "طرح رایگان صندوق ورودی مشترک و سهمیه ماهانه سخاوتمندانه‌ای از پیش‌نویس‌های رایگان هوش مصنوعی را در اختیارتان می‌گذارد، به‌همراه پشتیبانی جامعه. برای کسب‌وکارهای کوچکی ساخته شده که می‌خواهند پیش از پرداخت حتی یک سنت، پشتیبانی آرام را امتحان کنند."
+        "q": "در طرح رایگان چه چیزی گنجانده شده است؟",
+        "a": "طرح رایگان صندوق ورودی مشترک و سهمیه ماهانه سخاوتمندانه‌ای از پیش‌نویس‌های رایگان هوش مصنوعی را به شما می‌دهد، به‌علاوه راهنمای کمک. طرح‌های پولی فقط پیش‌نمایش هستند تا زمانی که صورت‌حساب فعال شود."
       },
       {
         "q": "کدام کانال‌ها را می‌توانم متصل کنم؟",
-        "a": "ایمیل، چت زنده و کانال‌های پیام‌رسان اصلی شبکه‌های اجتماعی همگی در طرح حرفه‌ای به یک صف می‌رسند. هر کانالی که مشتریانتان استفاده کنند، شما از یک جای آرام پاسخ می‌دهید."
+        "a": "همین امروز فعال است: چت وب‌سایت مستقل و صندوق ورودی مشترک فروشندگان. ایمیل و پیام‌رسانی شبکه‌های اجتماعی (از جمله واتس‌اپ و اینستاگرام) هنوز متصل نیستند؛ به راه‌اندازی همراه با راهنما نیاز دارند و جداگانه عرضه خواهند شد. ما یک کانال را تنها زمانی به‌عنوان در دسترس فهرست می‌کنیم که واقعاً متصل شده باشد."
       }
     ],
     "finalTitle": "آرامش را به صندوق ورودی‌تان بیاورید",
     "finalSub": "راه‌اندازی در چند دقیقه · رایگان برای کسب‌وکارهای کوچک · www.nudgeso.com",
     "finalCta": "NudgeSo را رایگان دریافت کنید",
-    "footerTag": "NudgeSo · پشتیبانی آرام مشتری · www.nudgeso.com"
+    "footerTag": "NudgeSo · پشتیبانی مشتری آرام · www.nudgeso.com",
+    "privacy": "سیاست حفظ حریم خصوصی",
+    "terms": "شرایط استفاده"
   },
   "fr": {
-    "metaTitle": "NudgeSo — Un support client serein pour les petites entreprises",
-    "metaDescription": "Un support asynchrone qui rédige des réponses chaleureuses, met en file ce qui compte et vous laisse de l'espace pour respirer.",
+    "metaTitle": "NudgeSo — Support client serein pour les petites entreprises",
+    "metaDescription": "Un support pensé pour l’asynchrone qui rédige des réponses chaleureuses, met en file d’attente ce qui compte et vous laisse de l’espace pour respirer.",
     "nav": [
       "Produit",
       "Tarifs",
       "Fonctionnement",
       "FAQ"
     ],
-    "signIn": "Se connecter",
+    "signIn": "Connexion",
     "startFree": "Commencer gratuitement",
-    "heroEyebrow": "Helpdesk IA asynchrone",
+    "heroEyebrow": "Helpdesk IA pensé pour l’asynchrone",
     "heroTitle": "Un support client serein pour les petites entreprises",
-    "heroSub": "Un support asynchrone qui rédige des réponses chaleureuses, met en file ce qui compte et vous laisse de l'espace pour respirer — fini de vivre dans votre boîte de réception.",
-    "featuresTitle": "Tout ce dont votre boîte de réception a besoin, rien de superflu",
-    "featuresSub": "Conçu pour les petites entreprises qui veulent bien répondre, sans le chaos.",
+    "heroSub": "Un support pensé pour l’asynchrone qui rédige des réponses chaleureuses, met en file d’attente ce qui compte et vous laisse de l’espace pour respirer — fini de vivre dans votre boîte de réception.",
+    "featuresTitle": "Tout ce dont votre boîte de réception a besoin, sans le superflu",
+    "featuresSub": "Conçu pour les petites entreprises qui veulent bien répondre sans le chaos.",
     "features": [
       {
-        "title": "Une file d'attente sereine",
-        "body": "E-mails, chats et fils sociaux fusionnés et priorisés, pour que rien ne passe à travers les mailles."
+        "title": "Une file d’attente sereine",
+        "body": "Disponible dès aujourd’hui : la messagerie du site web et une boîte de réception partagée pour les commerçants. Les connecteurs e-mail et réseaux sociaux seront déployés séparément, nous ne prétendons donc pas qu’ils sont déjà fusionnés."
       },
       {
-        "title": "Des brouillons à votre voix",
-        "body": "L'IA apprend votre ton et propose des réponses que vous aurez vraiment envie d'envoyer."
+        "title": "Des brouillons dans votre ton",
+        "body": "L’IA apprend votre ton et suggère des réponses que vous aurez vraiment envie d’envoyer."
       },
       {
         "title": "Configuration en quelques minutes",
-        "body": "Connectez votre boîte de réception en quelques clics, importez vos FAQ, et l'IA connaît déjà votre ton."
+        "body": "Connectez votre boîte de réception en quelques clics, importez vos FAQ, et l’IA connaît déjà votre ton."
       },
       {
         "title": "Pas de notifications tard le soir",
-        "body": "Asynchrone par défaut, les clients ont des délais de réponse honnêtes et votre entreprise retrouve ses soirées."
+        "body": "Asynchrone par défaut, les clients obtiennent des délais de réponse honnêtes et votre entreprise retrouve ses soirées."
       }
     ],
     "howTitle": "Comment ça marche",
@@ -1455,117 +1479,119 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Connectez votre boîte de réception",
-        "body": "Branchez vos canaux e-mail, chat et sociaux. NudgeSo fusionne tout dans une file d'attente partagée."
+        "body": "Configurez la messagerie du site web et la boîte de réception partagée disponibles aujourd’hui. Les connecteurs e-mail et réseaux sociaux font l’objet d’une configuration assistée séparée."
       },
       {
-        "title": "L'IA rédige des réponses amicales",
-        "body": "L'IA lit le fil, calque votre ton à partir de vos réponses passées et rédige une réponse chaleureuse pour chaque message."
+        "title": "L’IA rédige des réponses sympathiques",
+        "body": "L’IA lit la conversation, reprend votre ton à partir de vos réponses passées et rédige une réponse chaleureuse pour chaque message."
       },
       {
-        "title": "Vous validez, relancez, passez à autre chose",
-        "body": "Ajustez un mot ou envoyez. Les fils se mettent en veille jusqu'à ce que les clients aient une réponse. Aucune pression, jamais."
+        "title": "Vous validez, relancez en douceur, passez à autre chose",
+        "body": "Modifiez un mot ou cliquez sur envoyer. Les conversations se mettent en veille d’elles-mêmes jusqu’à ce que les clients reçoivent une réponse. Aucune pression, jamais."
       }
     ],
-    "pricingTitle": "Tarification simple",
-    "pricingSub": "Commencez gratuitement, passez à une offre supérieure lorsque votre entreprise dépasse la boîte de réception partagée.",
+    "pricingTitle": "Des tarifs simples",
+    "pricingSub": "Commencez gratuitement. Les offres payantes sont en avant-première le temps que la facturation soit finalisée.",
     "monthly": "Mensuel",
     "yearly": "Annuel",
     "saveNote": "~21 % de réduction",
     "freePlan": {
       "name": "Gratuit",
-      "billing": "Pour une petite entreprise qui veut essayer",
+      "billing": "Pour une petite entreprise qui souhaite l’essayer",
       "features": [
         "Boîte de réception partagée",
-        "Une généreuse allocation mensuelle de brouillons IA gratuits",
-        "Support communautaire"
+        "Un quota mensuel généreux de brouillons IA gratuits",
+        "Guide d’aide"
       ],
       "cta": "Commencer gratuitement"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Le plus populaire",
+      "badge": "Offre en avant-première",
       "billingMonthly": "$19 / mois · facturé mensuellement",
       "billingYearly": "$15 / mois · facturé annuellement",
       "features": [
-        "Tout ce qui est dans Gratuit",
-        "Canaux e-mail, chat et sociaux",
-        "Support prioritaire"
+        "Tout ce qui est inclus dans Gratuit",
+        "Messagerie du site web + boîte de réception partagée",
+        "Aperçu du support prioritaire prévu"
       ],
-      "cta": "Essayer Pro gratuitement"
+      "cta": "Aperçu de Pro"
     },
     "businessPlan": {
-      "name": "Entreprise",
-      "badge": "Prix exemple — ajustable",
+      "name": "Business",
+      "badge": "Tarif en avant-première — aucun frais",
       "billingMonthly": "$49 / mois · facturé mensuellement",
       "billingYearly": "$39 / mois · facturé annuellement",
       "features": [
-        "Tout ce qui est dans Pro",
-        "Plusieurs postes collaborateurs",
-        "Aide à l'intégration et un contact dédié"
+        "Tout ce qui est inclus dans Pro",
+        "Plusieurs postes collaborateurs (aperçu)",
+        "Aide à la configuration guidée"
       ],
-      "cta": "Commencer l'essai gratuit"
+      "cta": "Contactez-nous"
     },
-    "pricingNote": "Les limites des offres sont indicatives et peuvent être ajustées avant le lancement.",
+    "pricingNote": "Tarifs en avant-première uniquement : aucun paiement n’est collecté. Les limites des offres et les fonctionnalités payantes sont indicatives et pourront être ajustées avant le lancement de la facturation.",
     "faqTitle": "Questions fréquentes",
     "faqs": [
       {
-        "q": "Que signifie vraiment « async-first » ?",
-        "a": "Cela signifie que les clients laissent un message et reçoivent une fenêtre de réponse honnête (comme « nous serons de retour dans quelques heures ») au lieu d'attendre sur un chat en direct. Vous répondez selon votre propre planning, et personne ne s'inquiète à regarder trois points clignoter."
+        "q": "Que signifie réellement « priorité à l’asynchrone » ?",
+        "a": "Cela signifie que les clients laissent un message et obtiennent un délai de réponse honnête (par exemple « nous revenons dans quelques heures ») au lieu d’attendre dans un chat en direct. Vous répondez selon votre propre emploi du temps, et personne ne s’inquiète en regardant trois points clignoter."
       },
       {
         "q": "Combien de temps prend la configuration ?",
-        "a": "La plupart des petites entreprises sont opérationnelles en moins de dix minutes. Connectez votre boîte de réception, ajoutez quelques FAQ, et l'IA commence déjà à écrire des réponses qui vous ressemblent."
+        "a": "La plupart des petites entreprises sont opérationnelles en moins de dix minutes. Connectez votre boîte de réception, ajoutez quelques FAQ, et l’IA commence déjà à écrire des réponses qui vous ressemblent."
       },
       {
-        "q": "L'IA envoie-t-elle des réponses toute seule ?",
-        "a": "Non. L'IA rédige toujours — un humain de votre équipe valide avant que quoi que ce soit n'atteigne le client. Vous gardez le contrôle de votre ton ; l'IA supprime juste la saisie."
+        "q": "L’IA envoie-t-elle des réponses toute seule ?",
+        "a": "Non. L’IA rédige toujours des brouillons — une personne de votre équipe valide avant que quoi que ce soit n’atteigne le client. Vous gardez le contrôle de votre ton ; l’IA ne fait que supprimer la saisie."
       },
       {
-        "q": "Qu'est-ce qui est inclus dans l'offre gratuite ?",
-        "a": "L'offre gratuite vous donne la boîte de réception partagée et une généreuse allocation mensuelle de brouillons IA gratuits, plus le support communautaire. Elle est conçue pour les petites entreprises qui veulent essayer un support serein avant de payer un centime."
+        "q": "Qu’est-ce qui est inclus dans l’offre gratuite ?",
+        "a": "L’offre gratuite vous donne la boîte de réception partagée et un quota mensuel généreux de brouillons IA gratuits, ainsi que le guide d’aide. Les offres payantes sont en avant-première uniquement jusqu’à l’activation de la facturation."
       },
       {
         "q": "Quels canaux puis-je connecter ?",
-        "a": "E-mail, chat en direct et principaux canaux de messagerie sociale arrivent tous dans la même file d'attente avec Pro. Quoi que vos clients utilisent, vous répondez depuis un seul endroit serein."
+        "a": "Disponibles aujourd’hui : la messagerie autonome du site web et la boîte de réception partagée pour les commerçants. La messagerie e-mail et les messages sur les réseaux sociaux (y compris WhatsApp et Instagram) ne sont pas encore connectés ; ils nécessitent une configuration assistée et seront déployés séparément. Nous ne listerons un canal comme disponible qu’une fois qu’il sera réellement connecté."
       }
     ],
-    "finalTitle": "Apportez du calme à votre boîte de réception",
+    "finalTitle": "Mettez du calme dans votre boîte de réception",
     "finalSub": "Configuration en quelques minutes · Gratuit pour les petites entreprises · www.nudgeso.com",
     "finalCta": "Obtenez NudgeSo gratuitement",
-    "footerTag": "NudgeSo · Support client serein · www.nudgeso.com"
+    "footerTag": "NudgeSo · Support client serein · www.nudgeso.com",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d’utilisation"
   },
   "he": {
     "metaTitle": "NudgeSo — תמיכת לקוחות רגועה לעסקים קטנים",
-    "metaDescription": "תמיכה אסינכרונית מלכתחילה שמנסחת תשובות חמות, מסדרת בתור את מה שחשוב, ומשאירה לכם מקום לנשום.",
+    "metaDescription": "תמיכה אסינכרונית מלכתחילה שמנסחת תשובות חמות, שמה בתור את מה שחשוב, ומשאירה לך מקום לנשום.",
     "nav": [
       "מוצר",
       "תמחור",
-      "איך זה עובד",
+      "איך",
       "שאלות נפוצות"
     ],
-    "signIn": "התחברות",
+    "signIn": "כניסה",
     "startFree": "התחילו בחינם",
-    "heroEyebrow": "דסק תמיכה מבוסס AI, אסינכרוני מלכתחילה",
+    "heroEyebrow": "דלפק תמיכה AI אסינכרוני",
     "heroTitle": "תמיכת לקוחות רגועה לעסקים קטנים",
-    "heroSub": "תמיכה אסינכרונית מלכתחילה שמנסחת תשובות חמות, מסדרת בתור את מה שחשוב, ומשאירה לכם מקום לנשום — בלי לחיות יותר בתיבת הדואר הנכנס.",
-    "featuresTitle": "כל מה שתיבת הדואר שלכם צריכה — ושום דבר שהיא לא צריכה",
-    "featuresSub": "נבנה לעסקים קטנים שרוצים להשיב היטב בלי הכאוס.",
+    "heroSub": "תמיכה אסינכרונית שמנסחת תשובות חמות, שמה בתור את מה שחשוב, ומשאירה לך מקום לנשום — בלי לחיות יותר בתיבת הדואר הנכנס.",
+    "featuresTitle": "כל מה שתיבת הדואר שלך צריכה, וכלום ממה שהיא לא",
+    "featuresSub": "בנוי לעסקים קטנים שרוצים להשיב היטב בלי הכאוס.",
     "features": [
       {
-        "title": "תור אחד רגוע",
-        "body": "אימייל, צ׳אט ושיחות ברשתות חברתיות מתמזגים ומתועדפים, כך ששום דבר לא נופל בין הכיסאות."
+        "title": "תור רגוע אחד",
+        "body": "זמין היום: צ'אט באתר ותיבת דואר משותפת לעסק. מחברים לדואר אלקטרוני ולרשתות חברתיות מושקים בנפרד, כך שאנחנו לא מעמידים פנים שהם כבר מחוברים."
       },
       {
-        "title": "טיוטות בקול שלכם",
-        "body": "ה-AI לומד את הטון שלכם ומציע תשובות שבאמת תרצו לשלוח."
+        "title": "ניסוחים בקול שלך",
+        "body": "ה-AI לומד את הטון שלך ומציע תשובות שבאמת תרצה לשלוח."
       },
       {
-        "title": "הגדרה בדקות",
-        "body": "חברו את תיבת הדואר בכמה קליקים, ייבאו את השאלות הנפוצות, וה-AI כבר מכיר את הקול שלכם."
+        "title": "הגדרה בכמה דקות",
+        "body": "חברו את תיבת הדואר בכמה קליקים, ייבאו שאלות נפוצות, וה-AI כבר מכיר את הקול שלך."
       },
       {
-        "title": "בלי צלצולים באמצע הלילה",
-        "body": "אסינכרוני כברירת מחדל, הלקוחות מקבלים זמני תגובה כנים והעסק שלכם מקבל את הערבים שלו בחזרה."
+        "title": "בלי התראות באמצע הלילה",
+        "body": "אסינכרוני כברירת מחדל, הלקוחות מקבלים זמני מענה הוגנים והעסק שלך מקבל את הערבים שלו בחזרה."
       }
     ],
     "howTitle": "איך זה עובד",
@@ -1573,235 +1599,119 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "חברו את תיבת הדואר",
-        "body": "חברו את האימייל, הצ׳אט והערוצים החברתיים. NudgeSo ממזג הכול לתור משותף אחד."
+        "body": "הגדירו את צ'אט האתר ותיבת הדואר המשותפת שזמינים היום. חיבורי דואר אלקטרוני ורשתות חברתיות הם הגדרה נפרדת בליווי."
       },
       {
         "title": "ה-AI מנסח תשובות ידידותיות",
-        "body": "ה-AI קורא את השיחה, מתאים את הטון שלכם מתשובות קודמות ומנסח תשובה חמה לכל הודעה."
+        "body": "ה-AI קורא את השרשור, מתאים את הטון שלך מתשובות קודמות, ומנסח תשובה חמה לכל הודעה."
       },
       {
-        "title": "אתם מאשרים, נוגעים קלות, ממשיכים הלאה",
-        "body": "שנו מילה או לחצו שליחה. השיחות נדחות מעצמן עד שהלקוחות מקבלים מענה. בלי לחץ, אף פעם."
+        "title": "אתם מאשרים, נותנים דחיפה, ממשיכים הלאה",
+        "body": "שנו מילה או לחצו שליחה. שרשורים עוברים למצב שינה מעצמם עד שהלקוחות מקבלים מענה. בלי לחץ, אף פעם."
       }
     ],
     "pricingTitle": "תמחור פשוט",
-    "pricingSub": "התחילו בחינם ושדרגו כשהעסק כבר לא מסתפק בתיבת דואר משותפת.",
+    "pricingSub": "התחילו בחינם. תוכניות בתשלום הן לתצוגה בלבד עד לסיום הגדרת החיוב.",
     "monthly": "חודשי",
     "yearly": "שנתי",
     "saveNote": "~21% הנחה",
     "freePlan": {
       "name": "חינם",
-      "billing": "לעסק קטן שרוצה לנסות",
+      "billing": "לעסק קטן שמנסה את המוצר",
       "features": [
         "תיבת דואר משותפת",
-        "מכסה חודשית נדיבה של טיוטות AI בחינם",
-        "תמיכת קהילה"
+        "מכסה חודשית נדיבה של ניסוחי AI בחינם",
+        "מדריך עזרה"
       ],
       "cta": "התחילו בחינם"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "הפופולרי ביותר",
-      "billingMonthly": "$19 / חודש · חיוב חודשי",
-      "billingYearly": "$15 / חודש · חיוב שנתי",
+      "badge": "תוכנית בתצוגה מקדימה",
+      "billingMonthly": "$19 לחודש · חיוב חודשי",
+      "billingYearly": "$15 לחודש · חיוב שנתי",
       "features": [
-        "הכול ב-Pro",
-        "ערוצי אימייל, צ׳אט ורשתות חברתיות",
-        "תמיכה בעדיפות"
+        "כל מה שיש בתוכנית החינם",
+        "צ'אט באתר + תיבת דואר משותפת",
+        "תצוגה מקדימה של תמיכה בעדיפות מתוכננת"
       ],
-      "cta": "נסו Pro בחינם"
+      "cta": "הצצה ל-Pro"
     },
     "businessPlan": {
-      "name": "עסקי",
-      "badge": "מחיר לדוגמה — ניתן להתאמה",
-      "billingMonthly": "$49 / חודש · חיוב חודשי",
-      "billingYearly": "$39 / חודש · חיוב שנתי",
+      "name": "Business",
+      "badge": "מחיר בתצוגה מקדימה — ללא חיוב",
+      "billingMonthly": "$49 לחודש · חיוב חודשי",
+      "billingYearly": "$39 לחודש · חיוב שנתי",
       "features": [
-        "הכול ב-Pro",
-        "מספר מקומות לצוות",
-        "עזרה בהטמעה ואיש קשר ייעודי"
+        "כל מה שיש ב-Pro",
+        "מספר מקומות לצוות (בתצוגה מקדימה)",
+        "עזרה בהגדרה מודרכת"
       ],
-      "cta": "התחילו תקופת ניסיון בחינם"
+      "cta": "דברו איתנו"
     },
-    "pricingNote": "מגבלות התוכניות הן להמחשה וניתן להתאים אותן לפני ההשקה.",
+    "pricingNote": "המחירים בתצוגה מקדימה בלבד: לא נגבה תשלום. מגבלות התוכניות והתכונות בתשלום הן להמחשה בלבד וניתנות לשינוי לפני השקת החיוב.",
     "faqTitle": "שאלות נפוצות",
     "faqs": [
       {
-        "q": "מה בעצם אומר ״async-first״?",
-        "a": "זה אומר שלקוחות משאירים הודעה ומקבלים חלון תגובה כן (כמו ״נחזור בעוד כמה שעות״) במקום להמתין בצ׳אט חי. אתם עונים לפי לוח הזמנים שלכם, ואף אחד לא מתעצבן מלצפות בשלוש נקודות קופצות."
+        "q": "מה זה באמת אומר \"אסינכרוני כברירת מחדל\"?",
+        "a": "זה אומר שלקוחות משאירים הודעה ומקבלים חלון מענה הוגן (למשל \"נחזור בעוד כמה שעות\") במקום להמתין בצ'אט חי. אתם עונים לפי לוח הזמנים שלכם, ואף אחד לא מתעצבן מלצפות בשלוש נקודות קופצות."
       },
       {
-        "q": "כמה זמן לוקח להגדיר?",
-        "a": "רוב העסקים הקטנים מתחילים לפעול בפחות מעשר דקות. חברו את תיבת הדואר, הוסיפו כמה שאלות נפוצות, וה-AI כבר מתחיל לכתוב תשובות שנשמעות כמוכם."
+        "q": "כמה זמן לוקחת ההגדרה?",
+        "a": "רוב העסקים הקטנים מתחילים לפעול תוך פחות מעשר דקות. חברו את תיבת הדואר, הוסיפו כמה שאלות נפוצות, וה-AI כבר מתחיל לכתוב תשובות שנשמעות כמוכם."
       },
       {
         "q": "האם ה-AI שולח תשובות בעצמו?",
-        "a": "לא. ה-AI תמיד מנסח טיוטה — בן אדם בצוות שלכם מאשר לפני שמשהו מגיע ללקוח. אתם נשארים בשליטה על הקול שלכם; ה-AI רק חוסך את ההקלדה."
+        "a": "לא. ה-AI תמיד מנסח — בן אדם בצוות שלכם מאשר לפני שמשהו מגיע ללקוח. אתם נשארים בשליטה על הקול שלכם; ה-AI רק חוסך את ההקלדה."
       },
       {
-        "q": "מה כלול בתוכנית החינמית?",
-        "a": "התוכנית החינמית נותנת לכם את תיבת הדואר המשותפת ומכסה חודשית נדיבה של טיוטות AI בחינם, בתוספת תמיכת קהילה. היא נבנתה לעסקים קטנים שרוצים לנסות תמיכה רגועה לפני שהם משלמים אגורה."
+        "q": "מה כלול בתוכנית החינם?",
+        "a": "תוכנית החינם נותנת לכם תיבת דואר משותפת ומכסה חודשית נדיבה של ניסוחי AI בחינם, בתוספת מדריך העזרה. תוכניות בתשלום הן בתצוגה מקדימה בלבד עד שהחיוב יעלה לאוויר."
       },
       {
         "q": "אילו ערוצים אפשר לחבר?",
-        "a": "אימייל, צ׳אט חי וערוצי הודעות מרכזיים ברשתות חברתיות מגיעים כולם לאותו תור ב-Pro. בכל מה שהלקוחות שלכם משתמשים, אתם עונים ממקום רגוע אחד."
+        "a": "זמין היום: צ'אט האתר העצמאי ותיבת הדואר המשותפת לעסק. דואר אלקטרוני והודעות ברשתות חברתיות (כולל WhatsApp ו-Instagram) עדיין לא מחוברים; הם דורשים הגדרה בליווי ויושקו בנפרד. נציין ערוץ כזמין רק כשהוא באמת מחובר."
       }
     ],
     "finalTitle": "הביאו רוגע לתיבת הדואר שלכם",
-    "finalSub": "הגדרה בדקות · בחינם לעסקים קטנים · www.nudgeso.com",
+    "finalSub": "הגדרה בכמה דקות · בחינם לעסקים קטנים · www.nudgeso.com",
     "finalCta": "קבלו את NudgeSo בחינם",
-    "footerTag": "NudgeSo · תמיכת לקוחות רגועה · www.nudgeso.com"
-  },
-  "hr": {
-    "metaTitle": "NudgeSo — Mirna korisnička podrška za male tvrtke",
-    "metaDescription": "Prvenstveno asinkrona podrška koja sastavlja tople odgovore, stavlja važno u red i ostavlja vam prostora za disanje.",
-    "nav": [
-      "Proizvod",
-      "Cijene",
-      "Kako",
-      "FAQ"
-    ],
-    "signIn": "Prijava",
-    "startFree": "Započnite besplatno",
-    "heroEyebrow": "Prvenstveno asinkroni AI helpdesk",
-    "heroTitle": "Mirna korisnička podrška za male tvrtke",
-    "heroSub": "Prvenstveno asinkrona podrška koja sastavlja tople odgovore, stavlja važno u red i ostavlja vam prostora za disanje — bez stalnog boravka u sandučiću.",
-    "featuresTitle": "Sve što vašem sandučiću treba, ništa što mu ne treba",
-    "featuresSub": "Stvoreno za male tvrtke koje žele dobro odgovarati bez kaosa.",
-    "features": [
-      {
-        "title": "Jedan miran red",
-        "body": "E-pošta, chat i društvene poruke spojeni su i prioritizirani, tako da ništa ne promakne."
-      },
-      {
-        "title": "Skice u vašem glasu",
-        "body": "AI uči vaš ton i predlaže odgovore koje ćete zaista htjeti poslati."
-      },
-      {
-        "title": "Postavljanje u nekoliko minuta",
-        "body": "Povežite sandučić u nekoliko klikova, uvezite česta pitanja i AI već zna vaš glas."
-      },
-      {
-        "title": "Bez noćnih obavijesti",
-        "body": "Asinkrono prema zadanim postavkama, kupci dobivaju poštene rokove odgovora, a vaša tvrtka vraća svoje večeri."
-      }
-    ],
-    "howTitle": "Kako funkcionira",
-    "howSub": "Tri tiha koraka od bučnog do mirnog sandučića.",
-    "howSteps": [
-      {
-        "title": "Povežite svoj sandučić",
-        "body": "Spojite e-poštu, chat i društvene kanale. NudgeSo sve spaja u jedan zajednički red."
-      },
-      {
-        "title": "AI sastavlja ljubazne odgovore",
-        "body": "AI čita razgovor, usklađuje ton s vašim prošlim odgovorima i sastavlja topao odgovor za svaku poruku."
-      },
-      {
-        "title": "Vi odobrite, potaknete i nastavite dalje",
-        "body": "Prilagodite riječ ili pritisnite pošalji. Razgovori se sami odgađaju dok kupci ne dobiju odgovor. Bez pritiska, uvijek."
-      }
-    ],
-    "pricingTitle": "Jednostavne cijene",
-    "pricingSub": "Započnite besplatno, nadogradite kad vaša tvrtka preraste zajednički sandučić.",
-    "monthly": "Mjesečno",
-    "yearly": "Godišnje",
-    "saveNote": "~21% popusta",
-    "freePlan": {
-      "name": "Besplatno",
-      "billing": "Za malu tvrtku koja ga isprobava",
-      "features": [
-        "Zajednički sandučić",
-        "Izdаšna mjesečna kvota besplatnih AI skica",
-        "Podrška zajednice"
-      ],
-      "cta": "Započnite besplatno"
-    },
-    "proPlan": {
-      "name": "Pro",
-      "badge": "Najpopularnije",
-      "billingMonthly": "$19 / mjesec · naplata mjesečno",
-      "billingYearly": "$15 / mjesec · naplata godišnje",
-      "features": [
-        "Sve iz Besplatnog",
-        "E-pošta, chat i društveni kanali",
-        "Prioritetna podrška"
-      ],
-      "cta": "Isprobajte Pro besplatno"
-    },
-    "businessPlan": {
-      "name": "Poslovni",
-      "badge": "Primjer cijene — prilagodljivo",
-      "billingMonthly": "$49 / mjesec · naplata mjesečno",
-      "billingYearly": "$39 / mjesec · naplata godišnje",
-      "features": [
-        "Sve iz Pro",
-        "Više korisničkih mjesta za zaposlenike",
-        "Pomoć pri uvođenju i namjenski kontakt"
-      ],
-      "cta": "Započnite besplatno probno razdoblje"
-    },
-    "pricingNote": "Ograničenja planova su ilustrativna i mogu se prilagoditi prije lansiranja.",
-    "faqTitle": "Često postavljana pitanja",
-    "faqs": [
-      {
-        "q": "Što zapravo znači „prvenstveno asinkrono“?",
-        "a": "To znači da kupci ostave poruku i dobiju pošten vremenski okvir za odgovor (poput „vraćamo se za nekoliko sati“) umjesto da čekaju na chat uživo. Vi odgovarate prema svom rasporedu i nitko se ne uzrujava gledajući kako tri točkice poskakuju."
-      },
-      {
-        "q": "Koliko traje postavljanje?",
-        "a": "Većina malih tvrtki proradi za manje od deset minuta. Povežite sandučić, ubacite nekoliko čestih pitanja i AI već počinje pisati odgovore koji zvuče poput vas."
-      },
-      {
-        "q": "Šalje li AI odgovore sam?",
-        "a": "Ne. AI uvijek sastavlja skicu — osoba u vašem timu odobrava prije nego što išta stigne do kupca. Vi ostajete kontrolirati svoj glas; AI samo uklanja tipkanje."
-      },
-      {
-        "q": "Što uključuje besplatni plan?",
-        "a": "Besplatni plan daje vam zajednički sandučić i izdašnu mjesečnu kvotu besplatnih AI skica, uz podršku zajednice. Namijenjen je malim tvrtkama koje žele isprobati mirnu podršku prije nego što plate i cent."
-      },
-      {
-        "q": "Koje kanale mogu povezati?",
-        "a": "E-pošta, chat uživo i glavni kanali društvenih poruka svi stižu u isti red na Pro planu. Što god vaši kupci koriste, odgovarate s jednog mirnog mjesta."
-      }
-    ],
-    "finalTitle": "Unesite mir u svoj sandučić",
-    "finalSub": "Postavljanje u nekoliko minuta · Besplatno za male tvrtke · www.nudgeso.com",
-    "finalCta": "Nabavite NudgeSo besplatno",
-    "footerTag": "NudgeSo · Mirna korisnička podrška · www.nudgeso.com"
+    "footerTag": "NudgeSo · תמיכת לקוחות רגועה · www.nudgeso.com",
+    "privacy": "מדיניות פרטיות",
+    "terms": "תנאי שירות"
   },
   "hi": {
-    "metaTitle": "NudgeSo — छोटे व्यवसायों के लिए शांत ग्राहक सपोर्ट",
-    "metaDescription": "एसिंक-फर्स्ट सपोर्ट जो गर्मजोशी भरे जवाबों के ड्राफ्ट बनाता है, ज़रूरी बातों को क्यू में रखता है, और आपको साँस लेने की जगह देता है।",
+    "metaTitle": "NudgeSo — छोटे व्यवसायों के लिए शांत ग्राहक सहायता",
+    "metaDescription": "ऐसा असिंक-फर्स्ट सपोर्ट जो गर्मजोशी भरे जवाबों के ड्राफ़्ट बनाता है, ज़रूरी बातों को कतार में रखता है, और आपको साँस लेने की जगह देता है।",
     "nav": [
       "उत्पाद",
-      "मूल्य निर्धारण",
-      "कैसे",
+      "मूल्य",
+      "तरीका",
       "सामान्य प्रश्न"
     ],
     "signIn": "साइन इन",
     "startFree": "मुफ़्त शुरू करें",
-    "heroEyebrow": "एसिंक-फर्स्ट AI हेल्पडेस्क",
-    "heroTitle": "छोटे व्यवसायों के लिए शांत ग्राहक सपोर्ट",
-    "heroSub": "एसिंक-फर्स्ट सपोर्ट जो गर्मजोशी भरे जवाबों के ड्राफ्ट बनाता है, ज़रूरी बातों को क्यू में रखता है, और आपको साँस लेने की जगह देता है — अब आपको अपने इनबॉक्स में ही जीते रहने की ज़रूरत नहीं।",
-    "featuresTitle": "आपके इनबॉक्स को जो चाहिए वह सब, जो नहीं चाहिए वह कुछ नहीं",
-    "featuresSub": "छोटे व्यवसायों के लिए बनाया गया, जो अफ़रा-तफ़री के बिना अच्छे से जवाब देना चाहते हैं।",
+    "heroEyebrow": "असिंक-फर्स्ट AI हेल्पडेस्क",
+    "heroTitle": "छोटे व्यवसायों के लिए शांत ग्राहक सहायता",
+    "heroSub": "असिंक-फर्स्ट सपोर्ट जो गर्मजोशी भरे जवाबों के ड्राफ़्ट बनाता है, ज़रूरी बातों को कतार में रखता है, और आपको साँस लेने की जगह देता है — अब इनबॉक्स में जीने की ज़रूरत नहीं।",
+    "featuresTitle": "आपके इनबॉक्स की हर ज़रूरत, बिना किसी फ़ालतू चीज़ के",
+    "featuresSub": "ऐसे छोटे व्यवसायों के लिए बनाया गया जो अफ़रा-तफ़री के बिना अच्छी तरह जवाब देना चाहते हैं।",
     "features": [
       {
-        "title": "एक शांत क्यू",
-        "body": "ईमेल, चैट और सोशल थ्रेड्स को मिलाकर प्राथमिकता दी जाती है, ताकि कोई भी बात छूटे नहीं।"
+        "title": "एक शांत कतार",
+        "body": "आज लाइव: वेबसाइट चैट और एक साझा मर्चेंट इनबॉक्स। ईमेल और सोशल कनेक्टर अलग से रोल आउट हो रहे हैं, इसलिए हम यह नहीं बताते कि वे पहले से मिलाए जा चुके हैं।"
       },
       {
-        "title": "आपकी आवाज़ में ड्राफ्ट",
-        "body": "AI आपका लहजा सीखता है और ऐसे जवाब सुझाता है जिन्हें आप वाकई भेजना चाहेंगे।"
+        "title": "आपकी आवाज़ में ड्राफ़्ट",
+        "body": "AI आपका लहजा सीखता है और ऐसे जवाब सुझाता है जिन्हें आप सचमुच भेजना चाहेंगे।"
       },
       {
-        "title": "मिनटों में सेटअप",
-        "body": "कुछ क्लिक में अपना इनबॉक्स जोड़ें, अपने सामान्य प्रश्न इम्पोर्ट करें, और AI पहले से ही आपकी आवाज़ जानता है।"
+        "title": "मिनटों में सेट करें",
+        "body": "कुछ क्लिक में अपना इनबॉक्स जोड़ें, अपने FAQ आयात करें, और AI पहले से ही आपकी आवाज़ जानता है।"
       },
       {
-        "title": "देर रात की पिंग्स नहीं",
-        "body": "डिफ़ॉल्ट रूप से एसिंक, ग्राहकों को ईमानदार जवाब समय मिलता है और आपके व्यवसाय को अपनी शामें वापस मिलती हैं।"
+        "title": "रात देर की पिंग नहीं",
+        "body": "डिफ़ॉल्ट रूप से असिंक, ग्राहकों को ईमानदार जवाब देने का समय मिलता है और आपके व्यवसाय को अपनी शामें वापस मिलती हैं।"
       }
     ],
     "howTitle": "यह कैसे काम करता है",
@@ -1809,206 +1719,210 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "अपना इनबॉक्स जोड़ें",
-        "body": "अपने ईमेल, चैट और सोशल चैनल जोड़ें। NudgeSo सब कुछ एक साझा क्यू में मिला देता है।"
+        "body": "आज लाइव वेबसाइट चैट और साझा इनबॉक्स सेट करें। ईमेल और सोशल कनेक्टर एक अलग, असिस्टेड सेटअप हैं।"
       },
       {
-        "title": "AI दोस्ताना जवाबों के ड्राफ्ट बनाता है",
-        "body": "AI थ्रेड पढ़ता है, आपके पिछले जवाबों से आपका लहजा अपनाता है, और हर संदेश के लिए गर्मजोशी भरा जवाब ड्राफ्ट करता है।"
+        "title": "AI दोस्ताना जवाबों के ड्राफ़्ट बनाता है",
+        "body": "AI थ्रेड पढ़ता है, पिछले जवाबों से आपका लहजा मिलाता है, और हर संदेश के लिए गर्मजोशी भरा जवाब ड्राफ़्ट करता है।"
       },
       {
-        "title": "आप मंज़ूरी दें, हल्का सा संकेत दें, आगे बढ़ें",
-        "body": "एक शब्द बदलें या भेजें दबाएँ। थ्रेड्स अपने आप स्नूज़ हो जाते हैं जब तक ग्राहक जवाब नहीं देते। कोई दबाव नहीं, कभी भी।"
+        "title": "आप मंज़ूरी दें, हल्का इशारा करें, आगे बढ़ें",
+        "body": "एक शब्द सुधारें या भेजें दबाएँ। थ्रेड खुद स्नूज़ हो जाते हैं जब तक ग्राहकों को जवाब न मिल जाए। कभी कोई दबाव नहीं।"
       }
     ],
-    "pricingTitle": "सरल मूल्य निर्धारण",
-    "pricingSub": "मुफ़्त शुरू करें, जब आपका व्यवसाय साझा इनबॉक्स से आगे बढ़े तो अपग्रेड करें।",
+    "pricingTitle": "सरल मूल्य",
+    "pricingSub": "मुफ़्त शुरू करें। बिलिंग पूरी होने तक पेड प्लान केवल प्रीव्यू हैं।",
     "monthly": "मासिक",
     "yearly": "वार्षिक",
     "saveNote": "~21% छूट",
     "freePlan": {
-      "name": "मुफ़्त",
-      "billing": "छोटे व्यवसाय के लिए जो इसे आज़मा रहा है",
+      "name": "फ़्री",
+      "billing": "छोटे व्यवसाय के आज़माने के लिए",
       "features": [
         "साझा इनबॉक्स",
-        "मुफ़्त AI ड्राफ्ट के लिए उदार मासिक कोटा",
-        "कम्युनिटी सपोर्ट"
+        "मुफ़्त AI ड्राफ़्ट का भरपूर मासिक कोटा",
+        "सहायता गाइड"
       ],
-      "cta": "मुफ़्त शुरू करें"
+      "cta": "मुफ़्त में शुरू करें"
     },
     "proPlan": {
       "name": "प्रो",
-      "badge": "सबसे लोकप्रिय",
+      "badge": "प्रीव्यू प्लान",
       "billingMonthly": "$19 / माह · मासिक बिलिंग",
-      "billingYearly": "$15 / माह · वार्षिक बिलिंग",
+      "billingYearly": "$15 / माह · सालाना बिलिंग",
       "features": [
-        "मुफ़्त में सब कुछ",
-        "ईमेल, चैट और सोशल चैनल",
-        "प्राथमिक सपोर्ट"
+        "फ़्री में सब कुछ",
+        "वेबसाइट चैट + साझा इनबॉक्स",
+        "नियोजित प्राथमिकता सहायता का प्रीव्यू"
       ],
-      "cta": "प्रो मुफ़्त आज़माएँ"
+      "cta": "प्रो प्रीव्यू करें"
     },
     "businessPlan": {
       "name": "बिज़नेस",
-      "badge": "उदाहरण मूल्य — समायोज्य",
+      "badge": "प्रीव्यू कीमत — कोई शुल्क नहीं",
       "billingMonthly": "$49 / माह · मासिक बिलिंग",
-      "billingYearly": "$39 / माह · वार्षिक बिलिंग",
+      "billingYearly": "$39 / माह · सालाना बिलिंग",
       "features": [
         "प्रो में सब कुछ",
-        "कई स्टाफ सीट्स",
-        "ऑनबोर्डिंग सहायता और एक समर्पित संपर्क"
+        "कई स्टाफ सीटें (प्रीव्यू)",
+        "गाइडेड सेटअप सहायता"
       ],
-      "cta": "मुफ़्त ट्रायल शुरू करें"
+      "cta": "हमसे बात करें"
     },
-    "pricingNote": "प्लान सीमाएँ उदाहरणात्मक हैं और लॉन्च से पहले समायोजित की जा सकती हैं।",
+    "pricingNote": "केवल प्रीव्यू मूल्य: कोई भुगतान नहीं लिया जाता। प्लान सीमाएँ और पेड सुविधाएँ उदाहरण के लिए हैं और बिलिंग शुरू होने से पहले समायोजित की जा सकती हैं।",
     "faqTitle": "अक्सर पूछे जाने वाले प्रश्न",
     "faqs": [
       {
-        "q": "\"एसिंक-फर्स्ट\" का असल में क्या मतलब है?",
-        "a": "इसका मतलब है कि ग्राहक संदेश छोड़ते हैं और उन्हें लाइव चैट पर इंतज़ार करने के बजाय एक ईमानदार जवाब विंडो मिलती है (जैसे \"हम कुछ घंटों में वापस होंगे\")। आप अपने समय पर जवाब देते हैं, और कोई भी तीन बिंदुओं को उछलते देखकर बेचैन नहीं होता।"
+        "q": "\"असिंक-फर्स्ट\" का वास्तव में क्या मतलब है?",
+        "a": "इसका मतलब है कि ग्राहक संदेश छोड़ते हैं और लाइव चैट का इंतज़ार करने के बजाय एक ईमानदार जवाब विंडो पाते हैं (जैसे \"हम कुछ घंटों में वापस होंगे\")। आप अपने समय पर जवाब देते हैं, और कोई भी तीन बिंदुओं को उछलते देखकर घबराता नहीं है।"
       },
       {
         "q": "सेटअप में कितना समय लगता है?",
-        "a": "ज़्यादातर छोटे व्यवसाय दस मिनट से कम में चालू हो जाते हैं। अपना इनबॉक्स जोड़ें, कुछ सामान्य प्रश्न डालें, और AI पहले से ही आप जैसे लगने वाले जवाब लिखना शुरू कर देता है।"
+        "a": "ज़्यादातर छोटे व्यवसाय दस मिनट से कम में शुरू हो जाते हैं। अपना इनबॉक्स जोड़ें, कुछ FAQ डालें, और AI पहले ही आपके जैसे जवाब लिखना शुरू कर देता है।"
       },
       {
         "q": "क्या AI अपने आप जवाब भेजता है?",
-        "a": "नहीं। AI हमेशा ड्राफ्ट बनाता है — ग्राहक तक कुछ भी पहुँचने से पहले आपकी टीम का कोई इंसान स्वीकृति देता है। आपकी आवाज़ पर नियंत्रण आपके पास रहता है; AI सिर्फ़ टाइपिंग हटाता है।"
+        "a": "नहीं। AI हमेशा ड्राफ़्ट बनाता है — ग्राहक तक कुछ भी पहुँचने से पहले आपकी टीम का कोई व्यक्ति मंज़ूरी देता है। आपकी आवाज़ पर नियंत्रण आपके पास रहता है; AI सिर्फ़ टाइपिंग हटाता है।"
       },
       {
-        "q": "मुफ़्त प्लान में क्या शामिल है?",
-        "a": "मुफ़्त प्लान में आपको साझा इनबॉक्स और मुफ़्त AI ड्राफ्ट का उदार मासिक कोटा मिलता है, साथ ही कम्युनिटी सपोर्ट। यह उन छोटे व्यवसायों के लिए बनाया गया है जो एक पैसा भी देने से पहले शांत सपोर्ट आज़माना चाहते हैं।"
+        "q": "फ़्री प्लान में क्या शामिल है?",
+        "a": "फ़्री प्लान में साझा इनबॉक्स और मुफ़्त AI ड्राफ़्ट का भरपूर मासिक कोटा, साथ में सहायता गाइड मिलता है। बिलिंग लाइव होने तक पेड प्लान केवल प्रीव्यू हैं।"
       },
       {
-        "q": "कौन-कौन से चैनल जोड़े जा सकते हैं?",
-        "a": "ईमेल, लाइव चैट और प्रमुख सोशल मैसेजिंग चैनल, सब प्रो पर एक ही क्यू में आते हैं। आपके ग्राहक जो भी इस्तेमाल करें, आप एक शांत जगह से जवाब देते हैं।"
+        "q": "मैं कौन-से चैनल कनेक्ट कर सकता/सकती हूँ?",
+        "a": "आज लाइव: स्टैंडअलोन वेबसाइट चैट और मर्चेंट साझा इनबॉक्स। ईमेल और सोशल मैसेजिंग (WhatsApp और Instagram सहित) अभी जुड़े नहीं हैं; उनके लिए असिस्टेड सेटअप चाहिए और वे अलग से रोल आउट होंगे। हम किसी चैनल को उपलब्ध तभी सूचीबद्ध करेंगे जब वह सचमुच जुड़ा हो।"
       }
     ],
     "finalTitle": "अपने इनबॉक्स में शांति लाएँ",
     "finalSub": "मिनटों में सेटअप · छोटे व्यवसायों के लिए मुफ़्त · www.nudgeso.com",
     "finalCta": "NudgeSo मुफ़्त पाएँ",
-    "footerTag": "NudgeSo · शांत ग्राहक सपोर्ट · www.nudgeso.com"
+    "footerTag": "NudgeSo · शांत ग्राहक सहायता · www.nudgeso.com",
+    "privacy": "गोपनीयता नीति",
+    "terms": "सेवा की शर्तें"
   },
-  "id": {
-    "metaTitle": "NudgeSo — Dukungan Pelanggan yang Tenang untuk Usaha Kecil",
-    "metaDescription": "Dukungan berbasis asinkron yang menyusun jawaban hangat, mengantrekan hal yang penting, dan memberi Anda ruang untuk bernapas.",
+  "hr": {
+    "metaTitle": "NudgeSo — Mirna korisnička podrška za male tvrtke",
+    "metaDescription": "Asinkrono osmišljena podrška koja sastavlja tople odgovore, stavlja važno u red i ostavlja vam prostor da dišete.",
     "nav": [
-      "Produk",
-      "Harga",
-      "Cara",
-      "FAQ"
+      "Proizvod",
+      "Cijene",
+      "Kako",
+      "Česta pitanja"
     ],
-    "signIn": "Masuk",
-    "startFree": "Mulai gratis",
-    "heroEyebrow": "Helpdesk AI berbasis asinkron",
-    "heroTitle": "Dukungan Pelanggan yang Tenang untuk Usaha Kecil",
-    "heroSub": "Dukungan berbasis asinkron yang menyusun jawaban hangat, mengantrekan hal yang penting, dan memberi Anda ruang untuk bernapas — tak perlu lagi hidup di kotak masuk.",
-    "featuresTitle": "Semua yang dibutuhkan kotak masuk Anda, tanpa yang tidak perlu",
-    "featuresSub": "Dibuat untuk usaha kecil yang ingin membalas dengan baik tanpa kekacauan.",
+    "signIn": "Prijavite se",
+    "startFree": "Započnite besplatno",
+    "heroEyebrow": "Asinkrono usmjeren AI helpdesk",
+    "heroTitle": "Mirna korisnička podrška za male tvrtke",
+    "heroSub": "Asinkrono osmišljena podrška koja sastavlja tople odgovore, stavlja važno u red i ostavlja vam prostor da dišete — i više ne morate živjeti u svom inboxu.",
+    "featuresTitle": "Sve što vaš inbox treba, ništa što mu ne treba",
+    "featuresSub": "Napravljeno za male tvrtke koje žele dobro odgovarati bez kaosa.",
     "features": [
       {
-        "title": "Satu antrean yang tenang",
-        "body": "Email, chat, dan utas media sosial digabung serta diprioritaskan, sehingga tidak ada yang terlewat."
+        "title": "Jedan miran red",
+        "body": "Dostupno danas: chat na web-mjestu i zajednički inbox za trgovce. Konektori za e-poštu i društvene mreže uvode se zasebno, pa se ne pretvaramo da su već spojeni."
       },
       {
-        "title": "Draf dalam gaya Anda",
-        "body": "AI mempelajari nada bicara Anda dan menyarankan balasan yang benar-benar ingin Anda kirim."
+        "title": "Nacrti u vašem glasu",
+        "body": "AI uči vaš ton i predlaže odgovore koje ćete doista htjeti poslati."
       },
       {
-        "title": "Siap dalam hitungan menit",
-        "body": "Hubungkan kotak masuk dalam beberapa klik, impor FAQ Anda, dan AI sudah mengenali gaya Anda."
+        "title": "Postavljanje u nekoliko minuta",
+        "body": "Povežite inbox u nekoliko klikova, uvezite svoja česta pitanja i AI već poznaje vaš glas."
       },
       {
-        "title": "Tanpa notifikasi tengah malam",
-        "body": "Asinkron secara bawaan, pelanggan mendapat estimasi balasan yang jujur dan bisnis Anda kembali mendapatkan malamnya."
+        "title": "Bez noćnih obavijesti",
+        "body": "Asinkrono prema zadanim postavkama, kupci dobivaju poštene rokove odgovora, a vaša tvrtka dobiva svoje večeri natrag."
       }
     ],
-    "howTitle": "Cara kerjanya",
-    "howSub": "Tiga langkah tenang antara kotak masuk yang bising dan yang tenang.",
+    "howTitle": "Kako funkcionira",
+    "howSub": "Tri mirna koraka između bučnog i mirnog inboxa.",
     "howSteps": [
       {
-        "title": "Hubungkan kotak masuk Anda",
-        "body": "Sambungkan email, chat, dan kanal sosial Anda. NudgeSo menggabungkan semuanya ke dalam satu antrean bersama."
+        "title": "Povežite svoj inbox",
+        "body": "Postavite chat na web-mjestu i zajednički inbox koji su dostupni danas. Konektori za e-poštu i društvene mreže postavljaju se zasebno, uz pomoć."
       },
       {
-        "title": "AI menyusun balasan ramah",
-        "body": "AI membaca utas, menyesuaikan nada bicara Anda dari balasan sebelumnya, dan menyusun jawaban hangat untuk setiap pesan."
+        "title": "AI sastavlja ljubazne odgovore",
+        "body": "AI čita razgovor, usklađuje vaš ton s prethodnim odgovorima i sastavlja topao odgovor za svaku poruku."
       },
       {
-        "title": "Anda setujui, beri dorongan, lanjut",
-        "body": "Ubah satu kata atau tekan kirim. Utas menunda sendiri sampai pelanggan menerima balasan. Tanpa tekanan, selamanya."
+        "title": "Odobrite, podgurnite i idete dalje",
+        "body": "Promijenite pokoju riječ ili pritisnite pošalji. Razgovori se sami odgađaju dok kupci ne dobiju odgovor. Bez ikakvog pritiska."
       }
     ],
-    "pricingTitle": "Harga sederhana",
-    "pricingSub": "Mulai gratis, tingkatkan saat bisnis Anda tumbuh melampaui kotak masuk bersama.",
-    "monthly": "Bulanan",
-    "yearly": "Tahunan",
-    "saveNote": "Hemat ~21%",
+    "pricingTitle": "Jednostavne cijene",
+    "pricingSub": "Započnite besplatno. Plaćeni planovi samo su za pregled dok se završava naplata.",
+    "monthly": "Mjesečno",
+    "yearly": "Godišnje",
+    "saveNote": "~21% popusta",
     "freePlan": {
-      "name": "Gratis",
-      "billing": "Untuk usaha kecil yang ingin mencoba",
+      "name": "Besplatno",
+      "billing": "Za male tvrtke koje žele isprobati",
       "features": [
-        "Kotak masuk bersama",
-        "Jatah bulanan yang lega untuk draf AI gratis",
-        "Dukungan komunitas"
+        "Zajednički inbox",
+        "Velika mjesečna kvota besplatnih AI nacrta",
+        "Vodič za pomoć"
       ],
-      "cta": "Mulai gratis"
+      "cta": "Započnite besplatno"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Paling populer",
-      "billingMonthly": "$19 / bulan · ditagih bulanan",
-      "billingYearly": "$15 / bulan · ditagih tahunan",
+      "badge": "Plan u pregledu",
+      "billingMonthly": "$19 / mjesec · naplata mjesečno",
+      "billingYearly": "$15 / mjesec · naplata godišnje",
       "features": [
-        "Semua yang ada di Gratis",
-        "Kanal email, chat & sosial",
-        "Dukungan prioritas"
+        "Sve iz Besplatnog",
+        "Chat na web-mjestu + zajednički inbox",
+        "Pregled planirane prioritetne podrške"
       ],
-      "cta": "Coba Pro gratis"
+      "cta": "Pregledajte Pro"
     },
     "businessPlan": {
-      "name": "Bisnis",
-      "badge": "Harga contoh — dapat disesuaikan",
-      "billingMonthly": "$49 / bulan · ditagih bulanan",
-      "billingYearly": "$39 / bulan · ditagih tahunan",
+      "name": "Poslovni",
+      "badge": "Pregledna cijena — bez naplate",
+      "billingMonthly": "$49 / mjesec · naplata mjesečno",
+      "billingYearly": "$39 / mjesec · naplata godišnje",
       "features": [
-        "Semua yang ada di Pro",
-        "Beberapa kursi staf",
-        "Bantuan onboarding & kontak khusus"
+        "Sve iz Pro",
+        "Više mjesta za osoblje (pregled)",
+        "Vođena pomoć pri postavljanju"
       ],
-      "cta": "Mulai uji coba gratis"
+      "cta": "Razgovarajte s nama"
     },
-    "pricingNote": "Batas paket bersifat ilustratif dan dapat disesuaikan sebelum peluncuran.",
-    "faqTitle": "Pertanyaan yang sering diajukan",
+    "pricingNote": "Samo pregledne cijene: plaćanje se ne naplaćuje. Ograničenja planova i plaćene značajke samo su ilustrativne i mogu se prilagoditi prije početka naplate.",
+    "faqTitle": "Često postavljena pitanja",
     "faqs": [
       {
-        "q": "Apa arti \"async-first\" sebenarnya?",
-        "a": "Artinya pelanggan meninggalkan pesan dan mendapatkan jendela balasan yang jujur (seperti \"kami akan kembali dalam beberapa jam\") alih-alih menunggu chat langsung. Anda menjawab sesuai jadwal Anda sendiri, dan tidak ada yang cemas melihat tiga titik bergerak."
+        "q": "Što zapravo znači \"async-first\"?",
+        "a": "To znači da kupci ostavljaju poruku i dobivaju pošten vremenski okvir za odgovor (kao \"vratit ćemo se za nekoliko sati\") umjesto da čekaju na chat uživo. Vi odgovarate po svom rasporedu i nikome nije neugodno gledati kako poskakuju tri točkice."
       },
       {
-        "q": "Berapa lama proses penyiapannya?",
-        "a": "Sebagian besar usaha kecil sudah berjalan dalam waktu kurang dari sepuluh menit. Hubungkan kotak masuk, masukkan beberapa FAQ, dan AI langsung mulai menulis balasan yang terdengar seperti Anda."
+        "q": "Koliko traje postavljanje?",
+        "a": "Većina malih tvrtki počne raditi u manje od deset minuta. Povežite inbox, ubacite nekoliko čestih pitanja i AI već počinje pisati odgovore koji zvuče kao vi."
       },
       {
-        "q": "Apakah AI mengirim balasan sendiri?",
-        "a": "Tidak. AI selalu menyusun draf — seseorang di tim Anda menyetujuinya sebelum apa pun sampai ke pelanggan. Anda tetap memegang kendali atas gaya bicara Anda; AI hanya menghilangkan pekerjaan mengetik."
+        "q": "Šalje li AI odgovore sam?",
+        "a": "Ne. AI uvijek sastavlja nacrt — osoba iz vašeg tima odobrava prije nego što išta stigne do kupca. Vi zadržavate kontrolu nad svojim glasom; AI samo uklanja tipkanje."
       },
       {
-        "q": "Apa saja yang termasuk dalam paket gratis?",
-        "a": "Paket gratis memberi Anda kotak masuk bersama dan jatah bulanan yang lega untuk draf AI gratis, plus dukungan komunitas. Ini dibuat untuk usaha kecil yang ingin mencoba dukungan yang tenang sebelum membayar sepeser pun."
+        "q": "Što uključuje besplatni plan?",
+        "a": "Besplatni plan daje vam zajednički inbox i veliku mjesečnu kvotu besplatnih AI nacrta, plus vodič za pomoć. Plaćeni planovi samo su za pregled dok naplata ne zaživi."
       },
       {
-        "q": "Kanal apa saja yang bisa saya hubungkan?",
-        "a": "Email, chat langsung, dan kanal pesan sosial utama semuanya masuk ke antrean yang sama di Pro. Apa pun yang digunakan pelanggan Anda, Anda membalas dari satu tempat yang tenang."
+        "q": "Koje kanale mogu povezati?",
+        "a": "Dostupno danas: samostalni chat na web-mjestu i zajednički inbox za trgovce. E-pošta i društvene poruke (uključujući WhatsApp i Instagram) još nisu povezani; potrebno im je asistirano postavljanje i uvest će se zasebno. Kanal ćemo navesti kao dostupan tek kada doista bude povezan."
       }
     ],
-    "finalTitle": "Hadirkan ketenangan ke kotak masuk Anda",
-    "finalSub": "Siap dalam hitungan menit · Gratis untuk usaha kecil · www.nudgeso.com",
-    "finalCta": "Dapatkan NudgeSo gratis",
-    "footerTag": "NudgeSo · Dukungan Pelanggan yang Tenang · www.nudgeso.com"
+    "finalTitle": "Unesite mir u svoj inbox",
+    "finalSub": "Postavljanje u nekoliko minuta · Besplatno za male tvrtke · www.nudgeso.com",
+    "finalCta": "Nabavite NudgeSo besplatno",
+    "footerTag": "NudgeSo · Mirna korisnička podrška · www.nudgeso.com",
+    "privacy": "Pravila privatnosti",
+    "terms": "Uvjeti korištenja"
   },
   "hu": {
     "metaTitle": "NudgeSo — Nyugodt ügyfélszolgálat kisvállalkozásoknak",
-    "metaDescription": "Aszinkron-first támogatás, amely meleg hangú válaszokat fogalmaz, sorba rendezi, ami számít, és teret ad a levegővételre.",
+    "metaDescription": "Aszinkron alapú támogatás, amely meleg hangvételű válaszokat fogalmaz, sorba állítja, ami számít, és teret ad a levegővételhez.",
     "nav": [
       "Termék",
       "Árak",
@@ -2016,117 +1930,239 @@ window.NS_LANDING_LOCALES = {
       "GYIK"
     ],
     "signIn": "Bejelentkezés",
-    "startFree": "Kezdés ingyen",
-    "heroEyebrow": "Aszinkron-first AI ügyfélszolgálat",
+    "startFree": "Kezdj ingyen",
+    "heroEyebrow": "Aszinkron alapú AI ügyfélszolgálat",
     "heroTitle": "Nyugodt ügyfélszolgálat kisvállalkozásoknak",
-    "heroSub": "Aszinkron-first támogatás, amely meleg hangú válaszokat fogalmaz, sorba rendezi, ami számít, és teret ad a levegővételre — nem kell többé a postaládádban élned.",
-    "featuresTitle": "Minden, amire a postaládádnak szüksége van, és semmi felesleg",
-    "featuresSub": "Kisvállalkozásoknak készült, amelyek jól szeretnének válaszolni káosz nélkül.",
+    "heroSub": "Aszinkron alapú támogatás, amely meleg hangvételű válaszokat fogalmaz, sorba állítja, ami számít, és teret ad a levegővételhez — nem kell többé a postaládádban élned.",
+    "featuresTitle": "Minden, amire a postaládádnak szüksége van, és semmi, amire nincs",
+    "featuresSub": "Kisvállalkozásoknak készült, amelyek jól szeretnének válaszolni, káosz nélkül.",
     "features": [
       {
-        "title": "Egyetlen nyugodt sor",
-        "body": "Az e-mail-, chat- és közösségi szálak egyesítve és fontosság szerint rendezve, így semmi nem csúszik át a réseken."
+        "title": "Egy nyugodt sor",
+        "body": "Ma elérhető: weboldal-chat és közös kereskedői postaláda. Az e-mail- és közösségi összekötők külön jelennek meg, ezért nem teszünk úgy, mintha már egyesítve lennének."
       },
       {
-        "title": "Piszkozatok a te hangodon",
-        "body": "Az AI megtanulja a hangvételedet, és olyan válaszokat javasol, amelyeket tényleg szívesen elküldesz."
+        "title": "Piszkozatok a te hangvételedben",
+        "body": "Az AI megtanulja a hangvételedet, és olyan válaszokat javasol, amelyeket tényleg szívesen elküldenél."
       },
       {
-        "title": "Pár perc alatt beállítható",
-        "body": "Néhány kattintással csatlakoztatod a postaládádat, importálod a GYIK-et, és az AI már ismeri a hangvételedet."
+        "title": "Percek alatt beállítható",
+        "body": "Néhány kattintással csatlakoztasd a postaládádat, töltsd be a GYIK-eidet, és az AI már ismeri a hangvételedet."
       },
       {
-        "title": "Nincs késő esti ping",
-        "body": "Alapértelmezésben aszinkron: az ügyfelek őszinte válaszidőket kapnak, a vállalkozásod pedig visszakapja az estéit."
+        "title": "Nincsenek késő esti értesítések",
+        "body": "Alapértelmezésben aszinkron: az ügyfelek őszinte válaszidőt kapnak, a vállalkozásod pedig visszakapja az estéit."
       }
     ],
     "howTitle": "Hogyan működik",
-    "howSub": "Három csendes lépés a zajos postaládától a nyugodt postaládáig.",
+    "howSub": "Három csendes lépés a zajos postaládától a nyugodtig.",
     "howSteps": [
       {
         "title": "Csatlakoztasd a postaládádat",
-        "body": "Kösd össze az e-mail-, chat- és közösségimédia-csatornáidat. A NudgeSo mindent egy közös sorba von össze."
+        "body": "Állítsd be a ma elérhető weboldal-chatet és közös postaládát. Az e-mail- és közösségi összekötők külön, segített beállítást igényelnek."
       },
       {
         "title": "Az AI barátságos válaszokat fogalmaz",
-        "body": "Az AI elolvassa a szálat, a korábbi válaszaidból felismeri a hangvételedet, és minden üzenethez meleg hangú választ fogalmaz."
+        "body": "Az AI elolvassa a beszélgetést, a korábbi válaszaidból igazodik a hangvételedhez, és minden üzenethez meleg hangvételű választ fogalmaz."
       },
       {
-        "title": "Jóváhagyod, finoman noszogatsz, továbblépsz",
-        "body": "Módosíts egy szót, vagy küldd el. A szálak maguktól szünetelnek, amíg az ügyfelek választ nem kapnak. Soha semmi nyomás."
+        "title": "Jóváhagyod, egy lökést adsz, és továbblépsz",
+        "body": "Módosíts egy szót, vagy nyomj az elküldésre. A beszélgetések maguktól szünetelnek, amíg az ügyfelek választ nem kapnak. Soha semmi nyomás."
       }
     ],
-    "pricingTitle": "Egyszerű árazás",
-    "pricingSub": "Kezdj ingyen, válts, amikor a vállalkozásod kinövi a közös postaládát.",
+    "pricingTitle": "Egyszerű árak",
+    "pricingSub": "Kezdj ingyen. A fizetős csomagok csak előnézetben elérhetők, amíg a számlázás elkészül.",
     "monthly": "Havi",
     "yearly": "Éves",
     "saveNote": "~21% kedvezmény",
     "freePlan": {
       "name": "Ingyenes",
-      "billing": "Egy kisvállalkozásnak, amely kipróbálja",
+      "billing": "Kipróbáló kisvállalkozásoknak",
       "features": [
         "Közös postaláda",
         "Bőséges havi keret ingyenes AI-piszkozatokra",
-        "Közösségi támogatás"
+        "Súgó"
       ],
-      "cta": "Kezdés ingyen"
+      "cta": "Kezdj ingyen"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Legnépszerűbb",
-      "billingMonthly": "$19 / hónap · havi számlázás",
-      "billingYearly": "$15 / hónap · éves számlázás",
+      "badge": "Előnézeti csomag",
+      "billingMonthly": "$19 / hó · havi számlázással",
+      "billingYearly": "$15 / hó · éves számlázással",
       "features": [
-        "Minden az Ingyenesből",
-        "E-mail-, chat- és közösségimédia-csatornák",
-        "Kiemelt támogatás"
+        "Minden, ami az Ingyenesben",
+        "Weboldal-chat + közös postaláda",
+        "A tervezett elsőbbségi támogatás előnézete"
       ],
-      "cta": "Próbáld ki a Pro-t ingyen"
+      "cta": "Pro előnézet"
     },
     "businessPlan": {
-      "name": "Business",
-      "badge": "Példaár — módosítható",
-      "billingMonthly": "$49 / hónap · havi számlázás",
-      "billingYearly": "$39 / hónap · éves számlázás",
+      "name": "Üzleti",
+      "badge": "Előnézeti ár — díjmentes",
+      "billingMonthly": "$49 / hó · havi számlázással",
+      "billingYearly": "$39 / hó · éves számlázással",
       "features": [
-        "Minden a Pro-ból",
-        "Több munkatársi hely",
-        "Bevezetési segítség és dedikált kapcsolattartó"
+        "Minden, ami a Pro-ban",
+        "Több munkatársi férőhely (előnézet)",
+        "Segített beállítás"
       ],
-      "cta": "Ingyenes próba indítása"
+      "cta": "Beszélj velünk"
     },
-    "pricingNote": "A csomagkorlátok csak szemléltetésképpen szerepelnek, és a bevezetés előtt módosíthatók.",
+    "pricingNote": "Csak előnézeti árak: nem történik fizetés. A csomagkorlátok és a fizetős funkciók szemléltető jellegűek, és a számlázás indulása előtt módosíthatók.",
     "faqTitle": "Gyakran ismételt kérdések",
     "faqs": [
       {
-        "q": "Mit jelent valójában az „async-first”?",
-        "a": "Azt jelenti, hogy az ügyfelek üzenetet hagynak, és őszinte válaszablakot kapnak (például „néhány óra múlva visszatérünk”), ahelyett hogy élő chatre várnának. A saját ütemezésed szerint válaszolsz, és senki sem izgul, miközben három pont ugrál."
+        "q": "Mit jelent valójában az „aszinkron alapú”?",
+        "a": "Azt jelenti, hogy az ügyfelek üzenetet hagynak, és őszinte válaszidőt kapnak (például „néhány óra múlva visszatérünk”), ahelyett hogy élő chatben várnának. A saját időbeosztásod szerint válaszolsz, és senki sem izgul, miközben három pont ugrál."
       },
       {
-        "q": "Mennyi időbe telik a beállítás?",
-        "a": "A legtöbb kisvállalkozás kevesebb mint tíz perc alatt használatba áll. Csatlakoztatod a postaládádat, beillesztesz néhány GYIK-et, és az AI máris olyan válaszokat kezd írni, amelyek úgy hangzanak, mint te."
+        "q": "Mennyi ideig tart a beállítás?",
+        "a": "A legtöbb kisvállalkozás tíz perc alatt elindul. Csatlakoztasd a postaládádat, tölts be néhány GYIK-et, és az AI már elkezd olyan válaszokat írni, amelyek úgy hangzanak, mint te."
       },
       {
         "q": "Az AI magától küld válaszokat?",
-        "a": "Nem. Az AI mindig csak piszkozatot készít — a csapatod egy embere jóváhagyja, mielőtt bármi eljutna az ügyfélhez. Te irányítod a hangvételt; az AI csak a gépelést veszi le a válladról."
+        "a": "Nem. Az AI mindig csak piszkozatot készít — a csapatod egyik tagja jóváhagyja, mielőtt bármi eljut az ügyfélhez. Te irányítod a hangvételt; az AI csak a gépelést veszi le a válladról."
       },
       {
         "q": "Mi van az ingyenes csomagban?",
-        "a": "Az ingyenes csomag közös postaládát és bőséges havi keretet ad ingyenes AI-piszkozatokra, valamint közösségi támogatást. Kisvállalkozásoknak készült, akik egy fillér fizetése előtt ki szeretnék próbálni a nyugodt ügyfélszolgálatot."
+        "a": "Az ingyenes csomagban közös postaládát és bőséges havi keretet kapsz ingyenes AI-piszkozatokra, valamint a súgót. A fizetős csomagok csak előnézetben érhetők el, amíg a számlázás el nem indul."
       },
       {
-        "q": "Mely csatornákat csatlakoztathatom?",
-        "a": "Az e-mail, az élő chat és a fő közösségimédia-üzenetküldő csatornák a Pro csomagban ugyanabba a sorba kerülnek. Amit az ügyfeleid használnak, arra egy nyugodt helyről válaszolsz."
+        "q": "Milyen csatornákat csatlakoztathatok?",
+        "a": "Ma elérhető: az önálló weboldal-chat és a kereskedői közös postaláda. Az e-mail- és közösségi üzenetküldés (beleértve a WhatsAppot és az Instagramot) még nincs csatlakoztatva; segített beállítást igényel, és külön jelenik meg. Csak akkor sorolunk fel egy csatornát elérhetőként, ha valóban csatlakoztatva van."
       }
     ],
     "finalTitle": "Hozz nyugalmat a postaládádba",
-    "finalSub": "Beállítás percek alatt · Ingyenes kisvállalkozásoknak · www.nudgeso.com",
-    "finalCta": "Szerezd meg ingyen a NudgeSo-t",
-    "footerTag": "NudgeSo · Nyugodt ügyfélszolgálat · www.nudgeso.com"
+    "finalSub": "Percek alatt beállítható · Ingyenes kisvállalkozásoknak · www.nudgeso.com",
+    "finalCta": "Szerezd meg a NudgeSo-t ingyen",
+    "footerTag": "NudgeSo · Nyugodt ügyfélszolgálat · www.nudgeso.com",
+    "privacy": "Adatvédelmi tájékoztató",
+    "terms": "Szolgáltatási feltételek"
+  },
+  "id": {
+    "metaTitle": "NudgeSo — Dukungan Pelanggan yang Tenang untuk usaha kecil",
+    "metaDescription": "Dukungan yang mengutamakan asinkron, yang menyusun jawaban hangat, mengantrekan hal penting, dan memberi Anda ruang untuk bernapas.",
+    "nav": [
+      "Produk",
+      "Harga",
+      "Cara Kerja",
+      "FAQ"
+    ],
+    "signIn": "Masuk",
+    "startFree": "Mulai gratis",
+    "heroEyebrow": "Helpdesk AI yang mengutamakan asinkron",
+    "heroTitle": "Dukungan Pelanggan yang Tenang untuk usaha kecil",
+    "heroSub": "Dukungan yang mengutamakan asinkron yang menyusun jawaban hangat, mengantrekan hal penting, dan memberi Anda ruang untuk bernapas — tidak perlu lagi hidup di kotak masuk.",
+    "featuresTitle": "Semua yang dibutuhkan kotak masuk Anda, tanpa yang tidak perlu",
+    "featuresSub": "Dibuat untuk usaha kecil yang ingin membalas dengan baik tanpa kekacauan.",
+    "features": [
+      {
+        "title": "Satu antrean yang tenang",
+        "body": "Tersedia hari ini: chat situs web dan kotak masuk bersama merchant. Konektor email dan media sosial diluncurkan secara terpisah, jadi kami tidak berpura-pura semuanya sudah tergabung."
+      },
+      {
+        "title": "Draf dalam suara Anda",
+        "body": "AI mempelajari nada Anda dan menyarankan balasan yang benar-benar ingin Anda kirim."
+      },
+      {
+        "title": "Siap dalam hitungan menit",
+        "body": "Hubungkan kotak masuk Anda dalam beberapa klik, impor FAQ Anda, dan AI sudah mengenal suara Anda."
+      },
+      {
+        "title": "Tanpa notifikasi tengah malam",
+        "body": "Asinkron secara default, pelanggan mendapat perkiraan waktu balasan yang jujur dan bisnis Anda kembali mendapatkan malamnya."
+      }
+    ],
+    "howTitle": "Cara kerjanya",
+    "howSub": "Tiga langkah tenang antara kotak masuk yang berisik dan yang tenang.",
+    "howSteps": [
+      {
+        "title": "Hubungkan kotak masuk Anda",
+        "body": "Siapkan chat situs web dan kotak masuk bersama yang tersedia hari ini. Konektor email dan media sosial adalah penyiapan terpisah dengan pendampingan."
+      },
+      {
+        "title": "AI menyusun balasan ramah",
+        "body": "AI membaca percakapan, mencocokkan nada Anda dari balasan sebelumnya, dan menyusun jawaban hangat untuk setiap pesan."
+      },
+      {
+        "title": "Anda setujui, beri dorongan, lanjut",
+        "body": "Ubah satu kata atau langsung kirim. Percakapan menunda sendiri sampai pelanggan mendapat balasan. Tanpa tekanan, selalu."
+      }
+    ],
+    "pricingTitle": "Harga sederhana",
+    "pricingSub": "Mulai gratis. Paket berbayar hanya pratinjau selama penagihan masih diselesaikan.",
+    "monthly": "Bulanan",
+    "yearly": "Tahunan",
+    "saveNote": "~21% lebih murah",
+    "freePlan": {
+      "name": "Gratis",
+      "billing": "Untuk usaha kecil yang ingin mencoba",
+      "features": [
+        "Kotak masuk bersama",
+        "Jatah bulanan gratis yang lapang untuk draf AI",
+        "Panduan bantuan"
+      ],
+      "cta": "Mulai gratis"
+    },
+    "proPlan": {
+      "name": "Pro",
+      "badge": "Paket pratinjau",
+      "billingMonthly": "$19 / bulan · ditagih bulanan",
+      "billingYearly": "$15 / bulan · ditagih tahunan",
+      "features": [
+        "Semua di Gratis",
+        "Chat situs web + kotak masuk bersama",
+        "Pratinjau dukungan prioritas yang direncanakan"
+      ],
+      "cta": "Pratinjau Pro"
+    },
+    "businessPlan": {
+      "name": "Bisnis",
+      "badge": "Harga pratinjau — tanpa biaya",
+      "billingMonthly": "$49 / bulan · ditagih bulanan",
+      "billingYearly": "$39 / bulan · ditagih tahunan",
+      "features": [
+        "Semua di Pro",
+        "Beberapa kursi staf (pratinjau)",
+        "Bantuan penyiapan terpandu"
+      ],
+      "cta": "Bicara dengan kami"
+    },
+    "pricingNote": "Harga pratinjau saja: tidak ada pembayaran yang dikumpulkan. Batas paket dan fitur berbayar bersifat ilustratif dan dapat disesuaikan sebelum penagihan diluncurkan.",
+    "faqTitle": "Pertanyaan yang sering diajukan",
+    "faqs": [
+      {
+        "q": "Apa arti \"async-first\" sebenarnya?",
+        "a": "Artinya pelanggan meninggalkan pesan dan mendapat jendela balasan yang jujur (seperti \"kami akan kembali dalam beberapa jam\") alih-alih menunggu chat langsung. Anda menjawab sesuai jadwal Anda, dan tidak ada yang cemas menonton tiga titik memantul."
+      },
+      {
+        "q": "Berapa lama penyiapan?",
+        "a": "Sebagian besar usaha kecil sudah berjalan dalam waktu kurang dari sepuluh menit. Hubungkan kotak masuk Anda, masukkan beberapa FAQ, dan AI langsung mulai menulis balasan yang terdengar seperti Anda."
+      },
+      {
+        "q": "Apakah AI mengirim balasan sendiri?",
+        "a": "Tidak. AI selalu menyusun draf — seseorang di tim Anda menyetujui sebelum apa pun sampai ke pelanggan. Anda tetap memegang kendali atas suara Anda; AI hanya menghilangkan kegiatan mengetik."
+      },
+      {
+        "q": "Apa yang termasuk dalam paket gratis?",
+        "a": "Paket gratis memberi Anda kotak masuk bersama dan jatah bulanan gratis yang lapang untuk draf AI, plus panduan bantuan. Paket berbayar hanya pratinjau sampai penagihan aktif."
+      },
+      {
+        "q": "Kanal apa yang bisa saya hubungkan?",
+        "a": "Tersedia hari ini: chat situs web mandiri dan kotak masuk bersama merchant. Email dan pesan media sosial (termasuk WhatsApp dan Instagram) belum terhubung; keduanya memerlukan penyiapan dengan pendampingan dan akan diluncurkan secara terpisah. Kami hanya akan mencantumkan kanal sebagai tersedia setelah benar-benar terhubung."
+      }
+    ],
+    "finalTitle": "Hadirkan ketenangan ke kotak masuk Anda",
+    "finalSub": "Siap dalam hitungan menit · Gratis untuk usaha kecil · www.nudgeso.com",
+    "finalCta": "Dapatkan NudgeSo gratis",
+    "footerTag": "NudgeSo · Dukungan Pelanggan yang Tenang · www.nudgeso.com",
+    "privacy": "Kebijakan Privasi",
+    "terms": "Ketentuan Layanan"
   },
   "it": {
-    "metaTitle": "NudgeSo — Supporto clienti sereno per piccole imprese",
-    "metaDescription": "Supporto async-first che prepara bozze di risposte calorose, mette in coda ciò che conta e ti lascia spazio per respirare.",
+    "metaTitle": "NudgeSo — Assistenza clienti serena per le piccole imprese",
+    "metaDescription": "Supporto async-first che redige risposte cordiali, mette in coda ciò che conta e ti lascia spazio per respirare.",
     "nav": [
       "Prodotto",
       "Prezzi",
@@ -2136,26 +2172,26 @@ window.NS_LANDING_LOCALES = {
     "signIn": "Accedi",
     "startFree": "Inizia gratis",
     "heroEyebrow": "Helpdesk AI async-first",
-    "heroTitle": "Supporto clienti sereno per piccole imprese",
-    "heroSub": "Supporto async-first che prepara bozze di risposte calorose, mette in coda ciò che conta e ti lascia spazio per respirare — basta vivere nella tua casella di posta.",
-    "featuresTitle": "Tutto ciò che serve alla tua casella di posta, nulla di più",
-    "featuresSub": "Pensato per piccole imprese che vogliono rispondere bene senza il caos.",
+    "heroTitle": "Assistenza clienti serena per le piccole imprese",
+    "heroSub": "Supporto async-first che redige risposte cordiali, mette in coda ciò che conta e ti lascia spazio per respirare — non dovrai più vivere nella tua casella di posta.",
+    "featuresTitle": "Tutto ciò che serve alla tua casella di posta, niente che non le serva",
+    "featuresSub": "Pensato per le piccole imprese che vogliono rispondere bene senza il caos.",
     "features": [
       {
         "title": "Una coda serena",
-        "body": "Email, chat e conversazioni social unite e ordinate per priorità, così nulla sfugge."
+        "body": "Disponibili oggi: chat per il sito web e una casella di posta condivisa per esercenti. I connettori per email e social verranno introdotti separatamente, quindi non fingiamo che siano già integrati."
       },
       {
         "title": "Bozze con la tua voce",
         "body": "L'AI impara il tuo tono e suggerisce risposte che vorrai davvero inviare."
       },
       {
-        "title": "Configurazione in pochi minuti",
+        "title": "Configura in pochi minuti",
         "body": "Collega la tua casella di posta in pochi clic, importa le tue FAQ e l'AI conosce già la tua voce."
       },
       {
         "title": "Nessun ping a tarda notte",
-        "body": "Asincrono per impostazione predefinita, i clienti ricevono tempi di risposta onesti e la tua attività si riprende le serate."
+        "body": "Asincrono per impostazione predefinita: i clienti ricevono tempi di risposta onesti e la tua azienda si riprende le serate."
       }
     ],
     "howTitle": "Come funziona",
@@ -2163,62 +2199,62 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Collega la tua casella di posta",
-        "body": "Collega email, chat e canali social. NudgeSo unisce tutto in un'unica coda condivisa."
+        "body": "Configura la chat per il sito web e la casella condivisa disponibili oggi. I connettori per email e social richiedono una configurazione separata e assistita."
       },
       {
-        "title": "L'AI prepara bozze di risposte amichevoli",
-        "body": "L'AI legge la conversazione, abbina il tuo tono dalle risposte passate e prepara una bozza di risposta calorosa per ogni messaggio."
+        "title": "L'AI redige risposte cordiali",
+        "body": "L'AI legge la conversazione, allinea il tono alle tue risposte passate e redige una risposta cordiale per ogni messaggio."
       },
       {
-        "title": "Tu approvi, dai una spinta, vai avanti",
+        "title": "Approvi, solleciti, vai avanti",
         "body": "Modifica una parola o premi invio. Le conversazioni si mettono in pausa da sole finché i clienti non ricevono risposta. Nessuna pressione, mai."
       }
     ],
     "pricingTitle": "Prezzi semplici",
-    "pricingSub": "Inizia gratis, passa a un piano superiore quando la casella condivisa non basta più alla tua attività.",
+    "pricingSub": "Inizia gratis. I piani a pagamento sono solo in anteprima mentre completiamo la fatturazione.",
     "monthly": "Mensile",
     "yearly": "Annuale",
     "saveNote": "~21% di sconto",
     "freePlan": {
-      "name": "Gratis",
+      "name": "Gratuito",
       "billing": "Per una piccola impresa che vuole provarlo",
       "features": [
         "Casella di posta condivisa",
         "Una generosa quota mensile di bozze AI gratuite",
-        "Supporto della community"
+        "Guida di supporto"
       ],
       "cta": "Inizia gratis"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Più popolare",
-      "billingMonthly": "$19 / mese · fatturazione mensile",
-      "billingYearly": "$15 / mese · fatturazione annuale",
+      "badge": "Piano in anteprima",
+      "billingMonthly": "$19 / mese · con fatturazione mensile",
+      "billingYearly": "$15 / mese · con fatturazione annuale",
       "features": [
-        "Tutto ciò che è incluso in Gratis",
-        "Canali email, chat e social",
-        "Supporto prioritario"
+        "Tutto ciò che è incluso in Gratuito",
+        "Chat per il sito web + casella condivisa",
+        "Anteprima del supporto prioritario pianificato"
       ],
-      "cta": "Prova Pro gratis"
+      "cta": "Anteprima Pro"
     },
     "businessPlan": {
-      "name": "Business",
-      "badge": "Prezzo di esempio — regolabile",
-      "billingMonthly": "$49 / mese · fatturazione mensile",
-      "billingYearly": "$39 / mese · fatturazione annuale",
+      "name": "Azienda",
+      "badge": "Prezzo in anteprima — nessun addebito",
+      "billingMonthly": "$49 / mese · con fatturazione mensile",
+      "billingYearly": "$39 / mese · con fatturazione annuale",
       "features": [
         "Tutto ciò che è incluso in Pro",
-        "Più postazioni per il personale",
-        "Supporto per l'onboarding e un referente dedicato"
+        "Più postazioni per il personale (anteprima)",
+        "Aiuto guidato per la configurazione"
       ],
-      "cta": "Inizia la prova gratuita"
+      "cta": "Parlaci"
     },
-    "pricingNote": "I limiti dei piani sono indicativi e possono essere modificati prima del lancio.",
+    "pricingNote": "Solo prezzi in anteprima: non viene raccolto alcun pagamento. I limiti dei piani e le funzionalità a pagamento sono indicativi e possono essere modificati prima del lancio della fatturazione.",
     "faqTitle": "Domande frequenti",
     "faqs": [
       {
         "q": "Che cosa significa davvero \"async-first\"?",
-        "a": "Significa che i clienti lasciano un messaggio e ricevono una finestra di risposta onesta (ad esempio \"torniamo tra qualche ora\") invece di aspettare in una chat live. Rispondi secondo i tuoi tempi e nessuno si innervosisce guardando i tre puntini che rimbalzano."
+        "a": "Significa che i clienti lasciano un messaggio e ricevono una finestra di risposta onesta (ad esempio \"torniamo tra qualche ora\") invece di aspettare una chat dal vivo. Rispondi secondo i tuoi tempi e nessuno si innervosisce guardando tre puntini che saltellano."
       },
       {
         "q": "Quanto tempo richiede la configurazione?",
@@ -2226,192 +2262,196 @@ window.NS_LANDING_LOCALES = {
       },
       {
         "q": "L'AI invia risposte da sola?",
-        "a": "No. L'AI prepara sempre una bozza — una persona del tuo team approva prima che qualsiasi cosa raggiunga il cliente. Mantieni il controllo della tua voce; l'AI elimina solo la digitazione."
+        "a": "No. L'AI redige sempre una bozza: una persona del tuo team approva prima che qualsiasi cosa raggiunga il cliente. Mantieni il controllo della tua voce; l'AI elimina solo la digitazione."
       },
       {
-        "q": "Che cosa include il piano gratuito?",
-        "a": "Il piano gratuito ti offre la casella di posta condivisa e una generosa quota mensile di bozze AI gratuite, oltre al supporto della community. È pensato per piccole imprese che vogliono provare un supporto sereno prima di pagare un centesimo."
+        "q": "Che cosa è incluso nel piano gratuito?",
+        "a": "Il piano gratuito include la casella di posta condivisa e una generosa quota mensile di bozze AI gratuite, oltre alla guida di supporto. I piani a pagamento sono solo in anteprima finché la fatturazione non sarà attiva."
       },
       {
         "q": "Quali canali posso collegare?",
-        "a": "Email, chat live e i principali canali di messaggistica social arrivano tutti nella stessa coda con Pro. Qualunque canale usino i tuoi clienti, rispondi da un unico posto sereno."
+        "a": "Disponibili oggi: la chat indipendente per il sito web e la casella condivisa per esercenti. Email e messaggistica social (inclusi WhatsApp e Instagram) non sono ancora collegati; richiedono una configurazione assistita e verranno introdotti separatamente. Elencheremo un canale come disponibile solo quando sarà realmente collegato."
       }
     ],
     "finalTitle": "Porta la calma nella tua casella di posta",
-    "finalSub": "Configurazione in pochi minuti · Gratis per le piccole imprese · www.nudgeso.com",
+    "finalSub": "Configura in pochi minuti · Gratuito per le piccole imprese · www.nudgeso.com",
     "finalCta": "Ottieni NudgeSo gratis",
-    "footerTag": "NudgeSo · Supporto clienti sereno · www.nudgeso.com"
+    "footerTag": "NudgeSo · Assistenza clienti serena · www.nudgeso.com",
+    "privacy": "Informativa sulla privacy",
+    "terms": "Termini di servizio"
   },
   "ko": {
-    "metaTitle": "NudgeSo — 소규모 비즈니스를 위한 차분한 고객 지원",
-    "metaDescription": "비동기 우선 지원으로 따뜻한 답변 초안을 작성하고, 중요한 메시지를 큐에 정리하며, 숨 쉴 공간을 남겨 드립니다.",
+    "metaTitle": "NudgeSo — 소규모 사업자를 위한 차분한 고객 지원",
+    "metaDescription": "비동기 우선 지원으로 따뜻한 답변 초안을 만들고, 중요한 메시지는 큐에 정리하며, 숨 돌릴 여유를 남겨 드립니다.",
     "nav": [
       "제품",
-      "가격",
+      "요금제",
       "작동 방식",
       "FAQ"
     ],
     "signIn": "로그인",
-    "startFree": "무료로 시작하기",
+    "startFree": "무료로 시작",
     "heroEyebrow": "비동기 우선 AI 헬프데스크",
-    "heroTitle": "소규모 비즈니스를 위한 차분한 고객 지원",
-    "heroSub": "비동기 우선 지원으로 따뜻한 답변을 초안으로 만들고, 중요한 메시지를 큐에 정리하며, 숨 쉴 공간을 남겨 드립니다 — 더 이상 받은편지함에 갇혀 살지 마세요.",
+    "heroTitle": "소규모 사업자를 위한 차분한 고객 지원",
+    "heroSub": "비동기 우선 지원으로 따뜻한 답변 초안을 만들고, 중요한 메시지는 큐에 정리하며, 숨 돌릴 여유를 남겨 드립니다 — 더 이상 받은편지함에 갇혀 지내지 마세요.",
     "featuresTitle": "받은편지함에 필요한 모든 것, 필요 없는 것은 없습니다",
-    "featuresSub": "혼란 없이 제대로 답장하고 싶은 소규모 비즈니스를 위해 만들었습니다.",
+    "featuresSub": "혼란 없이 제대로 답장하고 싶은 소규모 사업자를 위해 만들었습니다.",
     "features": [
       {
         "title": "하나의 차분한 큐",
-        "body": "이메일, 채팅, 소셜 스레드가 하나로 합쳐지고 우선순위가 정해져, 놓치는 일이 없습니다."
+        "body": "현재 제공: 웹사이트 채팅과 공유 판매자 받은편지함. 이메일 및 소셜 연동은 별도로 출시 중이므로, 이미 통합된 것처럼 말하지 않습니다."
       },
       {
-        "title": "당신의 목소리로 만든 초안",
-        "body": "AI가 당신의 말투를 학습해 실제로 보내고 싶은 답변을 제안합니다."
+        "title": "당신의 말투로 작성하는 초안",
+        "body": "AI가 당신의 톤을 학습하고, 실제로 보내고 싶은 답변을 제안합니다."
       },
       {
         "title": "몇 분 만에 설정",
-        "body": "몇 번의 클릭으로 받은편지함을 연결하고 FAQ를 가져오면, AI가 이미 당신의 말투를 알고 있습니다."
+        "body": "몇 번의 클릭으로 받은편지함을 연결하고 FAQ를 가져오면 AI가 이미 당신의 말투를 압니다."
       },
       {
         "title": "늦은 밤 알림 없음",
-        "body": "기본이 비동기라 고객은 정직한 답변 시간을 안내받고, 비즈니스는 저녁 시간을 되찾습니다."
+        "body": "기본이 비동기라서 고객은 정직한 답변 시간을 안내받고, 비즈니스는 저녁 시간을 되찾습니다."
       }
     ],
     "howTitle": "작동 방식",
-    "howSub": "시끄러운 받은편지함을 차분한 받은편지함으로 바꾸는 세 가지 조용한 단계.",
+    "howSub": "시끄러운 받은편지함에서 차분한 받은편지함으로 가는 세 가지 조용한 단계.",
     "howSteps": [
       {
         "title": "받은편지함 연결",
-        "body": "이메일, 채팅, 소셜 채널을 연결하세요. NudgeSo가 모든 것을 하나의 공유 큐로 합칩니다."
+        "body": "현재 제공되는 웹사이트 채팅과 공유 받은편지함을 설정하세요. 이메일 및 소셜 연동은 별도로 도움을 받아 설정합니다."
       },
       {
-        "title": "AI가 친절한 답변 초안 작성",
-        "body": "AI가 스레드를 읽고 과거 답변에서 말투를 맞춰 모든 메시지에 따뜻한 답변 초안을 작성합니다."
+        "title": "AI가 친근한 답변 초안 작성",
+        "body": "AI가 스레드를 읽고 이전 답변에서 당신의 톤을 맞춰 모든 메시지에 따뜻한 답변 초안을 작성합니다."
       },
       {
-        "title": "승인하고, 알림을 보내고, 다음으로",
-        "body": "단어 하나를 고치거나 전송만 누르세요. 고객이 답변을 받을 때까지 스레드는 자동으로 잠시 보류됩니다. 부담은 전혀 없습니다."
+        "title": "승인하고, 알림을 보내고, 넘어가세요",
+        "body": "단어 하나를 고치거나 전송을 누르세요. 고객이 답변을 받을 때까지 스레드는 스스로 잠시 멈춥니다. 어떤 부담도 없습니다."
       }
     ],
-    "pricingTitle": "간단한 가격",
-    "pricingSub": "무료로 시작하고, 비즈니스가 공유 받은편지함을 넘어설 때 업그레이드하세요.",
+    "pricingTitle": "간단한 요금제",
+    "pricingSub": "무료로 시작하세요. 유료 요금제는 결제 시스템이 완성되는 동안 미리보기 전용입니다.",
     "monthly": "월간",
     "yearly": "연간",
     "saveNote": "~21% 할인",
     "freePlan": {
       "name": "무료",
-      "billing": "소규모 비즈니스가 사용해 보기 좋은 플랜",
+      "billing": "체험해 보는 소규모 사업자용",
       "features": [
         "공유 받은편지함",
-        "넉넉한 월간 무료 AI 초안 한도",
-        "커뮤니티 지원"
+        "넉넉한 월간 무료 AI 초안 제공량",
+        "도움말 가이드"
       ],
-      "cta": "무료로 시작하기"
+      "cta": "무료로 시작"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "가장 인기",
+      "badge": "미리보기 요금제",
       "billingMonthly": "$19 / 월 · 월간 결제",
       "billingYearly": "$15 / 월 · 연간 결제",
       "features": [
         "무료 플랜의 모든 기능",
-        "이메일, 채팅 및 소셜 채널",
-        "우선 지원"
+        "웹사이트 채팅 + 공유 받은편지함",
+        "예정된 우선 지원 미리보기"
       ],
-      "cta": "Pro 무료 체험"
+      "cta": "Pro 미리보기"
     },
     "businessPlan": {
       "name": "Business",
-      "badge": "예시 가격 — 조정 가능",
+      "badge": "미리보기 가격 — 청구 없음",
       "billingMonthly": "$49 / 월 · 월간 결제",
       "billingYearly": "$39 / 월 · 연간 결제",
       "features": [
         "Pro 플랜의 모든 기능",
-        "여러 직원 좌석",
-        "온보딩 지원 및 전담 담당자"
+        "직원 좌석 여러 개(미리보기)",
+        "안내된 설정 지원"
       ],
-      "cta": "무료 체험 시작"
+      "cta": "문의하기"
     },
-    "pricingNote": "플랜 한도는 예시이며 출시 전에 조정될 수 있습니다.",
+    "pricingNote": "미리보기 가격일 뿐 결제 금액은 청구되지 않습니다. 요금제 한도와 유료 기능은 예시이며 결제 출시 전에 조정될 수 있습니다.",
     "faqTitle": "자주 묻는 질문",
     "faqs": [
       {
-        "q": "\"비동기 우선\"은 실제로 무슨 뜻인가요?",
-        "a": "고객이 메시지를 남기면 실시간 채팅을 기다리는 대신 정직한 답변 시간(예: \"몇 시간 후에 다시 연락드리겠습니다\")을 안내받는다는 뜻입니다. 당신은 자신의 일정에 맞춰 답변하고, 누구도 점 세 개가 깜빡이는 것을 보며 초조해하지 않습니다."
+        "q": "“비동기 우선”은 실제로 무슨 뜻인가요?",
+        "a": "고객이 메시지를 남기면 실시간 채팅을 기다리는 대신 정직한 답변 시간(예: “몇 시간 후에 돌아옵니다”)을 안내받는다는 뜻입니다. 당신은 자신의 일정에 맞춰 답변하고, 아무도 점 세 개가 튀는 것을 보며 초조해하지 않습니다."
       },
       {
         "q": "설정은 얼마나 걸리나요?",
-        "a": "대부분의 소규모 비즈니스는 10분 이내에 시작할 수 있습니다. 받은편지함을 연결하고 FAQ 몇 개를 넣으면 AI가 바로 당신처럼 들리는 답변을 쓰기 시작합니다."
+        "a": "대부분의 소규모 사업자는 10분 이내에 시작할 수 있습니다. 받은편지함을 연결하고 FAQ 몇 개를 넣으면 AI가 이미 당신처럼 들리는 답변을 쓰기 시작합니다."
       },
       {
         "q": "AI가 스스로 답변을 보내나요?",
-        "a": "아니요. AI는 항상 초안만 작성하며, 고객에게 무엇이든 전달되기 전에 팀의 사람이 승인합니다. 말투에 대한 통제권은 당신에게 있고, AI는 타이핑만 줄여 줍니다."
+        "a": "아니요. AI는 항상 초안만 작성하며, 고객에게 전달되기 전에 팀의 사람이 승인합니다. 말투에 대한 통제권은 당신에게 있고, AI는 타이핑만 덜어줍니다."
       },
       {
-        "q": "무료 플랜에는 무엇이 포함되나요?",
-        "a": "무료 플랜은 공유 받은편지함과 넉넉한 월간 무료 AI 초안 한도, 커뮤니티 지원을 제공합니다. 한 푼도 내기 전에 차분한 지원을 시도해 보고 싶은 소규모 비즈니스를 위해 만들어졌습니다."
+        "q": "무료 요금제에는 무엇이 포함되나요?",
+        "a": "무료 요금제는 공유 받은편지함과 넉넉한 월간 무료 AI 초안 제공량, 도움말 가이드를 제공합니다. 유료 요금제는 결제가 출시될 때까지 미리보기 전용입니다."
       },
       {
         "q": "어떤 채널을 연결할 수 있나요?",
-        "a": "이메일, 실시간 채팅, 주요 소셜 메시징 채널이 모두 Pro에서 같은 큐로 들어옵니다. 고객이 무엇을 사용하든, 하나의 차분한 곳에서 답변합니다."
+        "a": "현재 제공: 독립형 웹사이트 채팅과 판매자 공유 받은편지함. 이메일 및 소셜 메시징(WhatsApp, Instagram 포함)은 아직 연결되지 않았으며, 도움을 받아 별도로 설정해야 하고 별도로 출시될 예정입니다. 실제로 연결된 채널만 사용 가능한 것으로 표시하겠습니다."
       }
     ],
     "finalTitle": "받은편지함에 차분함을 더하세요",
-    "finalSub": "몇 분 만에 설정 · 소규모 비즈니스 무료 · www.nudgeso.com",
-    "finalCta": "NudgeSo 무료로 시작하기",
-    "footerTag": "NudgeSo · 차분한 고객 지원 · www.nudgeso.com"
+    "finalSub": "몇 분 만에 설정 · 소규모 사업자 무료 · www.nudgeso.com",
+    "finalCta": "NudgeSo 무료로 받기",
+    "footerTag": "NudgeSo · 차분한 고객 지원 · www.nudgeso.com",
+    "privacy": "개인정보 처리방침",
+    "terms": "서비스 이용약관"
   },
   "ja": {
-    "metaTitle": "NudgeSo — 小規模事業者のための、落ち着いたカスタマーサポート",
-    "metaDescription": "非同期ファーストのサポートが、温かい返信の下書きを作成し、大切な問い合わせを整理し、息をつく余白を生み出します。",
+    "metaTitle": "NudgeSo — 小規模事業者のための穏やかなカスタマーサポート",
+    "metaDescription": "非同期を基本としたサポート。温かい返信を下書きし、重要なものをキューにまとめ、息つく余白を残します。",
     "nav": [
       "製品",
       "料金",
       "仕組み",
       "FAQ"
     ],
-    "signIn": "ログイン",
+    "signIn": "サインイン",
     "startFree": "無料で始める",
-    "heroEyebrow": "非同期ファーストのAIヘルプデスク",
-    "heroTitle": "小規模事業者のための、落ち着いたカスタマーサポート",
-    "heroSub": "非同期ファーストのサポートが、温かい返信の下書きを作成し、大切な問い合わせを優先整理し、息をつく余白を生み出します — もう受信トレイに縛られることはありません。",
-    "featuresTitle": "受信トレイに必要なものはすべて、不要なものは何も",
-    "featuresSub": "混乱なく、しっかり返信したい小規模事業者のために作られました。",
+    "heroEyebrow": "非同期を基本としたAIヘルプデスク",
+    "heroTitle": "小規模事業者のための穏やかなカスタマーサポート",
+    "heroSub": "非同期を基本としたサポートが、温かい返信を下書きし、重要なものをキューにまとめ、息つく余白を残します — もう受信トレイに住み続ける必要はありません。",
+    "featuresTitle": "受信トレイに必要なすべてを、不要なものはなしで",
+    "featuresSub": "混沌とせず、丁寧に返信したい小規模事業者のために作られています。",
     "features": [
       {
-        "title": "ひとつの落ち着いたキュー",
-        "body": "メール、チャット、ソーシャルのスレッドを統合して優先順位を付け、見落としが起きないようにします。"
+        "title": "ひとつの穏やかなキュー",
+        "body": "現在利用可能：ウェブサイトチャットと事業者向け共有受信トレイ。メールとソーシャルのコネクタは別途展開中のため、すでに統合済みとは装いません。"
       },
       {
         "title": "あなたの声で下書き",
-        "body": "AIがあなたのトーンを学び、実際に送りたいと思える返信を提案します。"
+        "body": "AIがあなたの口調を学び、実際に送りたくなる返信を提案します。"
       },
       {
-        "title": "数分でセットアップ",
-        "body": "受信トレイを数クリックで接続し、FAQを取り込めば、AIはすでにあなたの声を理解しています。"
+        "title": "数分で設定",
+        "body": "数クリックで受信トレイを接続し、FAQを読み込めば、AIはすでにあなたの声を知っています。"
       },
       {
-        "title": "深夜の通知はありません",
-        "body": "デフォルトで非同期。顧客には誠実な返信目安が伝わり、ビジネスには夜の時間が戻ります。"
+        "title": "深夜の通知なし",
+        "body": "デフォルトで非同期。顧客には正直な返信目安を伝え、ビジネスには夜の時間を取り戻します。"
       }
     ],
-    "howTitle": "仕組み",
-    "howSub": "騒がしい受信トレイから落ち着いた受信トレイへ、静かな3つのステップ。",
+    "howTitle": "使い方",
+    "howSub": "騒がしい受信トレイから穏やかな受信トレイまでの、静かな3ステップ。",
     "howSteps": [
       {
         "title": "受信トレイを接続",
-        "body": "メール、チャット、ソーシャルのチャネルを接続。NudgeSoがすべてをひとつの共有キューに統合します。"
+        "body": "現在利用可能なウェブサイトチャットと共有受信トレイを設定します。メールとソーシャルのコネクタは別途、サポート付きの設定です。"
       },
       {
-        "title": "AIがフレンドリーな返信を下書き",
-        "body": "AIがスレッドを読み、過去の返信からあなたのトーンに合わせ、すべてのメッセージに温かい答えの下書きを作成します。"
+        "title": "AIが親しみやすい返信を下書き",
+        "body": "AIはスレッドを読み、過去の返信からあなたの口調に合わせて、すべてのメッセージに温かい回答を下書きします。"
       },
       {
-        "title": "承認して、そっと送り出して、次へ",
-        "body": "一言を調整するか送信するだけ。顧客の返信が届くまでスレッドは自動でスヌーズします。プレッシャーは一切ありません。"
+        "title": "承認して、ひと押しして、次へ",
+        "body": "一言直すか、送信を押すだけ。スレッドは顧客から返信があるまで自動でスヌーズします。プレッシャーは一切ありません。"
       }
     ],
     "pricingTitle": "シンプルな料金",
-    "pricingSub": "無料で始め、共有受信トレイでは足りなくなったらアップグレード。",
+    "pricingSub": "無料で始められます。有料プランは請求機能の準備中のため、プレビューのみです。",
     "monthly": "月払い",
     "yearly": "年払い",
     "saveNote": "約21%オフ",
@@ -2420,67 +2460,69 @@ window.NS_LANDING_LOCALES = {
       "billing": "試してみたい小規模事業者向け",
       "features": [
         "共有受信トレイ",
-        "無料AI下書きの十分な月間枠",
-        "コミュニティサポート"
+        "無料AI下書きのゆとりある月間枠",
+        "ヘルプガイド"
       ],
       "cta": "無料で始める"
     },
     "proPlan": {
-      "name": "プロ",
-      "badge": "一番人気",
-      "billingMonthly": "$19 / 月 · 月額請求",
-      "billingYearly": "$15 / 月 · 年額請求",
+      "name": "Pro",
+      "badge": "プレビュープラン",
+      "billingMonthly": "$19 / 月 · 毎月請求",
+      "billingYearly": "$15 / 月 · 毎年請求",
       "features": [
         "無料プランのすべて",
-        "メール、チャット、ソーシャルチャネル",
-        "優先サポート"
+        "ウェブサイトチャット + 共有受信トレイ",
+        "予定されている優先サポートのプレビュー"
       ],
-      "cta": "プロを無料で試す"
+      "cta": "Proをプレビュー"
     },
     "businessPlan": {
       "name": "ビジネス",
-      "badge": "価格例 — 調整可能",
-      "billingMonthly": "$49 / 月 · 月額請求",
-      "billingYearly": "$39 / 月 · 年額請求",
+      "badge": "プレビュー価格 — 請求なし",
+      "billingMonthly": "$49 / 月 · 毎月請求",
+      "billingYearly": "$39 / 月 · 毎年請求",
       "features": [
-        "プロのすべて",
-        "複数のスタッフ用シート",
-        "オンボーディング支援と専任担当者"
+        "Proのすべて",
+        "複数のスタッフ席（プレビュー）",
+        "ガイド付き設定サポート"
       ],
-      "cta": "無料トライアルを開始"
+      "cta": "相談する"
     },
-    "pricingNote": "プラン上限は例示であり、公開前に調整できます。",
+    "pricingNote": "プレビュー価格のみ：支払いは発生しません。プラン上限と有料機能は例示であり、請求開始前に調整される場合があります。",
     "faqTitle": "よくある質問",
     "faqs": [
       {
-        "q": "「非同期ファースト」とは実際どういう意味ですか？",
-        "a": "顧客はメッセージを残し、ライブチャットで待つのではなく、正直な返信目安（「数時間以内に戻ります」など）を受け取るという意味です。自分のスケジュールで返信でき、誰も3つの点が跳ねるのを見て不安になることはありません。"
+        "q": "「非同期を基本」とは実際どういう意味ですか？",
+        "a": "顧客はメッセージを残し、ライブチャットで待つのではなく、正直な返信目安（「数時間後に戻ります」など）を受け取るという意味です。自分のペースで回答でき、誰も三つの点が跳ねるのを見て不安になることはありません。"
       },
       {
-        "q": "セットアップにはどのくらいかかりますか？",
-        "a": "ほとんどの小規模事業者は10分以内に稼働できます。受信トレイを接続し、いくつかのFAQを入れるだけで、AIはあなたのように聞こえる返信を書き始めます。"
+        "q": "設定にはどのくらいかかりますか？",
+        "a": "ほとんどの小規模事業者は10分以内に稼働できます。受信トレイを接続し、いくつかのFAQを入れるだけで、AIはあなたのように聞こえる返信をすでに書き始めます。"
       },
       {
-        "q": "AIが自動で返信を送信しますか？",
-        "a": "いいえ。AIは常に下書きを作成し、顧客に届く前にチームの人間が承認します。あなたが声の主導権を保ち、AIは入力の手間を省くだけです。"
+        "q": "AIが勝手に返信を送りますか？",
+        "a": "いいえ。AIは常に下書きを作成し、顧客に届く前にチームの人間が承認します。あなたの声のコントロールはあなたに残り、AIはタイピングを取り除くだけです。"
       },
       {
         "q": "無料プランには何が含まれますか？",
-        "a": "無料プランでは、共有受信トレイと無料AI下書きの十分な月間枠、コミュニティサポートが利用できます。支払う前に落ち着いたサポートを試したい小規模事業者向けに作られています。"
+        "a": "無料プランでは共有受信トレイと、無料AI下書きのゆとりある月間枠、さらにヘルプガイドが利用できます。有料プランは請求開始までプレビューのみです。"
       },
       {
         "q": "どのチャネルを接続できますか？",
-        "a": "メール、ライブチャット、主要なソーシャルメッセージングチャネルは、プロではすべて同じキューに届きます。顧客が何を使っていても、ひとつの落ち着いた場所から返信できます。"
+        "a": "現在利用可能：独立したウェブサイトチャットと事業者向け共有受信トレイ。メールとソーシャルメッセージ（WhatsAppやInstagramを含む）はまだ接続されていません。これらはサポート付きの設定が必要で、別途展開されます。チャネルは実際に接続できてから初めて利用可能として記載します。"
       }
     ],
-    "finalTitle": "受信トレイに落ち着きを",
-    "finalSub": "数分でセットアップ · 小規模事業者は無料 · www.nudgeso.com",
+    "finalTitle": "受信トレイに穏やかさを",
+    "finalSub": "数分で設定 · 小規模事業者は無料 · www.nudgeso.com",
     "finalCta": "NudgeSoを無料で始める",
-    "footerTag": "NudgeSo · 落ち着いたカスタマーサポート · www.nudgeso.com"
+    "footerTag": "NudgeSo · 穏やかなカスタマーサポート · www.nudgeso.com",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約"
   },
   "ms": {
     "metaTitle": "NudgeSo — Sokongan Pelanggan yang Tenang untuk perniagaan kecil",
-    "metaDescription": "Sokongan yang mengutamakan tak segerak yang merangka jawapan mesra, menyusun perkara penting dalam baris giliran, dan memberi anda ruang untuk bernafas.",
+    "metaDescription": "Sokongan berasaskan async yang merangka jawapan mesra, menyusun perkara penting, dan memberi anda ruang untuk bernafas.",
     "nav": [
       "Produk",
       "Harga",
@@ -2489,27 +2531,27 @@ window.NS_LANDING_LOCALES = {
     ],
     "signIn": "Log masuk",
     "startFree": "Mula percuma",
-    "heroEyebrow": "Meja bantuan AI yang mengutamakan tak segerak",
+    "heroEyebrow": "Meja bantuan AI berasaskan async",
     "heroTitle": "Sokongan Pelanggan yang Tenang untuk perniagaan kecil",
-    "heroSub": "Sokongan yang mengutamakan tak segerak yang merangka jawapan mesra, menyusun perkara penting dalam baris giliran, dan memberi anda ruang untuk bernafas — tidak lagi terperangkap dalam peti masuk anda.",
+    "heroSub": "Sokongan berasaskan async yang merangka jawapan mesra, menyusun perkara penting, dan memberi anda ruang untuk bernafas — tidak lagi hidup dalam peti masuk anda.",
     "featuresTitle": "Semua yang peti masuk anda perlukan, tiada yang tidak perlu",
     "featuresSub": "Dibina untuk perniagaan kecil yang mahu membalas dengan baik tanpa kekacauan.",
     "features": [
       {
-        "title": "Satu baris giliran yang tenang",
-        "body": "E-mel, sembang dan utas media sosial digabungkan dan diberi keutamaan, supaya tiada perkara terlepas pandang."
+        "title": "Satu giliran yang tenang",
+        "body": "Tersedia hari ini: sembang laman web dan peti masuk pedagang yang dikongsi. Penyambung e-mel dan sosial dilancarkan secara berasingan, jadi kami tidak berpura-pura ia sudah digabungkan."
       },
       {
-        "title": "Draf dalam gaya anda",
+        "title": "Draf dalam nada anda",
         "body": "AI mempelajari nada anda dan mencadangkan balasan yang benar-benar ingin anda hantar."
       },
       {
-        "title": "Sediakan dalam beberapa minit",
-        "body": "Sambungkan peti masuk anda dengan beberapa klik, import Soalan Lazim anda, dan AI sudah mengenali gaya anda."
+        "title": "Siap dalam beberapa minit",
+        "body": "Sambungkan peti masuk anda dengan beberapa klik, import Soalan Lazim anda, dan AI sudah mengenali nada anda."
       },
       {
         "title": "Tiada ping lewat malam",
-        "body": "Secara lalai tak segerak, pelanggan mendapat masa balasan yang jujur dan perniagaan anda mendapat semula waktu malamnya."
+        "body": "Async secara lalai, pelanggan mendapat masa balasan yang jujur dan perniagaan anda mendapat kembali waktu malamnya."
       }
     ],
     "howTitle": "Cara ia berfungsi",
@@ -2517,234 +2559,118 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Sambungkan peti masuk anda",
-        "body": "Sambungkan e-mel, sembang dan saluran sosial anda. NudgeSo menggabungkan semuanya ke dalam satu baris giliran dikongsi."
+        "body": "Sediakan sembang laman web dan peti masuk dikongsi yang tersedia hari ini. Penyambung e-mel dan sosial ialah persediaan berasingan dengan bantuan."
       },
       {
         "title": "AI merangka balasan mesra",
-        "body": "AI membaca utas, memadankan nada anda daripada balasan lalu, dan merangka jawapan mesra untuk setiap mesej."
+        "body": "AI membaca urutan perbualan, memadankan nada anda daripada balasan lalu, dan merangka jawapan mesra untuk setiap mesej."
       },
       {
         "title": "Anda luluskan, beri dorongan, teruskan",
-        "body": "Ubah satu perkataan atau tekan hantar. Utas ditangguhkan sendiri sehingga pelanggan mendapat balasan. Tiada tekanan, sama sekali."
+        "body": "Ubah satu perkataan atau tekan hantar. Urutan perbualan ditangguhkan sendiri sehingga pelanggan menerima balasan. Tiada tekanan, sama sekali."
       }
     ],
-    "pricingTitle": "Harga mudah",
-    "pricingSub": "Mula percuma, naik taraf apabila perniagaan anda melangkaui peti masuk dikongsi.",
+    "pricingTitle": "Harga ringkas",
+    "pricingSub": "Mula percuma. Pelan berbayar adalah pratonton sahaja sementara bil sedang disiapkan.",
     "monthly": "Bulanan",
     "yearly": "Tahunan",
-    "saveNote": "Jimat ~21%",
+    "saveNote": "~21% diskaun",
     "freePlan": {
       "name": "Percuma",
-      "billing": "Untuk perniagaan kecil yang ingin mencubanya",
+      "billing": "Untuk perniagaan kecil yang ingin mencuba",
       "features": [
         "Peti masuk dikongsi",
-        "Elaun bulanan yang banyak untuk draf AI percuma",
-        "Sokongan komuniti"
+        "Elaun bulanan percuma yang banyak untuk draf AI",
+        "Panduan bantuan"
       ],
-      "cta": "Mula secara percuma"
+      "cta": "Mula percuma"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Paling popular",
+      "badge": "Pelan pratonton",
       "billingMonthly": "$19 / bulan · dibilkan bulanan",
       "billingYearly": "$15 / bulan · dibilkan tahunan",
       "features": [
         "Semua dalam Percuma",
-        "E-mel, sembang & saluran sosial",
-        "Sokongan keutamaan"
+        "Sembang laman web + peti masuk dikongsi",
+        "Pratonton sokongan keutamaan yang dirancang"
       ],
-      "cta": "Cuba Pro percuma"
+      "cta": "Pratonton Pro"
     },
     "businessPlan": {
       "name": "Perniagaan",
-      "badge": "Harga contoh — boleh dilaraskan",
+      "badge": "Pratonton harga — tiada caj",
       "billingMonthly": "$49 / bulan · dibilkan bulanan",
       "billingYearly": "$39 / bulan · dibilkan tahunan",
       "features": [
         "Semua dalam Pro",
-        "Berbilang tempat duduk staf",
-        "Bantuan permulaan & kenalan khusus"
+        "Beberapa kerusi kakitangan (pratonton)",
+        "Bantuan persediaan berpandu"
       ],
-      "cta": "Mula percubaan percuma"
+      "cta": "Hubungi kami"
     },
-    "pricingNote": "Had pelan adalah ilustrasi dan boleh dilaraskan sebelum pelancaran.",
+    "pricingNote": "Harga pratonton sahaja: tiada bayaran dikutip. Had pelan dan ciri berbayar adalah ilustratif dan boleh diselaraskan sebelum bil dilancarkan.",
     "faqTitle": "Soalan lazim",
     "faqs": [
       {
-        "q": "Apakah sebenarnya maksud \"mengutamakan tak segerak\"?",
-        "a": "Ia bermaksud pelanggan meninggalkan mesej dan mendapat tetingkap balasan yang jujur (seperti \"kami akan kembali dalam beberapa jam\") dan bukannya menunggu sembang langsung. Anda membalas mengikut jadual anda sendiri, dan tiada siapa berasa cemas melihat tiga titik melantun."
+        "q": "Apakah maksud \"async-first\" sebenarnya?",
+        "a": "Ia bermaksud pelanggan meninggalkan mesej dan mendapat tempoh balasan yang jujur (seperti \"kami akan kembali dalam beberapa jam\") dan bukannya menunggu dalam sembang langsung. Anda menjawab mengikut jadual anda sendiri, dan tiada siapa menjadi cemas melihat tiga titik melantun."
       },
       {
-        "q": "Berapa lama masa persediaan?",
+        "q": "Berapa lama masa yang diambil untuk persediaan?",
         "a": "Kebanyakan perniagaan kecil mula beroperasi dalam masa kurang sepuluh minit. Sambungkan peti masuk anda, masukkan beberapa Soalan Lazim, dan AI sudah mula menulis balasan yang kedengaran seperti anda."
       },
       {
         "q": "Adakah AI menghantar balasan sendiri?",
-        "a": "Tidak. AI sentiasa merangka — seseorang dalam pasukan anda meluluskan sebelum apa-apa sampai kepada pelanggan. Anda kekal mengawal gaya anda; AI hanya menghapuskan kerja menaip."
+        "a": "Tidak. AI sentiasa merangka — ahli pasukan manusia anda meluluskan sebelum apa-apa sampai kepada pelanggan. Anda kekal mengawal nada anda; AI hanya menghilangkan kerja menaip."
       },
       {
         "q": "Apakah yang termasuk dalam pelan percuma?",
-        "a": "Pelan percuma memberi anda peti masuk dikongsi dan elaun bulanan yang banyak untuk draf AI percuma, serta sokongan komuniti. Ia dibina untuk perniagaan kecil yang mahu mencuba sokongan tenang sebelum membayar sesen pun."
+        "a": "Pelan percuma memberi anda peti masuk dikongsi dan elaun bulanan percuma yang banyak untuk draf AI, serta panduan bantuan. Pelan berbayar adalah pratonton sahaja sehingga bil tersedia."
       },
       {
         "q": "Saluran manakah yang boleh saya sambungkan?",
-        "a": "E-mel, sembang langsung dan saluran pemesejan sosial utama semuanya masuk ke baris giliran yang sama pada Pro. Apa pun yang pelanggan anda gunakan, anda membalas dari satu tempat yang tenang."
+        "a": "Tersedia hari ini: sembang laman web tersendiri dan peti masuk dikongsi pedagang. Pemesejan e-mel dan sosial (termasuk WhatsApp dan Instagram) belum disambungkan; ia memerlukan persediaan berbantuan dan akan dilancarkan secara berasingan. Kami hanya akan menyenaraikan saluran sebagai tersedia setelah ia benar-benar disambungkan."
       }
     ],
     "finalTitle": "Bawa ketenangan ke peti masuk anda",
     "finalSub": "Sediakan dalam beberapa minit · Percuma untuk perniagaan kecil · www.nudgeso.com",
     "finalCta": "Dapatkan NudgeSo percuma",
-    "footerTag": "NudgeSo · Sokongan Pelanggan yang Tenang · www.nudgeso.com"
-  },
-  "nl": {
-    "metaTitle": "NudgeSo — Rustige klantenservice voor kleine bedrijven",
-    "metaDescription": "Asynchrone support die warme antwoorden opstelt, wat belangrijk is in de wachtrij zet en je ruimte geeft om adem te halen.",
-    "nav": [
-      "Product",
-      "Prijzen",
-      "Werkwijze",
-      "FAQ"
-    ],
-    "signIn": "Inloggen",
-    "startFree": "Gratis starten",
-    "heroEyebrow": "Asynchroon-eerst AI-helpdesk",
-    "heroTitle": "Rustige klantenservice voor kleine bedrijven",
-    "heroSub": "Asynchrone support die warme antwoorden opstelt, wat belangrijk is in de wachtrij zet en je ruimte geeft om adem te halen — je hoeft niet meer in je inbox te leven.",
-    "featuresTitle": "Alles wat je inbox nodig heeft, niets wat het niet nodig heeft",
-    "featuresSub": "Gebouwd voor kleine bedrijven die goed willen antwoorden zonder de chaos.",
-    "features": [
-      {
-        "title": "Eén rustige wachtrij",
-        "body": "E-mail-, chat- en socialmediathreads samengevoegd en geprioriteerd, zodat er niets tussen wal en schip valt."
-      },
-      {
-        "title": "Concepten in jouw toon",
-        "body": "De AI leert je toon kennen en stelt antwoorden voor die je daadwerkelijk wilt versturen."
-      },
-      {
-        "title": "Binnen enkele minuten ingesteld",
-        "body": "Verbind je inbox met een paar klikken, importeer je FAQ's en de AI kent je toon al."
-      },
-      {
-        "title": "Geen late avondmeldingen",
-        "body": "Standaard asynchroon: klanten krijgen eerlijke antwoordtijden en jouw bedrijf krijgt de avonden terug."
-      }
-    ],
-    "howTitle": "Hoe het werkt",
-    "howSub": "Drie rustige stappen van een drukke inbox naar een rustige.",
-    "howSteps": [
-      {
-        "title": "Verbind je inbox",
-        "body": "Sluit je e-mail, chat en socialmediakanalen aan. NudgeSo voegt alles samen in één gedeelde wachtrij."
-      },
-      {
-        "title": "AI stelt vriendelijke antwoorden op",
-        "body": "De AI leest de thread, stemt je toon af op eerdere antwoorden en stelt voor elk bericht een warm antwoord op."
-      },
-      {
-        "title": "Jij keurt goed, geeft een duwtje, gaat verder",
-        "body": "Pas een woord aan of druk op verzenden. Threads gaan vanzelf in de sluimerstand tot klanten antwoord hebben gekregen. Nooit druk."
-      }
-    ],
-    "pricingTitle": "Eenvoudige prijzen",
-    "pricingSub": "Start gratis en upgrade wanneer je bedrijf de gedeelde inbox ontgroeit.",
-    "monthly": "Maandelijks",
-    "yearly": "Jaarlijks",
-    "saveNote": "~21% korting",
-    "freePlan": {
-      "name": "Gratis",
-      "billing": "Voor een klein bedrijf dat het uitprobeert",
-      "features": [
-        "Gedeelde inbox",
-        "Een royaal maandelijks tegoed aan gratis AI-concepten",
-        "Ondersteuning via de community"
-      ],
-      "cta": "Gratis starten"
-    },
-    "proPlan": {
-      "name": "Pro",
-      "badge": "Meest populair",
-      "billingMonthly": "$19 / maand · maandelijks gefactureerd",
-      "billingYearly": "$15 / maand · jaarlijks gefactureerd",
-      "features": [
-        "Alles uit Gratis",
-        "E-mail-, chat- en socialmediakanalen",
-        "Prioriteitsondersteuning"
-      ],
-      "cta": "Pro gratis proberen"
-    },
-    "businessPlan": {
-      "name": "Business",
-      "badge": "Voorbeeldprijs — aanpasbaar",
-      "billingMonthly": "$49 / maand · maandelijks gefactureerd",
-      "billingYearly": "$39 / maand · jaarlijks gefactureerd",
-      "features": [
-        "Alles uit Pro",
-        "Meerdere medewerkersplekken",
-        "Onboardinghulp & een vast contactpersoon"
-      ],
-      "cta": "Gratis proefperiode starten"
-    },
-    "pricingNote": "Planlimieten zijn indicatief en kunnen vóór de lancering worden aangepast.",
-    "faqTitle": "Veelgestelde vragen",
-    "faqs": [
-      {
-        "q": "Wat betekent \"async-first\" eigenlijk?",
-        "a": "Het betekent dat klanten een bericht achterlaten en een eerlijk antwoordvenster krijgen (zoals \"we zijn over een paar uur terug\") in plaats van te wachten op een livechat. Je antwoordt op je eigen schema en niemand raakt gespannen van drie stuiterende puntjes."
-      },
-      {
-        "q": "Hoe lang duurt de installatie?",
-        "a": "De meeste kleine bedrijven zijn binnen tien minuten operationeel. Verbind je inbox, voeg een paar FAQ's toe en de AI begint al antwoorden te schrijven die zoals jij klinken."
-      },
-      {
-        "q": "Verstuurt de AI zelf antwoorden?",
-        "a": "Nee. De AI stelt altijd concepten op — een mens in je team keurt goed voordat er iets bij de klant terechtkomt. Jij houdt de controle over je toon; de AI haalt alleen het typwerk weg."
-      },
-      {
-        "q": "Wat zit er in het gratis plan?",
-        "a": "Het gratis plan geeft je de gedeelde inbox en een royaal maandelijks tegoed aan gratis AI-concepten, plus ondersteuning via de community. Het is gemaakt voor kleine bedrijven die rustige klantenservice willen proberen voordat ze ook maar een cent betalen."
-      },
-      {
-        "q": "Welke kanalen kan ik koppelen?",
-        "a": "E-mail, livechat en de belangrijkste socialmediaberichtkanalen komen allemaal in dezelfde wachtrij terecht bij Pro. Wat je klanten ook gebruiken, je antwoordt vanuit één rustige plek."
-      }
-    ],
-    "finalTitle": "Breng rust in je inbox",
-    "finalSub": "Binnen enkele minuten ingesteld · Gratis voor kleine bedrijven · www.nudgeso.com",
-    "finalCta": "NudgeSo gratis gebruiken",
-    "footerTag": "NudgeSo · Rustige klantenservice · www.nudgeso.com"
+    "footerTag": "NudgeSo · Sokongan Pelanggan Tenang · www.nudgeso.com",
+    "privacy": "Dasar Privasi",
+    "terms": "Terma Perkhidmatan"
   },
   "no": {
     "metaTitle": "NudgeSo — Rolig kundestøtte for små bedrifter",
-    "metaDescription": "Asynkron-først støtte som lager utkast til varme svar, setter det som betyr noe i kø og gir deg rom til å puste.",
+    "metaDescription": "Asynkron-først støtte som lager varme svarutkast, setter det viktigste i kø og gir deg plass til å puste.",
     "nav": [
       "Produkt",
       "Priser",
-      "Slik fungerer det",
-      "Spørsmål"
+      "Hvordan",
+      "FAQ"
     ],
     "signIn": "Logg inn",
     "startFree": "Start gratis",
-    "heroEyebrow": "Asynkron-først AI-hjelp",
+    "heroEyebrow": "Asynkron-først AI-kundestøtte",
     "heroTitle": "Rolig kundestøtte for små bedrifter",
-    "heroSub": "Asynkron-først støtte som lager utkast til varme svar, setter det som betyr noe i kø og gir deg rom til å puste — slutt på å bo i innboksen.",
-    "featuresTitle": "Alt innboksen trenger, ingenting den ikke trenger",
+    "heroSub": "Asynkron-først støtte som lager varme svarutkast, setter det viktigste i kø og gir deg plass til å puste – du slipper å bo i innboksen.",
+    "featuresTitle": "Alt innboksen trenger – og ingenting den ikke trenger",
     "featuresSub": "Laget for små bedrifter som vil svare godt uten kaoset.",
     "features": [
       {
         "title": "Én rolig kø",
-        "body": "E-post, chat og sosiale tråder slås sammen og prioriteres, så ingenting faller mellom sprekkene."
+        "body": "I dag: nettsidechat og en felles innboks for selgere. E-post- og sosiale koblinger lanseres separat, så vi later ikke som de allerede er slått sammen."
       },
       {
         "title": "Utkast i din stemme",
-        "body": "AI-en lærer tonen din og foreslår svar du faktisk vil sende."
+        "body": "AI-en lærer tonen din og foreslår svar du faktisk har lyst til å sende."
       },
       {
-        "title": "Oppsett på minutter",
-        "body": "Koble til innboksen med noen få klikk, importer de vanlige spørsmålene dine, og AI-en kjenner allerede stemmen din."
+        "title": "Sett opp på minutter",
+        "body": "Koble til innboksen med noen få klikk, importer vanlige spørsmål, og AI-en kjenner allerede stemmen din."
       },
       {
-        "title": "Ingen meldinger sent på kvelden",
+        "title": "Ingen varsler sent på kvelden",
         "body": "Asynkront som standard: kundene får ærlige svartider, og bedriften får kveldene tilbake."
       }
     ],
@@ -2753,62 +2679,62 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Koble til innboksen",
-        "body": "Koble til e-post-, chat- og sosiale kanaler. NudgeSo slår alt sammen i én felles kø."
+        "body": "Sett opp nettsidechatten og den felles innboksen som er tilgjengelig i dag. E-post- og sosiale koblinger er en egen oppsettprosess med veiledning."
       },
       {
-        "title": "AI-en skriver vennlige svar",
-        "body": "AI-en leser tråden, matcher tonen din fra tidligere svar og skriver et varmt svarutkast til hver melding."
+        "title": "AI-en lager vennlige svarutkast",
+        "body": "AI-en leser tråden, matcher tonen din fra tidligere svar og lager et varmt svarutkast til hver melding."
       },
       {
-        "title": "Du godkjenner, purrer, går videre",
-        "body": "Juster et ord eller trykk send. Tråder utsettes av seg selv til kundene får svar. Aldri noe press."
+        "title": "Du godkjenner, gir et dytt og går videre",
+        "body": "Juster et ord eller trykk send. Tråder går i dvale av seg selv til kundene får svar. Aldri noe press."
       }
     ],
     "pricingTitle": "Enkel prising",
-    "pricingSub": "Start gratis, oppgrader når bedriften vokser ut av den felles innboksen.",
+    "pricingSub": "Start gratis. Betalte planer er kun forhåndsvisning mens faktureringen ferdigstilles.",
     "monthly": "Månedlig",
     "yearly": "Årlig",
     "saveNote": "~21 % rabatt",
     "freePlan": {
       "name": "Gratis",
-      "billing": "For en liten bedrift som vil prøve det",
+      "billing": "For en liten bedrift som prøver det ut",
       "features": [
         "Felles innboks",
         "En romslig månedlig kvote med gratis AI-utkast",
-        "Fellesskapsstøtte"
+        "Hjelpeveiledning"
       ],
       "cta": "Start gratis"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Mest populær",
+      "badge": "Forhåndsvisningsplan",
       "billingMonthly": "$19 / måned · faktureres månedlig",
       "billingYearly": "$15 / måned · faktureres årlig",
       "features": [
         "Alt i Gratis",
-        "E-post, chat og sosiale kanaler",
-        "Prioritert støtte"
+        "Nettsidechat + felles innboks",
+        "Forhåndsvisning av planlagt prioritert støtte"
       ],
-      "cta": "Prøv Pro gratis"
+      "cta": "Forhåndsvis Pro"
     },
     "businessPlan": {
       "name": "Bedrift",
-      "badge": "Eksempelpris — kan justeres",
+      "badge": "Forhåndsvisningspris – ingen kostnad",
       "billingMonthly": "$49 / måned · faktureres månedlig",
       "billingYearly": "$39 / måned · faktureres årlig",
       "features": [
         "Alt i Pro",
-        "Flere ansattplasser",
-        "Hjelp ved oppstart og en dedikert kontaktperson"
+        "Flere ansattplasser (forhåndsvisning)",
+        "Veiledet oppsett"
       ],
-      "cta": "Start gratis prøveperiode"
+      "cta": "Snakk med oss"
     },
-    "pricingNote": "Planbegrensningene er illustrerende og kan justeres før lansering.",
+    "pricingNote": "Kun forhåndsvisningspriser: ingen betaling innkreves. Planbegrensninger og betalte funksjoner er eksempler og kan justeres før faktureringen lanseres.",
     "faqTitle": "Ofte stilte spørsmål",
     "faqs": [
       {
         "q": "Hva betyr egentlig «asynkron-først»?",
-        "a": "Det betyr at kunder legger igjen en melding og får et ærlig svarvindu (som «vi er tilbake om noen timer») i stedet for å vente på en sanntidschat. Du svarer når det passer deg, og ingen blir urolige av å se tre prikker hoppe."
+        "a": "Det betyr at kundene legger igjen en melding og får et ærlig svarvindu (for eksempel «vi er tilbake om noen timer») i stedet for å vente på en livechat. Du svarer når det passer deg, og ingen blir urolige av å se tre prikker hoppe."
       },
       {
         "q": "Hvor lang tid tar oppsettet?",
@@ -2816,172 +2742,176 @@ window.NS_LANDING_LOCALES = {
       },
       {
         "q": "Sender AI-en svar på egen hånd?",
-        "a": "Nei. AI-en lager alltid utkast — et menneske på teamet ditt godkjenner før noe når kunden. Du beholder kontrollen over stemmen din; AI-en fjerner bare skrivingen."
+        "a": "Nei. AI-en lager alltid utkast – et menneske på teamet ditt godkjenner før noe når kunden. Du beholder kontrollen over stemmen din; AI-en fjerner bare skrivingen."
       },
       {
         "q": "Hva er inkludert i gratisplanen?",
-        "a": "Gratisplanen gir deg den felles innboksen og en romslig månedlig kvote med gratis AI-utkast, pluss fellesskapsstøtte. Den er laget for små bedrifter som vil prøve rolig kundestøtte før de betaler en krone."
+        "a": "Gratisplanen gir deg den felles innboksen og en romslig månedlig kvote med gratis AI-utkast, i tillegg til hjelpeveiledningen. Betalte planer er kun forhåndsvisning til faktureringen er live."
       },
       {
         "q": "Hvilke kanaler kan jeg koble til?",
-        "a": "E-post, sanntidschat og store kanaler for sosiale meldinger havner alle i samme kø på Pro. Uansett hva kundene bruker, svarer du fra ett rolig sted."
+        "a": "I dag: den frittstående nettsidechatten og den felles innboksen for selgere. E-post og sosiale meldinger (inkludert WhatsApp og Instagram) er ikke koblet til ennå; de krever et veiledet oppsett og lanseres separat. Vi oppgir bare en kanal som tilgjengelig når den faktisk er koblet til."
       }
     ],
-    "finalTitle": "Gi innboksen din ro",
+    "finalTitle": "Skap ro i innboksen",
     "finalSub": "Sett opp på minutter · Gratis for små bedrifter · www.nudgeso.com",
     "finalCta": "Få NudgeSo gratis",
-    "footerTag": "NudgeSo · Rolig kundestøtte · www.nudgeso.com"
+    "footerTag": "NudgeSo · Rolig kundestøtte · www.nudgeso.com",
+    "privacy": "Personvernerklæring",
+    "terms": "Vilkår for bruk"
   },
-  "pl": {
-    "metaTitle": "NudgeSo — Spokojna obsługa klienta dla małych firm",
-    "metaDescription": "Asynchroniczne wsparcie, które przygotowuje ciepłe odpowiedzi, ustawia w kolejce to, co ważne, i zostawia ci przestrzeń na oddech.",
+  "nl": {
+    "metaTitle": "NudgeSo — Rustige klantenservice voor kleine bedrijven",
+    "metaDescription": "Asynchrone support die warme antwoorden opstelt, wat belangrijk is in de wachtrij zet en je ruimte geeft om te ademen.",
     "nav": [
-      "Produkt",
-      "Cennik",
-      "Jak działa",
+      "Product",
+      "Prijzen",
+      "Hoe",
       "FAQ"
     ],
-    "signIn": "Zaloguj się",
-    "startFree": "Zacznij za darmo",
-    "heroEyebrow": "Asynchroniczny helpdesk AI",
-    "heroTitle": "Spokojna obsługa klienta dla małych firm",
-    "heroSub": "Asynchroniczne wsparcie, które przygotowuje ciepłe odpowiedzi, ustawia w kolejce to, co ważne, i daje ci przestrzeń na oddech — koniec z życiem w skrzynce odbiorczej.",
-    "featuresTitle": "Wszystko, czego potrzebuje twoja skrzynka, i nic, czego nie potrzebuje",
-    "featuresSub": "Stworzone dla małych firm, które chcą dobrze odpowiadać bez chaosu.",
+    "signIn": "Inloggen",
+    "startFree": "Gratis starten",
+    "heroEyebrow": "AI-helpdesk met asynchrone aanpak",
+    "heroTitle": "Rustige klantenservice voor kleine bedrijven",
+    "heroSub": "Asynchrone support die warme antwoorden opstelt, wat belangrijk is in de wachtrij zet en je ruimte geeft om te ademen — je hoeft niet meer in je inbox te leven.",
+    "featuresTitle": "Alles wat je inbox nodig heeft, en niets meer",
+    "featuresSub": "Gebouwd voor kleine bedrijven die goed willen antwoorden zonder de chaos.",
     "features": [
       {
-        "title": "Jedna spokojna kolejka",
-        "body": "E-mail, czat i wątki z mediów społecznościowych scalone i uporządkowane według priorytetu, żeby nic nie umykało."
+        "title": "Eén rustige wachtrij",
+        "body": "Nu live: websitechat en een gedeelde inbox voor verkopers. E-mail- en sociale koppelingen worden afzonderlijk uitgerold, dus we doen niet alsof ze al zijn samengevoegd."
       },
       {
-        "title": "Szkice w twoim stylu",
-        "body": "AI uczy się twojego tonu i proponuje odpowiedzi, które naprawdę będziesz chciał wysłać."
+        "title": "Concepten in jouw toon",
+        "body": "De AI leert je toon en stelt antwoorden voor die je echt wilt versturen."
       },
       {
-        "title": "Konfiguracja w kilka minut",
-        "body": "Połącz skrzynkę kilkoma kliknięciami, zaimportuj FAQ, a AI już zna twój ton."
+        "title": "In enkele minuten ingesteld",
+        "body": "Koppel je inbox in een paar klikken, importeer je FAQ's en de AI kent je toon al."
       },
       {
-        "title": "Bez nocnych powiadomień",
-        "body": "Domyślnie asynchronicznie: klienci dostają uczciwe terminy odpowiedzi, a twoja firma odzyskuje wieczory."
+        "title": "Geen late meldingen",
+        "body": "Standaard asynchroon: klanten krijgen eerlijke reactietijden en jouw bedrijf krijgt zijn avonden terug."
       }
     ],
-    "howTitle": "Jak to działa",
-    "howSub": "Trzy ciche kroki od głośnej skrzynki do spokojnej.",
+    "howTitle": "Hoe het werkt",
+    "howSub": "Drie rustige stappen van een rumoerige inbox naar een rustige.",
     "howSteps": [
       {
-        "title": "Połącz swoją skrzynkę",
-        "body": "Podłącz e-mail, czat i kanały społecznościowe. NudgeSo łączy wszystko w jedną współdzieloną kolejkę."
+        "title": "Koppel je inbox",
+        "body": "Stel de websitechat en gedeelde inbox in die nu live zijn. E-mail- en sociale koppelingen vereisen een aparte, begeleide installatie."
       },
       {
-        "title": "AI pisze przyjazne odpowiedzi",
-        "body": "AI czyta wątek, dopasowuje twój ton na podstawie wcześniejszych odpowiedzi i tworzy ciepłą odpowiedź na każdą wiadomość."
+        "title": "AI stelt vriendelijke antwoorden op",
+        "body": "De AI leest het gesprek, stemt je toon af op eerdere antwoorden en stelt voor elk bericht een warm antwoord op."
       },
       {
-        "title": "Zatwierdzasz, przypominasz, ruszasz dalej",
-        "body": "Popraw słowo albo kliknij wyślij. Wątki same się odkładają, dopóki klient nie otrzyma odpowiedzi. Nigdy żadnej presji."
+        "title": "Jij keurt goed, geeft een zetje, gaat verder",
+        "body": "Pas een woord aan of druk op verzenden. Gesprekken gaan vanzelf in slaapstand totdat klanten antwoord krijgen. Nooit druk."
       }
     ],
-    "pricingTitle": "Prosty cennik",
-    "pricingSub": "Zacznij za darmo, przejdź na wyższy plan, gdy twoja firma przerośnie współdzieloną skrzynkę.",
-    "monthly": "Miesięcznie",
-    "yearly": "Rocznie",
-    "saveNote": "~21% taniej",
+    "pricingTitle": "Eenvoudige prijzen",
+    "pricingSub": "Start gratis. Betaalde abonnementen zijn alleen ter voorbeeld zolang de facturering nog wordt afgerond.",
+    "monthly": "Maandelijks",
+    "yearly": "Jaarlijks",
+    "saveNote": "~21% korting",
     "freePlan": {
-      "name": "Darmowy",
-      "billing": "Dla małej firmy, która chce spróbować",
+      "name": "Gratis",
+      "billing": "Voor een klein bedrijf dat het uitprobeert",
       "features": [
-        "Współdzielona skrzynka",
-        "Hojny miesięczny limit darmowych szkiców AI",
-        "Wsparcie społeczności"
+        "Gedeelde inbox",
+        "Een royaal maandelijks aantal gratis AI-concepten",
+        "Helpgids"
       ],
-      "cta": "Zacznij za darmo"
+      "cta": "Gratis starten"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Najpopularniejszy",
-      "billingMonthly": "$19 / mies. · rozliczane miesięcznie",
-      "billingYearly": "$15 / mies. · rozliczane rocznie",
+      "badge": "Voorbeeldabonnement",
+      "billingMonthly": "$19 / maand · maandelijks gefactureerd",
+      "billingYearly": "$15 / maand · jaarlijks gefactureerd",
       "features": [
-        "Wszystko z planu Darmowy",
-        "E-mail, czat i kanały społecznościowe",
-        "Priorytetowe wsparcie"
+        "Alles uit het gratis abonnement",
+        "Websitechat + gedeelde inbox",
+        "Voorbeeld van geplande prioriteitsondersteuning"
       ],
-      "cta": "Wypróbuj Pro bezpłatnie"
+      "cta": "Pro bekijken"
     },
     "businessPlan": {
-      "name": "Biznes",
-      "badge": "Przykładowa cena — do dostosowania",
-      "billingMonthly": "$49 / mies. · rozliczane miesięcznie",
-      "billingYearly": "$39 / mies. · rozliczane rocznie",
+      "name": "Bedrijf",
+      "badge": "Voorbeeldprijs — geen kosten",
+      "billingMonthly": "$49 / maand · maandelijks gefactureerd",
+      "billingYearly": "$39 / maand · jaarlijks gefactureerd",
       "features": [
-        "Wszystko z planu Pro",
-        "Wiele miejsc dla pracowników",
-        "Pomoc we wdrożeniu i dedykowany kontakt"
+        "Alles in Pro",
+        "Meerdere medewerkersplekken (voorbeeld)",
+        "Begeleide installatiehulp"
       ],
-      "cta": "Zacznij bezpłatny okres próbny"
+      "cta": "Neem contact op"
     },
-    "pricingNote": "Limity planów są przykładowe i można je dostosować przed startem.",
-    "faqTitle": "Najczęściej zadawane pytania",
+    "pricingNote": "Alleen voorbeeldprijzen: er wordt geen betaling geïnd. Abonnementslimieten en betaalde functies zijn illustratief en kunnen worden aangepast voordat de facturering van start gaat.",
+    "faqTitle": "Veelgestelde vragen",
     "faqs": [
       {
-        "q": "Co właściwie oznacza „async-first”?",
-        "a": "Oznacza to, że klient zostawia wiadomość i dostaje uczciwy czas odpowiedzi (np. „wrócimy za kilka godzin”) zamiast czekać na czacie na żywo. Odpowiadasz według własnego harmonogramu i nikt się nie denerwuje, patrząc na skaczące trzy kropki."
+        "q": "Wat betekent \"async-first\" eigenlijk?",
+        "a": "Het betekent dat klanten een bericht achterlaten en een eerlijk reactievenster krijgen (zoals \"we zijn over een paar uur terug\") in plaats van te wachten op een livechat. Je antwoordt volgens je eigen planning en niemand wordt zenuwachtig van drie stuiterende puntjes."
       },
       {
-        "q": "Ile trwa konfiguracja?",
-        "a": "Większość małych firm zaczyna działać w mniej niż dziesięć minut. Połącz skrzynkę, dodaj kilka FAQ, a AI już zaczyna pisać odpowiedzi, które brzmią jak ty."
+        "q": "Hoe lang duurt de installatie?",
+        "a": "De meeste kleine bedrijven zijn binnen tien minuten operationeel. Koppel je inbox, voeg een paar FAQ's toe en de AI begint meteen antwoorden te schrijven die als jou klinken."
       },
       {
-        "q": "Czy AI wysyła odpowiedzi samodzielnie?",
-        "a": "Nie. AI zawsze tworzy szkic — osoba z twojego zespołu zatwierdza go, zanim cokolwiek trafi do klienta. Ty zachowujesz kontrolę nad swoim tonem; AI jedynie oszczędza ci pisania."
+        "q": "Verstuurt de AI zelf antwoorden?",
+        "a": "Nee. De AI stelt altijd concepten op — een mens in je team keurt goed voordat er iets bij de klant aankomt. Jij houdt de controle over je toon; de AI haalt alleen het typen weg."
       },
       {
-        "q": "Co zawiera darmowy plan?",
-        "a": "Darmowy plan daje ci współdzieloną skrzynkę i hojny miesięczny limit darmowych szkiców AI oraz wsparcie społeczności. Jest stworzony dla małych firm, które chcą wypróbować spokojne wsparcie, zanim zapłacą choćby centa."
+        "q": "Wat zit er in het gratis abonnement?",
+        "a": "Het gratis abonnement geeft je de gedeelde inbox en een royaal maandelijks aantal gratis AI-concepten, plus de helpgids. Betaalde abonnementen zijn alleen ter voorbeeld tot de facturering live is."
       },
       {
-        "q": "Jakie kanały mogę połączyć?",
-        "a": "E-mail, czat na żywo i główne kanały komunikatorów społecznościowych trafiają do tej samej kolejki w planie Pro. Cokolwiek używają twoi klienci, odpowiadasz z jednego spokojnego miejsca."
+        "q": "Welke kanalen kan ik koppelen?",
+        "a": "Nu live: de losstaande websitechat en de gedeelde inbox voor verkopers. E-mail en sociale berichten (waaronder WhatsApp en Instagram) zijn nog niet gekoppeld; ze vereisen een begeleide installatie en worden afzonderlijk uitgerold. We vermelden een kanaal pas als beschikbaar wanneer het echt is gekoppeld."
       }
     ],
-    "finalTitle": "Wprowadź spokój do swojej skrzynki",
-    "finalSub": "Konfiguracja w kilka minut · Bezpłatnie dla małych firm · www.nudgeso.com",
-    "finalCta": "Odbierz NudgeSo bezpłatnie",
-    "footerTag": "NudgeSo · Spokojna obsługa klienta · www.nudgeso.com"
+    "finalTitle": "Breng rust in je inbox",
+    "finalSub": "In enkele minuten ingesteld · Gratis voor kleine bedrijven · www.nudgeso.com",
+    "finalCta": "NudgeSo gratis krijgen",
+    "footerTag": "NudgeSo · Rustige klantenservice · www.nudgeso.com",
+    "privacy": "Privacybeleid",
+    "terms": "Gebruiksvoorwaarden"
   },
   "pt-BR": {
     "metaTitle": "NudgeSo — Suporte ao cliente tranquilo para pequenos negócios",
-    "metaDescription": "Suporte assíncrono em primeiro lugar que redige respostas acolhedoras, enfileira o que importa e deixa espaço para você respirar.",
+    "metaDescription": "Suporte com prioridade no assíncrono que redige respostas acolhedoras, organiza o que importa e deixa você com espaço para respirar.",
     "nav": [
       "Produto",
       "Preços",
       "Como funciona",
-      "FAQ"
+      "Perguntas frequentes"
     ],
     "signIn": "Entrar",
     "startFree": "Começar grátis",
-    "heroEyebrow": "Helpdesk de IA com foco no assíncrono",
+    "heroEyebrow": "Helpdesk de IA com prioridade no assíncrono",
     "heroTitle": "Suporte ao cliente tranquilo para pequenos negócios",
-    "heroSub": "Suporte assíncrono em primeiro lugar que redige respostas acolhedoras, enfileira o que importa e deixa espaço para você respirar — chega de viver na sua caixa de entrada.",
-    "featuresTitle": "Tudo o que sua caixa de entrada precisa, nada do que ela não precisa",
-    "featuresSub": "Feito para pequenos negócios que querem responder bem sem o caos.",
+    "heroSub": "Suporte com prioridade no assíncrono que redige respostas acolhedoras, organiza o que importa e deixa espaço para você respirar — chega de viver na sua caixa de entrada.",
+    "featuresTitle": "Tudo o que sua caixa de entrada precisa, e nada do que não precisa",
+    "featuresSub": "Feito para pequenos negócios que querem responder bem, sem o caos.",
     "features": [
       {
         "title": "Uma fila tranquila",
-        "body": "E-mails, chats e conversas sociais unificados e priorizados, para que nada passe batido."
+        "body": "Disponível hoje: chat no site e uma caixa de entrada compartilhada do comerciante. Conectores de e-mail e redes sociais estão sendo lançados separadamente, então não fingimos que já estão integrados."
       },
       {
         "title": "Rascunhos com o seu tom",
-        "body": "A IA aprende seu tom e sugere respostas que você realmente vai querer enviar."
+        "body": "A IA aprende seu tom e sugere respostas que você vai realmente querer enviar."
       },
       {
         "title": "Configure em minutos",
-        "body": "Conecte sua caixa de entrada em alguns cliques, importe suas perguntas frequentes e a IA já conhece seu tom."
+        "body": "Conecte sua caixa de entrada em alguns cliques, importe suas perguntas frequentes e a IA já conhece o seu tom."
       },
       {
-        "title": "Sem notificações tarde da noite",
-        "body": "Assíncrono por padrão, os clientes recebem prazos de resposta honestos e seu negócio recupera suas noites."
+        "title": "Sem notificações de madrugada",
+        "body": "Assíncrono por padrão: clientes recebem prazos de resposta honestos e seu negócio recupera suas noites."
       }
     ],
     "howTitle": "Como funciona",
@@ -2989,19 +2919,19 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Conecte sua caixa de entrada",
-        "body": "Conecte seus canais de e-mail, chat e redes sociais. O NudgeSo une tudo em uma fila compartilhada."
+        "body": "Configure o chat no site e a caixa de entrada compartilhada que estão disponíveis hoje. Conectores de e-mail e redes sociais têm uma configuração separada e assistida."
       },
       {
         "title": "A IA redige respostas amigáveis",
-        "body": "A IA lê a conversa, combina seu tom com respostas anteriores e redige uma resposta acolhedora para cada mensagem."
+        "body": "A IA lê a conversa, identifica seu tom a partir de respostas anteriores e redige uma resposta acolhedora para cada mensagem."
       },
       {
         "title": "Você aprova, dá um toque e segue em frente",
-        "body": "Ajuste uma palavra ou clique em enviar. As conversas pausam sozinhas até que os clientes recebam resposta. Sem pressão, nunca."
+        "body": "Ajuste uma palavra ou clique em enviar. As conversas se pausam sozinhas até que os clientes recebam resposta. Sem pressão, nunca."
       }
     ],
     "pricingTitle": "Preços simples",
-    "pricingSub": "Comece grátis, faça upgrade quando seu negócio superar a caixa de entrada compartilhada.",
+    "pricingSub": "Comece grátis. Planos pagos são apenas prévia enquanto a cobrança está sendo finalizada.",
     "monthly": "Mensal",
     "yearly": "Anual",
     "saveNote": "~21% de desconto",
@@ -3010,41 +2940,41 @@ window.NS_LANDING_LOCALES = {
       "billing": "Para um pequeno negócio que está testando",
       "features": [
         "Caixa de entrada compartilhada",
-        "Uma generosa cota mensal de rascunhos de IA grátis",
-        "Suporte da comunidade"
+        "Uma cota mensal generosa de rascunhos grátis de IA",
+        "Guia de ajuda"
       ],
       "cta": "Começar grátis"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Mais popular",
+      "badge": "Plano em prévia",
       "billingMonthly": "$19 / mês · cobrado mensalmente",
       "billingYearly": "$15 / mês · cobrado anualmente",
       "features": [
         "Tudo do Grátis",
-        "Canais de e-mail, chat e redes sociais",
-        "Suporte prioritário"
+        "Chat no site + caixa de entrada compartilhada",
+        "Prévia do suporte prioritário planejado"
       ],
-      "cta": "Experimente o Pro grátis"
+      "cta": "Prévia do Pro"
     },
     "businessPlan": {
-      "name": "Empresarial",
-      "badge": "Preço de exemplo — ajustável",
+      "name": "Empresas",
+      "badge": "Preço de prévia — sem cobrança",
       "billingMonthly": "$49 / mês · cobrado mensalmente",
       "billingYearly": "$39 / mês · cobrado anualmente",
       "features": [
         "Tudo do Pro",
-        "Vários usuários da equipe",
-        "Ajuda na configuração e um contato dedicado"
+        "Vários assentos para equipe (prévia)",
+        "Ajuda guiada na configuração"
       ],
-      "cta": "Começar teste grátis"
+      "cta": "Fale conosco"
     },
-    "pricingNote": "Os limites dos planos são ilustrativos e podem ser ajustados antes do lançamento.",
+    "pricingNote": "Apenas preços de prévia: nenhum pagamento é cobrado. Os limites dos planos e recursos pagos são ilustrativos e podem ser ajustados antes do lançamento da cobrança.",
     "faqTitle": "Perguntas frequentes",
     "faqs": [
       {
-        "q": "O que \"assíncrono em primeiro lugar\" realmente significa?",
-        "a": "Significa que os clientes deixam uma mensagem e recebem uma janela de resposta honesta (como \"voltaremos em algumas horas\") em vez de esperar em um chat ao vivo. Você responde no seu próprio ritmo, e ninguém fica ansioso vendo os três pontinhos piscarem."
+        "q": "O que \"prioridade ao assíncrono\" realmente significa?",
+        "a": "Significa que os clientes deixam uma mensagem e recebem uma janela de resposta honesta (como \"voltamos em algumas horas\") em vez de esperar em um chat ao vivo. Você responde no seu próprio ritmo, e ninguém fica ansioso vendo os três pontinhos pular."
       },
       {
         "q": "Quanto tempo leva para configurar?",
@@ -3052,54 +2982,176 @@ window.NS_LANDING_LOCALES = {
       },
       {
         "q": "A IA envia respostas sozinha?",
-        "a": "Não. A IA sempre redige — uma pessoa da sua equipe aprova antes de qualquer coisa chegar ao cliente. Você mantém o controle do seu tom; a IA apenas elimina a digitação."
+        "a": "Não. A IA sempre redige — uma pessoa da sua equipe aprova antes de qualquer coisa chegar ao cliente. Você continua no controle do seu tom; a IA apenas elimina a digitação."
       },
       {
         "q": "O que está incluído no plano grátis?",
-        "a": "O plano grátis oferece a caixa de entrada compartilhada e uma generosa cota mensal de rascunhos de IA grátis, além de suporte da comunidade. Ele foi feito para pequenos negócios que querem experimentar um suporte tranquilo antes de pagar um centavo."
+        "a": "O plano grátis oferece a caixa de entrada compartilhada e uma cota mensal generosa de rascunhos grátis de IA, além do guia de ajuda. Planos pagos são apenas prévia até que a cobrança esteja ativa."
       },
       {
         "q": "Quais canais posso conectar?",
-        "a": "E-mail, chat ao vivo e os principais canais de mensagens sociais chegam todos à mesma fila no Pro. Seja qual for o canal que seus clientes usam, você responde de um só lugar tranquilo."
+        "a": "Disponíveis hoje: o chat independente no site e a caixa de entrada compartilhada do comerciante. E-mail e mensagens em redes sociais (incluindo WhatsApp e Instagram) ainda não estão conectados; eles precisam de uma configuração assistida e serão lançados separadamente. Só vamos listar um canal como disponível quando ele estiver realmente conectado."
       }
     ],
     "finalTitle": "Traga tranquilidade para sua caixa de entrada",
     "finalSub": "Configure em minutos · Grátis para pequenos negócios · www.nudgeso.com",
-    "finalCta": "Comece a usar o NudgeSo grátis",
-    "footerTag": "NudgeSo · Suporte ao cliente tranquilo · www.nudgeso.com"
+    "finalCta": "Use o NudgeSo grátis",
+    "footerTag": "NudgeSo · Suporte ao cliente tranquilo · www.nudgeso.com",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço"
+  },
+  "pl": {
+    "metaTitle": "NudgeSo — spokojna obsługa klienta dla małych firm",
+    "metaDescription": "Asynchroniczna obsługa klienta, która przygotowuje ciepłe odpowiedzi, ustawia w kolejce to, co ważne, i daje ci przestrzeń na oddech.",
+    "nav": [
+      "Produkt",
+      "Cennik",
+      "Jak",
+      "FAQ"
+    ],
+    "signIn": "Zaloguj się",
+    "startFree": "Zacznij bezpłatnie",
+    "heroEyebrow": "Asynchroniczny helpdesk AI",
+    "heroTitle": "Spokojna obsługa klienta dla małych firm",
+    "heroSub": "Asynchroniczna obsługa klienta, która przygotowuje ciepłe odpowiedzi, kolejkuje to, co ważne, i daje ci oddech — koniec z ciągłym siedzeniem w skrzynce odbiorczej.",
+    "featuresTitle": "Wszystko, czego potrzebuje twoja skrzynka odbiorcza, i nic zbędnego",
+    "featuresSub": "Stworzone dla małych firm, które chcą dobrze odpowiadać bez chaosu.",
+    "features": [
+      {
+        "title": "Jedna spokojna kolejka",
+        "body": "Dostępne dziś: czat na stronie internetowej i współdzielona skrzynka odbiorcza dla sprzedawców. Integracje e-mail i mediów społecznościowych są wdrażane osobno, więc nie udajemy, że są już połączone."
+      },
+      {
+        "title": "Szkice w twoim stylu",
+        "body": "AI uczy się twojego tonu i sugeruje odpowiedzi, które naprawdę będziesz chciał wysłać."
+      },
+      {
+        "title": "Konfiguracja w kilka minut",
+        "body": "Podłącz skrzynkę w kilku kliknięciach, zaimportuj najczęstsze pytania, a AI już zna twój styl."
+      },
+      {
+        "title": "Bez nocnych powiadomień",
+        "body": "Domyślnie asynchronicznie: klienci dostają uczciwe terminy odpowiedzi, a twoja firma odzyskuje wieczory."
+      }
+    ],
+    "howTitle": "Jak to działa",
+    "howSub": "Trzy spokojne kroki między hałaśliwą skrzynką odbiorczą a spokojną.",
+    "howSteps": [
+      {
+        "title": "Podłącz skrzynkę odbiorczą",
+        "body": "Skonfiguruj czat na stronie internetowej i współdzieloną skrzynkę, które są dostępne dziś. Integracje e-mail i mediów społecznościowych wymagają osobnej, wspieranej konfiguracji."
+      },
+      {
+        "title": "AI tworzy przyjazne odpowiedzi",
+        "body": "AI czyta wątek, dopasowuje twój ton na podstawie wcześniejszych odpowiedzi i przygotowuje ciepłą odpowiedź na każdą wiadomość."
+      },
+      {
+        "title": "Zatwierdzasz, ponaglasz, ruszasz dalej",
+        "body": "Popraw słowo lub wyślij. Wątki same się uśpią, dopóki klienci nie otrzymają odpowiedzi. Nigdy żadnej presji."
+      }
+    ],
+    "pricingTitle": "Prosty cennik",
+    "pricingSub": "Zacznij bezpłatnie. Płatne plany są na razie tylko w podglądzie, ponieważ kończymy prace nad rozliczeniami.",
+    "monthly": "Miesięcznie",
+    "yearly": "Rocznie",
+    "saveNote": "~21% taniej",
+    "freePlan": {
+      "name": "Bezpłatny",
+      "billing": "Dla małej firmy, która chce wypróbować",
+      "features": [
+        "Współdzielona skrzynka odbiorcza",
+        "Hojny miesięczny limit bezpłatnych szkiców AI",
+        "Przewodnik pomocy"
+      ],
+      "cta": "Zacznij bezpłatnie"
+    },
+    "proPlan": {
+      "name": "Pro",
+      "badge": "Plan w podglądzie",
+      "billingMonthly": "$19 / miesiąc · rozliczane miesięcznie",
+      "billingYearly": "$15 / miesiąc · rozliczane rocznie",
+      "features": [
+        "Wszystko z planu Bezpłatny",
+        "Czat na stronie + współdzielona skrzynka odbiorcza",
+        "Podgląd planowanego wsparcia priorytetowego"
+      ],
+      "cta": "Podejrzyj Pro"
+    },
+    "businessPlan": {
+      "name": "Biznes",
+      "badge": "Cena podglądowa — bez opłat",
+      "billingMonthly": "$49 / miesiąc · rozliczane miesięcznie",
+      "billingYearly": "$39 / miesiąc · rozliczane rocznie",
+      "features": [
+        "Wszystko z planu Pro",
+        "Wiele miejsc dla pracowników (podgląd)",
+        "Pomoc w konfiguracji krok po kroku"
+      ],
+      "cta": "Porozmawiaj z nami"
+    },
+    "pricingNote": "Ceny wyłącznie podglądowe: nie pobieramy żadnych płatności. Limity planów i płatne funkcje mają charakter poglądowy i mogą zostać dostosowane przed uruchomieniem rozliczeń.",
+    "faqTitle": "Najczęściej zadawane pytania",
+    "faqs": [
+      {
+        "q": "Co właściwie oznacza „async-first”?",
+        "a": "Oznacza to, że klienci zostawiają wiadomość i otrzymują uczciwy przedział czasu na odpowiedź (np. „wrócimy za kilka godzin”) zamiast czekać na czacie na żywo. Odpowiadasz według własnego harmonogramu, a nikt nie denerwuje się, patrząc na skaczące trzy kropki."
+      },
+      {
+        "q": "Ile trwa konfiguracja?",
+        "a": "Większość małych firm zaczyna działać w mniej niż dziesięć minut. Podłącz skrzynkę odbiorczą, dodaj kilka najczęstszych pytań, a AI od razu zaczyna pisać odpowiedzi, które brzmią jak ty."
+      },
+      {
+        "q": "Czy AI wysyła odpowiedzi samodzielnie?",
+        "a": "Nie. AI zawsze przygotowuje szkic — osoba z twojego zespołu zatwierdza go, zanim cokolwiek trafi do klienta. Ty zachowujesz kontrolę nad swoim stylem; AI tylko usuwa konieczność pisania."
+      },
+      {
+        "q": "Co obejmuje bezpłatny plan?",
+        "a": "Bezpłatny plan daje współdzieloną skrzynkę odbiorczą i hojny miesięczny limit bezpłatnych szkiców AI oraz przewodnik pomocy. Płatne plany są tylko w podglądzie, dopóki rozliczenia nie zostaną uruchomione."
+      },
+      {
+        "q": "Jakie kanały mogę podłączyć?",
+        "a": "Dostępne dziś: samodzielny czat na stronie internetowej i współdzielona skrzynka dla sprzedawców. E-mail i komunikatory społecznościowe (w tym WhatsApp i Instagram) nie są jeszcze podłączone; wymagają wspieranej konfiguracji i będą wdrażane osobno. Będziemy wymieniać kanał jako dostępny dopiero wtedy, gdy będzie naprawdę podłączony."
+      }
+    ],
+    "finalTitle": "Wprowadź spokój do swojej skrzynki odbiorczej",
+    "finalSub": "Konfiguracja w kilka minut · Bezpłatnie dla małych firm · www.nudgeso.com",
+    "finalCta": "Skorzystaj z NudgeSo bezpłatnie",
+    "footerTag": "NudgeSo · Spokojna obsługa klienta · www.nudgeso.com",
+    "privacy": "Polityka prywatności",
+    "terms": "Warunki korzystania z usługi"
   },
   "pt-PT": {
-    "metaTitle": "NudgeSo — Apoio ao cliente tranquilo para pequenas empresas",
-    "metaDescription": "Apoio assíncrono desde a base que prepara respostas acolhedoras, organiza por prioridade o que importa e deixa-lhe espaço para respirar.",
+    "metaTitle": "NudgeSo — Apoio ao cliente calmo para pequenas empresas",
+    "metaDescription": "Apoio com prioridade ao assíncrono que redige respostas calorosas, coloca em fila o que importa e deixa-lhe espaço para respirar.",
     "nav": [
       "Produto",
       "Preços",
-      "Como",
+      "Como funciona",
       "FAQ"
     ],
     "signIn": "Iniciar sessão",
     "startFree": "Começar grátis",
-    "heroEyebrow": "Helpdesk com IA assíncrono",
-    "heroTitle": "Apoio ao cliente tranquilo para pequenas empresas",
-    "heroSub": "Apoio assíncrono desde a base que prepara respostas acolhedoras, organiza o que importa e deixa-lhe espaço para respirar — deixe de viver na sua caixa de entrada.",
-    "featuresTitle": "Tudo o que a sua caixa de entrada precisa, nada do que não precisa",
+    "heroEyebrow": "Helpdesk de IA centrado no assíncrono",
+    "heroTitle": "Apoio ao cliente calmo para pequenas empresas",
+    "heroSub": "Apoio com prioridade ao assíncrono que redige respostas calorosas, coloca em fila o que importa e deixa-lhe espaço para respirar — chega de viver na caixa de entrada.",
+    "featuresTitle": "Tudo o que a sua caixa de entrada precisa, e nada do que não precisa",
     "featuresSub": "Criado para pequenas empresas que querem responder bem sem o caos.",
     "features": [
       {
-        "title": "Uma fila tranquila",
-        "body": "Conversas de email, chat e redes sociais reunidas e priorizadas, para que nada passe ao lado."
+        "title": "Uma fila calma",
+        "body": "Já disponível: chat no site e uma caixa de entrada partilhada do comerciante. Os conectores de e-mail e redes sociais estão a ser lançados separadamente, por isso não fingimos que já estão integrados."
       },
       {
-        "title": "Esboços com o seu tom",
+        "title": "Rascunhos com a sua voz",
         "body": "A IA aprende o seu tom e sugere respostas que vai realmente querer enviar."
       },
       {
-        "title": "Configuração em minutos",
-        "body": "Ligue a sua caixa de entrada em poucos cliques, importe as suas perguntas frequentes e a IA já conhece o seu tom."
+        "title": "Configure em minutos",
+        "body": "Ligue a sua caixa de entrada em poucos cliques, importe as suas FAQ e a IA já conhece a sua voz."
       },
       {
-        "title": "Sem alertas a altas horas",
-        "body": "Assíncrono por predefinição, os clientes recebem indicações honestas de tempo de resposta e o seu negócio recupera as noites."
+        "title": "Sem notificações a altas horas",
+        "body": "Assíncrono por predefinição, os clientes recebem tempos de resposta honestos e o seu negócio recupera as suas noites."
       }
     ],
     "howTitle": "Como funciona",
@@ -3107,19 +3159,19 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Ligue a sua caixa de entrada",
-        "body": "Ligue o seu email, chat e canais sociais. O NudgeSo reúne tudo numa única fila partilhada."
+        "body": "Configure o chat no site e a caixa de entrada partilhada que já estão disponíveis. Os conectores de e-mail e redes sociais têm uma configuração separada e assistida."
       },
       {
-        "title": "A IA prepara respostas acolhedoras",
-        "body": "A IA lê a conversa, adapta-se ao seu tom com base em respostas anteriores e prepara uma resposta acolhedora para cada mensagem."
+        "title": "A IA redige respostas amigáveis",
+        "body": "A IA lê a conversa, adapta-se ao seu tom com base em respostas anteriores e redige uma resposta calorosa para cada mensagem."
       },
       {
-        "title": "Aprova, dá um toque e segue em frente",
-        "body": "Ajuste uma palavra ou carregue em enviar. As conversas ficam suspensas até os clientes receberem resposta. Sem pressão, nunca."
+        "title": "Aprove, ajuste e siga em frente",
+        "body": "Altere uma palavra ou clique em enviar. As conversas adiam-se sozinhas até os clientes obterem resposta. Sem pressão, nunca."
       }
     ],
     "pricingTitle": "Preços simples",
-    "pricingSub": "Comece grátis, faça upgrade quando o seu negócio ultrapassar a caixa de entrada partilhada.",
+    "pricingSub": "Comece grátis. Os planos pagos são apenas de pré-visualização enquanto a faturação está a ser concluída.",
     "monthly": "Mensal",
     "yearly": "Anual",
     "saveNote": "~21% de desconto",
@@ -3128,116 +3180,238 @@ window.NS_LANDING_LOCALES = {
       "billing": "Para uma pequena empresa que está a experimentar",
       "features": [
         "Caixa de entrada partilhada",
-        "Uma generosa quota mensal de esboços de IA gratuitos",
-        "Apoio da comunidade"
+        "Uma generosa franquia mensal de rascunhos de IA gratuitos",
+        "Guia de ajuda"
       ],
       "cta": "Começar grátis"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Mais popular",
-      "billingMonthly": "$19 / mês · faturado mensalmente",
-      "billingYearly": "$15 / mês · faturado anualmente",
+      "badge": "Plano de pré-visualização",
+      "billingMonthly": "$19 / mês · cobrado mensalmente",
+      "billingYearly": "$15 / mês · cobrado anualmente",
       "features": [
-        "Tudo o que está incluído no Grátis",
-        "Email, chat e canais sociais",
-        "Apoio prioritário"
+        "Tudo no Grátis",
+        "Chat no site + caixa de entrada partilhada",
+        "Pré-visualização do apoio prioritário planeado"
       ],
-      "cta": "Experimentar o Pro grátis"
+      "cta": "Pré-visualizar Pro"
     },
     "businessPlan": {
-      "name": "Empresa",
-      "badge": "Preço de exemplo — ajustável",
-      "billingMonthly": "$49 / mês · faturado mensalmente",
-      "billingYearly": "$39 / mês · faturado anualmente",
+      "name": "Business",
+      "badge": "Preço de pré-visualização — sem cobrança",
+      "billingMonthly": "$49 / mês · cobrado mensalmente",
+      "billingYearly": "$39 / mês · cobrado anualmente",
       "features": [
-        "Tudo o que está incluído no Pro",
-        "Vários lugares para colaboradores",
-        "Ajuda na configuração inicial e um contacto dedicado"
+        "Tudo no Pro",
+        "Vários lugares para colaboradores (pré-visualização)",
+        "Ajuda na configuração guiada"
       ],
-      "cta": "Começar teste grátis"
+      "cta": "Fale connosco"
     },
-    "pricingNote": "Os limites dos planos são ilustrativos e podem ser ajustados antes do lançamento.",
+    "pricingNote": "Apenas preços de pré-visualização: não é cobrado qualquer pagamento. Os limites dos planos e as funcionalidades pagas são ilustrativos e podem ser ajustados antes do lançamento da faturação.",
     "faqTitle": "Perguntas frequentes",
     "faqs": [
       {
         "q": "O que significa, na prática, \"assíncrono em primeiro lugar\"?",
-        "a": "Significa que os clientes deixam uma mensagem e recebem uma janela de resposta honesta (como \"voltamos dentro de algumas horas\") em vez de esperarem por um chat ao vivo. Responde ao seu ritmo e ninguém fica ansioso a ver os três pontos a saltar."
+        "a": "Significa que os clientes deixam uma mensagem e recebem uma janela de resposta honesta (como \"voltamos dentro de algumas horas\") em vez de esperarem por um chat ao vivo. Responde no seu próprio horário e ninguém fica ansioso a ver três pontos a saltar."
       },
       {
         "q": "Quanto tempo demora a configuração?",
-        "a": "A maioria das pequenas empresas fica operacional em menos de dez minutos. Ligue a sua caixa de entrada, adicione algumas perguntas frequentes e a IA começa logo a escrever respostas que soam a si."
+        "a": "A maioria das pequenas empresas fica a funcionar em menos de dez minutos. Ligue a sua caixa de entrada, introduza algumas FAQ e a IA começa logo a escrever respostas que soam a si."
       },
       {
         "q": "A IA envia respostas sozinha?",
-        "a": "Não. A IA prepara sempre esboços — uma pessoa da sua equipa aprova antes de qualquer coisa chegar ao cliente. Continua a controlar o seu tom; a IA apenas elimina o trabalho de escrever."
+        "a": "Não. A IA redige sempre — uma pessoa da sua equipa aprova antes de qualquer coisa chegar ao cliente. Continua a controlar a sua voz; a IA apenas elimina a escrita."
       },
       {
-        "q": "O que está incluído no plano gratuito?",
-        "a": "O plano gratuito dá-lhe a caixa de entrada partilhada e uma generosa quota mensal de esboços de IA gratuitos, além de apoio da comunidade. Foi criado para pequenas empresas que querem experimentar um apoio tranquilo antes de pagar um cêntimo."
+        "q": "O que está incluído no plano grátis?",
+        "a": "O plano grátis dá-lhe a caixa de entrada partilhada e uma generosa franquia mensal de rascunhos de IA gratuitos, além do guia de ajuda. Os planos pagos são apenas de pré-visualização até a faturação estar ativa."
       },
       {
         "q": "Que canais posso ligar?",
-        "a": "Email, chat ao vivo e os principais canais de mensagens sociais chegam todos à mesma fila no Pro. Seja o que for que os seus clientes usem, responde a partir de um único lugar tranquilo."
+        "a": "Já disponível: o chat autónomo no site e a caixa de entrada partilhada do comerciante. O e-mail e as mensagens nas redes sociais (incluindo WhatsApp e Instagram) ainda não estão ligados; precisam de uma configuração assistida e serão lançados separadamente. Só indicaremos um canal como disponível quando estiver genuinamente ligado."
       }
     ],
-    "finalTitle": "Traga tranquilidade à sua caixa de entrada",
-    "finalSub": "Configuração em minutos · Grátis para pequenas empresas · www.nudgeso.com",
-    "finalCta": "Obter o NudgeSo grátis",
-    "footerTag": "NudgeSo · Apoio ao cliente tranquilo · www.nudgeso.com"
+    "finalTitle": "Traga calma à sua caixa de entrada",
+    "finalSub": "Configure em minutos · Grátis para pequenas empresas · www.nudgeso.com",
+    "finalCta": "Obtenha o NudgeSo grátis",
+    "footerTag": "NudgeSo · Apoio ao cliente calmo · www.nudgeso.com",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço"
+  },
+  "ro": {
+    "metaTitle": "NudgeSo — Asistență clienți calmă pentru afaceri mici",
+    "metaDescription": "Asistență cu prioritate pe asincron care redactează răspunsuri calde, pune în coadă ce contează și îți lasă spațiu să respiri.",
+    "nav": [
+      "Produs",
+      "Prețuri",
+      "Cum funcționează",
+      "Întrebări frecvente"
+    ],
+    "signIn": "Conectare",
+    "startFree": "Începe gratuit",
+    "heroEyebrow": "Helpdesk AI cu prioritate pe asincron",
+    "heroTitle": "Asistență clienți calmă pentru afaceri mici",
+    "heroSub": "Asistență cu prioritate pe asincron care redactează răspunsuri calde, pune în coadă ce contează și îți lasă spațiu să respiri — fără să mai trăiești în căsuța de e-mail.",
+    "featuresTitle": "Tot ce are nevoie căsuța ta de e-mail, nimic în plus",
+    "featuresSub": "Creat pentru afacerile mici care vor să răspundă bine, fără haos.",
+    "features": [
+      {
+        "title": "O singură coadă calmă",
+        "body": "Disponibil astăzi: chat pe site și o căsuță de e-mail partajată pentru comercianți. Conectorii pentru e-mail și rețele sociale sunt lansați separat, așa că nu pretindem că sunt deja unificați."
+      },
+      {
+        "title": "Redactează în vocea ta",
+        "body": "AI-ul învață tonul tău și sugerează răspunsuri pe care chiar vei vrea să le trimiți."
+      },
+      {
+        "title": "Configurare în câteva minute",
+        "body": "Conectează-ți căsuța de e-mail în câteva clicuri, importă întrebările frecvente, iar AI-ul îți știe deja vocea."
+      },
+      {
+        "title": "Fără notificări târzii în noapte",
+        "body": "Asincron implicit, clienții primesc timpi de răspuns onești, iar afacerea ta își recapătă serile."
+      }
+    ],
+    "howTitle": "Cum funcționează",
+    "howSub": "Trei pași liniștiți între o căsuță de e-mail zgomotoasă și una calmă.",
+    "howSteps": [
+      {
+        "title": "Conectează-ți inboxul",
+        "body": "Configurează chatul pe site și inboxul partajat disponibile astăzi. Conectorii pentru e-mail și rețele sociale necesită o configurare separată, asistată."
+      },
+      {
+        "title": "AI-ul redactează răspunsuri prietenoase",
+        "body": "AI-ul citește firul, preia tonul din răspunsurile anterioare și redactează un răspuns cald pentru fiecare mesaj."
+      },
+      {
+        "title": "Tu aprobi, dai un impuls, mergi mai departe",
+        "body": "Ajustează un cuvânt sau apasă trimite. Firele se suspendă automat până când clienții primesc răspuns. Fără presiune, mereu."
+      }
+    ],
+    "pricingTitle": "Prețuri simple",
+    "pricingSub": "Începe gratuit. Planurile plătite sunt doar previzualizare până la finalizarea facturării.",
+    "monthly": "Lunar",
+    "yearly": "Anual",
+    "saveNote": "~21% reducere",
+    "freePlan": {
+      "name": "Gratuit",
+      "billing": "Pentru o afacere mică care îl încearcă",
+      "features": [
+        "Căsuță de e-mail partajată",
+        "O alocație lunară generoasă de schițe AI gratuite",
+        "Ghid de ajutor"
+      ],
+      "cta": "Începe gratuit"
+    },
+    "proPlan": {
+      "name": "Pro",
+      "badge": "Plan de previzualizare",
+      "billingMonthly": "$19 / lună · facturat lunar",
+      "billingYearly": "$15 / lună · facturat anual",
+      "features": [
+        "Tot ce include Gratuit",
+        "Chat pe site + căsuță de e-mail partajată",
+        "Previzualizare a asistenței prioritare planificate"
+      ],
+      "cta": "Previzualizează Pro"
+    },
+    "businessPlan": {
+      "name": "Business",
+      "badge": "Preț de previzualizare — fără costuri",
+      "billingMonthly": "$49 / lună · facturat lunar",
+      "billingYearly": "$39 / lună · facturat anual",
+      "features": [
+        "Tot ce include Pro",
+        "Mai multe locuri pentru personal (previzualizare)",
+        "Ajutor ghidat la configurare"
+      ],
+      "cta": "Vorbește cu noi"
+    },
+    "pricingNote": "Doar prețuri de previzualizare: nu se colectează nicio plată. Limitele planurilor și funcțiile plătite sunt orientative și pot fi ajustate înainte de lansarea facturării.",
+    "faqTitle": "Întrebări frecvente",
+    "faqs": [
+      {
+        "q": "Ce înseamnă de fapt „async-first”?",
+        "a": "Înseamnă că clienții lasă un mesaj și primesc o fereastră de răspuns onestă (de exemplu „revenim în câteva ore”) în loc să aștepte într-un chat live. Tu răspunzi după programul tău, iar nimeni nu devine anxios urmărind trei puncte care sar."
+      },
+      {
+        "q": "Cât durează configurarea?",
+        "a": "Majoritatea afacerilor mici sunt gata de lucru în mai puțin de zece minute. Conectezi căsuța de e-mail, adaugi câteva întrebări frecvente, iar AI-ul începe deja să scrie răspunsuri care sună ca tine."
+      },
+      {
+        "q": "AI-ul trimite răspunsuri de unul singur?",
+        "a": "Nu. AI-ul întotdeauna schițează — un om din echipa ta aprobă înainte ca ceva să ajungă la client. Tu rămâi în controlul vocii tale; AI-ul doar elimină tastarea."
+      },
+      {
+        "q": "Ce este inclus în planul gratuit?",
+        "a": "Planul gratuit îți oferă căsuța de e-mail partajată și o alocație lunară generoasă de schițe AI gratuite, plus ghidul de ajutor. Planurile plătite sunt doar previzualizare până când facturarea este activă."
+      },
+      {
+        "q": "Ce canale pot conecta?",
+        "a": "Disponibil astăzi: chatul autonom pe site și căsuța de e-mail partajată pentru comercianți. E-mailul și mesageria socială (inclusiv WhatsApp și Instagram) nu sunt încă conectate; necesită o configurare asistată și vor fi lansate separat. Vom lista un canal ca disponibil doar după ce este conectat cu adevărat."
+      }
+    ],
+    "finalTitle": "Adu calm în căsuța ta de e-mail",
+    "finalSub": "Configurare în câteva minute · Gratuit pentru afaceri mici · www.nudgeso.com",
+    "finalCta": "Obține NudgeSo gratuit",
+    "footerTag": "NudgeSo · Asistență clienți calmă · www.nudgeso.com",
+    "privacy": "Politica de confidențialitate",
+    "terms": "Termeni și condiții"
   },
   "ru": {
-    "metaTitle": "NudgeSo — Спокойная поддержка клиентов для малого бизнеса",
-    "metaDescription": "Асинхронная поддержка, которая готовит тёплые ответы, ставит важное в очередь и оставляет вам пространство для дыхания.",
+    "metaTitle": "NudgeSo — спокойная поддержка клиентов для малого бизнеса",
+    "metaDescription": "Поддержка с асинхронным подходом, которая готовит теплые ответы, ставит важное в очередь и оставляет вам пространство для вдоха.",
     "nav": [
       "Продукт",
-      "Цены",
-      "Как это работает",
-      "Вопросы"
+      "Тарифы",
+      "Как работает",
+      "FAQ"
     ],
     "signIn": "Войти",
     "startFree": "Начать бесплатно",
-    "heroEyebrow": "Асинхронный AI-хелпдеск",
+    "heroEyebrow": "AI-хелпдеск с асинхронным подходом",
     "heroTitle": "Спокойная поддержка клиентов для малого бизнеса",
-    "heroSub": "Асинхронная поддержка, которая готовит тёплые ответы, ставит важное в очередь и оставляет вам пространство для дыхания — больше не нужно жить в почтовом ящике.",
-    "featuresTitle": "Всё, что нужно вашей почте, — и ничего лишнего",
-    "featuresSub": "Для малого бизнеса, который хочет отвечать хорошо — без хаоса.",
+    "heroSub": "Поддержка с асинхронным подходом: готовит теплые ответы, ставит важное в очередь и оставляет вам пространство для вдоха — больше не нужно жить в почтовом ящике.",
+    "featuresTitle": "Все, что нужно вашей входящей почте, и ничего лишнего",
+    "featuresSub": "Создано для малого бизнеса, который хочет отвечать хорошо без хаоса.",
     "features": [
       {
         "title": "Одна спокойная очередь",
-        "body": "Письма, чаты и соцсети объединены и расставлены по приоритету, чтобы ничего не потерялось."
+        "body": "Уже доступно: чат на сайте и общий ящик для продавцов. Интеграции с email и соцсетями запускаются отдельно, поэтому мы не делаем вид, что они уже объединены."
       },
       {
-        "title": "Черновики в вашем стиле",
-        "body": "AI изучает ваш тон и предлагает ответы, которые действительно хочется отправить."
+        "title": "Черновики в вашем голосе",
+        "body": "AI изучает ваш тон и предлагает ответы, которые вам действительно захочется отправить."
       },
       {
         "title": "Настройка за минуты",
-        "body": "Подключите почту в несколько кликов, загрузите часто задаваемые вопросы — и AI уже знает ваш стиль."
+        "body": "Подключите ящик в несколько кликов, импортируйте часто задаваемые вопросы, и AI уже знает ваш голос."
       },
       {
         "title": "Никаких ночных уведомлений",
-        "body": "Асинхронно по умолчанию: клиенты получают честное время ответа, а ваш бизнес возвращает себе вечера."
+        "body": "Асинхронность по умолчанию: клиенты получают честное время ответа, а бизнес возвращает себе вечера."
       }
     ],
     "howTitle": "Как это работает",
-    "howSub": "Три тихих шага от шумного почтового ящика к спокойному.",
+    "howSub": "Три тихих шага от шумного ящика к спокойному.",
     "howSteps": [
       {
-        "title": "Подключите почту",
-        "body": "Подключите электронную почту, чат и соцсети. NudgeSo объединяет всё в одну общую очередь."
+        "title": "Подключите ящик",
+        "body": "Настройте чат на сайте и общий ящик, которые уже доступны. Интеграции с email и соцсетями — это отдельная настройка с сопровождением."
       },
       {
         "title": "AI готовит дружелюбные ответы",
-        "body": "AI читает переписку, подстраивается под ваш тон по прошлым ответам и готовит тёплый ответ на каждое сообщение."
+        "body": "AI читает переписку, подстраивается под ваш тон по прошлым ответам и готовит теплый ответ на каждое сообщение."
       },
       {
-        "title": "Вы одобряете, подталкиваете, двигаетесь дальше",
-        "body": "Поправьте слово или нажмите «Отправить». Цепочки сами откладываются, пока клиенты не получат ответ. Без давления — всегда."
+        "title": "Вы одобряете, подталкиваете — и идете дальше",
+        "body": "Поправьте слово или нажмите «Отправить». Переписки сами откладываются, пока клиенты не получат ответ. Никакого давления — никогда."
       }
     ],
     "pricingTitle": "Простые тарифы",
-    "pricingSub": "Начните бесплатно, перейдите на другой тариф, когда общий почтовый ящик станет мал для вашего бизнеса.",
+    "pricingSub": "Начните бесплатно. Платные тарифы доступны только в предпросмотре, пока мы завершаем оплату.",
     "monthly": "Ежемесячно",
     "yearly": "Ежегодно",
     "saveNote": "~21% скидка",
@@ -3245,186 +3419,190 @@ window.NS_LANDING_LOCALES = {
       "name": "Бесплатный",
       "billing": "Для малого бизнеса, который пробует",
       "features": [
-        "Общий почтовый ящик",
+        "Общий ящик",
         "Щедрый месячный лимит бесплатных AI-черновиков",
-        "Поддержка сообщества"
+        "Справочное руководство"
       ],
       "cta": "Начать бесплатно"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Самый популярный",
+      "badge": "Тариф в предпросмотре",
       "billingMonthly": "$19 / месяц · оплата ежемесячно",
       "billingYearly": "$15 / месяц · оплата ежегодно",
       "features": [
-        "Всё из Бесплатного",
-        "Электронная почта, чат и соцсети",
-        "Приоритетная поддержка"
+        "Все из Бесплатного",
+        "Чат на сайте + общий ящик",
+        "Предпросмотр запланированной приоритетной поддержки"
       ],
-      "cta": "Попробовать Pro бесплатно"
-    },
-    "businessPlan": {
-      "name": "Бизнес",
-      "badge": "Примерная цена — можно изменить",
-      "billingMonthly": "$49 / месяц · оплата ежемесячно",
-      "billingYearly": "$39 / месяц · оплата ежегодно",
-      "features": [
-        "Всё из Pro",
-        "Несколько мест для сотрудников",
-        "Помощь с онбордингом и персональный контакт"
-      ],
-      "cta": "Начать бесплатный пробный период"
-    },
-    "pricingNote": "Лимиты тарифов приведены для примера и могут быть изменены до запуска.",
-    "faqTitle": "Часто задаваемые вопросы",
-    "faqs": [
-      {
-        "q": "Что на самом деле означает «async-first»?",
-        "a": "Это значит, что клиент оставляет сообщение и получает честное окно ответа (например, «мы вернёмся через несколько часов»), а не ждёт в живом чате. Вы отвечаете в удобном графике, и никто не нервничает, глядя на прыгающие три точки."
-      },
-      {
-        "q": "Сколько времени занимает настройка?",
-        "a": "Большинство малых бизнесов запускаются менее чем за десять минут. Подключите почту, добавьте несколько вопросов-ответов — и AI уже начнёт писать ответы в вашем стиле."
-      },
-      {
-        "q": "AI сам отправляет ответы?",
-        "a": "Нет. AI всегда готовит черновик — человек из вашей команды одобряет его, прежде чем что-либо дойдёт до клиента. Вы сохраняете контроль над своим голосом; AI просто избавляет от набора текста."
-      },
-      {
-        "q": "Что входит в бесплатный тариф?",
-        "a": "Бесплатный тариф даёт общий почтовый ящик и щедрый месячный лимит бесплатных AI-черновиков, а также поддержку сообщества. Он создан для малого бизнеса, который хочет попробовать спокойную поддержку, прежде чем заплатить хоть цент."
-      },
-      {
-        "q": "Какие каналы можно подключить?",
-        "a": "Электронная почта, живой чат и основные каналы соцсетей попадают в одну очередь на тарифе Pro. Чем бы ни пользовались ваши клиенты, вы отвечаете из одного спокойного места."
-      }
-    ],
-    "finalTitle": "Внесите спокойствие в свой почтовый ящик",
-    "finalSub": "Настройка за минуты · Бесплатно для малого бизнеса · www.nudgeso.com",
-    "finalCta": "Получить NudgeSo бесплатно",
-    "footerTag": "NudgeSo · Спокойная поддержка клиентов · www.nudgeso.com"
-  },
-  "ro": {
-    "metaTitle": "NudgeSo — Suport clienți calm pentru afaceri mici",
-    "metaDescription": "Suport cu prioritate asincronă care schițează răspunsuri calde, pune în coadă ce contează și îți lasă spațiu să respiri.",
-    "nav": [
-      "Produs",
-      "Prețuri",
-      "Cum funcționează",
-      "FAQ"
-    ],
-    "signIn": "Conectare",
-    "startFree": "Începe gratuit",
-    "heroEyebrow": "Helpdesk AI cu prioritate asincronă",
-    "heroTitle": "Suport clienți calm pentru afaceri mici",
-    "heroSub": "Suport cu prioritate asincronă care schițează răspunsuri calde, pune în coadă ce contează și îți lasă spațiu să respiri — gata cu trăitul în inbox.",
-    "featuresTitle": "Tot ce are nevoie inboxul tău, nimic în plus",
-    "featuresSub": "Creat pentru afacerile mici care vor să răspundă bine fără haos.",
-    "features": [
-      {
-        "title": "O singură coadă calmă",
-        "body": "Conversațiile de e-mail, chat și social media sunt unificate și prioritizate, astfel încât nimic să nu scape."
-      },
-      {
-        "title": "Schițe în vocea ta",
-        "body": "AI-ul învață tonul tău și sugerează răspunsuri pe care chiar ai vrea să le trimiți."
-      },
-      {
-        "title": "Configurare în câteva minute",
-        "body": "Conectează-ți inboxul în câteva clicuri, importă întrebările frecvente, iar AI-ul îți cunoaște deja vocea."
-      },
-      {
-        "title": "Fără notificări târziu în noapte",
-        "body": "Asincron implicit, clienții primesc termene de răspuns oneste, iar afacerea ta își recuperează serile."
-      }
-    ],
-    "howTitle": "Cum funcționează",
-    "howSub": "Trei pași liniștiți între un inbox zgomotos și unul calm.",
-    "howSteps": [
-      {
-        "title": "Conectează-ți inboxul",
-        "body": "Conectează e-mailul, chatul și canalele sociale. NudgeSo le unifică pe toate într-o singură coadă partajată."
-      },
-      {
-        "title": "AI-ul schițează răspunsuri prietenoase",
-        "body": "AI-ul citește conversația, preia tonul din răspunsurile anterioare și schițează un răspuns cald pentru fiecare mesaj."
-      },
-      {
-        "title": "Tu aprobi, dai un semn, mergi mai departe",
-        "body": "Ajustează un cuvânt sau apasă trimite. Conversațiile se amână singure până când clienții primesc răspuns. Fără presiune, niciodată."
-      }
-    ],
-    "pricingTitle": "Prețuri simple",
-    "pricingSub": "Începe gratuit, fă upgrade când afacerea ta depășește inboxul partajat.",
-    "monthly": "Lunar",
-    "yearly": "Anual",
-    "saveNote": "~21% reducere",
-    "freePlan": {
-      "name": "Gratuit",
-      "billing": "Pentru o afacere mică ce încearcă",
-      "features": [
-        "Inbox partajat",
-        "O alocație lunară generoasă de schițe AI gratuite",
-        "Suport din comunitate"
-      ],
-      "cta": "Începe gratuit"
-    },
-    "proPlan": {
-      "name": "Pro",
-      "badge": "Cel mai popular",
-      "billingMonthly": "$19 / lună · facturat lunar",
-      "billingYearly": "$15 / lună · facturat anual",
-      "features": [
-        "Tot ce include Gratuit",
-        "Canale de e-mail, chat și social media",
-        "Suport prioritar"
-      ],
-      "cta": "Încearcă Pro gratuit"
+      "cta": "Предпросмотр Pro"
     },
     "businessPlan": {
       "name": "Business",
-      "badge": "Preț exemplu — ajustabil",
-      "billingMonthly": "$49 / lună · facturat lunar",
-      "billingYearly": "$39 / lună · facturat anual",
+      "badge": "Предпросмотр цены — без оплаты",
+      "billingMonthly": "$49 / месяц · оплата ежемесячно",
+      "billingYearly": "$39 / месяц · оплата ежегодно",
       "features": [
-        "Tot ce include Pro",
-        "Mai multe locuri pentru echipă",
-        "Ajutor la onboarding și un contact dedicat"
+        "Все из Pro",
+        "Несколько мест для сотрудников (предпросмотр)",
+        "Помощь с настройкой"
       ],
-      "cta": "Începe proba gratuită"
+      "cta": "Связаться с нами"
     },
-    "pricingNote": "Limitele planurilor sunt orientative și pot fi ajustate înainte de lansare.",
-    "faqTitle": "Întrebări frecvente",
+    "pricingNote": "Только предпросмотр тарифов: платежи не принимаются. Лимиты тарифов и платные функции приведены для примера и могут быть изменены до запуска оплаты.",
+    "faqTitle": "Частые вопросы",
     "faqs": [
       {
-        "q": "Ce înseamnă de fapt \"async-first\"?",
-        "a": "Înseamnă că clienții lasă un mesaj și primesc o fereastră de răspuns onestă (de exemplu, \"revenim în câteva ore\") în loc să aștepte un chat live. Răspunzi după propriul program, iar nimeni nu devine anxios urmărind trei puncte care saltă."
+        "q": "Что на самом деле означает «асинхронный подход»?",
+        "a": "Это значит, что клиенты оставляют сообщение и получают честное окно ответа (например, «мы вернемся через несколько часов»), а не ждут в живом чате. Вы отвечаете по своему графику, и никто не нервничает, глядя на прыгающие три точки."
       },
       {
-        "q": "Cât durează configurarea?",
-        "a": "Majoritatea afacerilor mici sunt gata în mai puțin de zece minute. Conectezi inboxul, adaugi câteva întrebări frecvente, iar AI-ul începe deja să scrie răspunsuri care sună ca tine."
+        "q": "Сколько времени занимает настройка?",
+        "a": "Большинство малых бизнесов запускаются менее чем за десять минут. Подключите ящик, добавьте несколько вопросов из FAQ, и AI уже начинает писать ответы, которые звучат как вы."
       },
       {
-        "q": "AI-ul trimite răspunsuri de unul singur?",
-        "a": "Nu. AI-ul doar schițează — un om din echipa ta aprobă înainte ca ceva să ajungă la client. Tu rămâi în controlul vocii tale; AI-ul doar elimină tastarea."
+        "q": "AI сам отправляет ответы?",
+        "a": "Нет. AI всегда готовит черновик — человек из вашей команды одобряет его, прежде чем что-либо дойдет до клиента. Вы сохраняете контроль над своим голосом; AI просто избавляет от набора текста."
       },
       {
-        "q": "Ce include planul gratuit?",
-        "a": "Planul gratuit îți oferă inboxul partajat și o alocație lunară generoasă de schițe AI gratuite, plus suport din comunitate. Este creat pentru afacerile mici care vor să încerce suportul calm înainte de a plăti măcar un bănuț."
+        "q": "Что входит в бесплатный тариф?",
+        "a": "Бесплатный тариф дает общий ящик и щедрый месячный лимит бесплатных AI-черновиков, а также справочное руководство. Платные тарифы доступны только в предпросмотре, пока оплата не запущена."
       },
       {
-        "q": "Ce canale pot conecta?",
-        "a": "E-mailul, chatul live și principalele canale de mesagerie socială ajung toate în aceeași coadă la Pro. Indiferent ce folosesc clienții tăi, răspunzi dintr-un singur loc calm."
+        "q": "Какие каналы можно подключить?",
+        "a": "Уже доступно: отдельный чат на сайте и общий ящик для продавцов. Email и соцсети (включая WhatsApp и Instagram) пока не подключены; им нужна настройка с сопровождением, и они будут запускаться отдельно. Мы укажем канал как доступный только тогда, когда он действительно подключен."
       }
     ],
-    "finalTitle": "Adu calm în inbox",
-    "finalSub": "Configurare în câteva minute · Gratuit pentru afaceri mici · www.nudgeso.com",
-    "finalCta": "Obține NudgeSo gratuit",
-    "footerTag": "NudgeSo · Suport clienți calm · www.nudgeso.com"
+    "finalTitle": "Внесите спокойствие в свой ящик",
+    "finalSub": "Настройка за минуты · Бесплатно для малого бизнеса · www.nudgeso.com",
+    "finalCta": "Получить NudgeSo бесплатно",
+    "footerTag": "NudgeSo · Спокойная поддержка клиентов · www.nudgeso.com",
+    "privacy": "Политика конфиденциальности",
+    "terms": "Условия использования"
+  },
+  "sk": {
+    "metaTitle": "NudgeSo — Pokojná zákaznícka podpora pre malé firmy",
+    "metaDescription": "Asynchrónna podpora, ktorá pripravuje vrúcne odpovede, zoraďuje to dôležité a necháva vám priestor na dýchanie.",
+    "nav": [
+      "Produkt",
+      "Ceny",
+      "Ako",
+      "FAQ"
+    ],
+    "signIn": "Prihlásiť sa",
+    "startFree": "Začať zadarmo",
+    "heroEyebrow": "Asynchrónna AI podpora",
+    "heroTitle": "Pokojná zákaznícka podpora pre malé firmy",
+    "heroSub": "Asynchrónna podpora, ktorá pripravuje vrúcne odpovede, zoraďuje to dôležité a necháva vám priestor na dýchanie — už žiadne žitie v schránke.",
+    "featuresTitle": "Všetko, čo vaša schránka potrebuje, a nič navyše",
+    "featuresSub": "Vytvorené pre malé firmy, ktoré chcú dobre odpovedať bez chaosu.",
+    "features": [
+      {
+        "title": "Jedna pokojná fronta",
+        "body": "Už dnes: chat na webe a spoločná schránka pre obchodníkov. Prepojenia na e-mail a sociálne siete zavádzame samostatne, takže nepredstierame, že sú už zlúčené."
+      },
+      {
+        "title": "Návrhy vo vašom hlase",
+        "body": "AI sa učí váš tón a navrhuje odpovede, ktoré budete naozaj chcieť odoslať."
+      },
+      {
+        "title": "Nastavenie za pár minút",
+        "body": "Pripojte svoju schránku niekoľkými kliknutiami, importujte svoje časté otázky a AI už pozná váš hlas."
+      },
+      {
+        "title": "Žiadne nočné notifikácie",
+        "body": "Predvolene asynchrónne — zákazníci dostanú poctivé časy odpovede a vaša firma získa späť svoje večery."
+      }
+    ],
+    "howTitle": "Ako to funguje",
+    "howSub": "Tri tiché kroky medzi hlučnou schránkou a pokojnou.",
+    "howSteps": [
+      {
+        "title": "Pripojte svoju schránku",
+        "body": "Nastavte chat na webe a spoločnú schránku, ktoré sú dostupné už dnes. Prepojenia na e-mail a sociálne siete sú samostatné nastavenie s asistovanou pomocou."
+      },
+      {
+        "title": "AI navrhuje priateľské odpovede",
+        "body": "AI prečíta vlákno, zosúladí váš tón z predchádzajúcich odpovedí a pre každú správu navrhne vrúcnu odpoveď."
+      },
+      {
+        "title": "Vy schválite, jemne postrčíte a idete ďalej",
+        "body": "Upravte slovo alebo stlačte odoslať. Vlákna sa samy odložia, kým sa zákazník neozve. Žiadny tlak, nikdy."
+      }
+    ],
+    "pricingTitle": "Jednoduché ceny",
+    "pricingSub": "Začnite zadarmo. Platené plány sú zatiaľ len v náhľade, kým sa dokončuje fakturácia.",
+    "monthly": "Mesačne",
+    "yearly": "Ročne",
+    "saveNote": "~21 % zľava",
+    "freePlan": {
+      "name": "Free",
+      "billing": "Pre malú firmu, ktorá to skúša",
+      "features": [
+        "Spoločná schránka",
+        "Štedrá mesačná kvóta bezplatných AI návrhov",
+        "Sprievodca pomocou"
+      ],
+      "cta": "Začať zadarmo"
+    },
+    "proPlan": {
+      "name": "Pro",
+      "badge": "Plán v náhľade",
+      "billingMonthly": "$19 / mesiac · fakturované mesačne",
+      "billingYearly": "$15 / mesiac · fakturované ročne",
+      "features": [
+        "Všetko z plánu Free",
+        "Chat na webe + spoločná schránka",
+        "Náhľad plánovanej prioritnej podpory"
+      ],
+      "cta": "Náhľad Pro"
+    },
+    "businessPlan": {
+      "name": "Business",
+      "badge": "Cena v náhľade — bez poplatkov",
+      "billingMonthly": "$49 / mesiac · fakturované mesačne",
+      "billingYearly": "$39 / mesiac · fakturované ročne",
+      "features": [
+        "Všetko z plánu Pro",
+        "Viac miest pre zamestnancov (náhľad)",
+        "Pomoc s nastavením"
+      ],
+      "cta": "Napíšte nám"
+    },
+    "pricingNote": "Ceny sú len v náhľade: žiadne platby sa nevyberajú. Limity plánov a platené funkcie sú ilustratívne a môžu sa upraviť pred spustením fakturácie.",
+    "faqTitle": "Často kladené otázky",
+    "faqs": [
+      {
+        "q": "Čo v praxi znamená „async-first“?",
+        "a": "Znamená to, že zákazník zanechá správu a dostane poctivé okno odpovede (napríklad „ozveme sa o pár hodín“) namiesto čakania na živom chate. Odpovedáte podľa svojho rozvrhu a nikto sa netrápi sledovaním poskakujúcich bodiek."
+      },
+      {
+        "q": "Ako dlho trvá nastavenie?",
+        "a": "Väčšina malých firiem je spustená za menej ako desať minút. Pripojte svoju schránku, vložte pár častých otázok a AI už začne písať odpovede, ktoré znejú ako vy."
+      },
+      {
+        "q": "Posiela AI odpovede sama?",
+        "a": "Nie. AI vždy len navrhuje — predtým, než sa čokoľvek dostane k zákazníkovi, schvaľuje to človek z vášho tímu. Kontrolu nad svojím hlasom máte stále vy; AI len odstraňuje písanie."
+      },
+      {
+        "q": "Čo je zahrnuté v bezplatnom pláne?",
+        "a": "Bezplatný plán vám dáva spoločnú schránku a štedrú mesačnú kvótu bezplatných AI návrhov plus sprievodcu pomocou. Platené plány sú len v náhľade, kým nebude fakturácia spustená."
+      },
+      {
+        "q": "Aké kanály môžem pripojiť?",
+        "a": "Dostupné už dnes: samostatný chat na webe a spoločná schránka pre obchodníkov. E-mail a sociálne správy (vrátane WhatsApp a Instagram) zatiaľ prepojené nie sú; vyžadujú asistované nastavenie a budú spustené samostatne. Kanál uvedieme ako dostupný až vtedy, keď bude naozaj prepojený."
+      }
+    ],
+    "finalTitle": "Prineste pokoj do svojej schránky",
+    "finalSub": "Nastavenie za pár minút · Zadarmo pre malé firmy · www.nudgeso.com",
+    "finalCta": "Získať NudgeSo zadarmo",
+    "footerTag": "NudgeSo · Pokojná zákaznícka podpora · www.nudgeso.com",
+    "privacy": "Zásady ochrany osobných údajov",
+    "terms": "Podmienky používania"
   },
   "sv": {
     "metaTitle": "NudgeSo — Lugnt kundstöd för småföretag",
-    "metaDescription": "Kundstöd med asynkron grund som formulerar varma svar, köar det som är viktigt och ger dig utrymme att andas.",
+    "metaDescription": "Asynkron-först support som skriver utkast till varma svar, köar det som är viktigt och ger dig utrymme att andas.",
     "nav": [
       "Produkt",
       "Priser",
@@ -3433,369 +3611,135 @@ window.NS_LANDING_LOCALES = {
     ],
     "signIn": "Logga in",
     "startFree": "Starta gratis",
-    "heroEyebrow": "AI-helpdesk med asynkron grund",
+    "heroEyebrow": "Asynkron-först AI-helpdesk",
     "heroTitle": "Lugnt kundstöd för småföretag",
-    "heroSub": "Kundstöd med asynkron grund som formulerar varma svar, köar det som är viktigt och ger dig utrymme att andas – du behöver inte längre leva i din inkorg.",
+    "heroSub": "Asynkron-först support som skriver utkast till varma svar, köar det som är viktigt och ger dig utrymme att andas — du slipper leva i inkorgen.",
     "featuresTitle": "Allt din inkorg behöver, inget den inte behöver",
-    "featuresSub": "Byggt för småföretag som vill svara bra utan kaos.",
+    "featuresSub": "Byggd för småföretag som vill svara väl utan kaos.",
     "features": [
       {
         "title": "En lugn kö",
-        "body": "E-post, chatt och sociala trådar samlas och prioriteras, så att inget faller mellan stolarna."
+        "body": "Tillgängligt idag: webbchatt och en delad handlarinkorg. E-post- och sociala kopplingar rullas ut separat, så vi låtsas inte att de redan är sammanslagna."
       },
       {
-        "title": "Utkast i din ton",
-        "body": "AI:n lär sig din ton och föreslår svar som du faktiskt vill skicka."
+        "title": "Utkast i din röst",
+        "body": "AI:n lär sig din ton och föreslår svar du faktiskt vill skicka."
       },
       {
         "title": "Kom igång på minuter",
-        "body": "Anslut din inkorg med några klick, importera dina vanliga frågor och låt AI:n lära sig din ton."
+        "body": "Anslut din inkorg med några klick, importera dina vanliga frågor och AI:n kan redan din röst."
       },
       {
-        "title": "Inga sena kvällsping",
-        "body": "Asynkront som standard: kunderna får ärliga svarstider och ditt företag får tillbaka kvällarna."
+        "title": "Inga sena ping",
+        "body": "Asynkront som standard: kunder får ärliga svarstider och ditt företag får tillbaka kvällarna."
       }
     ],
     "howTitle": "Så fungerar det",
-    "howSub": "Tre lugna steg mellan en rörig inkorg och en lugn sådan.",
+    "howSub": "Tre tysta steg mellan en rörig inkorg och en lugn sådan.",
     "howSteps": [
       {
         "title": "Anslut din inkorg",
-        "body": "Koppla in e-post, chatt och sociala kanaler. NudgeSo slår samman allt till en delad kö."
+        "body": "Ställ in webbchatten och den delade inkorgen som är tillgängliga idag. E-post- och sociala kopplingar är en separat, assisterad installation."
       },
       {
-        "title": "AI skapar vänliga svarsutkast",
-        "body": "AI:n läser tråden, matchar din ton utifrån tidigare svar och skapar ett varmt svarsutkast till varje meddelande."
+        "title": "AI:n skriver vänliga svar",
+        "body": "AI:n läser tråden, matchar din ton från tidigare svar och skriver ett varmt svarsutkast till varje meddelande."
       },
       {
-        "title": "Du godkänner, puffar, går vidare",
-        "body": "Justera ett ord eller tryck på skicka. Trådarna pausar sig själva tills kunderna får svar. Ingen press, någonsin."
+        "title": "Du godkänner, puffar på, går vidare",
+        "body": "Ändra ett ord eller tryck på skicka. Trådar pausar sig själva tills kunderna får svar. Aldrig någon press."
       }
     ],
     "pricingTitle": "Enkel prissättning",
-    "pricingSub": "Börja gratis, uppgradera när företaget växer ur den delade inkorgen.",
+    "pricingSub": "Börja gratis. Betalplaner är endast förhandsvisning medan faktureringen färdigställs.",
     "monthly": "Månadsvis",
     "yearly": "Årsvis",
     "saveNote": "~21 % rabatt",
     "freePlan": {
       "name": "Gratis",
-      "billing": "För ett småföretag som testar det",
+      "billing": "För ett litet företag som provar",
       "features": [
         "Delad inkorg",
-        "En generös månadskvot med gratis AI-utkast",
-        "Support från communityn"
+        "En generös månadskvot av gratis AI-utkast",
+        "Hjälpguide"
       ],
-      "cta": "Börja gratis"
+      "cta": "Starta gratis"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Mest populär",
+      "badge": "Förhandsvisningsplan",
       "billingMonthly": "$19 / månad · faktureras månadsvis",
-      "billingYearly": "$15 / månad · faktureras årsvis",
+      "billingYearly": "$15 / månad · faktureras årligen",
       "features": [
         "Allt i Gratis",
-        "E-post, chatt och sociala kanaler",
-        "Prioriterad support"
+        "Webbchatt + delad inkorg",
+        "Förhandsvisning av planerad prioriterad support"
       ],
-      "cta": "Prova Pro gratis"
+      "cta": "Förhandsgranska Pro"
     },
     "businessPlan": {
-      "name": "Företag",
-      "badge": "Exempelpris — justerbart",
+      "name": "Business",
+      "badge": "Förhandspris — ingen kostnad",
       "billingMonthly": "$49 / månad · faktureras månadsvis",
-      "billingYearly": "$39 / månad · faktureras årsvis",
+      "billingYearly": "$39 / månad · faktureras årligen",
       "features": [
         "Allt i Pro",
-        "Flera platser för personal",
-        "Hjälp med onboarding och en dedikerad kontakt"
+        "Flera medarbetarplatser (förhandsvisning)",
+        "Guidad installationshjälp"
       ],
-      "cta": "Starta gratis provperiod"
+      "cta": "Prata med oss"
     },
-    "pricingNote": "Planbegränsningarna är illustrativa och kan justeras före lansering.",
+    "pricingNote": "Endast förhandspris: ingen betalning tas ut. Planbegränsningar och betalfunktioner är illustrativa och kan justeras innan faktureringen lanseras.",
     "faqTitle": "Vanliga frågor",
     "faqs": [
       {
-        "q": "Vad betyder \"async-first\" egentligen?",
-        "a": "Det betyder att kunder lämnar ett meddelande och får ett ärligt svarstidsfönster (till exempel \"vi är tillbaka om några timmar\") i stället för att vänta i en direktchatt. Du svarar enligt ditt eget schema, och ingen blir stressad av att se tre punkter studsa."
+        "q": "Vad innebär \"async-first\" egentligen?",
+        "a": "Det betyder att kunder lämnar ett meddelande och får ett ärligt svarstidsfönster (som \"vi är tillbaka om några timmar\") i stället för att vänta på en livechatt. Du svarar enligt ditt eget schema, och ingen blir orolig av att se tre punkter studsa."
       },
       {
-        "q": "Hur lång tid tar det att komma igång?",
+        "q": "Hur lång tid tar installationen?",
         "a": "De flesta småföretag är igång på under tio minuter. Anslut din inkorg, lägg in några vanliga frågor och AI:n börjar redan skriva svar som låter som du."
       },
       {
-        "q": "Skickar AI:n svar på egen hand?",
-        "a": "Nej. AI:n skapar alltid utkast – en människa i ditt team godkänner innan något når kunden. Du behåller kontrollen över din ton; AI:n tar bara bort skrivandet."
+        "q": "Skickar AI:n svar själv?",
+        "a": "Nej. AI:n skriver alltid utkast – en människa i ditt team godkänner innan något når kunden. Du behåller kontrollen över din röst; AI:n tar bara bort skrivandet."
       },
       {
         "q": "Vad ingår i gratisplanen?",
-        "a": "Gratisplanen ger dig den delade inkorgen och en generös månadskvot med gratis AI-utkast, plus support från communityn. Den är byggd för småföretag som vill prova lugnt kundstöd innan de betalar ett öre."
+        "a": "Gratisplanen ger dig den delade inkorgen och en generös månadskvot av gratis AI-utkast, plus hjälpguiden. Betalplaner är endast förhandsvisning tills faktureringen är live."
       },
       {
         "q": "Vilka kanaler kan jag ansluta?",
-        "a": "E-post, direktchatt och större sociala meddelandekanaler hamnar alla i samma kö i Pro. Oavsett vad dina kunder använder svarar du från en lugn plats."
+        "a": "Tillgängligt idag: den fristående webbchatten och handlarens delade inkorg. E-post och sociala meddelanden (inklusive WhatsApp och Instagram) är inte anslutna ännu; de kräver en assisterad installation och lanseras separat. Vi listar bara en kanal som tillgänglig när den är genuint ansluten."
       }
     ],
     "finalTitle": "Skapa lugn i din inkorg",
     "finalSub": "Kom igång på minuter · Gratis för småföretag · www.nudgeso.com",
-    "finalCta": "Skaffa NudgeSo gratis",
-    "footerTag": "NudgeSo · Lugnt kundstöd · www.nudgeso.com"
-  },
-  "sk": {
-    "metaTitle": "NudgeSo — Pokojná zákaznícka podpora pre malé firmy",
-    "metaDescription": "Podpora s dôrazom na asynchrónnosť, ktorá navrhuje vrúcne odpovede, zoraďuje dôležité veci a necháva vám priestor dýchať.",
-    "nav": [
-      "Produkt",
-      "Ceny",
-      "Ako",
-      "Časté otázky"
-    ],
-    "signIn": "Prihlásiť sa",
-    "startFree": "Začať zadarmo",
-    "heroEyebrow": "AI helpdesk s dôrazom na asynchrónnosť",
-    "heroTitle": "Pokojná zákaznícka podpora pre malé firmy",
-    "heroSub": "Podpora s dôrazom na asynchrónnosť, ktorá navrhuje vrúcne odpovede, zoraďuje dôležité veci a necháva vám priestor dýchať — už nemusíte žiť v doručenej pošte.",
-    "featuresTitle": "Všetko, čo vaša doručená pošta potrebuje, a nič navyše",
-    "featuresSub": "Vytvorené pre malé firmy, ktoré chcú dobre odpovedať bez chaosu.",
-    "features": [
-      {
-        "title": "Jedna pokojná fronta",
-        "body": "E-mail, chat a vlákna na sociálnych sieťach spojené a prioritne zoradené, aby nič neprepadlo."
-      },
-      {
-        "title": "Návrhy vo vašom hlase",
-        "body": "AI sa učí váš tón a navrhuje odpovede, ktoré budete naozaj chcieť odoslať."
-      },
-      {
-        "title": "Nastavenie za pár minút",
-        "body": "Pripojte svoju doručenú poštu niekoľkými kliknutiami, importujte časté otázky a AI už pozná váš hlas."
-      },
-      {
-        "title": "Žiadne nočné pípanie",
-        "body": "Predvolene asynchrónne, zákazníci dostanú úprimné časy odpovede a vaša firma získa späť svoje večery."
-      }
-    ],
-    "howTitle": "Ako to funguje",
-    "howSub": "Tri tiché kroky medzi hlučnou a pokojnou doručenou poštou.",
-    "howSteps": [
-      {
-        "title": "Pripojte svoju doručenú poštu",
-        "body": "Pripojte e-mail, chat a sociálne kanály. NudgeSo všetko spojí do jednej spoločnej fronty."
-      },
-      {
-        "title": "AI navrhuje priateľské odpovede",
-        "body": "AI prečíta vlákno, zosúladí váš tón z predchádzajúcich odpovedí a pre každú správu navrhne vrúcnu odpoveď."
-      },
-      {
-        "title": "Vy schválite, postrčíte a idete ďalej",
-        "body": "Upravte slovo alebo stlačte odoslať. Vlákna sa samy odložia, kým zákazníci nedostanú odpoveď. Nikdy žiadny tlak."
-      }
-    ],
-    "pricingTitle": "Jednoduché ceny",
-    "pricingSub": "Začnite zadarmo, prejdite na vyšší plán, keď vaša firma prerastie spoločnú doručenú poštu.",
-    "monthly": "Mesačne",
-    "yearly": "Ročne",
-    "saveNote": "~21 % zľava",
-    "freePlan": {
-      "name": "Zdarma",
-      "billing": "Pre malú firmu, ktorá to skúša",
-      "features": [
-        "Spoločná doručená pošta",
-        "Štedrá mesačná kvóta bezplatných AI návrhov",
-        "Komunitná podpora"
-      ],
-      "cta": "Začať zadarmo"
-    },
-    "proPlan": {
-      "name": "Pro",
-      "badge": "Najpopulárnejšie",
-      "billingMonthly": "$19 / mesiac · účtované mesačne",
-      "billingYearly": "$15 / mesiac · účtované ročne",
-      "features": [
-        "Všetko v pláne Zdarma",
-        "E-mail, chat a sociálne kanály",
-        "Prioritná podpora"
-      ],
-      "cta": "Vyskúšajte Pro zadarmo"
-    },
-    "businessPlan": {
-      "name": "Firma",
-      "badge": "Príkladová cena — upraviteľná",
-      "billingMonthly": "$49 / mesiac · účtované mesačne",
-      "billingYearly": "$39 / mesiac · účtované ročne",
-      "features": [
-        "Všetko v pláne Pro",
-        "Viac miest pre zamestnancov",
-        "Pomoc s onboardingom a vyhradený kontakt"
-      ],
-      "cta": "Začať skúšobné obdobie zadarmo"
-    },
-    "pricingNote": "Limity plánov sú ilustračné a pred spustením sa dajú upraviť.",
-    "faqTitle": "Často kladené otázky",
-    "faqs": [
-      {
-        "q": "Čo vlastne znamená „async-first“?",
-        "a": "Znamená to, že zákazníci zanechajú správu a dostanú úprimné okno na odpoveď (napríklad „vrátime sa o pár hodín“) namiesto čakania na živý chat. Odpovedáte podľa vlastného rozvrhu a nikto nemá nervy z pozerania na poskakujúce tri bodky."
-      },
-      {
-        "q": "Ako dlho trvá nastavenie?",
-        "a": "Väčšina malých firiem je spustená za menej ako desať minút. Pripojte svoju doručenú poštu, vložte pár častých otázok a AI už začne písať odpovede, ktoré znejú ako vy."
-      },
-      {
-        "q": "Odosiela AI odpovede sama?",
-        "a": "Nie. AI vždy iba navrhuje — človek z vášho tímu schváli odpoveď predtým, než sa čokoľvek dostane k zákazníkovi. Kontrolu nad svojím hlasom si zachovávate vy; AI len odstraňuje písanie."
-      },
-      {
-        "q": "Čo je súčasťou bezplatného plánu?",
-        "a": "Bezplatný plán vám dáva spoločnú doručenú poštu a štedrú mesačnú kvótu bezplatných AI návrhov plus komunitnú podporu. Je vytvorený pre malé firmy, ktoré si chcú vyskúšať pokojnú podporu skôr, než zaplatia čo i len cent."
-      },
-      {
-        "q": "Aké kanály môžem pripojiť?",
-        "a": "E-mail, živý chat a hlavné sociálne messagingové kanály sa v pláne Pro dostanú do rovnakej fronty. Čokoľvek vaši zákazníci používajú, odpovedáte z jedného pokojného miesta."
-      }
-    ],
-    "finalTitle": "Vneste pokoj do svojej doručenej pošty",
-    "finalSub": "Nastavenie za pár minút · Zadarmo pre malé firmy · www.nudgeso.com",
-    "finalCta": "Získajte NudgeSo zadarmo",
-    "footerTag": "NudgeSo · Pokojná zákaznícka podpora · www.nudgeso.com"
-  },
-  "sw": {
-    "metaTitle": "NudgeSo — Msaada wa Wateja kwa Utulivu kwa biashara ndogo",
-    "metaDescription": "Msaada unaotanguliza async ambao hutengeneza majibu ya kirafiki, hupanga mambo muhimu kwenye foleni, na kukupa nafasi ya kupumua.",
-    "nav": [
-      "Bidhaa",
-      "Bei",
-      "Jinsi",
-      "Maswali"
-    ],
-    "signIn": "Ingia",
-    "startFree": "Anza bila malipo",
-    "heroEyebrow": "Dawati la msaada la AI linalotanguliza async",
-    "heroTitle": "Msaada wa Wateja kwa Utulivu kwa biashara ndogo",
-    "heroSub": "Msaada unaotanguliza async ambao hutengeneza majibu ya kirafiki, hupanga mambo muhimu kwenye foleni, na kukupa nafasi ya kupumua — hutaishi tena kwenye kikasha chako.",
-    "featuresTitle": "Kila kitu ambacho kikasha chako kinahitaji, na hakuna kisichohitajika",
-    "featuresSub": "Imejengwa kwa biashara ndogo zinazotaka kujibu vyema bila fujo.",
-    "features": [
-      {
-        "title": "Foleni moja tulivu",
-        "body": "Barua pepe, gumzo na mazungumzo ya mitandao ya kijamii huunganishwa na kupangwa kipaumbele, ili hakuna kitu kipitacho bila kushughulikiwa."
-      },
-      {
-        "title": "Rasimu kwa sauti yako",
-        "body": "AI hujifunza sauti yako na kupendekeza majibu ambayo utataka kuyatuma kweli."
-      },
-      {
-        "title": "Sanidi kwa dakika chache",
-        "body": "Unganisha kikasha chako kwa mibofyo michache, ingiza Maswali Yanayoulizwa mara kwa mara, na AI tayari inajua sauti yako."
-      },
-      {
-        "title": "Hakuna arifa za usiku wa manane",
-        "body": "Kwa kawaida ni async, wateja hupata muda wa majibu ulio wazi na biashara yako inapata jioni zake tena."
-      }
-    ],
-    "howTitle": "Inavyofanya kazi",
-    "howSub": "Hatua tatu tulivu kati ya kikasha chenye kelele na kikasha tulivu.",
-    "howSteps": [
-      {
-        "title": "Unganisha kikasha chako",
-        "body": "Unganisha barua pepe, gumzo na chaneli zako za kijamii. NudgeSo huunganisha kila kitu kuwa foleni moja inayoshirikiwa."
-      },
-      {
-        "title": "AI hutengeneza rasimu za majibu ya kirafiki",
-        "body": "AI husoma mazungumzo, hulinganisha sauti yako na majibu ya awali, na hutengeneza rasimu ya jibu la upole kwa kila ujumbe."
-      },
-      {
-        "title": "Wewe hukubali, hukumbusha kwa upole, na kuendelea",
-        "body": "Badilisha neno au bofya tuma. Mazungumzo hupumzika hadi wateja wapate jibu. Hakuna shinikizo, kamwe."
-      }
-    ],
-    "pricingTitle": "Bei rahisi",
-    "pricingSub": "Anza bila malipo, pandisha daraja biashara yako inapozidi kikasha cha pamoja.",
-    "monthly": "Kila mwezi",
-    "yearly": "Kila mwaka",
-    "saveNote": "~21% punguzo",
-    "freePlan": {
-      "name": "Bila Malipo",
-      "billing": "Kwa biashara ndogo inayojaribu",
-      "features": [
-        "Kikasha cha pamoja",
-        "Idadi kubwa ya rasimu za AI bila malipo kwa mwezi",
-        "Msaada wa jamii"
-      ],
-      "cta": "Anza bila malipo"
-    },
-    "proPlan": {
-      "name": "Pro",
-      "badge": "Inayopendwa zaidi",
-      "billingMonthly": "$19 / mwezi · hulipwa kila mwezi",
-      "billingYearly": "$15 / mwezi · hulipwa kila mwaka",
-      "features": [
-        "Kila kitu kilicho kwenye Bila Malipo",
-        "Barua pepe, gumzo na chaneli za kijamii",
-        "Msaada wa kipaumbele"
-      ],
-      "cta": "Jaribu Pro bila malipo"
-    },
-    "businessPlan": {
-      "name": "Biashara",
-      "badge": "Bei ya mfano — inaweza kubadilishwa",
-      "billingMonthly": "$49 / mwezi · hulipwa kila mwezi",
-      "billingYearly": "$39 / mwezi · hulipwa kila mwaka",
-      "features": [
-        "Kila kitu kilicho kwenye Pro",
-        "Nafasi za wafanyakazi kadhaa",
-        "Msaada wa kuanzishwa na mtu maalum wa kuwasiliana"
-      ],
-      "cta": "Anza jaribio bila malipo"
-    },
-    "pricingNote": "Mipaka ya mpango ni ya kielelezo na inaweza kubadilishwa kabla ya kuzindua.",
-    "faqTitle": "Maswali yanayoulizwa mara kwa mara",
-    "faqs": [
-      {
-        "q": "Nini maana halisi ya \"async-first\"?",
-        "a": "Inamaanisha wateja huacha ujumbe na kupata muda wa majibu ulio wazi (kama \"tutarudi baada ya saa chache\") badala ya kusubiri kwenye gumzo la moja kwa moja. Unajibu kwa ratiba yako mwenyewe, na hakuna anayehangaika akitazama vitone vitatu vikidunda."
-      },
-      {
-        "q": "Usanidi huchukua muda gani?",
-        "a": "Biashara nyingi ndogo huanza kufanya kazi chini ya dakika kumi. Unganisha kikasha chako, ingiza Maswali Yanayoulizwa mara kwa mara machache, na AI tayari huanza kuandika majibu yanayosikika kama wewe."
-      },
-      {
-        "q": "Je, AI hutuma majibu yenyewe?",
-        "a": "Hapana. AI hutengeneza rasimu kila wakati — mtu katika timu yako huidhinisha kabla kitu chochote kufika kwa mteja. Wewe unabaki na udhibiti wa sauti yako; AI inaondoa tu kazi ya kuandika."
-      },
-      {
-        "q": "Nini kinajumuishwa katika mpango bila malipo?",
-        "a": "Mpango bila malipo hukupa kikasha cha pamoja na idadi kubwa ya rasimu za AI bila malipo kwa mwezi, pamoja na msaada wa jamii. Umejengwa kwa biashara ndogo zinazotaka kujaribu msaada wenye utulivu kabla ya kulipa hata senti."
-      },
-      {
-        "q": "Ni chaneli gani ninaweza kuunganisha?",
-        "a": "Barua pepe, gumzo la moja kwa moja na chaneli kuu za ujumbe za kijamii zote huingia kwenye foleni moja kwenye Pro. Chochote wateja wako wanachotumia, unajibu kutoka sehemu moja tulivu."
-      }
-    ],
-    "finalTitle": "Leta utulivu kwenye kikasha chako",
-    "finalSub": "Sanidi kwa dakika · Bila malipo kwa biashara ndogo · www.nudgeso.com",
-    "finalCta": "Pata NudgeSo bila malipo",
-    "footerTag": "NudgeSo · Msaada wa Wateja kwa Utulivu · www.nudgeso.com"
+    "finalCta": "Få NudgeSo gratis",
+    "footerTag": "NudgeSo · Lugnt kundstöd · www.nudgeso.com",
+    "privacy": "Integritetspolicy",
+    "terms": "Användarvillkor"
   },
   "tr": {
     "metaTitle": "NudgeSo — Küçük işletmeler için sakin müşteri desteği",
-    "metaDescription": "Sıcak yanıtlar taslaklayan, önemli olanları sıraya alan ve nefes almanız için alan bırakan asenkron öncelikli destek.",
+    "metaDescription": "Sıcak yanıtlar taslaklayan, önemli olanları sıraya koyan ve nefes almanız için size alan bırakan asenkron öncelikli destek.",
     "nav": [
       "Ürün",
       "Fiyatlandırma",
       "Nasıl",
       "SSS"
     ],
-    "signIn": "Giriş yapın",
-    "startFree": "Ücretsiz başlayın",
-    "heroEyebrow": "Asenkron öncelikli yapay zeka yardım masası",
+    "signIn": "Giriş yap",
+    "startFree": "Ücretsiz başla",
+    "heroEyebrow": "Asenkron öncelikli yapay zeka destek masası",
     "heroTitle": "Küçük işletmeler için sakin müşteri desteği",
-    "heroSub": "Sıcak yanıtlar taslaklayan, önemli olanları sıraya alan ve nefes almanız için alan bırakan asenkron öncelikli destek — artık gelen kutunuzda yaşamak yok.",
-    "featuresTitle": "Gelen kutunuzun ihtiyacı olan her şey, ihtiyacı olmayan hiçbir şey",
+    "heroSub": "Sıcak yanıtlar taslaklayan, önemli olanları sıraya koyan ve nefes almanız için size alan bırakan asenkron öncelikli destek — artık gelen kutunuzda yaşamaya son.",
+    "featuresTitle": "Gelen kutunuzun ihtiyaç duyduğu her şey, ihtiyaç duymadığı hiçbir şey",
     "featuresSub": "Kaos olmadan iyi yanıt vermek isteyen küçük işletmeler için tasarlandı.",
     "features": [
       {
-        "title": "Tek sakin kuyruk",
-        "body": "E-posta, sohbet ve sosyal medya konuları birleştirilip önceliklendirilir; böylece hiçbir şey gözden kaçmaz."
+        "title": "Tek ve sakin bir kuyruk",
+        "body": "Bugün kullanılabilir: web sitesi sohbeti ve ortak satıcı gelen kutusu. E-posta ve sosyal medya bağlantıları ayrı olarak kullanıma sunuluyor; bu yüzden şimdiden birleştirilmiş gibi göstermiyoruz."
       },
       {
         "title": "Sizin sesinizle taslaklar",
@@ -3807,7 +3751,7 @@ window.NS_LANDING_LOCALES = {
       },
       {
         "title": "Gece geç saatlerde bildirim yok",
-        "body": "Varsayılan olarak asenkron; müşteriler dürüst yanıt süreleri alır, işletmeniz akşamlarını geri kazanır."
+        "body": "Varsayılan olarak asenkron; müşteriler dürüst yanıt süreleri alır, işletmeniz akşamlerini geri kazanır."
       }
     ],
     "howTitle": "Nasıl çalışır",
@@ -3815,19 +3759,19 @@ window.NS_LANDING_LOCALES = {
     "howSteps": [
       {
         "title": "Gelen kutunuzu bağlayın",
-        "body": "E-posta, sohbet ve sosyal kanallarınızı bağlayın. NudgeSo her şeyi tek bir paylaşılan kuyrukta birleştirir."
+        "body": "Bugün kullanılabilir olan web sitesi sohbetini ve ortak gelen kutusunu kurun. E-posta ve sosyal medya bağlantıları ayrı, destekli bir kurulumdur."
       },
       {
         "title": "Yapay zeka dostça yanıtlar taslaklar",
-        "body": "Yapay zeka konuyu okur, geçmiş yanıtlarınızdan tonunuzu eşleştirir ve her mesaj için sıcak bir yanıt taslağı hazırlar."
+        "body": "Yapay zeka konuşmayı okur, geçmiş yanıtlarınızdan tonunuzu eşleştirir ve her mesaj için sıcak bir yanıt taslaklar."
       },
       {
-        "title": "Siz onaylayın, nazikçe hatırlatın, devam edin",
-        "body": "Bir kelimeyi değiştirin veya gönder'e basın. Konular, müşteriler yanıt alana kadar kendini uyku moduna alır. Asla baskı yok."
+        "title": "Siz onaylayın, dürtün, devam edin",
+        "body": "Bir kelimeyi düzenleyin ya da gönder'e basın. Konuşmalar, müşterilerden yanıt gelene kadar kendiliğinden uykuya geçer. Asla baskı yok."
       }
     ],
     "pricingTitle": "Basit fiyatlandırma",
-    "pricingSub": "Ücretsiz başlayın, işletmeniz paylaşılan gelen kutusunu aştığında yükseltin.",
+    "pricingSub": "Ücretsiz başlayın. Faturalandırma tamamlanana kadar ücretli planlar yalnızca önizleme amaçlıdır.",
     "monthly": "Aylık",
     "yearly": "Yıllık",
     "saveNote": "~%21 indirim",
@@ -3835,68 +3779,70 @@ window.NS_LANDING_LOCALES = {
       "name": "Ücretsiz",
       "billing": "Denemek isteyen küçük işletmeler için",
       "features": [
-        "Paylaşılan gelen kutusu",
-        "Ücretsiz yapay zeka taslakları için cömert bir aylık kota",
-        "Topluluk desteği"
+        "Ortak gelen kutusu",
+        "Cömert bir aylık ücretsiz yapay zeka taslağı kotası",
+        "Yardım rehberi"
       ],
-      "cta": "Ücretsiz başlayın"
+      "cta": "Ücretsiz başla"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "En popüler",
+      "badge": "Önizleme planı",
       "billingMonthly": "$19 / ay · aylık faturalandırılır",
       "billingYearly": "$15 / ay · yıllık faturalandırılır",
       "features": [
         "Ücretsiz plandaki her şey",
-        "E-posta, sohbet ve sosyal kanallar",
-        "Öncelikli destek"
+        "Web sitesi sohbeti + ortak gelen kutusu",
+        "Planlanan öncelikli desteğin önizlemesi"
       ],
-      "cta": "Pro'yu ücretsiz deneyin"
+      "cta": "Pro'yu önizle"
     },
     "businessPlan": {
       "name": "Business",
-      "badge": "Örnek fiyat — ayarlanabilir",
+      "badge": "Önizleme fiyatı — ücret yok",
       "billingMonthly": "$49 / ay · aylık faturalandırılır",
       "billingYearly": "$39 / ay · yıllık faturalandırılır",
       "features": [
         "Pro'daki her şey",
-        "Birden fazla personel koltuğu",
-        "İlk kurulum yardımı ve özel bir iletişim kişisi"
+        "Birden fazla personel koltuğu (önizleme)",
+        "Rehberli kurulum yardımı"
       ],
-      "cta": "Ücretsiz denemeyi başlatın"
+      "cta": "Bizimle konuşun"
     },
-    "pricingNote": "Plan sınırları örnektir ve lansmandan önce ayarlanabilir.",
+    "pricingNote": "Yalnızca önizleme fiyatlandırması: ödeme alınmaz. Plan sınırları ve ücretli özellikler örnektir ve faturalandırma başlamadan önce ayarlanabilir.",
     "faqTitle": "Sıkça sorulan sorular",
     "faqs": [
       {
-        "q": "\"Asenkron öncelikli\" tam olarak ne anlama geliyor?",
-        "a": "Müşterilerin canlı sohbette beklemek yerine bir mesaj bırakıp dürüst bir yanıt penceresi alması anlamına gelir (örneğin \"birkaç saat içinde döneceğiz\"). Siz kendi programınıza göre yanıt verirsiniz ve kimse üç noktanın zıplamasını izleyerek endişelenmez."
+        "q": "“Async-first” gerçekten ne anlama geliyor?",
+        "a": "Müşterilerin canlı sohbeti beklemek yerine bir mesaj bıraktığı ve dürüst bir yanıt penceresi (örneğin “birkaç saat içinde döneceğiz”) aldığı anlamına gelir. Siz kendi programınıza göre yanıt verirsiniz ve kimse zıplayan üç noktayı izlerken endişelenmez."
       },
       {
         "q": "Kurulum ne kadar sürer?",
-        "a": "Çoğu küçük işletme on dakikadan kısa sürede çalışır duruma gelir. Gelen kutunuzu bağlayın, birkaç SSS ekleyin; yapay zeka sizin gibi konuşan yanıtlar yazmaya hemen başlar."
+        "a": "Çoğu küçük işletme on dakikadan kısa sürede hazır olur. Gelen kutunuzu bağlayın, birkaç SSS ekleyin; yapay zeka zaten sizin gibi görünen yanıtlar yazmaya başlar."
       },
       {
         "q": "Yapay zeka yanıtları kendi başına gönderir mi?",
-        "a": "Hayır. Yapay zeka her zaman taslak hazırlar — müşteriye herhangi bir şey ulaşmadan önce ekibinizden bir kişi onaylar. Sesinizin kontrolü sizde kalır; yapay zeka yalnızca yazma işini ortadan kaldırır."
+        "a": "Hayır. Yapay zeka her zaman taslaklar — müşteriye herhangi bir şey ulaşmadan önce ekibinizden bir insan onaylar. Sesinizin kontrolü sizde kalır; yapay zeka sadece yazma işini ortadan kaldırır."
       },
       {
         "q": "Ücretsiz plana neler dahil?",
-        "a": "Ücretsiz plan size paylaşılan gelen kutusunu ve ücretsiz yapay zeka taslakları için cömert bir aylık kotayı, ayrıca topluluk desteğini sunar. Bir kuruş ödemeden önce sakin desteği denemek isteyen küçük işletmeler için tasarlandı."
+        "a": "Ücretsiz plan size ortak gelen kutusunu ve cömert bir aylık ücretsiz yapay zeka taslağı kotasını, ayrıca yardım rehberini sunar. Faturalandırma başlayana kadar ücretli planlar yalnızca önizleme amaçlıdır."
       },
       {
         "q": "Hangi kanalları bağlayabilirim?",
-        "a": "E-posta, canlı sohbet ve başlıca sosyal mesajlaşma kanallarının tümü Pro'da aynı kuyruğa düşer. Müşterileriniz ne kullanıyorsa, tek bir sakin yerden yanıt verirsiniz."
+        "a": "Bugün kullanılabilir: bağımsız web sitesi sohbeti ve satıcı ortak gelen kutusu. E-posta ve sosyal mesajlaşma (WhatsApp ve Instagram dahil) henüz bağlı değil; destekli bir kurulum gerektiriyor ve ayrı olarak sunulacak. Bir kanalı yalnızca gerçekten bağlandığında kullanılabilir olarak listeleyeceğiz."
       }
     ],
     "finalTitle": "Gelen kutunuza sakinlik getirin",
     "finalSub": "Dakikalar içinde kurulum · Küçük işletmeler için ücretsiz · www.nudgeso.com",
     "finalCta": "NudgeSo'yu ücretsiz edinin",
-    "footerTag": "NudgeSo · Sakin Müşteri Desteği · www.nudgeso.com"
+    "footerTag": "NudgeSo · Sakin Müşteri Desteği · www.nudgeso.com",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Hizmet Şartları"
   },
   "th": {
-    "metaTitle": "NudgeSo — การสนับสนุนลูกค้าอย่างใจเย็นสำหรับธุรกิจขนาดเล็ก",
-    "metaDescription": "การสนับสนุนแบบอะซิงโครนัสเป็นหลักที่ร่างคำตอบที่อบอุ่น จัดคิวสิ่งที่สำคัญ และเปิดพื้นที่ให้คุณได้หายใจ",
+    "metaTitle": "NudgeSo — บริการลูกค้าอย่างสงบสำหรับธุรกิจขนาดเล็ก",
+    "metaDescription": "การสนับสนุนแบบ async-first ที่ร่างคำตอบอย่างอบอุ่น จัดคิวสิ่งที่สำคัญ และเปิดพื้นที่ให้คุณได้หายใจ",
     "nav": [
       "ผลิตภัณฑ์",
       "ราคา",
@@ -3905,116 +3851,358 @@ window.NS_LANDING_LOCALES = {
     ],
     "signIn": "เข้าสู่ระบบ",
     "startFree": "เริ่มฟรี",
-    "heroEyebrow": "ศูนย์ช่วยเหลือ AI แบบอะซิงโครนัสเป็นหลัก",
-    "heroTitle": "การสนับสนุนลูกค้าอย่างใจเย็นสำหรับธุรกิจขนาดเล็ก",
-    "heroSub": "การสนับสนุนแบบอะซิงโครนัสเป็นหลักที่ร่างคำตอบที่อบอุ่น จัดคิวสิ่งที่สำคัญ และเปิดพื้นที่ให้คุณได้หายใจ — ไม่ต้องใช้ชีวิตอยู่ในกล่องจดหมายอีกต่อไป",
+    "heroEyebrow": "ศูนย์ช่วยเหลือ AI แบบ async-first",
+    "heroTitle": "บริการลูกค้าอย่างสงบสำหรับธุรกิจขนาดเล็ก",
+    "heroSub": "การสนับสนุนแบบ async-first ที่ร่างคำตอบอย่างอบอุ่น จัดคิวสิ่งที่สำคัญ และเปิดพื้นที่ให้คุณได้หายใจ — ไม่ต้องใช้ชีวิตอยู่ในกล่องจดหมายอีกต่อไป",
     "featuresTitle": "ทุกสิ่งที่กล่องจดหมายของคุณต้องการ ไม่มีสิ่งเกินจำเป็น",
-    "featuresSub": "สร้างมาเพื่อธุรกิจขนาดเล็กที่อยากตอบได้ดีโดยไม่มีความวุ่นวาย",
+    "featuresSub": "สร้างมาเพื่อธุรกิจขนาดเล็กที่ต้องการตอบกลับได้ดีโดยไม่มีความวุ่นวาย",
     "features": [
       {
         "title": "คิวเดียวที่สงบ",
-        "body": "อีเมล แชท และเธรดโซเชียลถูกรวมและจัดลำดับความสำคัญไว้ด้วยกัน เพื่อไม่ให้มีอะไรหลุดรอดไป"
+        "body": "ใช้งานได้วันนี้: แชทบนเว็บไซต์และกล่องจดหมายร้านค้าแบบแชร์ ตัวเชื่อมต่ออีเมลและโซเชียลกำลังทยอยเปิดแยกต่างหาก เราจึงไม่แสร้งว่าถูกรวมเข้าด้วยกันแล้ว"
       },
       {
-        "title": "ร่างคำตอบในเสียงของคุณ",
+        "title": "ร่างคำตอบในสไตล์ของคุณ",
         "body": "AI เรียนรู้โทนเสียงของคุณและเสนอคำตอบที่คุณอยากส่งจริง ๆ"
       },
       {
         "title": "ตั้งค่าได้ในไม่กี่นาที",
-        "body": "เชื่อมต่อกล่องจดหมายในไม่กี่คลิก นำเข้าคำถามที่พบบ่อย แล้ว AI ก็รู้จักเสียงของคุณแล้ว"
+        "body": "เชื่อมต่อกล่องจดหมายในไม่กี่คลิก นำเข้าคำถามที่พบบ่อย และ AI ก็รู้สไตล์ของคุณแล้ว"
       },
       {
-        "title": "ไม่มีเสียงแจ้งเตือนยามดึก",
-        "body": "ค่าเริ่มต้นคือการตอบแบบไม่พร้อมกัน ลูกค้าจะเห็นเวลาตอบกลับตามจริง และธุรกิจของคุณก็ได้เวลาช่วงเย็นกลับคืนไป"
+        "title": "ไม่มีเสียงแจ้งเตือนตอนดึก",
+        "body": "ค่าเริ่มต้นคือแบบ async ลูกค้าได้รับเวลาตอบกลับตามจริง และธุรกิจของคุณได้ช่วงเย็นคืนกลับมา"
       }
     ],
     "howTitle": "วิธีการทำงาน",
-    "howSub": "สามขั้นตอนเงียบ ๆ ระหว่างกล่องจดหมายที่วุ่นวายกับกล่องจดหมายที่สงบ",
+    "howSub": "สามขั้นตอนสงบ ๆ จากกล่องจดหมายที่วุ่นวายสู่กล่องจดหมายที่สงบ",
     "howSteps": [
       {
         "title": "เชื่อมต่อกล่องจดหมายของคุณ",
-        "body": "เชื่อมต่ออีเมล แชท และช่องทางโซเชียลของคุณ NudgeSo รวมทุกอย่างไว้ในคิวที่แชร์ร่วมกัน"
+        "body": "ตั้งค่าแชทบนเว็บไซต์และกล่องจดหมายแบบแชร์ที่ใช้งานได้แล้ววันนี้ ตัวเชื่อมต่ออีเมลและโซเชียลเป็นการตั้งค่าแยกต่างหากโดยมีผู้ช่วย"
       },
       {
         "title": "AI ร่างคำตอบที่เป็นมิตร",
-        "body": "AI อ่านเธรด จับโทนเสียงของคุณจากคำตอบที่ผ่านมา และร่างคำตอบที่อบอุ่นสำหรับทุกข้อความ"
+        "body": "AI อ่านเธรด จับโทนจากคำตอบที่ผ่านมา และร่างคำตอบที่อบอุ่นสำหรับทุกข้อความ"
       },
       {
-        "title": "คุณอนุมัติ สะกิดต่อ แล้วไปต่อ",
-        "body": "ปรับสักคำหรือกดส่ง เธรดจะพักตัวเองจนกว่าลูกค้าจะได้รับคำตอบ ไม่มีความกดดันใด ๆ เลย"
+        "title": "คุณอนุมัติ สะกิด และไปต่อ",
+        "body": "ปรับคำสักคำหรือกดส่ง เธรดจะพักตัวเองไว้จนกว่าลูกค้าจะได้รับการตอบกลับ ไม่มีความกดดันใด ๆ ทั้งสิ้น"
       }
     ],
     "pricingTitle": "ราคาเรียบง่าย",
-    "pricingSub": "เริ่มฟรี อัปเกรดเมื่อธุรกิจของคุณโตเกินกล่องจดหมายที่แชร์ร่วมกัน",
+    "pricingSub": "เริ่มฟรี แผนแบบชำระเงินเป็นเพียงตัวอย่างเท่านั้นในระหว่างที่ระบบเรียกเก็บเงินยังอยู่ระหว่างการดำเนินการให้เสร็จสมบูรณ์",
     "monthly": "รายเดือน",
     "yearly": "รายปี",
-    "saveNote": "ประหยัด ~21%",
+    "saveNote": "ลด ~21%",
     "freePlan": {
       "name": "ฟรี",
       "billing": "สำหรับธุรกิจขนาดเล็กที่กำลังลองใช้",
       "features": [
-        "กล่องจดหมายที่แชร์ร่วมกัน",
-        "โควต้าร่างคำตอบ AI ฟรีรายเดือนจำนวนมาก",
-        "การสนับสนุนจากชุมชน"
+        "กล่องจดหมายแบบแชร์",
+        "โควต้ารายเดือนที่เหลือเฟือสำหรับร่าง AI ฟรี",
+        "คู่มือช่วยเหลือ"
       ],
-      "cta": "เริ่มฟรี"
+      "cta": "เริ่มใช้ฟรี"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "ยอดนิยมที่สุด",
-      "billingMonthly": "$19 / เดือน · ชำระรายเดือน",
-      "billingYearly": "$15 / เดือน · ชำระรายปี",
+      "badge": "แผนตัวอย่าง",
+      "billingMonthly": "$19 / เดือน · เรียกเก็บรายเดือน",
+      "billingYearly": "$15 / เดือน · เรียกเก็บรายปี",
       "features": [
-        "ทุกอย่างในฟรี",
-        "อีเมล แชท และช่องทางโซเชียล",
-        "การสนับสนุนแบบเร่งด่วน"
+        "ทุกอย่างในแผนฟรี",
+        "แชทบนเว็บไซต์ + กล่องจดหมายแบบแชร์",
+        "ตัวอย่างการสนับสนุนลำดับความสำคัญที่วางแผนไว้"
       ],
-      "cta": "ลอง Pro ฟรี"
+      "cta": "ดูตัวอย่าง Pro"
     },
     "businessPlan": {
       "name": "ธุรกิจ",
-      "badge": "ราคาตัวอย่าง — ปรับได้",
-      "billingMonthly": "$49 / เดือน · ชำระรายเดือน",
-      "billingYearly": "$39 / เดือน · ชำระรายปี",
+      "badge": "ราคาตัวอย่าง — ไม่มีค่าใช้จ่าย",
+      "billingMonthly": "$49 / เดือน · เรียกเก็บรายเดือน",
+      "billingYearly": "$39 / เดือน · เรียกเก็บรายปี",
       "features": [
         "ทุกอย่างใน Pro",
-        "ที่นั่งพนักงานหลายตำแหน่ง",
-        "ความช่วยเหลือในการเริ่มต้นใช้งานและผู้ติดต่อเฉพาะ"
+        "ที่นั่งพนักงานหลายคน (ตัวอย่าง)",
+        "ความช่วยเหลือในการตั้งค่าแบบมีผู้แนะนำ"
       ],
-      "cta": "เริ่มทดลองฟรี"
+      "cta": "คุยกับเรา"
     },
-    "pricingNote": "ข้อจำกัดของแพ็กเกจเป็นเพียงตัวอย่างและสามารถปรับได้ก่อนเปิดตัว",
+    "pricingNote": "ราคานี้เป็นเพียงตัวอย่างเท่านั้น: ไม่มีการเรียกเก็บเงิน ขีดจำกัดของแผนและฟีเจอร์แบบชำระเงินเป็นเพียงตัวอย่างและอาจปรับเปลี่ยนได้ก่อนระบบเรียกเก็บเงินเปิดใช้งาน",
     "faqTitle": "คำถามที่พบบ่อย",
     "faqs": [
       {
         "q": "คำว่า \"async-first\" หมายถึงอะไรกันแน่?",
-        "a": "หมายความว่าลูกค้าฝากข้อความไว้และได้รับกรอบเวลาตอบกลับตามจริง (เช่น \"เราจะกลับมาในอีกไม่กี่ชั่วโมง\") แทนการรอแชทสด คุณตอบตามตารางเวลาของคุณเอง และไม่มีใครต้องกังวลกับการดูจุดสามจุดกระโดดไปมา"
+        "a": "หมายความว่าลูกค้าฝากข้อความไว้และได้รับกรอบเวลาตอบกลับตามจริง (เช่น \"เราจะกลับมาอีกครั้งในอีกไม่กี่ชั่วโมง\") แทนการรอในแชทสด คุณตอบตามตารางเวลาของคุณเอง และไม่มีใครต้องกังวลกับการจ้องจุดสามจุดเด้งไปมา"
       },
       {
         "q": "การตั้งค่าใช้เวลานานแค่ไหน?",
-        "a": "ธุรกิจขนาดเล็กส่วนใหญ่เริ่มใช้งานได้ในเวลาไม่ถึงสิบนาที เชื่อมต่อกล่องจดหมาย ใส่คำถามที่พบบ่อยสักสองสามข้อ แล้ว AI ก็เริ่มเขียนคำตอบที่ฟังดูเหมือนคุณ"
+        "a": "ธุรกิจขนาดเล็กส่วนใหญ่ใช้งานได้ภายในไม่ถึงสิบนาที เชื่อมต่อกล่องจดหมาย ใส่คำถามที่พบบ่อยสักสองสามข้อ แล้ว AI ก็เริ่มเขียนคำตอบที่ฟังดูเหมือนคุณ"
       },
       {
         "q": "AI ส่งคำตอบด้วยตัวเองหรือไม่?",
-        "a": "ไม่ AI จะร่างเสมอ — คนในทีมของคุณเป็นผู้อนุมัติก่อนที่อะไรจะถึงลูกค้า คุณยังคงควบคุมเสียงของคุณอยู่ AI แค่ช่วยลดการพิมพ์"
+        "a": "ไม่ AI จะร่างเสมอ — คนในทีมของคุณอนุมัติก่อนที่ข้อความใดจะถึงลูกค้า คุณยังคงควบคุมสไตล์ของคุณอยู่ AI เพียงช่วยลดการพิมพ์"
       },
       {
-        "q": "แพ็กเกจฟรีรวมอะไรบ้าง?",
-        "a": "แพ็กเกจฟรีให้กล่องจดหมายที่แชร์ร่วมกันและโควต้าร่างคำตอบ AI ฟรีรายเดือนจำนวนมาก พร้อมการสนับสนุนจากชุมชน สร้างมาเพื่อธุรกิจขนาดเล็กที่อยากลองการสนับสนุนอย่างใจเย็นก่อนจ่ายแม้แต่บาทเดียว"
+        "q": "แผนฟรีมีอะไรบ้าง?",
+        "a": "แผนฟรีมอบกล่องจดหมายแบบแชร์และโควต้ารายเดือนที่เหลือเฟือสำหรับร่าง AI ฟรี พร้อมคู่มือช่วยเหลือ แผนแบบชำระเงินเป็นเพียงตัวอย่างจนกว่าระบบเรียกเก็บเงินจะเปิดใช้งาน"
       },
       {
-        "q": "เชื่อมต่อช่องทางใดได้บ้าง?",
-        "a": "อีเมล แชทสด และช่องทางส่งข้อความโซเชียลหลัก ๆ จะเข้ามาอยู่ในคิวเดียวกันใน Pro ลูกค้าของคุณใช้ช่องทางไหน คุณก็ตอบจากที่เดียวอย่างสงบ"
+        "q": "ฉันเชื่อมต่อช่องทางใดได้บ้าง?",
+        "a": "ใช้งานได้วันนี้: แชทบนเว็บไซต์แบบแยกเดี่ยวและกล่องจดหมายร้านค้าแบบแชร์ อีเมลและข้อความโซเชียล (รวมถึง WhatsApp และ Instagram) ยังไม่เชื่อมต่อ จำเป็นต้องตั้งค่าแบบมีผู้ช่วยและจะทยอยเปิดแยกต่างหาก เราจะระบุช่องทางว่าพร้อมใช้งานก็ต่อเมื่อเชื่อมต่อได้จริงแล้วเท่านั้น"
       }
     ],
     "finalTitle": "นำความสงบมาสู่กล่องจดหมายของคุณ",
     "finalSub": "ตั้งค่าได้ในไม่กี่นาที · ฟรีสำหรับธุรกิจขนาดเล็ก · www.nudgeso.com",
     "finalCta": "รับ NudgeSo ฟรี",
-    "footerTag": "NudgeSo · การสนับสนุนลูกค้าอย่างใจเย็น · www.nudgeso.com"
+    "footerTag": "NudgeSo · บริการลูกค้าอย่างสงบ · www.nudgeso.com",
+    "privacy": "นโยบายความเป็นส่วนตัว",
+    "terms": "ข้อกำหนดการให้บริการ"
+  },
+  "sw": {
+    "metaTitle": "NudgeSo — Usaidizi wa Wateja kwa Utulivu kwa biashara ndogo",
+    "metaDescription": "Usaidizi unaotanguliza mawasiliano yasiyo ya papo hapo ambao hutayarisha majibu ya upole, huweka kwenye foleni mambo muhimu, na kukupa nafasi ya kupumua.",
+    "nav": [
+      "Bidhaa",
+      "Bei",
+      "Jinsi",
+      "Maswali"
+    ],
+    "signIn": "Ingia",
+    "startFree": "Anza bure",
+    "heroEyebrow": "Dawati la usaidizi la AI lisilo la papo hapo",
+    "heroTitle": "Usaidizi wa Wateja kwa Utulivu kwa biashara ndogo",
+    "heroSub": "Usaidizi usio wa papo hapo ambao hutayarisha majibu ya upole, huweka kwenye foleni mambo muhimu, na kukupa nafasi ya kupumua — hutakaa tena kwenye kikasha chako.",
+    "featuresTitle": "Kila kitu ambacho kikasha chako kinahitaji, na hakuna kisichohitajika",
+    "featuresSub": "Imeundwa kwa biashara ndogo zinazotaka kujibu vizuri bila mvurugo.",
+    "features": [
+      {
+        "title": "Foleni moja tulivu",
+        "body": "Inapatikana leo: gumzo la tovuti na kikasha cha mfanyabiashara kinachoshirikiwa. Viunganishi vya barua pepe na mitandao ya kijamii vinatolewa kando hatua kwa hatua, kwa hivyo hatudai kwamba tayari vimeunganishwa."
+      },
+      {
+        "title": "Rasimu kwa sauti yako",
+        "body": "AI hujifunza sauti yako na kupendekeza majibu ambayo kweli utataka kuyatuma."
+      },
+      {
+        "title": "Sanidi kwa dakika chache",
+        "body": "Unganisha kikasha chako kwa mibofyo michache, ingiza Maswali Yanayoulizwa Mara kwa Mara, na AI tayari inajua sauti yako."
+      },
+      {
+        "title": "Hakuna arifa za usiku wa manane",
+        "body": "Kwa kawaida ni usaidizi usio wa papo hapo, wateja hupata muda halisi wa majibu na biashara yako inapata jioni zake tena."
+      }
+    ],
+    "howTitle": "Jinsi inavyofanya kazi",
+    "howSub": "Hatua tatu tulivu kati ya kikasha chenye kelele na kikasha tulivu.",
+    "howSteps": [
+      {
+        "title": "Unganisha kikasha chako",
+        "body": "Sanidi gumzo la tovuti na kikasha kinachoshirikiwa vinavyopatikana leo. Viunganishi vya barua pepe na mitandao ya kijamii ni usanidi tofauti unaosaidiwa."
+      },
+      {
+        "title": "AI hutayarisha majibu ya kirafiki",
+        "body": "AI husoma mazungumzo, hulinganisha sauti yako na majibu ya awali, na hutayarisha jibu la upole kwa kila ujumbe."
+      },
+      {
+        "title": "Unakubali, unachochea, unaendelea",
+        "body": "Badilisha neno moja au bofya tuma. Mazungumzo hujipumzisha hadi wateja wapate jibu. Hakuna shinikizo, kamwe."
+      }
+    ],
+    "pricingTitle": "Bei rahisi kueleweka",
+    "pricingSub": "Anza bure. Mipango ya malipo ni ya onyesho tu wakati mfumo wa malipo unakamilishwa.",
+    "monthly": "Kila mwezi",
+    "yearly": "Kila mwaka",
+    "saveNote": "~21% punguzo",
+    "freePlan": {
+      "name": "Bure",
+      "billing": "Kwa biashara ndogo inayojaribu",
+      "features": [
+        "Kikasha kinachoshirikiwa",
+        "Kiwango kikubwa cha kila mwezi cha rasimu za AI bure",
+        "Mwongozo wa usaidizi"
+      ],
+      "cta": "Anza bure"
+    },
+    "proPlan": {
+      "name": "Pro",
+      "badge": "Mpango wa onyesho",
+      "billingMonthly": "$19 / mwezi · hulipwa kila mwezi",
+      "billingYearly": "$15 / mwezi · hulipwa kila mwaka",
+      "features": [
+        "Kila kitu kilichomo kwenye Bure",
+        "Gumzo la tovuti + kikasha kinachoshirikiwa",
+        "Onyesho la usaidizi wa kipaumbele unaopangwa"
+      ],
+      "cta": "Onyesha Pro"
+    },
+    "businessPlan": {
+      "name": "Biashara",
+      "badge": "Bei ya onyesho — hakuna malipo",
+      "billingMonthly": "$49 / mwezi · hulipwa kila mwezi",
+      "billingYearly": "$39 / mwezi · hulipwa kila mwaka",
+      "features": [
+        "Kila kitu kilichomo kwenye Pro",
+        "Nafasi nyingi za wafanyakazi (onyesho)",
+        "Usaidizi wa usanidi unaoongozwa"
+      ],
+      "cta": "Zungumza nasi"
+    },
+    "pricingNote": "Bei ya onyesho tu: hakuna malipo yanayokusanywa. Mipaka ya mipango na vipengele vya malipo ni mifano na vinaweza kubadilishwa kabla mfumo wa malipo uanze.",
+    "faqTitle": "Maswali yanayoulizwa mara kwa mara",
+    "faqs": [
+      {
+        "q": "Neno \"async-first\" linamaanisha nini hasa?",
+        "a": "Inamaanisha wateja huacha ujumbe na kupata muda halisi wa majibu (kama \"tutarudi baada ya saa chache\") badala ya kusubiri kwenye gumzo la papo hapo. Unajibu kwa ratiba yako mwenyewe, na hakuna anayehangaika akitazama vitone vitatu vikicheza."
+      },
+      {
+        "q": "Usanidi huchukua muda gani?",
+        "a": "Biashara ndogo nyingi huanza kufanya kazi chini ya dakika kumi. Unganisha kikasha chako, ingiza Maswali machache Yanayoulizwa Mara kwa Mara, na AI huanza mara moja kuandika majibu yanayosikika kama wewe."
+      },
+      {
+        "q": "Je, AI hutuma majibu yenyewe?",
+        "a": "Hapana. AI hutayarisha rasimu kila wakati — mtu kwenye timu yako huthibitisha kabla kitu chochote kufika kwa mteja. Wewe unabaki na udhibiti wa sauti yako; AI huondoa tu kazi ya kuandika."
+      },
+      {
+        "q": "Ni nini kinachojumuishwa kwenye mpango wa bure?",
+        "a": "Mpango wa bure hukupa kikasha kinachoshirikiwa na kiwango cha kutosha cha kila mwezi cha rasimu za AI bure, pamoja na mwongozo wa usaidizi. Mipango ya malipo ni ya onyesho tu hadi mfumo wa malipo uanze."
+      },
+      {
+        "q": "Ninaweza kuunganisha njia zipi?",
+        "a": "Inapatikana leo: gumzo la tovuti linalojitegemea na kikasha cha mfanyabiashara kinachoshirikiwa. Barua pepe na ujumbe wa mitandao ya kijamii (ikiwa ni pamoja na WhatsApp na Instagram) bado havijaunganishwa; vinahitaji usanidi unaosaidiwa na vitatolewa kando. Tutaorodhesha njia kama inapatikana tu pale ambapo kweli imeunganishwa."
+      }
+    ],
+    "finalTitle": "Leta utulivu kwenye kikasha chako",
+    "finalSub": "Sanidi kwa dakika chache · Bure kwa biashara ndogo · www.nudgeso.com",
+    "finalCta": "Pata NudgeSo bure",
+    "footerTag": "NudgeSo · Usaidizi wa Wateja kwa Utulivu · www.nudgeso.com",
+    "privacy": "Sera ya Faragha",
+    "terms": "Masharti ya Huduma"
+  },
+  "uk": {
+    "metaTitle": "NudgeSo — Спокійна підтримка клієнтів для малого бізнесу",
+    "metaDescription": "Підтримка з пріоритетом асинхронності, яка готує теплі відповіді, ставить важливе в чергу й залишає вам простір для дихання.",
+    "nav": [
+      "Продукт",
+      "Ціни",
+      "Як працює",
+      "Часті питання"
+    ],
+    "signIn": "Увійти",
+    "startFree": "Почати безкоштовно",
+    "heroEyebrow": "ШІ-хелпдеск з асинхронним підходом",
+    "heroTitle": "Спокійна підтримка клієнтів для малого бізнесу",
+    "heroSub": "Підтримка з пріоритетом асинхронності, яка готує теплі відповіді, ставить важливе в чергу й залишає вам простір для дихання — і вам більше не доведеться жити у своїй поштовій скриньці.",
+    "featuresTitle": "Усе, що потрібно вашій поштовій скриньці, і нічого зайвого",
+    "featuresSub": "Створено для малого бізнесу, який хоче відповідати якісно без хаосу.",
+    "features": [
+      {
+        "title": "Одна спокійна черга",
+        "body": "Уже працює: чат на сайті та спільна скринька продавця. Конектори для електронної пошти й соцмереж запускаються окремо, тож ми не вдаємо, що вони вже об’єднані."
+      },
+      {
+        "title": "Чернетки вашим голосом",
+        "body": "ШІ вивчає ваш тон і пропонує відповіді, які вам справді захочеться надіслати."
+      },
+      {
+        "title": "Налаштування за хвилини",
+        "body": "Підключіть свою скриньку кількома кліками, імпортуйте свої поширені запитання — і ШІ вже знає ваш голос."
+      },
+      {
+        "title": "Без нічних сповіщень",
+        "body": "Асинхронність за замовчуванням: клієнти отримують чесні строки відповіді, а ваш бізнес повертає собі вечори."
+      }
+    ],
+    "howTitle": "Як це працює",
+    "howSub": "Три тихі кроки від галасливої скриньки до спокійної.",
+    "howSteps": [
+      {
+        "title": "Підключіть свою скриньку",
+        "body": "Налаштуйте чат на сайті та спільну скриньку, які вже працюють. Конектори для електронної пошти й соцмереж — це окреме налаштування з підтримкою."
+      },
+      {
+        "title": "ШІ готує дружні відповіді",
+        "body": "ШІ читає обговорення, підлаштовується під ваш тон за минулими відповідями й готує теплу відповідь на кожне повідомлення."
+      },
+      {
+        "title": "Ви схвалюєте, надсилаєте поштовх і рухаєтеся далі",
+        "body": "Змініть слово або натисніть «надіслати». Обговорення самі переходять у режим очікування, доки клієнти не отримають відповідь. Жодного тиску."
+      }
+    ],
+    "pricingTitle": "Прості ціни",
+    "pricingSub": "Почніть безкоштовно. Платні плани доступні лише для попереднього перегляду, поки завершується робота над оплатою.",
+    "monthly": "Щомісяця",
+    "yearly": "Щороку",
+    "saveNote": "~21% економії",
+    "freePlan": {
+      "name": "Безкоштовний",
+      "billing": "Для малого бізнесу, який хоче спробувати",
+      "features": [
+        "Спільна скринька",
+        "Щедрий місячний ліміт безкоштовних ШІ-чернеток",
+        "Довідка"
+      ],
+      "cta": "Почати безкоштовно"
+    },
+    "proPlan": {
+      "name": "Pro",
+      "badge": "План у попередньому перегляді",
+      "billingMonthly": "$19 / місяць · оплата щомісяця",
+      "billingYearly": "$15 / місяць · оплата щороку",
+      "features": [
+        "Усе з безкоштовного плану",
+        "Чат на сайті + спільна скринька",
+        "Попередній перегляд запланованої пріоритетної підтримки"
+      ],
+      "cta": "Переглянути Pro"
+    },
+    "businessPlan": {
+      "name": "Бізнес",
+      "badge": "Попередня ціна — без оплати",
+      "billingMonthly": "$49 / місяць · оплата щомісяця",
+      "billingYearly": "$39 / місяць · оплата щороку",
+      "features": [
+        "Усе з Pro",
+        "Кілька місць для співробітників (попередній перегляд)",
+        "Супровід під час налаштування"
+      ],
+      "cta": "Поговорити з нами"
+    },
+    "pricingNote": "Лише попередні ціни: оплата не стягується. Ліміти планів і платні функції є ілюстративними й можуть бути змінені до запуску оплати.",
+    "faqTitle": "Поширені запитання",
+    "faqs": [
+      {
+        "q": "Що насправді означає «асинхронність насамперед»?",
+        "a": "Це означає, що клієнти залишають повідомлення й отримують чесне вікно відповіді (наприклад, «ми повернемося за кілька годин») замість очікування в живому чаті. Ви відповідаєте за власним графіком, і ніхто не нервує, дивлячись, як стрибають три крапки."
+      },
+      {
+        "q": "Скільки часу займає налаштування?",
+        "a": "Більшість малих бізнесів запускаються менш ніж за десять хвилин. Підключіть скриньку, додайте кілька поширених запитань — і ШІ вже починає писати відповіді, що звучать як ви."
+      },
+      {
+        "q": "Чи ШІ надсилає відповіді самостійно?",
+        "a": "Ні. ШІ завжди готує чернетку — людина з вашої команди схвалює її, перш ніж щось дійде до клієнта. Ви контролюєте свій голос; ШІ лише позбавляє вас потреби друкувати."
+      },
+      {
+        "q": "Що входить до безкоштовного плану?",
+        "a": "Безкоштовний план дає спільну скриньку й щедрий місячний ліміт безкоштовних ШІ-чернеток, а також довідку. Платні плани доступні лише для попереднього перегляду, доки не запущено оплату."
+      },
+      {
+        "q": "Які канали можна підключити?",
+        "a": "Уже працює: окремий чат на сайті та спільна скринька продавця. Електронна пошта й соціальні повідомлення (зокрема WhatsApp та Instagram) ще не підключені; вони потребують налаштування з підтримкою і запускатимуться окремо. Ми вказуватимемо канал як доступний лише тоді, коли він справді підключений."
+      }
+    ],
+    "finalTitle": "Принесіть спокій у свою скриньку",
+    "finalSub": "Налаштування за хвилини · Безкоштовно для малого бізнесу · www.nudgeso.com",
+    "finalCta": "Отримати NudgeSo безкоштовно",
+    "footerTag": "NudgeSo · Спокійна підтримка клієнтів · www.nudgeso.com",
+    "privacy": "Політика конфіденційності",
+    "terms": "Умови надання послуг"
   },
   "vi": {
     "metaTitle": "NudgeSo — Hỗ trợ khách hàng nhẹ nhàng cho doanh nghiệp nhỏ",
-    "metaDescription": "Hỗ trợ ưu tiên bất đồng bộ, tự soạn câu trả lời ấm áp, xếp hàng đợi những gì quan trọng và để bạn có không gian thở.",
+    "metaDescription": "Hỗ trợ ưu tiên bất đồng bộ, tự soạn những câu trả lời ấm áp, sắp xếp việc quan trọng và để bạn có không gian thở.",
     "nav": [
       "Sản phẩm",
       "Bảng giá",
@@ -4023,47 +4211,47 @@ window.NS_LANDING_LOCALES = {
     ],
     "signIn": "Đăng nhập",
     "startFree": "Bắt đầu miễn phí",
-    "heroEyebrow": "Bàn trợ giúp AI ưu tiên bất đồng bộ",
+    "heroEyebrow": "Trợ lý AI hỗ trợ khách hàng ưu tiên bất đồng bộ",
     "heroTitle": "Hỗ trợ khách hàng nhẹ nhàng cho doanh nghiệp nhỏ",
-    "heroSub": "Hỗ trợ ưu tiên bất đồng bộ, tự soạn câu trả lời ấm áp, xếp hàng đợi những gì quan trọng và để bạn có không gian thở — không còn sống trong hộp thư nữa.",
-    "featuresTitle": "Mọi thứ hộp thư của bạn cần, không có gì không cần thiết",
-    "featuresSub": "Dành cho doanh nghiệp nhỏ muốn trả lời tốt mà không hỗn loạn.",
+    "heroSub": "Hỗ trợ ưu tiên bất đồng bộ, tự soạn những câu trả lời ấm áp, sắp xếp việc quan trọng và để bạn có không gian thở — không còn sống trong hộp thư nữa.",
+    "featuresTitle": "Mọi thứ hộp thư của bạn cần, không thừa một thứ nào",
+    "featuresSub": "Dành cho doanh nghiệp nhỏ muốn trả lời thật tốt mà không hỗn loạn.",
     "features": [
       {
-        "title": "Một hàng đợi êm ả",
-        "body": "Email, trò chuyện và các luồng mạng xã hội được hợp nhất và ưu tiên, để không việc gì bị bỏ sót."
+        "title": "Một hàng đợi nhẹ nhàng",
+        "body": "Đang hoạt động hôm nay: chat trên website và hộp thư dùng chung cho người bán. Email và các kênh mạng xã hội sẽ ra mắt riêng, nên chúng tôi không giả vờ rằng chúng đã được hợp nhất."
       },
       {
-        "title": "Bản nháp theo giọng của bạn",
-        "body": "AI học giọng điệu của bạn và gợi ý những câu trả lời bạn thực sự muốn gửi."
+        "title": "Bản nháp mang giọng của bạn",
+        "body": "AI học giọng điệu của bạn và gợi ý những câu trả lời mà bạn thực sự muốn gửi."
       },
       {
         "title": "Thiết lập trong vài phút",
-        "body": "Kết nối hộp thư chỉ với vài cú nhấp, nhập các câu hỏi thường gặp và AI đã biết giọng của bạn."
+        "body": "Kết nối hộp thư chỉ với vài cú nhấp, nhập các câu hỏi thường gặp, và AI đã biết giọng của bạn."
       },
       {
-        "title": "Không có thông báo đêm khuya",
-        "body": "Mặc định bất đồng bộ, khách hàng nhận thời gian phản hồi trung thực và doanh nghiệp của bạn lấy lại buổi tối."
+        "title": "Không còn thông báo đêm khuya",
+        "body": "Mặc định là bất đồng bộ, khách hàng biết thời gian phản hồi thực tế và doanh nghiệp của bạn lấy lại được buổi tối."
       }
     ],
     "howTitle": "Cách hoạt động",
-    "howSub": "Ba bước yên tĩnh giữa một hộp thư ồn ào và một hộp thư êm ả.",
+    "howSub": "Ba bước nhẹ nhàng từ một hộp thư ồn ào đến một hộp thư bình yên.",
     "howSteps": [
       {
         "title": "Kết nối hộp thư của bạn",
-        "body": "Kết nối email, trò chuyện và các kênh mạng xã hội. NudgeSo hợp nhất mọi thứ vào một hàng đợi chung."
+        "body": "Thiết lập chat trên website và hộp thư dùng chung đang hoạt động hôm nay. Email và các kênh mạng xã hội là một thiết lập riêng, có hỗ trợ."
       },
       {
         "title": "AI soạn câu trả lời thân thiện",
-        "body": "AI đọc luồng hội thoại, khớp giọng điệu của bạn từ các câu trả lời trước và soạn câu trả lời ấm áp cho mọi tin nhắn."
+        "body": "AI đọc chuỗi hội thoại, khớp giọng điệu của bạn từ những câu trả lời trước đó và soạn một câu trả lời ấm áp cho mỗi tin nhắn."
       },
       {
-        "title": "Bạn phê duyệt, nhắc nhẹ, rồi tiếp tục",
-        "body": "Chỉnh một từ hoặc nhấn gửi. Các luồng tự tạm hoãn cho đến khi khách hàng nhận phản hồi. Không áp lực, luôn luôn."
+        "title": "Bạn duyệt, nhắc nhẹ, đi tiếp",
+        "body": "Chỉnh một từ hoặc nhấn gửi. Các chuỗi hội thoại tự tạm ẩn cho đến khi khách hàng nhận được phản hồi. Không áp lực, luôn luôn."
       }
     ],
     "pricingTitle": "Bảng giá đơn giản",
-    "pricingSub": "Bắt đầu miễn phí, nâng cấp khi doanh nghiệp của bạn vượt quá hộp thư chung.",
+    "pricingSub": "Bắt đầu miễn phí. Các gói trả phí chỉ để xem trước trong khi việc thanh toán đang được hoàn tất.",
     "monthly": "Hàng tháng",
     "yearly": "Hàng năm",
     "saveNote": "Giảm ~21%",
@@ -4071,422 +4259,310 @@ window.NS_LANDING_LOCALES = {
       "name": "Miễn phí",
       "billing": "Dành cho doanh nghiệp nhỏ đang dùng thử",
       "features": [
-        "Hộp thư chung",
-        "Hạn mức hàng tháng hào phóng cho bản nháp AI miễn phí",
-        "Hỗ trợ cộng đồng"
+        "Hộp thư dùng chung",
+        "Hạn mức hào phóng bản nháp AI miễn phí hàng tháng",
+        "Hướng dẫn trợ giúp"
       ],
       "cta": "Bắt đầu miễn phí"
     },
     "proPlan": {
       "name": "Pro",
-      "badge": "Phổ biến nhất",
+      "badge": "Gói xem trước",
       "billingMonthly": "$19 / tháng · thanh toán hàng tháng",
       "billingYearly": "$15 / tháng · thanh toán hàng năm",
       "features": [
         "Mọi thứ trong gói Miễn phí",
-        "Kênh email, trò chuyện và mạng xã hội",
-        "Hỗ trợ ưu tiên"
+        "Chat trên website + hộp thư dùng chung",
+        "Xem trước hỗ trợ ưu tiên theo kế hoạch"
       ],
-      "cta": "Dùng thử Pro miễn phí"
+      "cta": "Xem trước Pro"
     },
     "businessPlan": {
-      "name": "Doanh nghiệp",
-      "badge": "Giá minh họa — có thể điều chỉnh",
+      "name": "Business",
+      "badge": "Giá xem trước — không tính phí",
       "billingMonthly": "$49 / tháng · thanh toán hàng tháng",
       "billingYearly": "$39 / tháng · thanh toán hàng năm",
       "features": [
         "Mọi thứ trong gói Pro",
-        "Nhiều chỗ ngồi cho nhân viên",
-        "Hỗ trợ giới thiệu & liên hệ riêng"
+        "Nhiều chỗ ngồi cho nhân viên (xem trước)",
+        "Hỗ trợ thiết lập có hướng dẫn"
       ],
-      "cta": "Bắt đầu dùng thử miễn phí"
+      "cta": "Liên hệ với chúng tôi"
     },
-    "pricingNote": "Giới hạn gói chỉ mang tính minh họa và có thể được điều chỉnh trước khi ra mắt.",
+    "pricingNote": "Chỉ là giá xem trước: không thu bất kỳ khoản thanh toán nào. Giới hạn gói và các tính năng trả phí chỉ mang tính minh họa và có thể được điều chỉnh trước khi ra mắt thanh toán.",
     "faqTitle": "Câu hỏi thường gặp",
     "faqs": [
       {
-        "q": "“Ưu tiên bất đồng bộ” thực sự có nghĩa là gì?",
-        "a": "Nghĩa là khách hàng để lại tin nhắn và nhận khung thời gian phản hồi trung thực (như “chúng tôi sẽ trở lại sau vài giờ”) thay vì chờ trò chuyện trực tiếp. Bạn trả lời theo lịch của mình và không ai phải lo lắng khi nhìn ba dấu chấm nhấp nháy."
+        "q": "\"Ưu tiên bất đồng bộ\" thực sự nghĩa là gì?",
+        "a": "Nghĩa là khách hàng để lại tin nhắn và nhận được một khung thời gian phản hồi thực tế (như \"chúng tôi sẽ trở lại sau vài giờ\") thay vì chờ trên chat trực tuyến. Bạn trả lời theo lịch của mình, và không ai phải lo lắng khi nhìn ba dấu chấm nhấp nháy."
       },
       {
         "q": "Thiết lập mất bao lâu?",
-        "a": "Hầu hết doanh nghiệp nhỏ có thể chạy trong vòng chưa đầy mười phút. Kết nối hộp thư, thêm vài câu hỏi thường gặp và AI đã bắt đầu viết câu trả lời giống như bạn."
+        "a": "Hầu hết doanh nghiệp nhỏ đã chạy được trong chưa đầy mười phút. Kết nối hộp thư, thêm vài câu hỏi thường gặp, và AI bắt đầu viết những câu trả lời nghe giống bạn."
       },
       {
         "q": "AI có tự gửi câu trả lời không?",
-        "a": "Không. AI luôn soạn bản nháp — một người trong nhóm của bạn phê duyệt trước khi bất cứ điều gì đến tay khách hàng. Bạn vẫn kiểm soát giọng điệu của mình; AI chỉ loại bỏ việc gõ phím."
+        "a": "Không. AI luôn soạn nháp — một người trong nhóm của bạn duyệt trước khi bất cứ điều gì đến tay khách hàng. Bạn vẫn kiểm soát giọng điệu của mình; AI chỉ bỏ đi phần gõ phím."
       },
       {
         "q": "Gói miễn phí bao gồm những gì?",
-        "a": "Gói miễn phí cung cấp hộp thư chung và hạn mức hàng tháng hào phóng cho bản nháp AI miễn phí, cùng hỗ trợ cộng đồng. Nó được xây dựng cho doanh nghiệp nhỏ muốn thử hỗ trợ nhẹ nhàng trước khi phải trả một xu nào."
+        "a": "Gói miễn phí cho bạn hộp thư dùng chung và hạn mức hào phóng bản nháp AI miễn phí hàng tháng, cùng với hướng dẫn trợ giúp. Các gói trả phí chỉ để xem trước cho đến khi thanh toán hoạt động."
       },
       {
         "q": "Tôi có thể kết nối những kênh nào?",
-        "a": "Email, trò chuyện trực tiếp và các kênh nhắn tin mạng xã hội chính đều vào cùng một hàng đợi trên Pro. Dù khách hàng của bạn dùng kênh nào, bạn vẫn trả lời từ một nơi êm ả."
+        "a": "Đang hoạt động hôm nay: chat trên website độc lập và hộp thư dùng chung cho người bán. Email và tin nhắn mạng xã hội (bao gồm WhatsApp và Instagram) chưa được kết nối; chúng cần thiết lập có hỗ trợ và sẽ ra mắt riêng. Chúng tôi chỉ liệt kê một kênh là khả dụng khi nó thực sự được kết nối."
       }
     ],
-    "finalTitle": "Mang sự nhẹ nhàng đến hộp thư của bạn",
+    "finalTitle": "Mang sự bình yên đến hộp thư của bạn",
     "finalSub": "Thiết lập trong vài phút · Miễn phí cho doanh nghiệp nhỏ · www.nudgeso.com",
-    "finalCta": "Dùng NudgeSo miễn phí",
-    "footerTag": "NudgeSo · Hỗ trợ khách hàng nhẹ nhàng · www.nudgeso.com"
-  },
-  "ur": {
-    "metaTitle": "NudgeSo — چھوٹے کاروباروں کے لیے پرسکون کسٹمر سپورٹ",
-    "metaDescription": "ایسنک فرسٹ سپورٹ جو گرم جوش جوابات کے مسودے تیار کرتا ہے، اہم چیزوں کو قطار میں رکھتا ہے، اور آپ کو سانس لینے کی جگہ دیتا ہے۔",
-    "nav": [
-      "پروڈکٹ",
-      "قیمتیں",
-      "کیسے",
-      "عمومی سوالات"
-    ],
-    "signIn": "سائن ان",
-    "startFree": "مفت شروع کریں",
-    "heroEyebrow": "ایسنک فرسٹ AI ہیلپ ڈیسک",
-    "heroTitle": "چھوٹے کاروباروں کے لیے پرسکون کسٹمر سپورٹ",
-    "heroSub": "ایسنک فرسٹ سپورٹ جو گرم جوش جوابات کے مسودے تیار کرتا ہے، اہم چیزوں کو قطار میں رکھتا ہے، اور آپ کو سانس لینے کی جگہ دیتا ہے — اب ان باکس میں رہنے کی ضرورت نہیں۔",
-    "featuresTitle": "آپ کے ان باکس کی ہر ضرورت پوری، غیر ضروری کچھ نہیں",
-    "featuresSub": "ان چھوٹے کاروباروں کے لیے بنایا گیا جو افراتفری کے بغیر اچھا جواب دینا چاہتے ہیں۔",
-    "features": [
-      {
-        "title": "ایک پرسکون قطار",
-        "body": "ای میل، چیٹ اور سوشل تھریڈز ضم اور ترجیحی ترتیب میں، تاکہ کوئی چیز نظر انداز نہ ہو۔"
-      },
-      {
-        "title": "آپ کی آواز میں مسودے",
-        "body": "AI آپ کا لہجہ سیکھتا ہے اور ایسے جوابات تجویز کرتا ہے جو آپ واقعی بھیجنا چاہیں گے۔"
-      },
-      {
-        "title": "منٹوں میں سیٹ اپ",
-        "body": "چند کلکس میں اپنا ان باکس جوڑیں، اپنے عمومی سوالات درآمد کریں، اور AI پہلے ہی آپ کی آواز جان جاتا ہے۔"
-      },
-      {
-        "title": "رات گئے آنے والی اطلاعات نہیں",
-        "body": "بطور ڈیفالٹ ایسنک، گاہکوں کو جواب دینے کے حقیقی اوقات ملتے ہیں اور آپ کے کاروبار کو اس کی شامیں واپس ملتی ہیں۔"
-      }
-    ],
-    "howTitle": "یہ کیسے کام کرتا ہے",
-    "howSub": "شور بھرے ان باکس اور پرسکون ان باکس کے درمیان تین خاموش قدم۔",
-    "howSteps": [
-      {
-        "title": "اپنا ان باکس جوڑیں",
-        "body": "اپنی ای میل، چیٹ اور سوشل چینلز جوڑیں۔ NudgeSo سب کچھ ایک مشترکہ قطار میں ضم کر دیتا ہے۔"
-      },
-      {
-        "title": "AI دوستانہ جوابات کے مسودے بناتا ہے",
-        "body": "AI تھریڈ پڑھتا ہے، پچھلے جوابات سے آپ کا لہجہ ملتا ہے، اور ہر پیغام کے لیے گرم جوش جواب کا مسودہ تیار کرتا ہے۔"
-      },
-      {
-        "title": "آپ منظور کریں، یاد دہانی کریں، آگے بڑھیں",
-        "body": "ایک لفظ بدلیں یا سینڈ دبائیں۔ تھریڈز خود کو اس وقت تک سلا دیتے ہیں جب تک گاہکوں کو جواب نہ ملے۔ کبھی دباؤ نہیں۔"
-      }
-    ],
-    "pricingTitle": "سادہ قیمتیں",
-    "pricingSub": "مفت شروع کریں، جب آپ کا کاروبار مشترکہ ان باکس سے آگے بڑھ جائے تو اپ گریڈ کریں۔",
-    "monthly": "ماہانہ",
-    "yearly": "سالانہ",
-    "saveNote": "~21% رعایت",
-    "freePlan": {
-      "name": "مفت",
-      "billing": "ایک چھوٹے کاروبار کے لیے جو اسے آزما رہا ہو",
-      "features": [
-        "مشترکہ ان باکس",
-        "مفت AI مسودوں کے لیے فراخ ماہانہ الاؤنس",
-        "کمیونٹی سپورٹ"
-      ],
-      "cta": "مفت شروع کریں"
-    },
-    "proPlan": {
-      "name": "پرو",
-      "badge": "سب سے مقبول",
-      "billingMonthly": "$19 / ماہ · ماہانہ بلنگ",
-      "billingYearly": "$15 / ماہ · سالانہ بلنگ",
-      "features": [
-        "مفت میں شامل سب کچھ",
-        "ای میل، چیٹ اور سوشل چینلز",
-        "ترجیحی سپورٹ"
-      ],
-      "cta": "پرو مفت آزمائیں"
-    },
-    "businessPlan": {
-      "name": "بزنس",
-      "badge": "مثال قیمت — قابل ترمیم",
-      "billingMonthly": "$49 / ماہ · ماہانہ بلنگ",
-      "billingYearly": "$39 / ماہ · سالانہ بلنگ",
-      "features": [
-        "پرو میں شامل سب کچھ",
-        "متعدد اسٹاف سیٹیں",
-        "آن بورڈنگ مدد اور ایک مخصوص رابطہ"
-      ],
-      "cta": "مفت آزمائش شروع کریں"
-    },
-    "pricingNote": "پلان کی حدود مثال کے طور پر ہیں اور لانچ سے پہلے تبدیل کی جا سکتی ہیں۔",
-    "faqTitle": "اکثر پوچھے جانے والے سوالات",
-    "faqs": [
-      {
-        "q": "«ایسنک فرسٹ» کا اصل مطلب کیا ہے؟",
-        "a": "اس کا مطلب ہے کہ گاہک پیغام چھوڑتے ہیں اور لائیو چیٹ پر انتظار کرنے کے بجائے جواب کا حقیقی وقت پاتے ہیں (جیسے «ہم چند گھنٹوں میں واپس آئیں گے»)۔ آپ اپنے شیڈول پر جواب دیتے ہیں، اور کوئی بھی تین نقطوں کو اُچھلتے دیکھ کر بے چین نہیں ہوتا۔"
-      },
-      {
-        "q": "سیٹ اپ میں کتنا وقت لگتا ہے؟",
-        "a": "زیادہ تر چھوٹے کاروبار دس منٹ سے کم میں چل پڑتے ہیں۔ اپنا ان باکس جوڑیں، چند عمومی سوالات ڈالیں، اور AI پہلے ہی آپ جیسے جوابات لکھنا شروع کر دیتا ہے۔"
-      },
-      {
-        "q": "کیا AI خود سے جوابات بھیجتا ہے؟",
-        "a": "نہیں۔ AI ہمیشہ مسودہ بناتا ہے — آپ کی ٹیم میں کوئی انسان منظور کرتا ہے اس سے پہلے کہ کوئی چیز گاہک تک پہنچے۔ آپ کی آواز پر آپ کا کنٹرول رہتا ہے؛ AI صرف ٹائپنگ ہٹاتا ہے۔"
-      },
-      {
-        "q": "مفت پلان میں کیا شامل ہے؟",
-        "a": "مفت پلان آپ کو مشترکہ ان باکس اور مفت AI مسودوں کے لیے فراخ ماہانہ الاؤنس کے ساتھ کمیونٹی سپورٹ دیتا ہے۔ یہ ان چھوٹے کاروباروں کے لیے بنایا گیا ہے جو ایک پیسہ ادا کرنے سے پہلے پرسکون سپورٹ آزمانا چاہتے ہیں۔"
-      },
-      {
-        "q": "میں کون سے چینلز جوڑ سکتا ہوں؟",
-        "a": "ای میل، لائیو چیٹ اور بڑے سوشل میسجنگ چینلز سب پرو پر ایک ہی قطار میں آ جاتے ہیں۔ آپ کے گاہک جو بھی استعمال کریں، آپ ایک پرسکون جگہ سے جواب دیتے ہیں۔"
-      }
-    ],
-    "finalTitle": "اپنے ان باکس میں سکون لائیں",
-    "finalSub": "منٹوں میں سیٹ اپ · چھوٹے کاروباروں کے لیے مفت · www.nudgeso.com",
-    "finalCta": "NudgeSo مفت حاصل کریں",
-    "footerTag": "NudgeSo · پرسکون کسٹمر سپورٹ · www.nudgeso.com"
-  },
-  "uk": {
-    "metaTitle": "NudgeSo — Спокійна підтримка клієнтів для малого бізнесу",
-    "metaDescription": "Асинхронна підтримка, яка створює теплі відповіді, ставить важливе в чергу й залишає вам простір, щоб видихнути.",
-    "nav": [
-      "Продукт",
-      "Ціни",
-      "Як це працює",
-      "Питання"
-    ],
-    "signIn": "Увійти",
-    "startFree": "Почати безкоштовно",
-    "heroEyebrow": "Асинхронний ШІ-хелпдеск",
-    "heroTitle": "Спокійна підтримка клієнтів для малого бізнесу",
-    "heroSub": "Асинхронна підтримка, яка створює теплі відповіді, ставить важливе в чергу й дає вам простір видихнути — більше не треба жити у своїй поштовій скриньці.",
-    "featuresTitle": "Усе, що потрібно вашій скриньці, і нічого зайвого",
-    "featuresSub": "Створено для малого бізнесу, який хоче відповідати якісно без хаосу.",
-    "features": [
-      {
-        "title": "Одна спокійна черга",
-        "body": "Пошта, чат і соціальні діалоги об’єднано й упорядковано за пріоритетом, тож нічого не загубиться."
-      },
-      {
-        "title": "Чернетки у вашому стилі",
-        "body": "ШІ вивчає ваш тон і пропонує відповіді, які вам дійсно захочеться надіслати."
-      },
-      {
-        "title": "Налаштування за хвилини",
-        "body": "Під’єднайте поштову скриньку кількома кліками, імпортуйте свої часті питання — і ШІ вже знає ваш стиль."
-      },
-      {
-        "title": "Без нічних пінгів",
-        "body": "Асинхронність за замовчуванням: клієнти отримують чесні строки відповіді, а ваш бізнес повертає собі вечори."
-      }
-    ],
-    "howTitle": "Як це працює",
-    "howSub": "Три тихі кроки від галасливої скриньки до спокійної.",
-    "howSteps": [
-      {
-        "title": "Під’єднайте поштову скриньку",
-        "body": "Додайте свою пошту, чати й соціальні канали. NudgeSo об’єднує все в одну спільну чергу."
-      },
-      {
-        "title": "ШІ створює дружні чернетки відповідей",
-        "body": "ШІ читає діалог, переймає ваш тон із минулих відповідей і створює теплу відповідь на кожне повідомлення."
-      },
-      {
-        "title": "Ви схвалюєте, підштовхуєте й рухаєтеся далі",
-        "body": "Змініть слово або натисніть «Надіслати». Діалоги відкладаються самі, доки клієнти не отримають відповідь. Жодного тиску. Ніколи."
-      }
-    ],
-    "pricingTitle": "Прості ціни",
-    "pricingSub": "Почніть безкоштовно й переходьте на платний план, коли ваш бізнес переросте спільну скриньку.",
-    "monthly": "Щомісяця",
-    "yearly": "Щороку",
-    "saveNote": "~21% знижки",
-    "freePlan": {
-      "name": "Безкоштовний",
-      "billing": "Для малого бізнесу, який хоче спробувати",
-      "features": [
-        "Спільна скринька",
-        "Щедрий місячний ліміт безкоштовних чернеток від ШІ",
-        "Підтримка спільноти"
-      ],
-      "cta": "Почати безкоштовно"
-    },
-    "proPlan": {
-      "name": "Pro",
-      "badge": "Найпопулярніший",
-      "billingMonthly": "$19 / місяць · оплата щомісяця",
-      "billingYearly": "$15 / місяць · оплата щороку",
-      "features": [
-        "Усе з плану «Безкоштовний»",
-        "Пошта, чат і соціальні канали",
-        "Пріоритетна підтримка"
-      ],
-      "cta": "Спробувати Pro безкоштовно"
-    },
-    "businessPlan": {
-      "name": "Бізнес",
-      "badge": "Приклад ціни — можна змінити",
-      "billingMonthly": "$49 / місяць · оплата щомісяця",
-      "billingYearly": "$39 / місяць · оплата щороку",
-      "features": [
-        "Усе з плану Pro",
-        "Кілька місць для співробітників",
-        "Допомога з налаштуванням і персональний контакт"
-      ],
-      "cta": "Почати безкоштовний пробний період"
-    },
-    "pricingNote": "Ліміти планів наведено для прикладу; їх можна змінити до запуску.",
-    "faqTitle": "Поширені запитання",
-    "faqs": [
-      {
-        "q": "Що насправді означає «асинхронність передусім»?",
-        "a": "Це означає, що клієнт залишає повідомлення й отримує чесний проміжок часу для відповіді (наприклад, «ми повернемося за кілька годин»), а не чекає в живому чаті. Ви відповідаєте у своєму графіку, і ніхто не нервується, дивлячись на три крапки, що стрибають."
-      },
-      {
-        "q": "Скільки часу займає налаштування?",
-        "a": "Більшість малих бізнесів починають працювати менш ніж за десять хвилин. Під’єднайте скриньку, додайте кілька частих питань — і ШІ вже почне писати відповіді, схожі на ваші."
-      },
-      {
-        "q": "Чи ШІ надсилає відповіді самостійно?",
-        "a": "Ні. ШІ завжди створює чернетки — людина з вашої команди схвалює відповідь, перш ніж вона потрапить до клієнта. Ви контролюєте свій стиль; ШІ лише позбавляє потреби друкувати."
-      },
-      {
-        "q": "Що входить до безкоштовного плану?",
-        "a": "Безкоштовний план дає спільну скриньку й щедрий місячний ліміт безкоштовних чернеток від ШІ, а також підтримку спільноти. Він створений для малого бізнесу, який хоче спробувати спокійну підтримку, перш ніж платити хоч копійку."
-      },
-      {
-        "q": "Які канали можна під’єднати?",
-        "a": "Пошта, живий чат і основні соціальні месенджери потрапляють в одну чергу на плані Pro. Хоч би що використовували ваші клієнти, ви відповідаєте з одного спокійного місця."
-      }
-    ],
-    "finalTitle": "Принесіть спокій у свою скриньку",
-    "finalSub": "Налаштування за хвилини · Безкоштовно для малого бізнесу · www.nudgeso.com",
-    "finalCta": "Отримати NudgeSo безкоштовно",
-    "footerTag": "NudgeSo · Спокійна підтримка клієнтів · www.nudgeso.com"
+    "finalCta": "Nhận NudgeSo miễn phí",
+    "footerTag": "NudgeSo · Hỗ trợ khách hàng nhẹ nhàng · www.nudgeso.com",
+    "privacy": "Chính sách quyền riêng tư",
+    "terms": "Điều khoản dịch vụ"
   },
   "zh-CN": {
-    "metaTitle": "NudgeSo — 为小型企业打造的从容客户支持",
-    "metaDescription": "异步优先的支持，起草温暖回复，将重要事项排队，并给你呼吸的空间。",
+    "metaTitle": "NudgeSo — 为小企业打造的从容客户支持",
+    "metaDescription": "异步优先的支持服务，会起草温暖的回复、把重要事项排入队列，并为你留出呼吸的空间。",
     "nav": [
       "产品",
       "定价",
-      "运作方式",
+      "如何运作",
       "常见问题"
     ],
     "signIn": "登录",
     "startFree": "免费开始",
     "heroEyebrow": "异步优先的 AI 帮助台",
-    "heroTitle": "为小型企业打造的从容客户支持",
-    "heroSub": "异步优先的支持会起草温暖回复、将重要事项排队，并给你留出呼吸的空间——不必再整天泡在收件箱里。",
-    "featuresTitle": "你的收件箱所需的一切，别无冗余",
-    "featuresSub": "为希望从容回复而不陷入混乱的小型企业打造。",
+    "heroTitle": "为小企业打造的从容客户支持",
+    "heroSub": "异步优先的支持服务，会起草温暖的回复、把重要事项排入队列，并为你留出呼吸的空间——不必再整天守在收件箱里。",
+    "featuresTitle": "你的收件箱所需的一切，不多不少",
+    "featuresSub": "为希望好好回复、又不想陷入混乱的小企业打造。",
     "features": [
       {
         "title": "一个从容的队列",
-        "body": "电子邮件、聊天和社交线程合并并划分优先级，确保没有任何事项被遗漏。"
+        "body": "现已上线：网站聊天和共享商家收件箱。电子邮件和社交连接器将另行逐步推出，因此我们不会假装它们已经合并。"
       },
       {
         "title": "以你的语气起草",
         "body": "AI 会学习你的语气，并给出你真正愿意发送的回复建议。"
       },
       {
-        "title": "几分钟内完成设置",
-        "body": "只需点击几下即可连接收件箱，导入常见问题，AI 便已了解你的语气。"
+        "title": "几分钟即可完成设置",
+        "body": "点几下连接你的收件箱，导入常见问题，AI 就已经了解你的语气。"
       },
       {
-        "title": "没有深夜提示音",
-        "body": "默认异步，客户会得到诚实的回复时间，你的企业也能找回夜晚。"
+        "title": "没有深夜提醒",
+        "body": "默认异步，客户会看到诚实的回复时间，你的企业也能找回夜晚。"
       }
     ],
-    "howTitle": "运作方式",
-    "howSub": "从嘈杂收件箱到从容收件箱之间的三个安静步骤。",
+    "howTitle": "如何运作",
+    "howSub": "从喧闹的收件箱到从容的收件箱，只需三个安静的步骤。",
     "howSteps": [
       {
         "title": "连接你的收件箱",
-        "body": "接入你的电子邮件、聊天和社交渠道。NudgeSo 会将一切合并到一个共享队列中。"
+        "body": "设置现已上线的网站聊天和共享收件箱。电子邮件和社交连接器属于单独的人工协助设置。"
       },
       {
-        "title": "AI 起草友好回复",
-        "body": "AI 会阅读对话线程，参考过往回复匹配你的语气，并为每条消息起草温暖的答复。"
+        "title": "AI 起草友好的回复",
+        "body": "AI 会阅读会话，根据过往回复匹配你的语气，并为每条消息起草温暖的答复。"
       },
       {
         "title": "你批准、轻推、继续前行",
-        "body": "改一个词或直接发送。对话线程会自动休眠，直到客户收到回复。永远没有压力。"
+        "body": "改一个词或直接发送。会话线程会自动休眠，直到客户收到回复。始终没有压力。"
       }
     ],
     "pricingTitle": "简单定价",
-    "pricingSub": "免费开始，当你的业务超出共享收件箱需求时再升级。",
+    "pricingSub": "免费开始。付费方案目前仅供预览，账单功能仍在完善中。",
     "monthly": "按月",
     "yearly": "按年",
-    "saveNote": "约 21% 优惠",
+    "saveNote": "约 21% 折扣",
     "freePlan": {
       "name": "免费版",
-      "billing": "适合尝试使用的小型企业",
+      "billing": "适合想试用的小企业",
       "features": [
         "共享收件箱",
-        "每月充足的免费 AI 草稿额度",
-        "社区支持"
+        "每月充足的免费 AI 起草额度",
+        "帮助指南"
       ],
       "cta": "免费开始"
     },
     "proPlan": {
       "name": "专业版",
-      "badge": "最受欢迎",
+      "badge": "预览方案",
       "billingMonthly": "$19 / 月 · 按月计费",
       "billingYearly": "$15 / 月 · 按年计费",
       "features": [
         "免费版中的全部功能",
-        "电子邮件、聊天和社交渠道",
-        "优先支持"
+        "网站聊天 + 共享收件箱",
+        "计划中的优先支持预览"
       ],
-      "cta": "免费试用专业版"
+      "cta": "预览专业版"
     },
     "businessPlan": {
       "name": "商业版",
-      "badge": "示例价格 — 可调整",
+      "badge": "预览价格 — 不收费",
       "billingMonthly": "$49 / 月 · 按月计费",
       "billingYearly": "$39 / 月 · 按年计费",
       "features": [
         "专业版中的全部功能",
-        "多个员工席位",
-        "入门帮助和专属联系人"
+        "多名员工席位（预览）",
+        "引导式设置帮助"
       ],
-      "cta": "开始免费试用"
+      "cta": "联系我们"
     },
-    "pricingNote": "套餐限额仅为示例，可在发布前调整。",
+    "pricingNote": "仅作预览定价：不会收取任何费用。方案限制和付费功能仅为示意，可能会在账单功能上线前调整。",
     "faqTitle": "常见问题",
     "faqs": [
       {
         "q": "“异步优先”到底是什么意思？",
-        "a": "这意味着客户留下消息后，会得到一个诚实的回复时间窗口（例如“我们会在几小时后回来”），而不是等待实时聊天。你可以按自己的时间安排回复，也没人会因为盯着跳动的三个点而焦虑。"
+        "a": "意思是客户留下消息后，会得到一个诚实的回复时间窗口（例如“我们会在几小时后回来”），而不用等待实时聊天。你可以按自己的节奏回复，也不会有人因为看着三个点跳来跳去而焦虑。"
       },
       {
         "q": "设置需要多长时间？",
-        "a": "大多数小型企业不到十分钟即可上线。连接收件箱，放入几条常见问题，AI 就会开始写出听起来像你的回复。"
+        "a": "大多数小企业不到十分钟就能开始使用。连接收件箱，放入几条常见问题，AI 就会开始写出听起来像你的回复。"
       },
       {
-        "q": "AI 会自行发送回复吗？",
-        "a": "不会。AI 始终只负责起草——你团队中的人类会在任何内容发送给客户之前进行确认。语气始终由你掌控；AI 只是省去打字。"
+        "q": "AI 会自动发送回复吗？",
+        "a": "不会。AI 始终只负责起草——在你团队中的人批准之前，任何内容都不会到达客户。你始终掌控自己的语气；AI 只是省去打字。"
       },
       {
-        "q": "免费版包含什么？",
-        "a": "免费版提供共享收件箱和每月充足的免费 AI 草稿额度，以及社区支持。它专为想在付费前尝试从容支持的小型企业打造。"
+        "q": "免费方案包含什么？",
+        "a": "免费方案提供共享收件箱、每月充足的免费 AI 起草额度，以及帮助指南。在账单功能上线前，付费方案仅供预览。"
       },
       {
         "q": "我可以连接哪些渠道？",
-        "a": "在专业版中，电子邮件、实时聊天和主要社交消息渠道都会进入同一个队列。无论客户使用什么渠道，你都能在一个从容的地方回复。"
+        "a": "现已上线：独立的网站聊天和商家共享收件箱。电子邮件和社交消息（包括 WhatsApp 和 Instagram）尚未连接；它们需要人工协助设置，并将另行逐步推出。只有在某个渠道真正连接后，我们才会将其列为可用。"
       }
     ],
-    "finalTitle": "为你的收件箱带来从容",
-    "finalSub": "几分钟内完成设置 · 对小型企业免费 · www.nudgeso.com",
+    "finalTitle": "让你的收件箱回归从容",
+    "finalSub": "几分钟即可完成设置 · 小企业免费使用 · www.nudgeso.com",
     "finalCta": "免费获取 NudgeSo",
-    "footerTag": "NudgeSo · 从容客户支持 · www.nudgeso.com"
+    "footerTag": "NudgeSo · 从容客户支持 · www.nudgeso.com",
+    "privacy": "隐私政策",
+    "terms": "服务条款"
+  },
+  "ur": {
+    "metaTitle": "NudgeSo — چھوٹے کاروباروں کے لیے پرسکون کسٹمر سپورٹ",
+    "metaDescription": "ایسنک-فرسٹ سپورٹ جو خوش اسلوب جوابات کے مسودے تیار کرتی ہے، اہم چیزوں کو قطار میں رکھتی ہے، اور آپ کو سانس لینے کی گنجائش دیتی ہے۔",
+    "nav": [
+      "پروڈکٹ",
+      "قیمتیں",
+      "طریقہ",
+      "عمومی سوالات"
+    ],
+    "signIn": "سائن ان",
+    "startFree": "مفت شروع کریں",
+    "heroEyebrow": "ایسنک-فرسٹ AI ہیلپ ڈیسک",
+    "heroTitle": "چھوٹے کاروباروں کے لیے پرسکون کسٹمر سپورٹ",
+    "heroSub": "ایسنک-فرسٹ سپورٹ جو خوش اسلوب جوابات کے مسودے تیار کرتی ہے، اہم چیزیں قطار میں رکھتی ہے، اور آپ کو سانس لینے کی گنجائش دیتی ہے — اب آپ کو اپنے ان باکس میں ہی رہنا نہیں پڑے گا۔",
+    "featuresTitle": "آپ کے ان باکس کو جس چیز کی ضرورت ہے وہ سب، جو نہیں چاہیے وہ کچھ نہیں",
+    "featuresSub": "چھوٹے کاروباروں کے لیے بنایا گیا ہے جو افراتفری کے بغیر اچھے طریقے سے جواب دینا چاہتے ہیں۔",
+    "features": [
+      {
+        "title": "ایک پرسکون قطار",
+        "body": "آج دستیاب: ویب سائٹ چیٹ اور مرچنٹ کا مشترکہ ان باکس۔ ای میل اور سوشل کنیکٹرز الگ سے متعارف ہو رہے ہیں، اس لیے ہم یہ ظاہر نہیں کرتے کہ وہ پہلے ہی ضم ہو چکے ہیں۔"
+      },
+      {
+        "title": "آپ کے انداز میں مسودے",
+        "body": "AI آپ کا لہجہ سیکھتا ہے اور ایسے جوابات تجویز کرتا ہے جو آپ واقعی بھیجنا چاہیں گے۔"
+      },
+      {
+        "title": "منٹوں میں سیٹ اپ",
+        "body": "چند کلکس میں اپنا ان باکس جوڑیں، اپنے عمومی سوالات درآمد کریں، اور AI پہلے ہی آپ کا انداز جانتا ہے۔"
+      },
+      {
+        "title": "دیر رات کی اطلاعات نہیں",
+        "body": "بطور ڈیفالٹ ایسنک؛ گاہکوں کو جواب کے ایماندار اوقات ملتے ہیں اور آپ کے کاروبار کو اس کی شامیں واپس مل جاتی ہیں۔"
+      }
+    ],
+    "howTitle": "یہ کیسے کام کرتا ہے",
+    "howSub": "شور مچاتے ان باکس اور پرسکون ان باکس کے درمیان تین خاموش قدم۔",
+    "howSteps": [
+      {
+        "title": "اپنا ان باکس جوڑیں",
+        "body": "آج دستیاب ویب سائٹ چیٹ اور مشترکہ ان باکس سیٹ اپ کریں۔ ای میل اور سوشل کنیکٹرز ایک علیحدہ، مدد کے ساتھ سیٹ اپ ہیں۔"
+      },
+      {
+        "title": "AI دوستانہ جوابات کے مسودے بناتا ہے",
+        "body": "AI تھریڈ پڑھتا ہے، پچھلے جوابات سے آپ کا لہجہ ملتا ہے، اور ہر پیغام کے لیے ایک خوش اسلوب جواب کا مسودہ تیار کرتا ہے۔"
+      },
+      {
+        "title": "آپ منظور کریں، نرمی سے یاد دلائیں، آگے بڑھیں",
+        "body": "ایک لفظ بدلیں یا بھیجیں دبائیں۔ تھریڈز خود بخود اسنوز ہو جاتے ہیں جب تک گاہکوں کو جواب نہ ملے۔ کبھی کوئی دباؤ نہیں۔"
+      }
+    ],
+    "pricingTitle": "سادہ قیمتیں",
+    "pricingSub": "مفت شروع کریں۔ ادائیگی والے پلانز صرف پیش نظارہ ہیں جب تک بلنگ مکمل ہو رہی ہے۔",
+    "monthly": "ماہانہ",
+    "yearly": "سالانہ",
+    "saveNote": "~21% رعایت",
+    "freePlan": {
+      "name": "مفت",
+      "billing": "چھوٹے کاروبار کے آزمائشی استعمال کے لیے",
+      "features": [
+        "مشترکہ ان باکس",
+        "مفت AI مسودوں کے لیے فراخ ماہانہ الاؤنس",
+        "مدد گائیڈ"
+      ],
+      "cta": "مفت شروع کریں"
+    },
+    "proPlan": {
+      "name": "پرو",
+      "badge": "پیش نظارہ پلان",
+      "billingMonthly": "$19 / ماہ · ماہانہ بل",
+      "billingYearly": "$15 / ماہ · سالانہ بل",
+      "features": [
+        "مفت میں موجود سب کچھ",
+        "ویب سائٹ چیٹ + مشترکہ ان باکس",
+        "منصوبہ بند ترجیحی سپورٹ کا پیش نظارہ"
+      ],
+      "cta": "پرو کا پیش نظارہ"
+    },
+    "businessPlan": {
+      "name": "بزنس",
+      "badge": "پیش نظارہ قیمت — کوئی چارج نہیں",
+      "billingMonthly": "$49 / ماہ · ماہانہ بل",
+      "billingYearly": "$39 / ماہ · سالانہ بل",
+      "features": [
+        "پرو میں موجود سب کچھ",
+        "متعدد اسٹاف نشستیں (پیش نظارہ)",
+        "رہنمائی والی سیٹ اپ مدد"
+      ],
+      "cta": "ہم سے بات کریں"
+    },
+    "pricingNote": "صرف پیش نظارہ قیمتیں: کوئی ادائیگی وصول نہیں کی جاتی۔ پلان کی حدیں اور ادائیگی والی خصوصیات مثال کے طور پر ہیں اور بلنگ شروع ہونے سے پہلے ان میں تبدیلی کی جا سکتی ہے۔",
+    "faqTitle": "اکثر پوچھے گئے سوالات",
+    "faqs": [
+      {
+        "q": "“ایسنک-فرسٹ” کا اصل مطلب کیا ہے؟",
+        "a": "اس کا مطلب ہے کہ گاہک پیغام چھوڑتے ہیں اور انہیں جواب کا ایماندار وقت ملتا ہے (جیسے “ہم چند گھنٹوں میں واپس ہوں گے”) بجائے لائیو چیٹ پر انتظار کرنے کے۔ آپ اپنے شیڈول کے مطابق جواب دیتے ہیں، اور تین نقطوں کو اچھلتے دیکھ کر کوئی پریشان نہیں ہوتا۔"
+      },
+      {
+        "q": "سیٹ اپ میں کتنا وقت لگتا ہے؟",
+        "a": "زیادہ تر چھوٹے کاروبار دس منٹ سے کم میں چل پڑتے ہیں۔ اپنا ان باکس جوڑیں، چند عمومی سوالات شامل کریں، اور AI پہلے ہی آپ جیسے لگنے والے جوابات لکھنا شروع کر دیتا ہے۔"
+      },
+      {
+        "q": "کیا AI خود سے جوابات بھیجتا ہے؟",
+        "a": "نہیں۔ AI ہمیشہ مسودہ تیار کرتا ہے — آپ کی ٹیم میں کوئی انسان منظوری دیتا ہے اس سے پہلے کہ کچھ گاہک تک پہنچے۔ آپ اپنے انداز پر قابو میں رہتے ہیں؛ AI صرف ٹائپنگ ہٹاتا ہے۔"
+      },
+      {
+        "q": "مفت پلان میں کیا شامل ہے؟",
+        "a": "مفت پلان آپ کو مشترکہ ان باکس اور مفت AI مسودوں کا فراخ ماہانہ الاؤنس دیتا ہے، نیز مدد گائیڈ۔ ادائیگی والے پلانز صرف پیش نظارہ ہیں جب تک بلنگ لائیو نہ ہو۔"
+      },
+      {
+        "q": "میں کون سے چینلز جوڑ سکتا ہوں؟",
+        "a": "آج دستیاب: علیحدہ ویب سائٹ چیٹ اور مرچنٹ کا مشترکہ ان باکس۔ ای میل اور سوشل میسجنگ (بشمول واٹس ایپ اور انسٹاگرام) ابھی منسلک نہیں ہیں؛ ان کے لیے مدد کے ساتھ سیٹ اپ درکار ہے اور یہ علیحدہ طور پر متعارف کرائے جائیں گے۔ ہم کسی چینل کو دستیاب تبھی لکھیں گے جب وہ واقعی منسلک ہو۔"
+      }
+    ],
+    "finalTitle": "اپنے ان باکس میں سکون لائیں",
+    "finalSub": "منٹوں میں سیٹ اپ کریں · چھوٹے کاروباروں کے لیے مفت · www.nudgeso.com",
+    "finalCta": "NudgeSo مفت حاصل کریں",
+    "footerTag": "NudgeSo · پرسکون کسٹمر سپورٹ · www.nudgeso.com",
+    "privacy": "رازداری کی پالیسی",
+    "terms": "خدمات کی شرائط"
   },
   "zh-TW": {
-    "metaTitle": "NudgeSo — 為小型企業打造的從容客戶支援",
-    "metaDescription": "非同步優先的支援服務，會草擬溫暖的回覆、將重要事項排入佇列，並讓你保有喘息空間。",
+    "metaTitle": "NudgeSo — 為小型企業打造的從容客服",
+    "metaDescription": "非同步優先的支援服務，會草擬溫暖回覆、將重要事項排入佇列，並留給你喘息空間。",
     "nav": [
       "產品",
       "定價",
@@ -4495,111 +4571,113 @@ window.NS_LANDING_LOCALES = {
     ],
     "signIn": "登入",
     "startFree": "免費開始",
-    "heroEyebrow": "非同步優先的 AI 服務台",
-    "heroTitle": "為小型企業打造的從容客戶支援",
-    "heroSub": "非同步優先的支援服務，會草擬溫暖的回覆、將重要事項排入佇列，並讓你保有喘息空間——不必再時時困在收件匣裡。",
-    "featuresTitle": "收件匣需要的一切，沒有多餘的東西",
-    "featuresSub": "為想要好好回覆、又不想陷入混亂的小型企業而打造。",
+    "heroEyebrow": "非同步優先的 AI 客服台",
+    "heroTitle": "為小型企業打造的從容客服",
+    "heroSub": "非同步優先的支援服務，會草擬溫暖回覆、將重要事項排入佇列，並留給你喘息空間 — 不必再整天守在收件匣裡。",
+    "featuresTitle": "你的收件匣需要的一切，沒有多餘的東西",
+    "featuresSub": "為想要好好回覆、又不想陷入混亂的小型企業打造。",
     "features": [
       {
         "title": "一個從容的佇列",
-        "body": "電子郵件、聊天與社群訊息串整合並排出優先順序，讓任何事項都不會被遺漏。"
+        "body": "目前已上線：網站聊天與商家共享收件匣。電子郵件與社群媒體連接器會另行推出，因此我們不會假裝它們已經整合完成。"
       },
       {
-        "title": "以你的語氣草擬",
+        "title": "以你的語氣草擬回覆",
         "body": "AI 會學習你的語氣，並建議你真正會想送出的回覆。"
       },
       {
-        "title": "幾分鐘內完成設定",
-        "body": "點幾下就能連結收件匣、匯入常見問題，AI 馬上就熟悉你的語氣。"
+        "title": "幾分鐘即可完成設定",
+        "body": "點幾下就能連接你的收件匣、匯入常見問題，AI 就已經熟悉你的語氣。"
       },
       {
         "title": "沒有深夜通知",
-        "body": "預設為非同步，客戶會看到誠實的回覆時間，你的企業也能找回夜晚。"
+        "body": "預設為非同步，顧客會得到誠實的回覆時間，你的企業也能找回夜晚。"
       }
     ],
     "howTitle": "運作方式",
     "howSub": "從吵雜收件匣到從容收件匣之間，三個安靜的步驟。",
     "howSteps": [
       {
-        "title": "連結你的收件匣",
-        "body": "串接你的電子郵件、聊天與社群頻道。NudgeSo 會將所有內容整合到同一個共享佇列。"
+        "title": "連接你的收件匣",
+        "body": "設定目前已上線的網站聊天與共享收件匣。電子郵件與社群媒體連接器屬於另行提供、需專人協助的設定。"
       },
       {
         "title": "AI 草擬親切的回覆",
-        "body": "AI 會閱讀訊息串、比對你過去回覆的語氣，並為每則訊息草擬溫暖的答覆。"
+        "body": "AI 會閱讀整個對話串，依照你過去的回覆比對語氣，並為每則訊息草擬溫暖的答覆。"
       },
       {
-        "title": "你核准、提醒、繼續前進",
-        "body": "微調一個字或直接送出。訊息串會自動休眠，直到客戶收到回覆。永遠不必有壓力。"
+        "title": "你核准、輕推、繼續前進",
+        "body": "改一個字或直接送出。對話串會自動休眠，直到顧客收到回覆。永遠沒有壓力。"
       }
     ],
     "pricingTitle": "簡單定價",
-    "pricingSub": "免費開始，當企業規模超出共享收件匣時再升級。",
-    "monthly": "月付",
-    "yearly": "年付",
+    "pricingSub": "免費開始。付費方案在帳務功能完成前僅供預覽。",
+    "monthly": "每月",
+    "yearly": "每年",
     "saveNote": "約省 21%",
     "freePlan": {
-      "name": "免費",
-      "billing": "適合想先試用的小型企業",
+      "name": "免費版",
+      "billing": "適合想試用的小型企業",
       "features": [
         "共享收件匣",
-        "每月充裕的免費 AI 草擬額度",
-        "社群支援"
+        "每月充足的免費 AI 草稿額度",
+        "說明指南"
       ],
       "cta": "免費開始"
     },
     "proPlan": {
       "name": "專業版",
-      "badge": "最受歡迎",
+      "badge": "預覽方案",
       "billingMonthly": "$19 / 月 · 按月計費",
       "billingYearly": "$15 / 月 · 按年計費",
       "features": [
-        "免費方案的所有功能",
-        "電子郵件、聊天與社群頻道",
-        "優先支援"
+        "免費版的一切",
+        "網站聊天 + 共享收件匣",
+        "規劃中優先支援的預覽"
       ],
-      "cta": "免費試用專業版"
+      "cta": "預覽專業版"
     },
     "businessPlan": {
-      "name": "商業版",
-      "badge": "範例價格 — 可調整",
+      "name": "商務版",
+      "badge": "預覽價格 — 不收費",
       "billingMonthly": "$49 / 月 · 按月計費",
       "billingYearly": "$39 / 月 · 按年計費",
       "features": [
-        "專業版的所有功能",
-        "多個員工席次",
-        "導入協助與專屬聯絡人"
+        "專業版的一切",
+        "多名人員席次（預覽）",
+        "引導式設定協助"
       ],
-      "cta": "開始免費試用"
+      "cta": "與我們聯絡"
     },
-    "pricingNote": "方案限制僅供示意，上線前可調整。",
+    "pricingNote": "僅為預覽定價：不會收取任何款項。方案限制與付費功能僅供示意，可能會在帳務功能推出前調整。",
     "faqTitle": "常見問題",
     "faqs": [
       {
         "q": "「非同步優先」到底是什麼意思？",
-        "a": "意思是客戶留下訊息後，會得到誠實的回覆時間窗口（例如「我們幾小時後回來」），而不是等待即時聊天。你可以按照自己的行程回覆，也不必有人盯著跳動的三個點而焦慮。"
+        "a": "意思是顧客留下訊息後，會得到誠實的回覆時間範圍（例如「我們幾小時後回來」），而不是等待即時聊天。你可以按照自己的行程回覆，也沒有人會因為看著三個點跳動而焦慮。"
       },
       {
         "q": "設定需要多久？",
-        "a": "大多數小型企業不到十分鐘就能開始運作。連結收件匣、放入幾個常見問題，AI 就會開始寫出像你口吻的回覆。"
+        "a": "大多數小型企業不到十分鐘就能開始運作。連接你的收件匣、放入幾個常見問題，AI 就會開始寫出聽起來像你的回覆。"
       },
       {
         "q": "AI 會自行送出回覆嗎？",
-        "a": "不會。AI 一律只負責草擬——在你團隊的人核准之前，任何內容都不會送到客戶手中。語氣主控權仍在你手上；AI 只是替你省下打字。"
+        "a": "不會。AI 一律只負責草擬——在你團隊的人核准之前，任何內容都不會送到顧客手中。語氣由你掌控；AI 只是替你把打字工作拿掉。"
       },
       {
         "q": "免費方案包含什麼？",
-        "a": "免費方案提供共享收件匣、每月充裕的免費 AI 草擬額度，以及社群支援。它是為想先體驗從容支援、還不想付任何費用的小型企業而打造。"
+        "a": "免費方案提供共享收件匣、每月充足的免費 AI 草稿額度，以及說明指南。付費方案在帳務功能上線前僅供預覽。"
       },
       {
-        "q": "我可以連結哪些頻道？",
-        "a": "電子郵件、即時聊天與主要社群訊息頻道，在專業版方案中都會進入同一個佇列。無論客戶使用什麼，你都能從同一個從容的地方回覆。"
+        "q": "我可以連接哪些管道？",
+        "a": "目前已上線：獨立的網站聊天與商家共享收件匣。電子郵件與社群訊息（包括 WhatsApp 和 Instagram）尚未連接；它們需要專人協助設定，並會另行推出。我們只會在管道真正連接後，才將其列為可用。"
       }
     ],
-    "finalTitle": "讓收件匣回歸從容",
-    "finalSub": "幾分鐘內完成設定 · 小型企業免費使用 · www.nudgeso.com",
+    "finalTitle": "讓你的收件匣回歸從容",
+    "finalSub": "幾分鐘即可完成設定 · 小型企業免費使用 · www.nudgeso.com",
     "finalCta": "免費取得 NudgeSo",
-    "footerTag": "NudgeSo · 從容客戶支援 · www.nudgeso.com"
+    "footerTag": "NudgeSo · 從容客服 · www.nudgeso.com",
+    "privacy": "隱私權政策",
+    "terms": "服務條款"
   }
 };

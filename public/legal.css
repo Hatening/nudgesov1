@@ -1,0 +1,50 @@
+:root {
+  --ink: #262B33;
+  --muted: #5B6470;
+  --cream: #F7F4EC;
+  --oat: #F3EAD8;
+  --line: #E2D9C6;
+  --primary: #B84A1D;
+  --primary-dark: #9A3B10;
+  --white: #FFFFFF;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Asap", ui-rounded, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+a { color: var(--primary-dark); }
+a:focus-visible { outline: 3px solid #D98A5F; outline-offset: 2px; border-radius: 4px; }
+.top { background: var(--white); border-bottom: 1px solid var(--line); }
+.top-in {
+  max-width: 900px; margin: 0 auto; padding: 16px 24px;
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; margin-right: auto; text-decoration: none; color: var(--ink); font-weight: 700; }
+.brand img { height: 34px; width: auto; display: block; }
+.back { font-size: 14px; font-weight: 600; }
+.draft {
+  max-width: 900px; margin: 24px auto 0; padding: 14px 18px;
+  border: 2px dashed var(--primary); border-radius: 12px;
+  background: #FDF0DC; color: var(--ink);
+}
+.draft strong { color: var(--primary-dark); }
+main { max-width: 900px; margin: 0 auto; padding: 36px 24px 64px; }
+h1 { font-size: clamp(32px, 5vw, 46px); line-height: 1.15; margin: 0 0 8px; }
+h2 { font-size: 24px; line-height: 1.25; margin: 30px 0 8px; }
+p, li { color: var(--muted); }
+ul { padding-left: 22px; }
+.notice { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin: 20px 0; }
+.placeholder { color: var(--primary-dark); font-weight: 700; }
+.meta { color: var(--muted); font-size: 14px; }
+footer { border-top: 1px solid var(--line); background: var(--white); }
+.foot-in { max-width: 900px; margin: 0 auto; padding: 20px 24px; display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; }
+.foot-in a { font-weight: 600; }
+@media (max-width: 520px) {
+  .top-in, main { padding-left: 16px; padding-right: 16px; }
+  .draft { margin-left: 16px; margin-right: 16px; }
+}

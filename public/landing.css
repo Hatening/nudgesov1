@@ -366,6 +366,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .footer .foot-links { display: flex; gap: 26px; margin-left: auto; flex-wrap: wrap; }
 .footer .foot-links a { color: #C9CDD4; font-size: 15px; }
 .footer .foot-links a:hover { color: #fff; }
+.footer .legal-links { display: flex; gap: 18px; flex-wrap: wrap; }
+.footer .legal-links a { color: #C9CDD4; font-size: 13px; }
+.footer .legal-links a:hover { color: #fff; }
 .footer .foot-url { color: #C9CDD4; font-size: 15px; }
 
 /* ============================================================

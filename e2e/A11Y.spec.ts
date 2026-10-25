@@ -69,6 +69,8 @@ test.describe('Accessibility — axe WCAG 2A/AA core surfaces', () => {
         { route: '/login.html', name: 'login' },
         { route: '/onboarding.html', name: 'onboarding' },
         { route: '/404.html', name: '404' },
+        { route: '/privacy.html', name: 'privacy' },
+        { route: '/terms.html', name: 'terms' },
         { route: `/chat.html?site=${encodeURIComponent(site.embed_key)}`, name: 'customer-chat' }
       ])),
       ...(await scanContext(authContext, [
