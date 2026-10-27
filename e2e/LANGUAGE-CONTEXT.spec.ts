@@ -6,6 +6,23 @@ import { test, expect } from '@playwright/test';
  * onboarding, and it must not silently fall back to the Chinese default.
  */
 test.describe('Language context across the pricing → onboarding boundary', () => {
+
+  test('English is the fallback when no language marker exists', async ({ page }) => {
+    await page.goto('/onboarding.html');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('h1').first()).not.toContainText('跟着走');
+    await expect(page.locator('h1').first()).not.toContainText('一步步');
+  });
+
+  test('a language chosen inside onboarding is reused by landing', async ({ page }) => {
+    await page.goto('/onboarding.html');
+    await page.locator('.language-switch').selectOption('es');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+    await page.goto('/landing.html');
+    await expect(page.locator('#siteLang')).toHaveValue('es');
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+  });
+
   test('default English pricing keeps every onboarding entry in English', async ({ page }) => {
     await page.goto('/landing.html');
     await expect(page.locator('.hero h1')).toHaveText('Calm Customer Support for small businesses');

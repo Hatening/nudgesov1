@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { captureScreenshot } from './helpers/screenshot';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const knowledgeFile = path.join(__dirname, 'fixtures', 'ac01-knowledge.txt');
+const knowledgeFile = path.join(__dirname, 'fixtures', 'ac01-knowledge.docx');
 
 test.describe('AC-01 merchant onboarding', () => {
   test.afterEach(async ({ page }, testInfo) => {
@@ -41,7 +41,7 @@ test.describe('AC-01 merchant onboarding', () => {
     await page.locator('#createSite').click();
     await expect(page.locator('#kbPanel')).toBeVisible({ timeout: 15_000 });
 
-    // Step 3: upload <=1 MB text knowledge and confirm the draft.
+    // Step 3: upload a Word knowledge file and confirm the extracted draft.
     const fileInput = page.locator('#kbFile');
     await expect(fileInput, 'AC-01 requires a knowledge file upload input.').toBeVisible();
     await fileInput.setInputFiles(knowledgeFile);

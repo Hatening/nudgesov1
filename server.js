@@ -13,7 +13,8 @@ import {
 } from './src/db.js';
 import { createDao } from './src/dao.js';
 import { createRateLimiter } from './src/rate-limit.js';
-import { extractPdfText, isPdfBuffer } from './src/pdf-text.js';
+import { ingestUpload, MAX_MULTIPART_BYTES, UPLOAD_LIMITS } from './src/file-ingest.js';
+import { parseMultipart } from './src/multipart.js';
 import { distillKnowledge } from './src/knowledge-distill.js';
 import { rewriteQuery } from './src/qwen-rewrite.js';
 import { rankByTerms } from './src/like-retrieval.js';
@@ -166,6 +167,19 @@ async function readBody(req, limit = 2_000_000) {
   const raw = Buffer.concat(chunks).toString('utf8');
   if (!raw) return {};
   try { return JSON.parse(raw); } catch { throw Object.assign(new Error('Expected valid JSON body'), { status: 400 }); }
+}
+async function readRawBody(req, limit = MAX_MULTIPART_BYTES) {
+  const chunks = [];
+  let size = 0;
+  for await (const chunk of req) {
+    size += chunk.length;
+    if (size > limit) throw Object.assign(new Error('Request body too large'), { status: 413, code: 'FILE_TOO_LARGE' });
+    chunks.push(chunk);
+  }
+  return Buffer.concat(chunks);
+}
+function isMultipart(req) {
+  return /^multipart\/form-data(?:;|$)/i.test(String(req.headers['content-type'] || ''));
 }
 function legacySession(req) {
   const bearer = String(req.headers.authorization || '');
@@ -918,30 +932,42 @@ async function handleV1(req, res, p, method) {
     const auth = requireV1(req, res);
     if (!auth) return;
     if (!requireRole(auth, res, 'agent')) return;
-    const b = await readBody(req, 6000000);
-    const filename = String(b.filename || 'upload.txt').slice(0, 180);
-    let text = String(b.content || '').trim();
-    let pdfDetected = false;
-
-    if (!text && b.file_base64) {
-      let buffer;
-      try { buffer = Buffer.from(String(b.file_base64), 'base64'); } catch { buffer = null; }
-      if (!buffer || buffer.length === 0) return json(res, 400, { error: '文件内容为空或 base64 编码无效。' });
-      if (buffer.length > 5 * 1024 * 1024) return json(res, 413, { error: '文件超过 5MB 上限。' });
-      if (isPdfBuffer(buffer) || /\.pdf$/i.test(filename)) {
-        pdfDetected = true;
-        text = extractPdfText(buffer);
-        if (!text) {
-          return json(res, 422, {
-            error: '这个 PDF 没有可提取的文本层（扫描件）。请在前端确认 OCR 识别结果后再提交。',
-            code: 'NEEDS_OCR',
-          });
-        }
+    let filename = 'upload.txt';
+    let text = '';
+    let fileType = 'txt';
+    let fileBytes = 0;
+    try {
+      if (isMultipart(req)) {
+        const raw = await readRawBody(req, MAX_MULTIPART_BYTES);
+        const parsed = parseMultipart(raw, req.headers['content-type'], { maxFileBytes: UPLOAD_LIMITS.pdf });
+        if (!parsed.file) return json(res, 400, { error: 'A knowledge file is required.', code: 'FILE_REQUIRED' });
+        filename = String(parsed.file.filename || 'upload.bin').slice(0, 180);
+        const ingestion = ingestUpload(filename, parsed.file.buffer);
+        text = ingestion.text;
+        fileType = ingestion.type;
+        fileBytes = ingestion.bytes;
       } else {
-        text = buffer.toString('utf8').trim();
+        const b = await readBody(req, 6000000);
+        filename = String(b.filename || 'upload.txt').slice(0, 180);
+        text = String(b.content || '').trim();
+        if (!text && b.file_base64) {
+          let buffer;
+          try { buffer = Buffer.from(String(b.file_base64), 'base64'); } catch { buffer = null; }
+          if (!buffer || buffer.length === 0) return json(res, 400, { error: '文件内容为空或 base64 编码无效。' });
+          const ingestion = ingestUpload(filename, buffer);
+          text = ingestion.text;
+          fileType = ingestion.type;
+          fileBytes = ingestion.bytes;
+        }
+        if (text) fileBytes = Buffer.byteLength(text, 'utf8');
       }
+    } catch (error) {
+      return json(res, error.status || 400, { error: error.message, code: error.code || 'INGEST_FAILED' });
     }
     if (!text) return json(res, 400, { error: 'content 或 file_base64 至少提供一个。' });
+    if (fileType === 'pdf' && !text) {
+      return json(res, 422, { error: '这个 PDF 没有可提取的文本层（扫描件）。OCR 未启用。', code: 'NEEDS_OCR' });
+    }
     if (text.length < 10) return json(res, 400, { error: '资料内容太短（至少 10 个字符）。' });
     if (text.length > 200000) text = text.slice(0, 200000);
 
@@ -1003,7 +1029,9 @@ async function handleV1(req, res, p, method) {
     return json(res, 201, {
       filename,
       extracted_chars: text.length,
-      pdf: pdfDetected,
+      pdf: fileType === 'pdf',
+      file_type: fileType,
+      file_bytes: fileBytes,
       distilled: true,
       provider: distillation.provider,
       model: distillation.model,
@@ -1053,21 +1081,56 @@ async function handleV1(req, res, p, method) {
     if (!requireRole(auth, res, 'admin')) return;
     const site = siteForAuth(auth, uploadMatch[1]);
     if (!site) return json(res, 404, { error: 'Site not found.' });
-    const b = await readBody(req, 1500000);
-    const content = String(b.content || '');
-    if (!content.trim()) return json(res, 400, { error: 'File content is required.' });
-    if (Buffer.byteLength(content, 'utf8') > 1000000) return json(res, 413, { error: 'Knowledge file must be 1 MB or smaller.' });
+    let filename = 'knowledge.txt';
+    let title = 'Knowledge draft';
+    let content = '';
+    let fileType = 'txt';
+    let extractedBytes = 0;
+    try {
+      if (isMultipart(req)) {
+        const raw = await readRawBody(req, MAX_MULTIPART_BYTES);
+        const parsed = parseMultipart(raw, req.headers['content-type'], { maxFileBytes: UPLOAD_LIMITS.pdf });
+        if (!parsed.file) return json(res, 400, { error: 'A knowledge file is required.', code: 'FILE_REQUIRED' });
+        filename = String(parsed.file.filename || 'upload.bin').slice(0, 180);
+        title = String(parsed.fields.title || parsed.file.filename || 'Knowledge draft').slice(0, 180);
+        const ingestion = ingestUpload(filename, parsed.file.buffer);
+        content = ingestion.text;
+        fileType = ingestion.type;
+        extractedBytes = ingestion.bytes;
+      } else {
+        const b = await readBody(req, 6_000_000);
+        filename = String(b.filename || 'knowledge.txt').slice(0, 180);
+        title = String(b.title || b.filename || 'Knowledge draft').slice(0, 180);
+        if (b.file_base64) {
+          let buffer;
+          try { buffer = Buffer.from(String(b.file_base64), 'base64'); } catch { buffer = null; }
+          if (!buffer || !buffer.length) return json(res, 400, { error: 'File content is empty or invalid base64.', code: 'INVALID_FILE' });
+          const ingestion = ingestUpload(filename, buffer);
+          content = ingestion.text;
+          fileType = ingestion.type;
+          extractedBytes = ingestion.bytes;
+        } else {
+          content = String(b.content || '');
+          if (!content.trim()) return json(res, 400, { error: 'File content is required.' });
+          if (Buffer.byteLength(content, 'utf8') > UPLOAD_LIMITS.txt) return json(res, 413, { error: 'Knowledge file must be 5 MB or smaller.', code: 'FILE_TOO_LARGE' });
+          extractedBytes = Buffer.byteLength(content, 'utf8');
+        }
+      }
+    } catch (error) {
+      return json(res, error.status || 400, { error: error.message, code: error.code || 'INGEST_FAILED' });
+    }
+    if (!content.trim()) return json(res, 400, { error: 'File did not contain extractable text.', code: 'EMPTY_DOCUMENT' });
     const doc = dao.createSiteKnowledge(site.id, site.tenant_id, {
       id: id('kbdoc'),
-      filename: String(b.filename || 'knowledge.txt').slice(0, 180),
-      title: String(b.title || b.filename || 'Knowledge draft').slice(0, 180),
-      content: content.slice(0, 1000000),
+      filename,
+      title,
+      content: content.slice(0, 1_000_000),
       status: 'draft',
       created_at: now(),
       updated_at: now()
     });
-    dao.logEvent('v1_kb_draft_created', { siteId: site.id, documentId: doc.id });
-    return json(res, 201, { document: doc });
+    dao.logEvent('v1_kb_draft_created', { siteId: site.id, documentId: doc.id, fileType, bytes: extractedBytes });
+    return json(res, 201, { document: doc, file_type: fileType, extracted_chars: doc.content.length });
   }
 
   const confirmMatch = p.match(/^\/api\/v1\/sites\/([^/]+)\/kb\/confirm$/);

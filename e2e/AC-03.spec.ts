@@ -59,7 +59,7 @@ test('AC-03 refund/complaint -> safe template + escalation queue', async ({ page
   await page.addInitScript((token) => {
     localStorage.setItem('relaydesk_token', token);
   }, registration.token);
-  await page.goto('/queue.html');
+  await page.goto('/queue.html?lang=zh');
 
   const rows = page.locator('#escalationRows [data-escalation-id]');
   await expect(rows).toHaveCount(2, { timeout: 10_000 });

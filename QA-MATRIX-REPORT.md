@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261027-191750-LANG-CONTEXT-FINAL/`
+- `artifacts/runs/RUN-20261027-222954-UPLOAD-RELEASE/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -24,7 +24,7 @@ applicable to NudgeSo and are not silently copied here.
 | Unique same-origin links checked | 27 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **39 pass, 4 intentionally skipped** |
+| Playwright full suite | **41 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -81,6 +81,31 @@ Root cause: landing saved `nudgeso_site_locale`, onboarding reads
 both locale keys and appends `?lang=` to onboarding/login links. Three tests now
 cover English continuity, Spanish through refresh, and Arabic RTL; AC-01 was
 updated to accept the correct English onboarding heading.
+
+## Knowledge upload formats (2026-10-27)
+
+Uploads now support:
+
+```text
+TXT / MD   5 MB
+DOCX       10 MB
+XLSX       10 MB
+PDF        15 MB, text layer only
+```
+
+The onboarding API accepts `multipart/form-data`, extracts text without writing
+the original file to disk, validates magic bytes and extension, and rejects
+legacy `.doc/.xls`, macro-enabled files, corrupt archives and scanned PDFs
+(`NEEDS_OCR`). The standalone upload page uses the same multipart endpoint for
+Word/Excel/PDF; scanned-PDF OCR is disabled for this release.
+
+Tests added:
+
+```text
+6 parser/validation unit tests
+1 multipart API test (DOCX + legacy rejection)
+AC-01 now uploads DOCX through the real UI
+```
 
 ## Quality system — 2026-10-25
 

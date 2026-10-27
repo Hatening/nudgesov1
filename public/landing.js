@@ -319,7 +319,7 @@
     savedLang = localStorage.getItem('nudgeso_site_locale') || '';
     savedAppLang = localStorage.getItem('relaydesk_locale') || '';
   } catch (e) {}
-  currentLocale = pickLocale(queryLang || savedLang || savedAppLang || 'en');
+  currentLocale = pickLocale(queryLang || savedAppLang || savedLang || 'en');
   applySiteLocale(currentLocale);
   siteLang.addEventListener('change', function () {
     applySiteLocale(pickLocale(siteLang.value));

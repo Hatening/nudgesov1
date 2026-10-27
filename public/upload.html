@@ -113,9 +113,9 @@
     <div class="drop" id="drop">
       <span class="ico" data-ico="upload"></span>
       <strong>点这里选文件，或把文件拖到这里</strong>
-      <small>支持 PDF、TXT、Markdown、图片（PNG / JPG），单个文件不超过 5MB</small>
+      <small>支持 TXT/MD、Word、Excel、文本 PDF、图片；TXT/MD 5MB，Word/Excel 10MB，PDF 15MB</small>
     </div>
-    <input id="file" type="file" accept=".pdf,.txt,.md,.png,.jpg,.jpeg,application/pdf,text/plain,text/markdown,image/png,image/jpeg" hidden>
+    <input id="file" type="file" accept=".pdf,.txt,.md,.docx,.xlsx,.png,.jpg,.jpeg,application/pdf,text/plain,text/markdown,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/png,image/jpeg" hidden>
     <div class="file-row" id="fileRow"><span id="fileName"></span><span class="fs" id="fileSize"></span></div>
     <div class="actions">
       <button class="btn primary" id="upload" disabled></button>
@@ -240,6 +240,18 @@
     return postJson('/api/v1/seller/knowledge/upload', { filename: filename, content: text });
   }
 
+  async function uploadFile(file) {
+    var form = new FormData();
+    form.append('file', file, file.name);
+    var res = await fetch('/api/v1/seller/knowledge/upload', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: form
+    });
+    var data = await res.json().catch(function () { return {}; });
+    return { ok: res.ok, status: res.status, data: data };
+  }
+
   // PDF 扫描件：用 pdf.js 渲染前 3 页为 PNG，再交给云端识别
   async function renderPdfPages(dataUrl) {
     var binary = atob(String(dataUrl).split(',')[1] || '');
@@ -328,25 +340,27 @@
         return;
       }
 
+      if (/\.(docx|xlsx)$/i.test(name)) {
+        var officeResult = await uploadFile(picked);
+        if (!officeResult.ok) throw new Error(officeResult.data.error || ('HTTP ' + officeResult.status));
+        setStatus(window.NS_ICON('check', 20) + ' 好，已整理成 ' + officeResult.data.items.length + ' 条店铺资料，已加到下面列表里。', 'ok');
+        await load();
+        await loadCredits();
+        return;
+      }
+
       if (isPdf) {
-        var pdfUrl = await readAsBase64(picked);
-        var firstTry = await postJson('/api/v1/seller/knowledge/upload', { filename: name, file_base64: pdfUrl.split(',')[1] });
-        if (firstTry.ok) {
-          setStatus(window.NS_ICON('check', 20) + ' 好啦，已经帮你整理成 ' + firstTry.data.items.length + ' 条店铺资料，加在下面列表里了。', 'ok');
+        var pdfResult = await uploadFile(picked);
+        if (pdfResult.ok) {
+          setStatus(window.NS_ICON('check', 20) + ' 好，已整理成 ' + pdfResult.data.items.length + ' 条店铺资料，已加到下面列表里。', 'ok');
           await load();
           await loadCredits();
           return;
         }
-        if (firstTry.status === 422 && firstTry.data.code === 'NEEDS_OCR') {
-          setStatus(window.NS_ICON('assistant', 20) + ' 这是扫描版文件，正在认出里面的字…', 'info');
-          var images = await renderPdfPages(pdfUrl);
-          var scanned = await ocr(images);
-          if (!scanned.ok) throw new Error(scanned.data.error || ('OCR HTTP ' + scanned.status));
-          showConfirm(scanned.data.text, name, '已经认出了图片里的字（' + (scanned.data.pages || 1) + ' 页），请看上面核对一下。');
-          await loadCredits();
-          return;
+        if (pdfResult.status === 422 && pdfResult.data.code === 'NEEDS_OCR') {
+          throw new Error('这是一个扫描版 PDF，暂不支持 OCR；请上传带文本层的 PDF。');
         }
-        throw new Error(firstTry.data.error || ('HTTP ' + firstTry.status));
+        throw new Error(pdfResult.data.error || ('HTTP ' + pdfResult.status));
       }
 
       // TXT / Markdown

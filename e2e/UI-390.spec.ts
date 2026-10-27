@@ -31,7 +31,7 @@ test('P3-07 UI: 390px chat, onboarding, 11 views, queue and public pages fit wit
   expect(await overflow()).toBeLessThanOrEqual(1);
   await captureScreenshot(page, testInfo, 'UI-390', 'chat');
 
-  await page.goto('/onboarding.html');
+  await page.goto('/onboarding.html?lang=zh');
   await expect(page.getByRole('heading', { name: /一步步把客服装好|onboarding/i }).first()).toBeVisible();
   expect(await overflow()).toBeLessThanOrEqual(1);
   await captureScreenshot(page, testInfo, 'UI-390', 'onboarding');

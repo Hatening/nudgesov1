@@ -2,10 +2,10 @@
   const supported = ['zh', 'zh-CN', 'zh-TW', 'en', 'en-AU', 'ar', 'az', 'bg', 'bn', 'cs', 'da', 'de', 'el', 'es', 'fa', 'fr', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'ko', 'ms', 'nl', 'no', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sv', 'sw', 'th', 'tr', 'uk', 'ur', 'vi'];
   const params = new URLSearchParams(window.location.search);
   const stored = window.localStorage.getItem('relaydesk_locale');
-  const requested = String(params.get('lang') || stored || 'zh').toLowerCase().replace('_', '-');
+  const requested = String(params.get('lang') || stored || 'en').toLowerCase().replace('_', '-');
   const exactLocale = supported.find((code) => code.toLowerCase() === requested);
   const baseLocale = requested.split('-')[0];
-  const locale = exactLocale || (supported.includes(baseLocale) ? baseLocale : 'zh');
+  const locale = exactLocale || (supported.includes(baseLocale) ? baseLocale : 'en');
   const rtlLocales = new Set(['ar', 'he', 'fa', 'ur']);
   document.documentElement.lang = locale;
   document.documentElement.dir = rtlLocales.has(locale.split('-')[0]) ? 'rtl' : 'ltr';
@@ -50,14 +50,15 @@
       working: 'Working…',
       requiredEmailPassword: 'Email and password are required.',
       requiredSiteName: 'Site name is required.',
-      fileTooLarge: 'File must be 1 MB or smaller.',
+      fileTooLarge: 'File is too large for its format.',
+      unsupportedFile: 'Unsupported file type. Use .txt, .md, .docx, .xlsx or a text-based .pdf.',
       requestFailed: 'Request failed.',
       kbReady: 'Ready to check',
       kbConfirmed: 'Confirmed',
       copied: 'Copied',
       copyFailed: 'Copy failed; select the code manually.',
       kbTitle: 'Knowledge upload',
-      kbMuted: 'Upload a text file up to 1 MB (.txt / .md). A draft is created and enters the knowledge base only after you confirm it.',
+      kbMuted: 'Upload text up to 5 MB (.txt / .md), Word/Excel up to 10 MB (.docx / .xlsx), or a text-based PDF up to 15 MB. A draft is created and enters the knowledge base only after you confirm it.',
       kbFile: 'Knowledge file',
       kbDraft: 'Knowledge draft',
       kbConfirm: 'Confirm knowledge',
@@ -128,14 +129,15 @@
       working: 'جارٍ العمل…',
       requiredEmailPassword: 'البريد الإلكتروني وكلمة المرور مطلوبان.',
       requiredSiteName: 'اسم الموقع مطلوب.',
-      fileTooLarge: 'يجب ألا يتجاوز الملف 1 ميغابايت.',
+      fileTooLarge: 'الملف أكبر من الحد المسموح لهذا النوع.',
+      unsupportedFile: 'نوع الملف غير مدعوم. استخدم .txt أو .md أو .docx أو .xlsx أو ملف PDF نصي.',
       requestFailed: 'فشل الطلب.',
       kbReady: 'جاهز للمراجعة',
       kbConfirmed: 'تم التأكيد',
       copied: 'تم النسخ',
       copyFailed: 'فشل النسخ؛ حدّد الكود يدوياً.',
       kbTitle: 'رفع المعرفة',
-      kbMuted: 'ارفع ملفاً نصياً حتى 1 ميغابايت (.txt / .md). ستُنشأ مسودة ولن تدخل قاعدة المعرفة إلا بعد التأكيد.',
+      kbMuted: 'ارفع ملفاً نصياً حتى 5 ميغابايت (.txt / .md)، أو Word/Excel حتى 10 ميغابايت (.docx / .xlsx)، أو PDF نصي حتى 15 ميغابايت. ستُنشأ مسودة ولن تدخل قاعدة المعرفة إلا بعد التأكيد.',
       kbFile: 'ملف المعرفة',
       kbDraft: 'مسودة المعرفة',
       kbConfirm: 'تأكيد المعرفة',

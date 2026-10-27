@@ -142,24 +142,44 @@ $('#createSite').addEventListener('click', async () => {
   }
 });
 
+const KB_FORMAT_LIMITS = { txt: 5 * 1024 * 1024, md: 5 * 1024 * 1024, docx: 10 * 1024 * 1024, xlsx: 10 * 1024 * 1024, pdf: 15 * 1024 * 1024 };
+function kbExtension(name) {
+  const value = String(name || '').toLowerCase();
+  return value.includes('.') ? value.slice(value.lastIndexOf('.') + 1) : '';
+}
+function uploadApi(path, formData) {
+  const headers = {};
+  if (token) headers.authorization = `Bearer ${token}`;
+  return fetch(path, { method: 'POST', headers, body: formData }).then(async (response) => {
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || `${tr('requestFailed', 'Request failed')} (${response.status})`);
+    return data;
+  });
+}
+
 $('#kbFile').addEventListener('change', async () => {
   error('kbError', '');
   const file = $('#kbFile').files[0];
   if (!file) return;
-  const sizeLabel = file.size < 1024 ? `${file.size} B` : `${Math.round(file.size / 1024)} KB`;
+  const ext = kbExtension(file.name);
+  const sizeLabel = file.size < 1024 ? `${file.size} B` : `${(file.size / 1024).toFixed(1)} KB`;
   $('#kbFileName').textContent = `${file.name} · ${sizeLabel}`;
-  if (file.size > 1_000_000) {
-    error('kbError', tr('fileTooLarge', 'File must be 1 MB or smaller.'));
+  const limit = KB_FORMAT_LIMITS[ext];
+  if (!limit) {
+    error('kbError', tr('unsupportedFile', 'Unsupported file type. Use .txt, .md, .docx, .xlsx or a text-based .pdf.'));
+    return;
+  }
+  if (file.size > limit) {
+    error('kbError', `${tr('fileTooLarge', 'File is too large.')} ${Math.round(limit / 1024 / 1024)} MB max for .${ext}.`);
     return;
   }
   const button = $('#kbConfirm');
   button.disabled = true;
   try {
-    const content = await file.text();
-    const data = await api(`/api/v1/sites/${encodeURIComponent(site.id)}/kb/upload`, {
-      method: 'POST',
-      body: JSON.stringify({ filename: file.name, title: file.name, content })
-    });
+    const form = new FormData();
+    form.append('file', file, file.name);
+    form.append('title', file.name);
+    const data = await uploadApi(`/api/v1/sites/${encodeURIComponent(site.id)}/kb/upload`, form);
     draft = data.document;
     $('#kbPreview').textContent = draft.content;
     $('#kbDraft').classList.remove('hidden');

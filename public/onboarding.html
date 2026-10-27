@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +37,7 @@
       <section id="authPanel" class="card panel" aria-labelledby="authTitle">
         <p class="step-tag">第 1 步，共 4 步</p>
         <h2 id="authTitle">创建账号</h2>
-        <p class="muted">填邮箱和密码就行。这个邮箱已经注册过的话，会自动帮你登录。</p>
+        <p class="muted">Register with email and password; an existing email switches to sign-in.</p>
         <form id="authForm" class="ob-form" novalidate>
           <div class="field">
             <label for="email">邮箱</label>
@@ -73,9 +73,9 @@
       <section id="kbPanel" class="card panel hidden" aria-labelledby="kbTitle">
         <p class="step-tag">第 3 步，共 4 步</p>
         <h2 id="kbTitle">上传店铺资料</h2>
-        <p class="muted">把产品说明、发货时间、退货规则写成一个文字文件（.txt / .md，不超过 1MB）传上来。系统会自动读懂。</p>
+        <p class="muted">Upload text up to 5 MB (.txt / .md), Word/Excel up to 10 MB (.docx / .xlsx), or a text-based PDF up to 15 MB. A draft is created and only enters the knowledge base after you confirm it.</p>
         <label class="ob-label" for="kbFile">选一个资料文件</label>
-        <input id="kbFile" class="ob-file" type="file" accept=".txt,.md,text/plain">
+        <input id="kbFile" class="ob-file" type="file" accept=".txt,.md,.docx,.xlsx,.pdf,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
         <p id="kbFileName" class="file-name"></p>
         <div id="kbDraft" class="draft hidden">
           <h3>系统帮你整理好了，看看对不对</h3>
