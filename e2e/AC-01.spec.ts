@@ -22,7 +22,7 @@ test.describe('AC-01 merchant onboarding', () => {
     await expect(page.getByRole('heading', { name: /Calm Customer Support/i })).toBeVisible();
     await page.getByRole('link', { name: /Start free|免费开始/i }).first().click();
     await page.waitForURL(/onboarding\.html/);
-    await expect(page.getByRole('heading', { name: /一步步把客服装好|Set up/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /一步步把客服装好|Launch your support site|Set up/i })).toBeVisible();
     await captureScreenshot(page, testInfo, 'AC-01', 'step-landing');
 
     // Step 1: create account.

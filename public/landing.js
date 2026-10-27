@@ -282,9 +282,25 @@
     renderScenario(0);
   }
 
+  function syncInternalLocaleLinks(locale) {
+    var linked = roots('a[href^="/onboarding.html"], a[href^="/login.html"]');
+    linked.forEach(function (link) {
+      var href = link.getAttribute('href');
+      if (!href) return;
+      var url = new URL(href, window.location.origin);
+      url.searchParams.set('lang', locale);
+      link.setAttribute('href', url.pathname + url.search + url.hash);
+    });
+  }
+
   function applySiteLocale(locale) {
     applyPageLocale(locale);
     applyDemoLocale(locale);
+    try {
+      localStorage.setItem('nudgeso_site_locale', locale);
+      localStorage.setItem('relaydesk_locale', locale);
+    } catch (e) {}
+    syncInternalLocaleLinks(locale);
   }
 
   /* ---------- Site language selector ---------- */
@@ -298,13 +314,15 @@
   });
   var queryLang = new URLSearchParams(window.location.search).get('lang');
   var savedLang = '';
-  try { savedLang = localStorage.getItem('nudgeso_site_locale') || ''; } catch (e) {}
-  currentLocale = pickLocale(queryLang || savedLang || 'en');
+  var savedAppLang = '';
+  try {
+    savedLang = localStorage.getItem('nudgeso_site_locale') || '';
+    savedAppLang = localStorage.getItem('relaydesk_locale') || '';
+  } catch (e) {}
+  currentLocale = pickLocale(queryLang || savedLang || savedAppLang || 'en');
   applySiteLocale(currentLocale);
   siteLang.addEventListener('change', function () {
-    var next = pickLocale(siteLang.value);
-    try { localStorage.setItem('nudgeso_site_locale', next); } catch (e) {}
-    applySiteLocale(next);
+    applySiteLocale(pickLocale(siteLang.value));
   });
 
   demoScenarios.addEventListener('click', function (event) {
