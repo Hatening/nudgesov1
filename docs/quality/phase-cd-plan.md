@@ -387,6 +387,13 @@ need staging; otherwise they stay BLOCKED/NOT RUN.
 10. D3 CI/release integration
 ```
 
-C1 is already in the codebase. Phase C should not be declared complete until all
+C1, C2 and C3 are now implemented and green:
+
+- C1: locale continuity and English fallback;
+- C2: protected-surface returnTo, safe redirects, expired-token return;
+- C3: browser-level tenant isolation; role enforcement is covered by the
+  existing `P3-02 auth/RBAC` Node test.
+
+C4–C6 remain planned. Phase C should not be declared complete until all
 contracts and their regressions are green. Phase D should not claim “full website
 tested” beyond its actual coverage matrix.

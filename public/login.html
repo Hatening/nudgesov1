@@ -62,7 +62,7 @@
       var params=new URLSearchParams(location.search);
       var r=params.get('redirect')||'/';
       // only same-origin root-relative paths; reject protocol-relative "//evil"
-      if(r.charAt(0)==='/' && r.charAt(1)!=='/') return r;
+      if(r.charAt(0)==='/' && r.charAt(1)!=='/' && r.indexOf('\\')===-1) return r;
     }catch(e){}
     return '/';
   }
