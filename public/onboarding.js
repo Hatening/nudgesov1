@@ -9,6 +9,7 @@ let token = localStorage.getItem('relaydesk_token') || '';
 let site = null;
 let draft = null;
 let selectedTemplate = 'restaurant';
+let currentTenantId = '';
 
 const STATE_KEY = 'nudgeso_onboarding_state';
 
@@ -26,6 +27,37 @@ function saveState(patch) {
   const next = Object.assign({}, cur, patch);
   try { localStorage.setItem(STATE_KEY, JSON.stringify(next)); } catch (e) {}
   return next;
+}
+
+
+function planContextFromLocation() {
+  const params = new URLSearchParams(window.location.search);
+  const plan = String(params.get('plan') || '').toLowerCase();
+  const billing = String(params.get('billing') || '').toLowerCase() === 'yearly' ? 'yearly' : 'monthly';
+  if (!['free', 'pro', 'business'].includes(plan)) return null;
+  return { plan, billing };
+}
+
+function applyPlanContext(previousState) {
+  const fromUrl = planContextFromLocation();
+  const fromState = previousState && previousState.plan ? {
+    plan: previousState.plan,
+    billing: previousState.billing === 'yearly' ? 'yearly' : 'monthly'
+  } : null;
+  const context = fromUrl || fromState;
+  if (!context) return;
+  saveState({ plan: context.plan, billing: context.billing });
+  const banner = $('#planContext');
+  if (!banner) return;
+  if (context.plan === 'pro') {
+    banner.hidden = false;
+    banner.textContent = tr('planProPreview', 'Pro preview — no payment is collected.');
+  } else if (context.plan === 'business') {
+    banner.hidden = false;
+    banner.textContent = tr('planBusinessPreview', 'Business preview — no payment is collected.');
+  } else {
+    banner.hidden = true;
+  }
 }
 
 function showOnly(id) {
@@ -97,10 +129,11 @@ $('#authForm').addEventListener('submit', async (event) => {
   try {
     const data = await authenticate(email, password);
     token = data.token || data.access_token;
+    currentTenantId = data.user?.tenant_id || '';
     localStorage.setItem('relaydesk_token', token);
     if (data.refresh_token) localStorage.setItem('relaydesk_refresh_token', data.refresh_token);
     localStorage.setItem('nudgeso_onboarding_pending', '1');
-    saveState({ step: 'site', siteId: null });
+    saveState({ step: 'site', siteId: null, tenantId: currentTenantId || data.user?.tenant_id || '' });
     showOnly('sitePanel');
     setStep('site');
   } catch (err) {
@@ -251,15 +284,22 @@ async function loadEmbedCode(targetSite) {
 }
 
 (async function boot() {
+  applyPlanContext(loadState());
   if (!token) return;
   try {
-    await api('/api/v1/auth/me');
+    const me = await api('/api/v1/auth/me');
+    currentTenantId = me.user?.tenant_id || '';
   } catch {
     token = '';
     localStorage.removeItem('relaydesk_token');
     return;
   }
-  const state = loadState();
+  let state = loadState();
+  if (state && state.tenantId && currentTenantId && String(state.tenantId) !== String(currentTenantId)) {
+    localStorage.removeItem(STATE_KEY);
+    state = null;
+  }
+  applyPlanContext(state);
   if (state && state.siteId) {
     try {
       const data = await api('/api/v1/sites');

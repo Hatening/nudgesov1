@@ -45,6 +45,7 @@
     proBilling.textContent = yearly ? pro.billingYearly : pro.billingMonthly;
     if (bizPrice) bizPrice.textContent = yearly ? '39' : '49';
     if (bizBilling) bizBilling.textContent = yearly ? business.billingYearly : business.billingMonthly;
+    syncPlanContextLinks();
   }
   sw.addEventListener('click', function () { yearly = !yearly; renderBilling(); });
 
@@ -282,8 +283,20 @@
     renderScenario(0);
   }
 
+  function syncPlanContextLinks() {
+    roots('a[data-plan]').forEach(function (link) {
+      var href = link.getAttribute('href') || '/onboarding.html';
+      var url = new URL(href, window.location.origin);
+      url.searchParams.set('plan', link.dataset.plan);
+      url.searchParams.set('billing', yearly ? 'yearly' : 'monthly');
+      url.searchParams.set('lang', currentLocale);
+      link.setAttribute('href', url.pathname + url.search + url.hash);
+      link.dataset.planContext = url.search;
+    });
+  }
+
   function syncInternalLocaleLinks(locale) {
-    var linked = roots('a[href^="/onboarding.html"], a[href^="/login.html"]');
+    var linked = roots('a[href*="/onboarding.html"], a[href*="/login.html"]');
     linked.forEach(function (link) {
       var href = link.getAttribute('href');
       if (!href) return;
@@ -291,6 +304,7 @@
       url.searchParams.set('lang', locale);
       link.setAttribute('href', url.pathname + url.search + url.hash);
     });
+    syncPlanContextLinks();
   }
 
   function applySiteLocale(locale) {

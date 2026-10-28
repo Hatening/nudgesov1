@@ -168,3 +168,6 @@ h1, h2, h3 { font-family: "Baloo 2", "Asap", ui-rounded, sans-serif; line-height
   .intro h1 { font-size: 30px; }
   .panel { padding: 22px; }
 }
+
+.plan-context{max-width:1080px;margin:18px auto 0;padding:10px 16px;border:1px solid #E7C9AE;background:#FDEBDD;color:#7A3210;border-radius:10px;font-weight:600;text-align:center}
+.plan-context[hidden]{display:none}

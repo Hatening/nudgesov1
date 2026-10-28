@@ -394,6 +394,13 @@ C1, C2 and C3 are now implemented and green:
 - C3: browser-level tenant isolation; role enforcement is covered by the
   existing `P3-02 auth/RBAC` Node test.
 
-C4–C6 remain planned. Phase C should not be declared complete until all
-contracts and their regressions are green. Phase D should not claim “full website
-tested” beyond its actual coverage matrix.
+C4 and C5 are now implemented and green:
+
+- C4: non-binding preview plan/billing context persists into onboarding; no
+  payment is created;
+- C5: the onboarding KB step survives refresh, and stale state from another
+  tenant is discarded.
+
+C6 remains planned. Phase C should not be declared complete until all contracts
+and their regressions are green. Phase D should not claim “full website tested”
+beyond its actual coverage matrix.

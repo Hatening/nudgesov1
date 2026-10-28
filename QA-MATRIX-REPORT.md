@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261028-073135-C2C3-FINAL/`
+- `artifacts/runs/RUN-20261028-082738-C4C5-FINAL/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -24,7 +24,7 @@ applicable to NudgeSo and are not silently copied here.
 | Unique same-origin links checked | 27 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **48 pass, 4 intentionally skipped** |
+| Playwright full suite | **52 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -81,6 +81,22 @@ Root cause: landing saved `nudgeso_site_locale`, onboarding reads
 both locale keys and appends `?lang=` to onboarding/login links. Three tests now
 cover English continuity, Spanish through refresh, and Arabic RTL; AC-01 was
 updated to accept the correct English onboarding heading.
+
+## C4 preview plan + C5 wizard state (2026-10-28)
+
+`e2e/CONTEXT-C4-C5.spec.ts` adds four contracts:
+
+- Pro plan intent (`plan=pro`) survives from pricing into onboarding;
+- selected billing (`monthly` / `yearly`) survives the same boundary;
+- the onboarding banner says the plan is preview-only and no payment request
+  is made;
+- refreshing the onboarding KB step restores that step for the same tenant;
+- a stale wizard state belonging to another tenant is discarded and returns to
+  site creation.
+
+The onboarding state now records `tenantId`, `plan` and `billing`; it is cleared
+when the authenticated tenant no longer matches. C4 is intentionally
+non-binding: no subscription or charge is created.
 
 ## C2 auth returnTo + C3 tenant isolation (2026-10-28)
 
