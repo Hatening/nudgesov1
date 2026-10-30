@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "phase": "D1",
+  "reviewed": true,
+  "generatedFrom": "docs/product/page-registry.json",
+  "fixturePolicy": "Disposable local/CI merchant account and site only; no production writes.",
+  "contracts": [
+    {
+      "id": "landing",
+      "route": "/landing.html?lang=en",
+      "auth": "guest",
+      "criticality": "P0",
+      "selector": ".hero h1",
+      "text": "Calm Customer Support"
+    },
+    {
+      "id": "login",
+      "route": "/login.html",
+      "auth": "guest",
+      "criticality": "P0",
+      "selector": "#loginForm",
+      "text": "Welcome back"
+    },
+    {
+      "id": "onboarding",
+      "route": "/onboarding.html?lang=en",
+      "auth": "guest",
+      "criticality": "P0",
+      "selector": "#authPanel"
+    },
+    {
+      "id": "workspace",
+      "route": "/",
+      "auth": "merchant",
+      "criticality": "P0",
+      "selector": ".app-shell"
+    },
+    {
+      "id": "queue",
+      "route": "/queue.html?lang=en",
+      "auth": "merchant",
+      "criticality": "P0",
+      "selector": "h1"
+    },
+    {
+      "id": "customer-chat",
+      "route": "/chat.html?site=<embed_key>",
+      "auth": "customer",
+      "criticality": "P0",
+      "selector": "#consentButton"
+    },
+    {
+      "id": "upload",
+      "route": "/upload.html",
+      "auth": "merchant",
+      "criticality": "P1",
+      "selector": "#drop"
+    },
+    {
+      "id": "manual",
+      "route": "/manual.html",
+      "auth": "merchant",
+      "criticality": "P2",
+      "selector": "h1"
+    },
+    {
+      "id": "insights",
+      "route": "/insights.html?lang=en",
+      "auth": "merchant",
+      "criticality": "P2",
+      "selector": "#filters"
+    },
+    {
+      "id": "privacy-draft",
+      "route": "/privacy.html",
+      "auth": "guest",
+      "criticality": "P2",
+      "selector": "main"
+    },
+    {
+      "id": "terms-draft",
+      "route": "/terms.html",
+      "auth": "guest",
+      "criticality": "P2",
+      "selector": "main"
+    },
+    {
+      "id": "not-found",
+      "route": "/404.html",
+      "auth": "guest",
+      "criticality": "P2",
+      "selector": "main"
+    }
+  ]
+}

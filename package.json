@@ -44,7 +44,9 @@
     "quality:performance": "node scripts/performance-audit.mjs",
     "quality:visual": "node scripts/capture-visual-evidence.mjs",
     "verify:deploy": "node scripts/post-deploy-check.mjs",
-    "qa:agent": "node scripts/qa-agent-explore.mjs"
+    "qa:agent": "node scripts/qa-agent-explore.mjs",
+    "qa:agent:generate": "node scripts/qa-agent-generate.mjs",
+    "test:ui:agent": "playwright test e2e/D1-GENERATED.spec.ts --workers=1"
   },
   "engines": {
     "node": ">=25.0.0"

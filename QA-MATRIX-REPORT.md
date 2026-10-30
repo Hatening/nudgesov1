@@ -10,7 +10,7 @@ applicable to NudgeSo and are not silently copied here.
 - `artifacts/qa-matrix/ui-inventory.json`
 - `artifacts/qa-matrix/dead-links.json`
 - `artifacts/qa-matrix/locale-coverage.json`
-- `artifacts/runs/RUN-20261030-084508-C6-FINAL/`
+- `artifacts/runs/RUN-20261030-111743-D1-FINAL/`
 - `artifacts/playwright/report/index.html`
 
 ## Current numbers
@@ -24,7 +24,7 @@ applicable to NudgeSo and are not silently copied here.
 | Unique same-origin links checked | 27 |
 | Dead links | **0** |
 | Node / unit tests | **89 / 89 pass** |
-| Playwright full suite | **54 pass, 4 intentionally skipped** |
+| Playwright full suite | **66 pass, 4 intentionally skipped** |
 | Phase 13 UI matrix | **6 / 6 pass** |
 | Visual baselines | **3 / 3 pass locally** |
 | Geometry warnings | **15 warnings, 0 hard failures** |
@@ -81,6 +81,14 @@ Root cause: landing saved `nudgeso_site_locale`, onboarding reads
 both locale keys and appends `?lang=` to onboarding/login links. Three tests now
 cover English continuity, Spanish through refresh, and Arabic RTL; AC-01 was
 updated to accept the correct English onboarding heading.
+
+## D1 deterministic contract generator (2026-10-30)
+
+`docs/quality/d1-contracts.json` is a reviewed, 12-route manifest. The generator
+emits `e2e/D1-GENERATED.spec.ts` and refuses unreviewed or invalid manifests.
+Generated assertions are limited to HTTP status, primary selector, reviewed
+marker text, auth boundary, overflow and page errors. Business assertions remain
+hand-written. The generated suite passes 12/12 and the full gate passes 66/66.
 
 ## C6 query/filter context (2026-10-30)
 

@@ -407,5 +407,7 @@ invalid values.
 
 Phase C is complete at the implemented-contract level. Phase D0 is implemented:
 the read-only explorer produced a 13-page registry reconciliation with 12
-observed PASS pages and one explicit NOT RUN page. D1–D5 remain planned and must
+observed PASS pages and one explicit NOT RUN page. D1 is now implemented for local/CI route contracts: a reviewed 12-route manifest
+generates a deterministic Playwright suite, with disposable fixture accounts and
+explicit limits on what the generator may assert. D2–D5 remain planned and must
 not claim “full website tested” beyond their coverage matrix.
