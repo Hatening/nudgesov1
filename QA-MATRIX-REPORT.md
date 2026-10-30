@@ -85,7 +85,7 @@ updated to accept the correct English onboarding heading.
 ## D2–D5 automated QA agent gates (2026-10-30)
 
 - D2 integrated 70 test results, D0 coverage and D1 contracts into one evidence artifact.
-- 70/70 test evidence images are attached; 14 are explicitly labelled evidence cards for page-less/skipped tests.
+- 70/70 test evidence images are attached; 13 are explicitly labelled evidence cards for page-less/skipped tests.
 - D3 repair gate: no failures to repair; repair remains human-gated.
 - D4 independent verifier: PASS.
 - D5 local release gate: PASS; CI runs the same D0–D5 steps but external CI completion is still pending.
