@@ -32,9 +32,10 @@ test.describe('C4 preview plan context', () => {
     await expect(page).toHaveURL(/\/onboarding\.html\?.*plan=pro.*billing=monthly/);
     await expect(page.locator('#planContext')).toBeVisible();
     await expect(page.locator('#planContext')).toContainText(/Pro preview/i);
-    const state = await page.evaluate(() => JSON.parse(localStorage.getItem('nudgeso_onboarding_state') || '{}'));
-    expect(state.plan).toBe('pro');
-    expect(state.billing).toBe('monthly');
+    await expect.poll(async () => {
+      const state = await page.evaluate(() => JSON.parse(localStorage.getItem('nudgeso_onboarding_state') || '{}'));
+      return `${state.plan}:${state.billing}`;
+    }).toBe('pro:monthly');
     await page.reload();
     await expect(page.locator('#planContext')).toContainText(/Pro preview/i);
     expect(paymentRequests).toEqual([]);
@@ -47,9 +48,10 @@ test.describe('C4 preview plan context', () => {
     await expect(pro).toHaveAttribute('href', /billing=yearly/);
     await pro.click();
     await expect(page).toHaveURL(/\/onboarding\.html\?.*plan=pro.*billing=yearly/);
-    const state = await page.evaluate(() => JSON.parse(localStorage.getItem('nudgeso_onboarding_state') || '{}'));
-    expect(state.plan).toBe('pro');
-    expect(state.billing).toBe('yearly');
+    await expect.poll(async () => {
+      const state = await page.evaluate(() => JSON.parse(localStorage.getItem('nudgeso_onboarding_state') || '{}'));
+      return `${state.plan}:${state.billing}`;
+    }).toBe('pro:yearly');
   });
 });
 
