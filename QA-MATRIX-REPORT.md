@@ -82,6 +82,15 @@ both locale keys and appends `?lang=` to onboarding/login links. Three tests now
 cover English continuity, Spanish through refresh, and Arabic RTL; AC-01 was
 updated to accept the correct English onboarding heading.
 
+## D2–D5 automated QA agent gates (2026-10-30)
+
+- D2 integrated 70 test results, D0 coverage and D1 contracts into one evidence artifact.
+- 70/70 test evidence images are attached; 14 are explicitly labelled evidence cards for page-less/skipped tests.
+- D3 repair gate: no failures to repair; repair remains human-gated.
+- D4 independent verifier: PASS.
+- D5 local release gate: PASS; CI runs the same D0–D5 steps but external CI completion is still pending.
+- Illustrated report: `NudgeSo-D0-D5-QA-Report.docx`.
+
 ## D1 deterministic contract generator (2026-10-30)
 
 `docs/quality/d1-contracts.json` is a reviewed, 12-route manifest. The generator

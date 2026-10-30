@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/evidence-test';
 
 test('dashboard auth: landing/login gate, login unlocks navigation', async ({ page, request }) => {
   test.setTimeout(60_000);

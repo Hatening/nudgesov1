@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/evidence-test';
 import { captureScreenshot } from './helpers/screenshot';
 
 test('P3-08 i18n: Arabic RTL for chat, onboarding and queue', async ({ page, request }, testInfo) => {

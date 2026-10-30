@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/evidence-test';
 
 async function seedTwoInsights(request: any) {
   const email = `qa-insights-${Date.now()}-${Math.random().toString(36).slice(2, 7)}@example.test`;

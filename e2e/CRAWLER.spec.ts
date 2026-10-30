@@ -1,4 +1,4 @@
-import { test, expect, request as apiRequest, type Page } from '@playwright/test';
+import { test, expect, request as apiRequest, type Page } from './helpers/evidence-test';
 import { captureScreenshot } from './helpers/screenshot';
 
 /**

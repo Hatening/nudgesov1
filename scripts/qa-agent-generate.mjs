@@ -30,7 +30,7 @@ const lines = [
   ' * marker text, auth boundary and overflow. Add business assertions to a',
   ' * hand-written contract spec, not to this generated file.',
   ' */',
-  "import { test, expect } from '@playwright/test';",
+  "import { test, expect } from './helpers/evidence-test';",
   "import { createMerchantFixture } from './helpers/d1-fixtures';",
   '',
   "test.describe('D1 generated route contracts', () => {"

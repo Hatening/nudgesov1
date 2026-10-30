@@ -1,4 +1,4 @@
-import { test, expect, type APIRequestContext, type Page } from '@playwright/test';
+import { test, expect, type APIRequestContext, type Page } from './helpers/evidence-test';
 
 async function registerAndSite(request: APIRequestContext) {
   const email = `xbrowser-${Date.now()}-${Math.floor(Math.random() * 1e6)}@example.test`;

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/evidence-test';
 
 // Read-only check for the deployed Render URL. Local `npm run test:ui`
 // skips this suite; run it with `npm run test:ui:cloud`.

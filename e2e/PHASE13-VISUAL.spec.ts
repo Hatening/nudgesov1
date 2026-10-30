@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/evidence-test';
 
 // Opt-in local pixel gate. Baselines are generated on the release workstation;
 // CI keeps the cross-platform DOM/geometry gates instead of pretending a

@@ -24,6 +24,7 @@ export default defineConfig({
   reporter: [
     ['list'],
     ['html', { open: 'never', outputFolder: 'artifacts/playwright/report' }],
+    ['./e2e/helpers/evidence-reporter.ts'],
   ],
   outputDir: 'artifacts/playwright/test-results',
   use: {

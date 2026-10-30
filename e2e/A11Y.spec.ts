@@ -1,4 +1,4 @@
-import { test, expect, type APIRequestContext, type BrowserContext, type Page } from '@playwright/test';
+import { test, expect, type APIRequestContext, type BrowserContext, type Page } from './helpers/evidence-test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 

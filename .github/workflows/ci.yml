@@ -87,6 +87,22 @@ jobs:
           mkdir -p "$RUN_DIR"
           npx playwright test --workers=1
 
+      - name: D1 generate reviewed contracts
+        run: npm run qa:agent:generate
+
+      - name: D0 read-only QA explorer
+        env:
+          BASE_URL: http://127.0.0.1:3030
+        run: npm run qa:agent
+
+      - name: D2 evidence and coverage integration
+        run: |
+          npm run qa:agent:cards
+          npm run qa:agent:d2
+          npm run qa:agent:d3
+          npm run qa:agent:d4
+          npm run qa:agent:d5
+
       - name: Install cross-browser engines
         run: npx playwright install --with-deps firefox webkit
 
@@ -110,3 +126,5 @@ jobs:
             ${{ runner.temp }}/mock-llm.log
             artifacts/playwright
             artifacts/qa-matrix
+            artifacts/evidence
+            artifacts/quality/agent

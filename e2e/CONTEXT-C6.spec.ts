@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/evidence-test';
 
 async function register(request) {
   const response = await request.post('/api/v1/auth/register', {

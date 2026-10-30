@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/evidence-test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { captureScreenshot } from './helpers/screenshot';

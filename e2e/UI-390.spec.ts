@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './helpers/evidence-test';
 import { captureScreenshot } from './helpers/screenshot';
 
 test.use({ viewport: { width: 390, height: 844 } });
