@@ -43,7 +43,8 @@
     "quality:a11y": "playwright test e2e/A11Y.spec.ts --workers=1",
     "quality:performance": "node scripts/performance-audit.mjs",
     "quality:visual": "node scripts/capture-visual-evidence.mjs",
-    "verify:deploy": "node scripts/post-deploy-check.mjs"
+    "verify:deploy": "node scripts/post-deploy-check.mjs",
+    "qa:agent": "node scripts/qa-agent-explore.mjs"
   },
   "engines": {
     "node": ">=25.0.0"

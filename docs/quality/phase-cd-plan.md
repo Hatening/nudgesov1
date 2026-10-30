@@ -405,5 +405,7 @@ C6 is now implemented and green: the insights category is URL-backed, survives
 refresh and back/forward, preserves unrelated query parameters and normalizes
 invalid values.
 
-Phase C is complete at the implemented-contract level. Phase D remains planned
-and should not claim “full website tested” beyond its actual coverage matrix.
+Phase C is complete at the implemented-contract level. Phase D0 is implemented:
+the read-only explorer produced a 13-page registry reconciliation with 12
+observed PASS pages and one explicit NOT RUN page. D1–D5 remain planned and must
+not claim “full website tested” beyond their coverage matrix.
