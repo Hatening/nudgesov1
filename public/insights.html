@@ -195,7 +195,22 @@
   var state = document.getElementById('state');
   var filters = document.getElementById('filters');
   var all = [];
-  var active = new URLSearchParams(location.search).get('category') || 'all';
+  var categories = ['all', '行业洞察', '商业策略'];
+  function categoryFromUrl() {
+    var value = new URLSearchParams(location.search).get('category') || 'all';
+    return categories.indexOf(value) >= 0 ? value : 'all';
+  }
+  var active = categoryFromUrl();
+
+  function writeFilterUrl(cat, mode) {
+    var url = new URL(location.href);
+    if (cat === 'all') url.searchParams.delete('category');
+    else url.searchParams.set('category', cat);
+    var next = url.pathname + url.search + url.hash;
+    if (mode === 'push') history.pushState({ category: cat }, '', next);
+    else if (mode === 'replace') history.replaceState({ category: cat }, '', next);
+  }
+
 
   function esc(value) {
     return String(value == null ? '' : value).replace(/[&<>"']/g, function (c) {
@@ -233,17 +248,21 @@
     }).join('');
   }
 
-  function setFilter(cat) {
-    active = cat;
+  function setFilter(cat, mode) {
+    active = categories.indexOf(cat) >= 0 ? cat : 'all';
     Array.prototype.forEach.call(filters.querySelectorAll('.chip'), function (chip) {
-      chip.classList.toggle('on', chip.dataset.cat === cat);
+      chip.classList.toggle('on', chip.dataset.cat === active);
     });
+    writeFilterUrl(active, mode);
     render();
   }
 
   filters.addEventListener('click', function (event) {
     var chip = event.target.closest('.chip');
-    if (chip) setFilter(chip.dataset.cat);
+    if (chip) setFilter(chip.dataset.cat, 'push');
+  });
+  window.addEventListener('popstate', function () {
+    setFilter(categoryFromUrl(), 'none');
   });
 
   var subscribe = document.getElementById('subscribe');
@@ -265,7 +284,7 @@
     })
     .then(function (data) {
       all = Array.isArray(data.items) ? data.items : [];
-      setFilter(active === 'all' ? 'all' : active);
+      setFilter(active, 'replace');
     })
     .catch(function (error) {
       cards.innerHTML = '';

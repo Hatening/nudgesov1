@@ -401,6 +401,9 @@ C4 and C5 are now implemented and green:
 - C5: the onboarding KB step survives refresh, and stale state from another
   tenant is discarded.
 
-C6 remains planned. Phase C should not be declared complete until all contracts
-and their regressions are green. Phase D should not claim “full website tested”
-beyond its actual coverage matrix.
+C6 is now implemented and green: the insights category is URL-backed, survives
+refresh and back/forward, preserves unrelated query parameters and normalizes
+invalid values.
+
+Phase C is complete at the implemented-contract level. Phase D remains planned
+and should not claim “full website tested” beyond its actual coverage matrix.
